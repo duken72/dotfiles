@@ -1,0 +1,25 @@
+[user]
+	email = duke7295@gmail.com
+	name = Duke Nguyen
+[credential]
+	helper = store
+[alias]
+	co = checkout
+	br = branch
+	st = status
+	ci = commit
+	i = init
+	ps = push
+	pl = pull
+	cfg = config
+	ft = fetch
+	mg = merge
+	cl = clone
+	sh = show
+	bl = blame
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = auto

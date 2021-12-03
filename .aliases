@@ -1,0 +1,167 @@
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+alias grepr='grep -R'
+alias ll='ls -lh'
+alias lla='ls -alh'
+alias la='ls -A'
+alias l='ls -C'
+alias aliasg='alias | grep'
+
+function cdl {
+	builtin cd "$@" && ls -C
+	}
+alias rm='rm -i'
+alias mv='mv -i'
+
+# navigation
+alias   c='cl; cdl'
+alias  cL='cl; ls'
+alias  ..='cdl ..'
+alias ...='cdl ../..'
+alias  .2='cdl ../..'
+alias  .3='cdl ../../..'
+alias  .4='cdl ../../../..'
+alias  .5='cdl ../../../../..'
+
+# CD GENERICS
+alias    cdpic='cdl ~/Pictures'
+alias    cddoc='cdl ~/Documents'
+alias    cdvid='cdl ~/Videos'
+alias  cdmusic='cdl ~/Music'
+alias cdreport='cdl ~/Documents/weekly_report'
+alias   cddown='cdl ~/Downloads'
+alias    cdgit='cdl ~/git'
+alias cdconfig='cd ~/.config && la'
+alias  cddotfs='cd ~/dotfiles && la'
+alias cdcodingFD='cdl ~/dotfiles/codingForDummies'
+alias   cdbashFD='cdl ~/dotfiles/codingForDummies/bashFD'
+alias    cdcppFD='cdl ~/dotfiles/codingForDummies/cppFD'
+alias    cdrosFD='cdl ~/dotfiles/codingForDummies/rosFD'
+
+# System
+alias cl='clear' #for terminator, just Ctrl+L
+alias sdn='shutdown now'
+alias rb='reboot'
+
+# alias and bashrc
+# to change between bash and zsh
+# sudo chsh -s $(which zsh) # or bash
+alias  ealias='v ~/dotfiles/.aliases'
+alias  ezshrc='v ~/dotfiles/.zshrc'
+alias ebashrc='v ~/dotfiles/.bashrc'
+alias  talias='. ~/.aliases'
+alias tbashrc='. ~/.bashrc'
+alias  tzshrc='. ~/.zshrc'
+alias  econky='v ~/dotfiles/.config/conky/conky.conf'
+
+# Applications specific
+alias py='python3'
+alias python='python3'
+alias v='vim'
+alias co='code'
+alias sv='sudo -E vim'
+alias jn='jupyter-notebook'
+alias o='xdg-open'
+alias of='o .'
+alias ra='ranger'
+alias pdfConvert='soffice --headless --convert-to pdf' # convert a file to pdf, at least work with pptx
+
+alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
+alias nwtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias weather='curl wttr.in'
+alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
+alias usound='amixer -q -D pulse sset Master 14%+'
+alias dsound='amixer -q -D pulse sset Master 14%-'
+# ssound # set sound to "$1"%
+# View files and folders
+alias less='less -N' # less with line number
+#alias fd='fdfind'
+
+
+# ROS
+alias  cdroswss='cdl ~/ros_wss'
+alias  cddukews='cdl ~/ros_wss/dukeCPPws/src'
+alias  cdoffcpp='cdl ~/ros_wss/dukeCPPws/src/offlineCPP/drafts'
+alias      cdrs='cdl ~/ros_wss/dukeCPPws/src/offlineCPP/results'
+alias  jnoffcpp='cdoffcpp && .. && jn'
+alias cdtestcpp='cdl ~/ros_wss/testCPPws/src'
+alias  cdros2ws='cdl ~/ros_wss/ros2ws/src'
+alias   cdipaws='cdl ~/ros_wss/ipaCPPws/src'
+alias  cdtestws='cdl ~/ros_wss/test_ws/src'
+
+# OSD
+alias vc='osd-vpn-connect'
+
+# Ubuntu
+alias upd='sudo apt-get update'
+alias upg='sudo apt dist-upgrade'
+alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
+# dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
+
+# Arch Linux
+alias pas='sudo pacman -S'
+alias pass='pacman -Ss'
+alias pasyu='sudo pacman -Syu'
+alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
+alias aa='sudo aura -A'
+alias ass='aura -As'
+alias asu='aura -Au'
+
+# MOUNT USB
+alias usb_mount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
+alias usb_unmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
+
+# DUAL BOOT with WINDOWS
+WIN=/media/${USERNAME}
+WINPATH=${WIN}/Windows/Users
+alias mountwin='umountw; sudo mkdir ${WIN}/Windows && sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}/Windows/'
+alias  umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
+alias   cdwvid='cdl ${WINPATH}/Duke\ Nguyen/Videos'
+alias cdwmusic='cdl ${WINPATH}/Duke\ Nguyen/Music'
+alias   cdwpic='cdl ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
+alias   cdwdoc='cdl ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
+alias  cdwdown='cdl ${WINPATH}/Duke\ Nguyen/Downloads'
+
+# Git
+alias gcl='git clone'
+alias gst='git status'
+alias gaa='git add .'
+alias gci='git commit -m'
+alias gpl='git pull origin'
+alias gps='git push origin'
+alias gft='git fetch'
+alias gbr='git branch'
+alias gsh='git show'
+alias gbl='git blame'
+alias gdiff='git diff'
+alias gac='gaa && gci'
+# gap # add, commit with message, then push to origin
+alias gi='git init'
+
+# Sync personal dotfiles
+alias dpl='cd ~/dotfiles && gpl && echo "dotfiles UPDATED" && cd -' 
+# dps # dotfiles push
+alias dst='cd ~/dotfiles && gst && cd -'
+
+# Guide
+alias  bashg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/)'
+alias bashgg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias   gitg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/)'
+alias  gitgg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias   vimg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/)'
+alias  vimgg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias  lessg='less $(fd lessFD.bash ~/dotfiles/codingForDummies/)'
+alias   rosg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/)'
+alias  rosgg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias  rosg2='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/)'
+alias rosgg2='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/) | grep'
+alias    pyg='less $(fd pyFD.py ~/dotfiles/codingForDummies/)'
+alias   pygg='less $(fd pyFD.py ~/dotfiles/codingForDummies/) | grep'

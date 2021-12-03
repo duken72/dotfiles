@@ -1,0 +1,149 @@
+\usepackage{acronym}					% Acronym
+\usepackage{biblatex}					% Reference
+
+\usepackage{hyperref}					% Hyperlink reference
+\usepackage{graphicx}					% Include graphics?
+\graphicspath{{./Contents/images/}}
+
+% Change enumerate of subsection
+%\renewcommand{\labelenumi}{\arabic{enumi} . }
+%\renewcommand{\labelenumii}{\theenumi.\arabic{enumii} . }
+
+% Algorithm settings
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\SetKwComment{Comment}{/* }{ */}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\RestyleAlgo{ruled}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{rotating}					% To Rotate Table
+\usepackage{longtable}					% Long table on multiple pages
+\usepackage{pifont}						% Tick mark
+
+\newcommand{\cm}{\ding{51}}				% Tick mark
+\newcommand{\dcm}{\ding{51}\ding{51}}	% Double tick mark
+\newcommand{\xm}{\ding{55}}				% X mark
+
+\usepackage{enumitem}
+\setlist{nolistsep,leftmargin=*}
+
+\let\cleardoublepage\clearpage
+
+% make caption font small for better separation of figures and text
+\usepackage[font=small]{caption}
+
+%% Key definitions for text elements. USE ONLY THEM! Do not use naked \ref{}.
+\def\charef#1{Chap.~\ref{#1}}
+\def\secref#1{Sec.~\ref{#1}}
+\def\subsecref#1{Subsec.~\ref{#1}}
+\def\figref#1{Fig.~\ref{#1}}
+\def\tabref#1{Tab.~\ref{#1}}
+\def\eqref#1{Eq.~\ref{#1}}
+\def\algref#1{Alg.~\ref{#1}}
+\def\citeaus#1{\citeauthor{#1} \cite{#1}}
+\def\citeausm#1{\citeauthor*{#1} \cite{#1}}
+
+%% Other useful macros
+\newcommand\todo[1]{\textbf{[TODO: #1}]}
+
+\makeatletter
+\usepackage{xspace}
+%% the \onedot macro is producing only one dot at line ends.
+%% thus \etal. will not produce et al..
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+\def\eg{e.g\onedot} \def\Eg{E.g\onedot}
+\def\ie{i.e\onedot} \def\Ie{I.e\onedot}
+\def\cf{cf\onedot} \def\Cf{Cf\onedot}
+\def\etc{etc\onedot} \def\vs{vs\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+%% Cyrill does not like emph...
+%\def\etal{\emph{et al}\onedot}
+\def\etal{{et al}\onedot}
+\makeatother
+\def\etalcite#1{\etal~\cite{#1}}
+
+
+\iffalse
+% {scrhack}	 				% Interaction of several packages with the KOMA-Script
+% [utf8]{inputenc}    		% Input-encoding
+% {babel}          			% Spell aid
+% {csquotes} 				% German quotation marks
+% [T1]{fontenc}         	% T1-encoded fonts, correct seperation of words with umlauts
+% {lmodern}					% Nicer font
+% {textcomp}				% Special characters in the text (e.g. €)
+% {textgreek}				% Greek symbols in the text
+% {setspace}        		% Line spacing
+% {scrpage2}				% Header and footer
+% {caption}       			% adjust multiline captions
+% {booktabs}		 		% horizontal lines
+% {multirow}		 		% Divide lines and columns further
+% {rccol}			 		% Align columns according to the decimal point
+% {graphicx, psfrag} 		% Incorporation of graphics
+% {subcaption}          	% Sub-illustrations
+% {amsmath}  				% for complex mathematic constructions
+% {mathtools}				% Mathematical formula: Indeces top left
+% {mathrsfs,amssymb}		% Mathematical formula: Symbols
+% {amsfonts}				% Mathematical formula: Fonts
+% {bm}						% Bold lettering for matrices and vectors
+% {arydshln}				% lines for matrices and vectors
+% {biblatex}				% Citations
+% {acronym}					% For the list of abbreviations
+% {siunitx}					% Für schöne Einheiten 
+% {pdflscape}       		% Display pages properly in landscape mode
+% {hyperref}				% PDF mit Hyperlinks
+% {geometry}				% margins
+
+\usepackage{pgfplots}		% Creation of vector graphics
+\pgfplotsset{compat=1.13}
+\usepackage{tikz}
+\usetikzlibrary{external,positioning,calc,decorations.markings,arrows,shapes,patterns}
+\fi
+
+\iffalse
+%% Bibliography.bib
+
+% Encoding: UTF-8
+
+@STRING{ai      = {Artificial Intelligence} }
+@STRING{arso	= {Proc.~of the IEEE Workshop on Advanced Robotics and its Social Impacts (ARSO)} }
+@STRING{amai	= {Annals of Mathematics and Artificial Intelligence} }
+@STRING{ar      = {Autonomous Robots} }
+@STRING{flairs 	= {Proc.~of the Int.~Conf.~of Florida Artificial Intelligence Research Society (FLAIRS)} }
+@STRING{fsr		= {Field and Service Robotics} }
+@STRING{icar    = {Proc.~of the Int.~Conf.~on Advanced Robotics (ICAR)} }
+@STRING{icra    = {Proc.~of the IEEE Intl.~Conf.~on Robotics \& Automation (ICRA)} }
+@STRING{iecon   = {Proc.~of the IEEE Anl.~Conf.~on Industrial Electronics Society (IECON)} }
+@STRING{ifac    = {IFAC Proceedings Volumes} }
+@STRING{ijars   = {Intl.~Journal of Advanced Robotic Systems} }
+@STRING{ijnc	= {Int. Journal of Natural Computing} }
+@STRING{iros    = {Proc.~of the IEEE/RSJ Intl.~Conf.~on Intelligent Robots and Systems (IROS)} }
+@STRING{jcos    = {Computers \& Operations Research} }
+@STRING{jd		= {Drones} }
+@STRING{je		= {Energies} }
+@STRING{jfr     = {Journal of Field Robotics (JFR)} }
+@STRING{jirs    = {Journal of Intelligent and Robotic Systems (JIRS)} }
+@STRING{jis		= {Information Sciences} }
+@STRING{jise    = {Journal of Information Science \& Engineering} }
+@STRING{jrs		= {Journal of Robotic systems} }
+@STRING{js		= {Sensors} }
+
+@STRING{mdpi	= {Multidisciplinary Digital Publishing Institute} }
+@STRING{or		= {Operations Research} }
+@STRING{orl		= {Operations Research Letters} }
+@STRING{ras     = {Journal on Robotics and Autonomous Systems (RAS)} }
+@STRING{tsmc	= {IEEE Trans. on Systems, Man, and Cybernetics} }
+@STRING{wcica	= {Proc.~of the World Congress on Intelligent Control and Automation} }
+
+@InProceedings{zelinsky1993icar,
+	author    = {Zelinsky, Alexander and Jarvis, Ray A. and Byrne, J. C. and Yuta, Shinichi},
+	booktitle = icar,
+	title     = {Planning Paths Of Complete Coverage Of An Unstructured Environment By A Mobile Robot},
+	year      = {1993},
+	pages     = {533--538},
+	volume    = {13},
+}
+
+\fi

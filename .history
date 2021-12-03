@@ -1,0 +1,235 @@
+history
+ezshrc
+cat .history
+cl
+e .history
+cat .history
+tzshrc
+cat .history
+cat .history
+cat .zsh_history
+rm .zsh_history
+ezshrc
+: 1638480623:0;cp .history dotfiles
+: 1638480627:1;rm .history
+: 1638480640:0;ln -s ~/dotfiles/.history ~/.history
+: 1638480645:0;cat .history
+: 1638480658:0;cddo
+: 1638480660:0;cddotfs
+: 1638480667:122;ezshrc
+: 1638480800:0;	gst
+: 1638480803:0;..
+: 1638480806:20;ebashrc
+: 1638480828:0;la
+: 1638480836:4;vim .bash_profile
+: 1638480903:0;history --h
+: 1638480908:0;history -help
+: 1638480913:0;history
+: 1638480916:0;cl
+: 1638480955:0;tzshrc
+: 1638480956:0;clear
+: 1638480960:0;history
+: 1638481034:0;la
+: 1638481039:0;vim .bash_profile
+: 1638481070:0;cat .bash_history
+: 1638481073:0;cl
+: 1638481076:0;la
+: 1638481081:0;cat .bash_logout
+: 1638481088:0;cat .dmrc
+: 1638481095:0;cat .lesshst
+: 1638481103:0;cat .ICEauthority
+: 1638481105:0;ra
+: 1638481219:0;ealias
+: 1638481237:0;cddotfs
+: 1638481242:0;which cdl
+: 1638481249:0;cdcodingFD
+: 1638481253:0;ealias
+: 1638481258:0;c
+: 1638481273:0;ezshrc
+: 1638481288:0;la
+: 1638481290:0;c
+: 1638481291:0;l
+: 1638481292:0;la
+: 1638481304:0;ra .zkbd
+: 1638481415:0;econky
+: 1638481545:0;c
+: 1638481545:0;la
+: 1638481585:0;ezshrc
+: 1638481596:0;ebashrc
+: 1638482304:0;econky
+: 1638483635:0;sdn
+: 1638515874:0;econky
+: 1638515988:0;history
+: 1638515995:0;ebashrc
+: 1638516000:0;ezshrc
+: 1638516008:0;la
+: 1638516026:0;cd .ssh
+: 1638516027:0;l
+: 1638517068:0;cdco
+: 1638517070:0;cdcodingFD
+: 1638517077:0;l
+: 1638517086:0;code README.md
+: 1638519107:0;econky
+: 1638519594:0;cdcodingFD
+: 1638519603:0;code README.md
+: 1638521063:0;econky
+: 1638521091:0;conky
+: 1638521524:0;cdcodingFD
+: 1638521534:0;co
+: 1638521540:0;co README.md
+: 1638521542:0;ealias
+: 1638521555:0;talias
+: 1638521558:0;cd README.md
+: 1638521561:0;co README.md
+: 1638522196:0;econky
+: 1638522668:0;pacsy
+: 1638522669:0;pacsyu
+: 1638522690:0;neofetch
+: 1638522707:0;aa ros2-foxy
+: 1638522738:0;htop
+: 1638522782:0;rb
+: 1638528161:0;pa
+: 1638528162:0;pas
+: 1638528164:0;pasy
+: 1638528168:0;py
+: 1638528189:0;pas
+: 1638528195:0;ealias
+: 1638528209:0;pasyu
+: 1638528211:0;talias
+: 1638528213:0;pasyu
+: 1638528713:0;cdcodingFD
+: 1638528716:0;cd pyFD
+: 1638528716:0;l
+: 1638528728:0;rm resize_img.py
+: 1638528740:0;cat create_vid.py
+: 1638528753:0;v _init_paths.py
+: 1638528764:0;v pyFD.py
+: 1638528778:0;l
+: 1638528784:0;cp pyFD.py README.md
+: 1638528786:0;v README.md
+: 1638528814:0;code
+: 1638528825:0;code README.md
+: 1638534596:0;pygg list
+: 1638534604:0;alias pygg
+: 1638534610:0;l
+: 1638534622:0;grep -h
+: 1638534625:0;grep --h
+: 1638534657:0;grep -f README.md pyg
+: 1638534663:0;grep pyg -f README.md
+: 1638534673:0;grep README.md pyg
+: 1638534681:0;grep pyg
+: 1638534706:0;ealias
+: 1638534790:0;fd
+: 1638534798:0;fd README.md| grep pyg
+: 1638534808:0;fd README.md
+: 1638534818:0;fd README.md | grep pyg
+: 1638534824:0;fd README.md | grep to
+: 1638534836:0;fd pyFD.py| grep list
+: 1638534852:0;fd pyFD.py | grep list
+: 1638534858:0;alias pygg
+: 1638534877:0;less README.md| grep pyg
+: 1638534884:0;cl
+: 1638546723:0;cdreport
+: 1638546724:0;gpl
+: 1638546729:0;gk
+: 1638546733:0;c
+: 1638546735:0;la
+: 1638546740:0;v .gitconfig
+: 1638546750:0;cddotfs
+: 1638546764:0;cp .git-credentials ~
+: 1638546765:0;c
+: 1638546766:0;la
+: 1638546771:0;v .git-credentials
+: 1638546797:0;cdreport
+: 1638546798:0;gpl
+: 1638546804:0;l
+: 1638546806:0;la
+: 1638546812:0;cat .git-credentials
+: 1638546817:0;cdreport
+: 1638546818:0;gpl
+: 1638546823:0;gk
+: 1638559202:0;cdcodingFD
+: 1638559207:0;cd pyFD
+: 1638559209:0;code README.md
+: 1638559243:0;..
+: 1638559246:0;code README.md
+: 1638563904:0;git config --global credential.helper store\
+
+: 1638563910:0;cdreport
+: 1638563911:0;gpl
+: 1638563915:0;cddotfs
+: 1638563916:0;gpl
+: 1638563922:0;cdgit
+: 1638563924:0;cd duken72.github.io
+: 1638563925:0;gpl
+: 1638563951:0;c
+: 1638563953:0;l
+: 1638563954:0;la
+: 1638563958:0;cat .git-credentials
+: 1638563966:0;gitg
+: 1638564080:0;ealias
+: 1638564192:0;cdcodingFD
+: 1638564196:0;ra
+: 1638564203:0;cd bashFD
+: 1638564204:0;l
+: 1638564207:0;v gitFD.bash
+: 1638564241:0;ealias
+: 1638564248:0;gk
+: 1638567344:0;..
+: 1638567374:0;l pyFD
+: 1638567476:0;code pyFD
+: 1638568701:0;l
+: 1638568715:0;v README.md
+: 1638568721:0;cd bashFD
+: 1638568722:0;l
+: 1638568746:0;cat test
+: 1638568763:0;..
+: 1638568766:0;code bashFD
+: 1638568788:0;cd bashFD
+: 1638568789:0;la
+: 1638568794:0;rm .gitFD.bash.swp
+: 1638568798:0;v gitFD.bash
+: 1638568890:0;..
+: 1638568895:0;cp pyFD/README.md bashFD
+: 1638569325:0;history
+: 1638570110:0;l
+: 1638570112:0;gst
+: 1638570118:0;l
+: 1638570125:0;v latexFD.tex
+: 1638570137:0;cd rosFD
+: 1638570138:0;l
+: 1638570142:0;..
+: 1638570145:0;mkdir ros2FD
+: 1638570146:0;l
+: 1638570153:0;l rosFD
+: 1638570173:0;mv rosFD/ros2FD.bash ros2FD
+: 1638570176:0;ra
+: 1638570246:0;cd rosFD
+: 1638570248:0;l
+: 1638570260:0;mv packageROS.bash README.md
+: 1638570262:0;..
+: 1638570265:0;code rosFD
+: 1638570643:0;c
+: 1638570644:0;la
+: 1638570651:0;cddotfs
+: 1638570658:0;cat .pam_environment
+: 1638570666:0;rm .pam_environment
+: 1638570674:0;gst
+: 1638570701:0;la
+: 1638570705:0;cd powerlevel10k
+: 1638570706:0;la
+: 1638570712:0;ra
+: 1638570735:0;..
+: 1638570870:0;gbr
+: 1638570877:0;gitg
+: 1638570932:0;git log --all --graph --decorate
+: 1638570998:0;cl
+: 1638571000:0;la
+: 1638571007:0;rm .git
+: 1638571012:0;rm -rf .git
+: 1638571013:0;la
+: 1638571055:0;git remote add origin https://github.com/duken72/dotfiles.git\
+git branch -M main\
+git push -u origin main
+: 1638571069:0;git init
+: 1638571081:0;gaa

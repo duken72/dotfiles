@@ -1,0 +1,56 @@
+## Create backup folder
+if ! [ -d ~/config_backup ]; then
+	mkdir -p ~/config_backup
+fi
+
+## autostart
+if [ -d ~/.config/autostart ]; then
+	mv -i ~/.config/autostart ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/autostart ~/.config/autostart
+## conky
+if [ -d ~/.config/conky ]; then
+	mv -i ~/.config/conky ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/conky ~/.config/conky
+## moc
+if [ -d ~/.moc ]; then
+	mkdir -p ~/config_backup/moc
+	mv -i ~/.moc/* ~/config_backup/moc
+fi
+ln -s ~/dotfiles/.config/moc ~/.moc
+## neofetch
+if [ -d ~/.config/neofetch ]; then
+	mv -i ~/.config/neofetch ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/neofetch ~/.config/neofetch
+## polybar
+if [ -d ~/.config/polybar ]; then
+	mv -i ~/.config/polybar ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/polybar ~/.config/polybar
+## ranger
+if [ -d ~/.config/ranger ]; then
+	mv -i ~/.config/ranger ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/ranger ~/.config/ranger
+## redshift
+if [ -d ~/.config/redshift ]; then
+	mv -i ~/.config/redshift ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/redshift ~/.config/redshift
+## rofi
+if [ -d ~/.config/rofi ]; then
+	mv -i ~/.config/rofi ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/rofi ~/.config/rofi
+## terminator
+if [ -d ~/.config/terminator ]; then
+	mv -i ~/.config/terminator ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/terminator ~/.config/terminator
+## vis
+if [ -d ~/.config/vis ]; then
+	mv -i ~/.config/vis ~/config_backup/
+fi
+ln -s ~/dotfiles/.config/vis ~/.config/vis

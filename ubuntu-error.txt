@@ -1,0 +1,28 @@
+20210608
+1. Ubuntu no GUI, just login from terminal
+Solution: reinstall and run gdm3
+2. No dock: remove and reinstall gnome-extension ubuntu-dock
+
+No sound problem:
+sudo alsa force-reload
+sudo apt remove --purge alsa-base pulseaudio
+sudo apt install alsa-base pulseaudio
+
+No wifi adapter found:
+sudo apt-get update
+sudo apt-get upgrade
+
+lspci | grep Network
+If its the Broadcom proceed to the next step.
+
+sudo apt-get install --reinstall bcmwl-kernel-source
+# Enrolling MUC, provide password and reboot
+https://theavgstud.blogspot.com/2020/11/solved-wifi-adapter-not-found-ubuntu.html
+https://www.fosslinux.com/43345/fix-the-no-wi-fi-adapter-found-error-on-ubuntu.htm
+
+GRUB doesn't start - DUAL BOOT
+boot-repair
+## Install first if needed
+sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt-get update
+sudo apt-get install -y boot-repair && boot-repair
+efibootmgr

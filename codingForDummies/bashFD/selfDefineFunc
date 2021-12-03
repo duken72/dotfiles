@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DOC_URL=https://sth.here
+echo "Opening '$DOC_URL' for you .."
+sensible-browser $DOC_URL

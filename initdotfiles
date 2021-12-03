@@ -1,0 +1,75 @@
+# Installing packages and dependencies
+# xargs -a packages.txt -E END sudo apt-get install # for Ubuntu
+# ?? # for Arch Linux
+
+## Create backup folder
+if ! [ -d ~/dotfiles_backup ]; then
+	mkdir -p ~/dotfiles_backup
+fi
+
+## bashrc
+if [ -f ~/.bashrc ]; then
+	mv -i ~/.bashrc ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.bashrc ~/.bashrc
+
+## zshrc
+if [ -f ~/.zshrc ]; then
+	mv -i ~/.zshrc ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+if [ -f ~/.p10k.zsh ]; then
+	mv -i ~/.p10k.zsh ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
+if [ -d ~/powerlevel10k ]; then
+	mv -i ~/powerlevel10k ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/powerlevel10k ~/powerlevel10k
+
+## aliases
+if [ -f ~/.bash_aliases ]; then
+	mv -i ~/.bash_aliases ~/dotfiles_backup
+fi
+if [ -f ~/.aliases ]; then
+	mv -i ~/.aliases ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.aliases ~/.aliases
+
+## gitconfig
+if [ -f ~/.gitconfig ]; then
+	mv -i ~/.gitconfig ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+
+## profile
+if [ -f ~/.profile ]; then
+	mv -i ~/.profile ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.profile ~/.profile
+
+## vimrc
+if [ -f ~/.vimrc ]; then
+	mv -i ~/.vimrc ~/dotfiles_backup
+fi
+ln -s ~/dotfiles/.vimrc ~/.vimrc
+
+sudo ln -s ~/dotfiles/bin/dps /usr/local/bin/dps
+sudo ln -s ~/dotfiles/bin/gap /usr/local/bin/gap
+sudo ln -s ~/dotfiles/bin/ssound /usr/local/bin/ssound
+sudo ln -s ~/dotfiles/bin/backup_config /usr/local/bin/backup_config
+sudo ln -s ~/dotfiles/bin/movescreen.py /usr/local/bin/movescreen.py
+
+cd ~/bin
+sudo chmod +x gap
+sudo chmod +x dps
+sudo chmod +x ssound
+sudo chmod +x backup_config
+
+## May not be necessary
+: <<'END'
+if [ -f ~/.imwheelrc ]; then
+	cp ~/.imwheelrc ~/dotfiles_backup/.imwheelrc
+	rm ~/.imwheelrc
+fi
+END

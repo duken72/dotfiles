@@ -1,0 +1,42 @@
+# PACMAN
+alsa pavucontrol pulseaudio sof-firmware # audio 
+bash zsh
+blueberry bluez-utils bluez-libs # for bluetooth
+cli-visualizer
+conky
+dbus ntfs-3g # for USB
+discord
+eog # image viewer, eye of Gnome
+fd # to search file
+font-manager
+gimp
+git
+gzip
+htop
+ibus ibus-unikey
+iw iwd # for wireless network
+lightdm lightdm-greeter-gtk
+linux-lts linux-firmware
+man-db man-pages # man pages
+moc # music on console
+mpd # music player daemon
+mpv # video player
+neofetch
+polybar # panel
+ranger ueberzug# file manager in terminal
+rofi # app laucher
+terminator
+vim
+zathura zathura-pdf-mupdf
+zsh zsh-autosuggestions zsh-completions
+brave
+
+END
+
+code
+# ros
+# texstudio
+# anaconda
+# cursor - night diamond (red) # https://www.gnome-look.org/p/1295073/, extract, mv to /usr/share/icons/
+# jupyter theme monokai, from pip install jupyterthemes
+# imwheel
