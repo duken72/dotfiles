@@ -45,6 +45,7 @@ alias cdcodingFD='cdl ~/dotfiles/codingForDummies'
 alias   cdbashFD='cdl ~/dotfiles/codingForDummies/bashFD'
 alias    cdcppFD='cdl ~/dotfiles/codingForDummies/cppFD'
 alias    cdrosFD='cdl ~/dotfiles/codingForDummies/rosFD'
+alias   cdros2FD='cdl ~/dotfiles/codingForDummies/ros2FD'
 
 # System
 alias cl='clear' #for terminator, just Ctrl+L
@@ -161,7 +162,7 @@ alias  vimgg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/) | grep'
 alias  lessg='less $(fd lessFD.bash ~/dotfiles/codingForDummies/)'
 alias   rosg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/)'
 alias  rosgg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias  rosg2='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/)'
-alias rosgg2='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/) | grep'
+alias  ros2g='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/)'
+alias ros2gg='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/) | grep'
 alias    pyg='less $(fd pyFD.py ~/dotfiles/codingForDummies/)'
 alias   pygg='less $(fd pyFD.py ~/dotfiles/codingForDummies/) | grep'
