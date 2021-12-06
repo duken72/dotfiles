@@ -10,7 +10,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -78,6 +78,7 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export RCUTILS_COLORIZED_OUTPUT=1
 
 shopt -s autocd
 
@@ -107,15 +108,12 @@ export EDITOR="$VISUAL"
 
 # Sources ROS
 #source /opt/ros/noetic/setup.bash
-#source ~/ros_wss/dukeCPPws/devel/setup.bash
-#source ~/ros_wss/ipaCPPws/devel/setup.bash
-#source ~/ros_wss/test_ws/devel/setup.bash
-
 source /opt/ros/foxy/setup.bash
-export ROS_DOMAIN_ID=72
+export ROS_DOMAIN_ID=12
+export ROBOTNAME=bcr2-tc1-rng-07
 export ROS_PARTICIPANT_ID=27
-export ROS_VERSION=2
-export ROS_PYTHON_VERSION=3
-export ROS_DISTRO=foxy
-#source /usr/share/colcon_cd/function/colcon_cd.sh
-#export _colcon_cd_root=~/ros2_install
+source ~/bcr2_setup/bldr.bashrc
+
+source /usr/share/colcon_cd/function/colcon_cd.sh
+export _colcon_cd_root=/opt/ros/foxy/
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash

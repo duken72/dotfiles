@@ -8,6 +8,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
 alias grepr='grep -R'
 alias ll='ls -lh'
 alias lla='ls -alh'
@@ -46,6 +47,7 @@ alias   cdbashFD='cdl ~/dotfiles/codingForDummies/bashFD'
 alias    cdcppFD='cdl ~/dotfiles/codingForDummies/cppFD'
 alias    cdrosFD='cdl ~/dotfiles/codingForDummies/rosFD'
 alias   cdros2FD='cdl ~/dotfiles/codingForDummies/ros2FD'
+alias  cdmetrics='cdl ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 
 # System
 alias cl='clear' #for terminator, just Ctrl+L
@@ -84,7 +86,7 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 # View files and folders
 alias less='less -N' # less with line number
-#alias fd='fdfind'
+alias fd='fdfind'
 
 
 # ROS
@@ -97,6 +99,8 @@ alias cdtestcpp='cdl ~/ros_wss/testCPPws/src'
 alias  cdros2ws='cdl ~/ros_wss/ros2ws/src'
 alias   cdipaws='cdl ~/ros_wss/ipaCPPws/src'
 alias  cdtestws='cdl ~/ros_wss/test_ws/src'
+
+alias cometrics='cdmetrics && bldr-activate && code'
 
 # OSD
 alias vc='osd-vpn-connect'
