@@ -121,8 +121,8 @@ alias ass='aura -As'
 alias asu='aura -Au'
 
 # MOUNT USB
-alias usb_mount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
-alias usb_unmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
+alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
+alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
 # DUAL BOOT with WINDOWS
 WIN=/media/${USERNAME}
