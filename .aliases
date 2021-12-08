@@ -100,7 +100,7 @@ alias  cdros2ws='cdl ~/ros_wss/ros2ws/src'
 alias   cdipaws='cdl ~/ros_wss/ipaCPPws/src'
 alias  cdtestws='cdl ~/ros_wss/test_ws/src'
 
-alias cometrics='cdmetrics && bldr-activate && code'
+alias cometrics='cdmetrics && bldr-activate && code .'
 
 # OSD
 alias vc='osd-vpn-connect'
