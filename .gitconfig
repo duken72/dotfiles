@@ -4,6 +4,7 @@
 [credential]
 	helper = store
 [alias]
+	a = add
 	co = checkout
 	br = branch
 	st = status
