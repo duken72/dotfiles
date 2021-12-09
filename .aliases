@@ -156,8 +156,8 @@ alias gac='gaa && gci'
 alias gi='git init'
 
 # Sync dotfiles
-alias dpl='cd ~/dotfiles && gpl && echo "dotfiles UPDATED" && cd -' 
-alias dst='cd ~/dotfiles && gst && cd -'
+alias dpl='cd ~/dotfiles && gpl'
+alias dst='cd ~/dotfiles && gst'
 # dps # dotfiles push
 
 # Guide FD
