@@ -41,7 +41,7 @@ alias cdreport='cd ~/Documents/weekly_report'
 alias cdthesis='cd ~/Documents/thesis_report'
 alias   cddown='cd ~/Downloads'
 alias    cdgit='cd ~/git'
-alias cdconfig='cd ~/.config && la'
+alias cdconfig='cd ~/dotfiles/.config && la'
 alias  cddotfs='cd ~/dotfiles && la'
 # CD GUIDE FOR DUMMIES
 alias cdcodingFD='cd ~/dotfiles/codingForDummies'
