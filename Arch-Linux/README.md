@@ -192,3 +192,4 @@ Remember to uncomment the server names, then resynchronize.
 - [Wifi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
 - Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl)
 - Replacement for G-HUB: [Libratbag](https://womanonrails.com/logitech-g915-tkl)
+- Unibus-vn: [enable Marco](https://github.com/vn-input/ibus-unikey/issues/11)
