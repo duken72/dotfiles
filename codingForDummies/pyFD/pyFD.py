@@ -269,12 +269,10 @@ import gzip
 var = gzip.open('file.gz', 'rb')
 with gzip.open('file.txt.gz', 'wb') as f:
 	f.write(content)
-
 ## Save a compressed pickle file
 file = gzip.GzipFile(filename, 'wb')
 file.write(pickle.dumps, protocol = 0)
 file.close
-
 ## Load a compressed pickle file
 file = gzip.GzipFile(filename, 'rb')
 data = file.read()
@@ -291,3 +289,10 @@ class Connection:
     TIMEOUT: Final[int] = 10
 class FastConnector(Connection):
     TIMEOUT = 1  # Error reported by type checker
+
+from shapely import *
+from shapely.geometry import box, LineString, LinearRing, Point
+from shapely.geometry import Polygon, MultiPolygon, MultiLineString
+from shapely.geometry import CAP_STYLE, JOIN_STYLE
+from shapely.ops import polygonize, cascaded_union, unary_union
+
