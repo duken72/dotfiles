@@ -16,46 +16,48 @@ alias la='ls -A'
 alias l='ls -C'
 alias aliasg='alias | grep'
 
-function cdl {
-	builtin cd "$@" && ls -C
+function cd {
+	builtin cd "$@" && ls -CA
 	}
 alias rm='rm -i'
 alias mv='mv -i'
 
 # navigation
-alias   c='cl; cdl'
+alias   c='cl; cd'
 alias  cL='cl; ls'
-alias  ..='cdl ..'
-alias ...='cdl ../..'
-alias  .2='cdl ../..'
-alias  .3='cdl ../../..'
-alias  .4='cdl ../../../..'
-alias  .5='cdl ../../../../..'
+alias  ..='cd ..'
+alias ...='cd ../..'
+alias  .2='cd ../..'
+alias  .3='cd ../../..'
+alias  .4='cd ../../../..'
+alias  .5='cd ../../../../..'
 
 # CD GENERICS
-alias    cdpic='cdl ~/Pictures'
-alias    cddoc='cdl ~/Documents'
-alias    cdvid='cdl ~/Videos'
-alias  cdmusic='cdl ~/Music'
-alias cdreport='cdl ~/Documents/weekly_report'
-alias   cddown='cdl ~/Downloads'
-alias    cdgit='cdl ~/git'
-alias cdconfig='cd ~/.config && la'
+alias    cdpic='cd ~/Pictures'
+alias    cddoc='cd ~/Documents'
+alias    cdvid='cd ~/Videos'
+alias  cdmusic='cd ~/Music'
+alias cdreport='cd ~/Documents/weekly_report'
+alias cdthesis='cd ~/Documents/thesis_report'
+alias   cddown='cd ~/Downloads'
+alias    cdgit='cd ~/git'
+alias cdconfig='cd ~/dotfiles/.config && la'
 alias  cddotfs='cd ~/dotfiles && la'
-alias cdcodingFD='cdl ~/dotfiles/codingForDummies'
-alias   cdbashFD='cdl ~/dotfiles/codingForDummies/bashFD'
-alias    cdcppFD='cdl ~/dotfiles/codingForDummies/cppFD'
-alias    cdrosFD='cdl ~/dotfiles/codingForDummies/rosFD'
-alias   cdros2FD='cdl ~/dotfiles/codingForDummies/ros2FD'
-alias  cdmetrics='cdl ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
+# CD GUIDE FOR DUMMIES
+alias cdcodingFD='cd ~/dotfiles/codingForDummies'
+alias   cdbashFD='cd ~/dotfiles/codingForDummies/bashFD'
+alias    cdcppFD='cd ~/dotfiles/codingForDummies/cppFD'
+alias    cdrosFD='cd ~/dotfiles/codingForDummies/rosFD'
+alias   cdros2FD='cd ~/dotfiles/codingForDummies/ros2FD'
+# CD WORKING
+alias  cdmetrics='cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 
 # System
 alias cl='clear' #for terminator, just Ctrl+L
 alias sdn='shutdown now'
 alias rb='reboot'
 
-# alias and bashrc
-# to change between bash and zsh
+# alias, .rc and .config
 # sudo chsh -s $(which zsh) # or bash
 alias  ealias='v ~/dotfiles/.aliases'
 alias  ezshrc='v ~/dotfiles/.zshrc'
@@ -84,23 +86,25 @@ alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
+
 # View files and folders
 alias less='less -N' # less with line number
 alias fd='fdfind'
 
 
 # ROS
-alias  cdroswss='cdl ~/ros_wss'
-alias  cddukews='cdl ~/ros_wss/dukeCPPws/src'
-alias  cdoffcpp='cdl ~/ros_wss/dukeCPPws/src/offlineCPP/drafts'
-alias      cdrs='cdl ~/ros_wss/dukeCPPws/src/offlineCPP/results'
+alias  cdroswss='cd ~/ros_wss'
+alias  cddukews='cd ~/ros_wss/dukeCPPws/src'
+alias  cdoffcpp='cd ~/ros_wss/dukeCPPws/src/offlineCPP/drafts'
+alias      cdrs='cd ~/ros_wss/dukeCPPws/src/offlineCPP/results'
 alias  jnoffcpp='cdoffcpp && .. && jn'
-alias cdtestcpp='cdl ~/ros_wss/testCPPws/src'
-alias  cdros2ws='cdl ~/ros_wss/ros2ws/src'
-alias   cdipaws='cdl ~/ros_wss/ipaCPPws/src'
-alias  cdtestws='cdl ~/ros_wss/test_ws/src'
+alias cdtestcpp='cd ~/ros_wss/testCPPws/src'
+alias  cdros2ws='cd ~/ros_wss/ros2ws/src'
+alias   cdipaws='cd ~/ros_wss/ipaCPPws/src'
+alias  cdtestws='cd ~/ros_wss/test_ws/src'
 
 alias cometrics='cdmetrics && bldr-activate && code .'
+alias cobcr2='bldr-activate && code ~/bcr2/ros_ws/src/'
 
 # OSD
 alias vc='osd-vpn-connect'
@@ -129,11 +133,11 @@ WIN=/media/${USERNAME}
 WINPATH=${WIN}/Windows/Users
 alias mountwin='umountw; sudo mkdir ${WIN}/Windows && sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}/Windows/'
 alias  umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
-alias   cdwvid='cdl ${WINPATH}/Duke\ Nguyen/Videos'
-alias cdwmusic='cdl ${WINPATH}/Duke\ Nguyen/Music'
-alias   cdwpic='cdl ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
-alias   cdwdoc='cdl ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
-alias  cdwdown='cdl ${WINPATH}/Duke\ Nguyen/Downloads'
+alias   cdwvid='cd ${WINPATH}/Duke\ Nguyen/Videos'
+alias cdwmusic='cd ${WINPATH}/Duke\ Nguyen/Music'
+alias   cdwpic='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
+alias   cdwdoc='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
+alias  cdwdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
 
 # Git
 alias gcl='git clone'
@@ -151,12 +155,12 @@ alias gac='gaa && gci'
 # gap # add, commit with message, then push to origin
 alias gi='git init'
 
-# Sync personal dotfiles
-alias dpl='cd ~/dotfiles && gpl && echo "dotfiles UPDATED" && cd -' 
+# Sync dotfiles
+alias dpl='cd ~/dotfiles && gpl'
+alias dst='cd ~/dotfiles && gst'
 # dps # dotfiles push
-alias dst='cd ~/dotfiles && gst && cd -'
 
-# Guide
+# Guide FD
 alias  bashg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/)'
 alias bashgg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/) | grep'
 alias   gitg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/)'
