@@ -20,12 +20,15 @@ git remote add origin <LINK_to_git_repo> # declare the corresponding remote repo
 git push -u origin main # push from current local branch "main", to remotes/origin, branch main
 
 # -------------------------------------------------
-# To stop asking for personal token when pushing to origin
+# To sync (push/pull), use either PAT (Personal Access Token) or SSH
+# To stop asking for PAT when pushing to origin
 git remote set-url origin git@github.com:username/repo.git
 git config --global credential.helper store # this save the key in .git-credentials
 git config --global credential.helper 'cache --timeout 7200' # Also enabling credential caching to 2hrs
-# To change passphrase for private key
+# To change passphrase for private SSH key
 ssh-keygen -f ~/.ssh/id_rsa -p
+# Signing commit, tag with GPG key
+gpg --list-secret-keys --keyid-format=long # check current keys
 
 # -------------------------------------------------
 git pull

@@ -1,6 +1,7 @@
 [user]
 	email = duke7295@gmail.com
 	name = Duke Nguyen
+	signingkey = 493E6A1C4C65BA53
 [credential]
 	helper = store
 [alias]
