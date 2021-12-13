@@ -4,6 +4,8 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# Created by newuser for 5.8
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # HISTORY
 export SAVEHIST=$HISTSIZE
@@ -18,10 +20,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
-# Created by newuser for 5.8
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
@@ -30,10 +28,10 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# Key binding
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
-
 source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
     [[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
     [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
@@ -44,4 +42,4 @@ export ROS_DOMAIN_ID=72
 export ROS_VERSION=2
 export ROS_PYTHON_VERSION=3
 export ROS_DISTRO=foxy
-#source /opt/ros2/foxy/setup.zsh
+source /opt/ros2/foxy/setup.zsh

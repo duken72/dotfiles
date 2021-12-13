@@ -10,8 +10,8 @@ fi
 
 updates=$((updates_arch + updates_aur))
 
-if [ "$updates" -gt 0 ]; then
+if [ "$updates" -gt 27 ]; then
     echo "%{T4}%{T2} $updates"
 else
-    echo ""
+    echo "%{T4}%{T2}"
 fi

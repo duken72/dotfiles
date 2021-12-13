@@ -3,7 +3,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -41,7 +40,7 @@ alias cdreport='cd ~/Documents/weekly_report'
 alias cdthesis='cd ~/Documents/thesis_report'
 alias   cddown='cd ~/Downloads'
 alias    cdgit='cd ~/git'
-alias cdconfig='cd ~/dotfiles/.config && la'
+alias cdconfig='cd ~/dotfiles/.config'
 alias  cddotfs='cd ~/dotfiles && la'
 # CD GUIDE FOR DUMMIES
 alias cdcodingFD='cd ~/dotfiles/codingForDummies'
@@ -66,6 +65,7 @@ alias  talias='. ~/.aliases'
 alias tbashrc='. ~/.bashrc'
 alias  tzshrc='. ~/.zshrc'
 alias  econky='v ~/dotfiles/.config/conky/conky.conf'
+alias polybar='polybar --reload duck-mainbar'
 
 # Applications specific
 alias py='python3'
@@ -122,7 +122,7 @@ alias pasyu='sudo pacman -Syu'
 alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias aa='sudo aura -A'
 alias ass='aura -As'
-alias asu='aura -Au'
+alias asu='sudo aura -Au'
 
 # MOUNT USB
 alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk

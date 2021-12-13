@@ -98,16 +98,16 @@ if ! shopt -oq posix; then
 fi
 
 # RUBY
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-#export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # Default text editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Sources ROS
-#source /opt/ros/noetic/setup.bash
+# source /opt/ros/noetic/setup.bash
 source /opt/ros/foxy/setup.bash
 export ROS_DOMAIN_ID=12
 export ROBOTNAME=bcr2-tc1-rng-07
