@@ -83,6 +83,7 @@ alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
 alias nwtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias weather='curl wttr.in'
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
+alias diet='cat ~/Documents/diet.md'
 alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
