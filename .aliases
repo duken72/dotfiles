@@ -150,7 +150,7 @@ alias gft='git fetch'
 alias gbr='git branch'
 alias gsh='git show'
 alias gbl='git blame'
-alias gdiff='git diff'
+alias gdf='git diff'
 alias gac='gaa && gci'
 # gap # add, commit with message, then push to origin
 alias gi='git init'
