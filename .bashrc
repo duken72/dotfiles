@@ -10,14 +10,16 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignoreboth:erasedups:ignorespace
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=270
 HISTFILESIZE=270
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -105,6 +107,12 @@ fi
 # Default text editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+# if [[ "$(uname)" == "Linux" ]]; then {do_something}; fi
+# Check before using shell-specific features
+# if [[ "$SHELL" == "zsh" ]]; then {do_something}; fi
+# You can also make it machine-specific
+# if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi
 
 # Sources ROS
 # source /opt/ros/noetic/setup.bash
