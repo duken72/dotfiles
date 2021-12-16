@@ -95,7 +95,6 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 
 # View files and folders
 alias less='less -N' # less with line number
-
 if (( $+commands[fd] )); then
   alias fd='fd'
 elif (( $+commands[fdfind] )); then
@@ -118,13 +117,10 @@ alias cobcr2='bldr-activate && code ~/bcr2/ros_ws/src/'
 
 # OSD
 alias vc='osd-vpn-connect'
-
 # Ubuntu
 alias upd='sudo apt-get update'
 alias upg='sudo apt dist-upgrade'
-
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
-
 # Arch Linux
 alias pas='sudo pacman -S'
 alias pass='pacman -Ss'
@@ -133,7 +129,6 @@ alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias aa='sudo aura -A'
 alias ass='aura -As'
 alias asu='sudo aura -Au'
-
 if (( $+commands[apt-get] )); then
   alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
 elif (( $+commands[pacman] )); then
