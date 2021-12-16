@@ -1,5 +1,4 @@
 if [ -x /usr/bin/dircolors ]; then
-
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -76,8 +75,8 @@ alias polybar='polybar --reload duck-mainbar'
 alias py='python3'
 alias python='python3'
 alias v='vim'
-alias co='code'
 alias sv='sudo -E vim'
+alias co='code'
 alias jn='jupyter-notebook'
 alias o='xdg-open'
 alias of='o .'
@@ -95,9 +94,7 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 
 # View files and folders
 alias less='less -N' # less with line number
-if (( $+commands[fd] )); then
-  alias fd='fd'
-elif (( $+commands[fdfind] )); then
+if (( $+commands[fdfind] )); then
   alias fd='fdfind'
 fi
 
