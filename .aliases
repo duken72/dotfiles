@@ -57,9 +57,10 @@ alias ros2FD='cd ~/dotfiles/codingForDummies/ros2FD'
 alias metrics='cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 
 # System
+alias hist='history'
 alias cl='clear' #for terminator, just Ctrl+L
-alias sdn='shutdown now'
 alias rb='reboot'
+alias sdn='shutdown now'
 
 # alias, .rc and .config
 # sudo chsh -s $(which zsh) # or bash
