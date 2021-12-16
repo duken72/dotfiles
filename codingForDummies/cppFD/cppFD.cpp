@@ -6,9 +6,9 @@ g++ main.cpp -o main.out
 ./main.out input.txt
 */
 
+#include <vector>
 #include <iostream> //standard lib folder
-#include "main.hpp" //looks in current dir first, if not, goes to standard lib
-#include "header.hpp"
+#include "header.hpp" //looks in current dir first, if not, goes to standard lib
 
 int main()
 {
@@ -63,10 +63,10 @@ int main()
     y = ++x; // x=x+1, y=x
     
     // Logic Operators
-    D = 1; U=1; K=0; E=0;
-    cout<<D&&U<<endl;
-    cout<<U||K<<endl;
-    cout<<!E||K<<endl;
+    int D = 1, U = 1, K = 0, E = 0;
+    cout << D&&U << endl;
+    cout << U||K << endl;
+    cout << !E||K << endl;
     
     // Control flow
     if ()
@@ -137,7 +137,7 @@ int main()
     // overloading function with different input argument types, or number of input arguments
     
     // vectors and iterators
-    std::vector<int> vectorInts; #include<vector>
+    std::vector<int> vectorInts;
     std::vector<int>::iterator it;
     cout::vectorInts.size();
     vectorInts.resize(n);

@@ -48,11 +48,11 @@ alias cdgit='cd ~/git'
 alias config='cd ~/dotfiles/.config'
 alias dotfs='cd ~/dotfiles && la'
 # CD GUIDE FOR DUMMIES
-alias codingFD='cd ~/dotfiles/codingForDummies'
-alias bashFD='cd ~/dotfiles/codingForDummies/bashFD'
-alias cppFD='cd ~/dotfiles/codingForDummies/cppFD'
-alias rosFD='cd ~/dotfiles/codingForDummies/rosFD'
-alias ros2FD='cd ~/dotfiles/codingForDummies/ros2FD'
+alias codefd='cd ~/dotfiles/codingForDummies'
+alias bashfd='cd ~/dotfiles/codingForDummies/bashFD'
+alias cppfd='cd ~/dotfiles/codingForDummies/cppFD'
+alias rosfd='cd ~/dotfiles/codingForDummies/rosFD'
+alias ros2fd='cd ~/dotfiles/codingForDummies/ros2FD'
 # CD WORKING
 alias metrics='cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 
@@ -95,7 +95,7 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 
 # View files and folders
-if [[ $+commands[fdfind] ]] then
+if [[ -e /usr/bin/fdfind ]]; then
   alias fd='fdfind'
 fi
 
@@ -127,9 +127,9 @@ alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias aa='sudo aura -A'
 alias ass='aura -As'
 alias asu='sudo aura -Au'
-if (( $+commands[apt-get] )); then
+if [[ $apt-get ]]; then
   alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
-elif (( $+commands[pacman] )); then
+elif [[ $pacman ]]; then
   alias sup='pasyu && asu'
 fi
 

@@ -1,3 +1,5 @@
+#include "header.hpp"
+
 class Student
 {
         string name;
@@ -7,7 +9,8 @@ class Student
     public:
         void setName(string nameIn);
         void setId(int idIn);
-        void setgradDate(int dateIn);
+        void setGradDate(int dateIn);
+        
         string getName();
         int getId();
         int getGradDate();
