@@ -21,6 +21,7 @@ git push -u origin main # push from current local branch "main", to remotes/orig
 
 # -------------------------------------------------
 # To sync (push/pull), use either PAT (Personal Access Token) or SSH
+# with PAT, one could specify permissions, while with SSH, there can only be read-only or read-write
 # To stop asking for PAT when pushing to origin
 git remote set-url origin git@github.com:username/repo.git
 git config --global credential.helper store # this save the key in .git-credentials

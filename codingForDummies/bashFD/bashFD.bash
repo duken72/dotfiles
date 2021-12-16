@@ -16,8 +16,10 @@ tree -dh
 broot # install with brew
 # result of ll:
 # ---------- 10 character
-# drwxrwxrwx : d - implies directory, rwx - implies read-write-execute
+# drwxrwxrwx : d - implies directory, rwx - read-write-execute
 # 3 groups for owner, owning group, and everyone else permission on this file/dir
+chown USER[:GROUP] [file] # change ownership of a file
+chmod +x [file] # change permission of a file, +/- rwx
 
 pwd # current working directories
 cd [dir] / cd .. / cd # or cd ~ = root
@@ -51,9 +53,6 @@ mv [files] [dir]
 mmv 'name_pattern' 'new_name_pattern' # rename multiple files with desired pattern
 for file in *.txt; do mv "$file" "${file%.txt}.sh"; done
 rm (-r) (-f)
-chown USER[:GROUP] [file] # change ownership of a file
-chmod [file] # change permission of a file
-sudo chmod +x [file_name]
 ln -s [OPTIONS] ORIGINAL_FILE LINKED_FILE #(soft) Symbolic link 
 
 # -------------------------------------------------
@@ -63,14 +62,13 @@ ls ?uck*      # ? - any SINGLE character
 ls [c-e]uck*  # [a-f] - characters in [abcdef]
 ls duc[^a-c]* # [^a-c] - any character not in [abc]
 
-cat [file_name]
-more [file_name] || less [file_name]
+less [file_name] || more [file_name] || cat [file_name]
 gedit [file] || nano [file] || vim [file]
 
 . .bash_aliases # alias
 
 # Chaining and redirection commands
-./[file.name] 1>output_file.txt 2>error_log.txt # add &> to append instead of overwrite
+./[file.name] 1> output_file.txt 2> error_log.txt # use >> to append instead of overwrite
 cmd1; cmd2; cmd3 # call cmds one after another, cmd2 runs even if cmd1 fails
 cmd1 && cmd2 && cmd3 # same, but fails if any of the cmds return an error code
 cmd1 || cmd2 # If cmd1 fails, run cmd2
@@ -117,3 +115,27 @@ neofetch # kute :3
 sensible-browser $WEBSITE
 sensible-editor
 sensible-pager
+
+# -------------------------------------------------
+# Killing / resuming process
+# Ctrl-C - SIGINT
+# Ctrl-\ - SIGQUIT
+fg || bg # resume task in foreground, background
+jobs
+kill -l
+
+# -------------------------------------------------
+# Shortcut - Action
+# Ctrl-S - stop output to screen
+# Ctrl-Q - re-enable screen output
+# Ctrl-A - beginning of line
+# Ctrl-E - end of line
+# Ctrl-F - forward one char
+# Ctrl-B - backward one char
+# Ctrl-H - delete one char (backwards)
+# Alt-F - forward one word
+# Alt-B - backward one word
+# Ctrl-W - delete one word (backwards)
+# Ctrl-U - clear to beginning of line
+# Ctrl-K - clear to end of the line
+# Ctrl-D - exit shell

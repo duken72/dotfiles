@@ -27,6 +27,9 @@ setopt HIST_REDUCE_BLANKS
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
+# https://github.com/zsh-users/zsh-autosuggestions
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 
 # Key binding
 bindkey  "^[[H"   beginning-of-line

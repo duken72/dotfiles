@@ -10,16 +10,21 @@ fi
 
 alias grepr='grep -R'
 alias ll='ls -lh'
-alias lla='ls -alh'
+alias ld="ls -lhF --color | grep --color=never '^d'"
+alias lla='ls -Alh'
 alias la='ls -A'
 alias l='ls -C'
 alias aliasg='alias | grep'
 
+# Overwrite existing commands for better defaults
 function cd {
 	builtin cd "$@" && ls -CA
 	}
 alias rm='rm -i'
 alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias df="df -h"
+alias less='less -N' # with line number
 
 # navigation
 alias   c='cl; cd'
@@ -32,47 +37,48 @@ alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
 
 # CD GENERICS
-alias    cdpic='cd ~/Pictures'
-alias    cddoc='cd ~/Documents'
-alias    cdvid='cd ~/Videos'
-alias  cdmusic='cd ~/Music'
+alias pics='cd ~/Pictures'
+alias docs='cd ~/Documents'
+alias vids='cd ~/Videos'
+alias down='cd ~/Downloads'
+alias music='cd ~/Music'
 alias cdreport='cd ~/Documents/weekly_report'
 alias cdthesis='cd ~/Documents/thesis_report'
-alias   cddown='cd ~/Downloads'
-alias    cdgit='cd ~/git'
-alias cdconfig='cd ~/dotfiles/.config'
-alias  cddotfs='cd ~/dotfiles && la'
+alias cdgit='cd ~/git'
+alias config='cd ~/dotfiles/.config'
+alias dotfs='cd ~/dotfiles && la'
 # CD GUIDE FOR DUMMIES
-alias cdcodingFD='cd ~/dotfiles/codingForDummies'
-alias   cdbashFD='cd ~/dotfiles/codingForDummies/bashFD'
-alias    cdcppFD='cd ~/dotfiles/codingForDummies/cppFD'
-alias    cdrosFD='cd ~/dotfiles/codingForDummies/rosFD'
-alias   cdros2FD='cd ~/dotfiles/codingForDummies/ros2FD'
+alias codingFD='cd ~/dotfiles/codingForDummies'
+alias bashFD='cd ~/dotfiles/codingForDummies/bashFD'
+alias cppFD='cd ~/dotfiles/codingForDummies/cppFD'
+alias rosFD='cd ~/dotfiles/codingForDummies/rosFD'
+alias ros2FD='cd ~/dotfiles/codingForDummies/ros2FD'
 # CD WORKING
-alias  cdmetrics='cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
+alias metrics='cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 
 # System
+alias hist='history'
 alias cl='clear' #for terminator, just Ctrl+L
-alias sdn='shutdown now'
 alias rb='reboot'
+alias sdn='shutdown now'
 
 # alias, .rc and .config
 # sudo chsh -s $(which zsh) # or bash
-alias  ealias='v ~/dotfiles/.aliases'
-alias  ezshrc='v ~/dotfiles/.zshrc'
-alias ebashrc='v ~/dotfiles/.bashrc'
-alias  talias='. ~/.aliases'
+alias ealias='v ~/.aliases'
+alias talias='. ~/.aliases'
+alias ebashrc='v ~/.bashrc'
 alias tbashrc='. ~/.bashrc'
-alias  tzshrc='. ~/.zshrc'
-alias  econky='v ~/dotfiles/.config/conky/conky.conf'
+alias ezshrc='v ~/.zshrc'
+alias tzshrc='. ~/.zshrc'
+alias econky='v ~/dotfiles/.config/conky/conky.conf'
 alias polybar='polybar --reload duck-mainbar'
 
 # Applications specific
 alias py='python3'
 alias python='python3'
 alias v='vim'
-alias co='code'
 alias sv='sudo -E vim'
+alias co='code'
 alias jn='jupyter-notebook'
 alias o='xdg-open'
 alias of='o .'
@@ -83,14 +89,15 @@ alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
 alias nwtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias weather='curl wttr.in'
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
+alias diet='cat ~/Documents/diet.md'
 alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 
 # View files and folders
-alias less='less -N' # less with line number
-alias fd='fdfind'
-
+if [[ $+commands[fdfind] ]] then
+  alias fd='fdfind'
+fi
 
 # ROS
 alias  cdroswss='cd ~/ros_wss'
@@ -108,13 +115,10 @@ alias cobcr2='bldr-activate && code ~/bcr2/ros_ws/src/'
 
 # OSD
 alias vc='osd-vpn-connect'
-
 # Ubuntu
 alias upd='sudo apt-get update'
 alias upg='sudo apt dist-upgrade'
-alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
-
 # Arch Linux
 alias pas='sudo pacman -S'
 alias pass='pacman -Ss'
@@ -123,6 +127,11 @@ alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias aa='sudo aura -A'
 alias ass='aura -As'
 alias asu='sudo aura -Au'
+if (( $+commands[apt-get] )); then
+  alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
+elif (( $+commands[pacman] )); then
+  alias sup='pasyu && asu'
+fi
 
 # MOUNT USB
 alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
@@ -132,14 +141,19 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 WIN=/media/${USERNAME}
 WINPATH=${WIN}/Windows/Users
 alias mountwin='umountw; sudo mkdir ${WIN}/Windows && sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}/Windows/'
-alias  umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
-alias   cdwvid='cd ${WINPATH}/Duke\ Nguyen/Videos'
-alias cdwmusic='cd ${WINPATH}/Duke\ Nguyen/Music'
-alias   cdwpic='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
-alias   cdwdoc='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
-alias  cdwdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
+alias umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
+alias wvid='cd ${WINPATH}/Duke\ Nguyen/Videos'
+alias wmusic='cd ${WINPATH}/Duke\ Nguyen/Music'
+alias wpic='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
+alias wdoc='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
+alias wdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
 
 # Git
+alias g='git'
+if type _git &> /dev/null; then
+	complete -o default -o nospace -F _git g;
+fi;
+alias gi='git init'
 alias gcl='git clone'
 alias gst='git status'
 alias gaa='git add .'
@@ -154,24 +168,23 @@ alias gbl='git blame'
 alias gdf='git diff'
 alias gac='gaa && gci'
 # gap # add, commit with message, then push to origin
-alias gi='git init'
 
 # Sync dotfiles
-alias dpl='cd ~/dotfiles && gpl'
 alias dst='cd ~/dotfiles && gst'
+alias dpl='cd ~/dotfiles && gpl'
 # dps # dotfiles push
 
 # Guide FD
-alias  bashg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/)'
+alias bashg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/)'
 alias bashgg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias   gitg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/)'
-alias  gitgg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias   vimg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/)'
-alias  vimgg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias  lessg='less $(fd lessFD.bash ~/dotfiles/codingForDummies/)'
-alias   rosg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/)'
-alias  rosgg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias  ros2g='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/)'
+alias gitg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/)'
+alias gitgg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias vimg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/)'
+alias vimgg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias lessg='less $(fd lessFD.bash ~/dotfiles/codingForDummies/)'
+alias rosg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/)'
+alias rosgg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/) | grep'
+alias ros2g='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/)'
 alias ros2gg='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/) | grep'
-alias    pyg='less $(fd pyFD.py ~/dotfiles/codingForDummies/)'
-alias   pygg='less $(fd pyFD.py ~/dotfiles/codingForDummies/) | grep'
+alias pyg='less $(fd pyFD.py ~/dotfiles/codingForDummies/)'
+alias pygg='less $(fd pyFD.py ~/dotfiles/codingForDummies/) | grep'
