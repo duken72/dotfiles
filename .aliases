@@ -11,7 +11,7 @@ fi
 alias grepr='grep -R'
 alias ll='ls -lh'
 alias ld="ls -lhF --color | grep --color=never '^d'"
-alias lla='ls -alh'
+alias lla='ls -Alh'
 alias la='ls -A'
 alias l='ls -C'
 alias aliasg='alias | grep'
@@ -24,6 +24,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias df="df -h"
+alias less='less -N' # with line number
 
 # navigation
 alias   c='cl; cd'
@@ -62,11 +63,11 @@ alias rb='reboot'
 
 # alias, .rc and .config
 # sudo chsh -s $(which zsh) # or bash
-alias ealias='v ~/dotfiles/.aliases'
-alias ezshrc='v ~/dotfiles/.zshrc'
-alias ebashrc='v ~/dotfiles/.bashrc'
+alias ealias='v ~/.aliases'
 alias talias='. ~/.aliases'
+alias ebashrc='v ~/.bashrc'
 alias tbashrc='. ~/.bashrc'
+alias ezshrc='v ~/.zshrc'
 alias tzshrc='. ~/.zshrc'
 alias econky='v ~/dotfiles/.config/conky/conky.conf'
 alias polybar='polybar --reload duck-mainbar'
@@ -93,8 +94,7 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 
 # View files and folders
-alias less='less -N' # less with line number
-if (( $+commands[fdfind] )); then
+if [[ $+commands[fdfind] ]] then
   alias fd='fdfind'
 fi
 

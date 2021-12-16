@@ -16,7 +16,7 @@ tree -dh
 broot # install with brew
 # result of ll:
 # ---------- 10 character
-# drwxrwxrwx : d - implies directory, rwx - implies read-write-execute
+# drwxrwxrwx : d - implies directory, rwx - read-write-execute
 # 3 groups for owner, owning group, and everyone else permission on this file/dir
 chown USER[:GROUP] [file] # change ownership of a file
 chmod +x [file] # change permission of a file, +/- rwx
