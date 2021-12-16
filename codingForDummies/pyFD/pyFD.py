@@ -18,6 +18,7 @@ print("hi", d)		# multiple printing
 print('hi', 'duck', sep='\n')
 print('hi', 'duck', sep='/') # / for file path, "," for CSV format
 print('hi', 'duck', end='\r')
+f"something {d}" # better string formating, PEP	498
 ## -------------------------------------------------
 
 # Variables
