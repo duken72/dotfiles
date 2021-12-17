@@ -8,23 +8,25 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth:erasedups:ignorespace
 
+# HISTORY RECORDING
+# See bash(1) for more options
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="history:hist:ls:la:ll:pwd:clear:cl:"
 # append to the history file, don't overwrite it
 shopt -s histappend
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=270
 HISTFILESIZE=270
+HISTFILE="$HOME/.history"
 
+
+shopt -s autocd
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
@@ -82,7 +84,6 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export RCUTILS_COLORIZED_OUTPUT=1
 
-shopt -s autocd
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -108,11 +109,13 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+
 # if [[ "$(uname)" == "Linux" ]]; then {do_something}; fi
 # Check before using shell-specific features
 # if [[ "$SHELL" == "zsh" ]]; then {do_something}; fi
 # You can also make it machine-specific
 # if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi
+
 
 # Sources ROS
 # source /opt/ros/noetic/setup.bash

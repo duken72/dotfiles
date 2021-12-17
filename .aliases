@@ -37,24 +37,26 @@ alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
 
 # CD GENERICS
-alias pics='cd ~/Pictures'
-alias docs='cd ~/Documents'
-alias vids='cd ~/Videos'
-alias down='cd ~/Downloads'
-alias music='cd ~/Music'
-alias cdreport='cd ~/Documents/weekly_report'
-alias cdthesis='cd ~/Documents/thesis_report'
-alias cdgit='cd ~/git'
-alias config='cd ~/dotfiles/.config'
-alias dotfs='cd ~/dotfiles && la'
+alias pics='clear && cd ~/Pictures'
+alias docs='clear && cd ~/Documents'
+alias vids='clear && cd ~/Videos'
+alias down='clear && cd ~/Downloads'
+alias music='clear && cd ~/Music'
+alias report='clear && cd ~/Documents/weekly_report'
+alias thesis='clear && cd ~/Documents/thesis_report'
+alias cdgit='clear && cd ~/git'
+alias config='clear && cd ~/dotfiles/.config'
+alias dotfs='clear && cd ~/dotfiles'
 # CD GUIDE FOR DUMMIES
-alias codefd='cd ~/dotfiles/codingForDummies'
-alias bashfd='cd ~/dotfiles/codingForDummies/bashFD'
-alias cppfd='cd ~/dotfiles/codingForDummies/cppFD'
-alias rosfd='cd ~/dotfiles/codingForDummies/rosFD'
-alias ros2fd='cd ~/dotfiles/codingForDummies/ros2FD'
+alias codefd='clear && cd ~/dotfiles/codingForDummies'
+alias bashfd='clear && cd ~/dotfiles/codingForDummies/bashFD'
+alias cppfd='clear && cd ~/dotfiles/codingForDummies/cppFD'
+alias rosfd='clear && cd ~/dotfiles/codingForDummies/rosFD'
+alias ros2fd='clear && cd ~/dotfiles/codingForDummies/ros2FD'
 # CD WORKING
-alias metrics='cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
+alias metrics='clear && cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
+alias wm='clear && cd ~//bcr2/ros_ws/src/bcr2_core/slam_world_model'
+alias wmr='clear && cd ~//bcr2/ros_ws/src/bcr2_core/slam_world_model_ros'
 
 # System
 alias hist='history'
@@ -100,18 +102,15 @@ if [[ -e /usr/bin/fdfind ]]; then
 fi
 
 # ROS
-alias  cdroswss='cd ~/ros_wss'
-alias  cddukews='cd ~/ros_wss/dukeCPPws/src'
-alias  cdoffcpp='cd ~/ros_wss/dukeCPPws/src/offlineCPP/drafts'
-alias      cdrs='cd ~/ros_wss/dukeCPPws/src/offlineCPP/results'
-alias  jnoffcpp='cdoffcpp && .. && jn'
-alias cdtestcpp='cd ~/ros_wss/testCPPws/src'
-alias  cdros2ws='cd ~/ros_wss/ros2ws/src'
-alias   cdipaws='cd ~/ros_wss/ipaCPPws/src'
-alias  cdtestws='cd ~/ros_wss/test_ws/src'
+alias roswss='clear && cd ~/ros_wss'
+alias dukews='clear && cd ~/ros_wss/dukeCPPws/src'
+alias offcpp='clear && cd ~/ros_wss/dukeCPPws/src/offlineCPP'
+alias jnoffcpp='clear && cdoffcpp && .. && jn'
+alias testcpp='clear && cd ~/ros_wss/testCPPws/src'
+alias ros2ws='clear && cd ~/ros_wss/ros2ws/src'
 
-alias cometrics='cdmetrics && bldr-activate && code .'
-alias cobcr2='bldr-activate && code ~/bcr2/ros_ws/src/'
+alias cometrics='metrics && bldr-activate && code .'
+alias cobcr2='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
 
 # OSD
 alias vc='osd-vpn-connect'
@@ -154,10 +153,10 @@ if type _git &> /dev/null; then
 	complete -o default -o nospace -F _git g;
 fi;
 alias gi='git init'
+alias ga='git add'
 alias gcl='git clone'
 alias gst='git status'
 alias gaa='git add .'
-alias  ga='git add'
 alias gci='git commit -S -m'
 alias gpl='git pull origin'
 alias gps='git push origin'
