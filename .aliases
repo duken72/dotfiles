@@ -126,9 +126,9 @@ alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias aa='sudo aura -A'
 alias ass='aura -As'
 alias asu='sudo aura -Au'
-if [[ $apt-get ]]; then
+if [[ -e /usr/bin/apt-get ]]; then
   alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
-elif [[ $pacman ]]; then
+elif [[ -e /usr/bin/pacman ]]; then
   alias sup='pasyu && asu'
 fi
 
