@@ -1,10 +1,19 @@
-#include <iostream> //cout, cin, getline
+//standard lib folder, cout, cin, getline
+#include <iostream>
+#include <vector>
 #include <fstream>
-#include <iomanip> // formating output
+// formating output
+#include <iomanip>
+#include <time.h> 
+#include <stdio.h>
 #include <string>
-#include <time.h> // srand(time(NULL))
-#include <stdio.h> // scanf
-#include <sstream> // stringstream(string_name)>>var // string variable to float variable
-#include <cmath> // arithmetic operations, constant like PI
+#include <sstream>
+#include <cmath>
 
-using namespace std;
+// using namespace std;
+
+// Functions
+// declaration before main
+// describe the function (purposes, inputs, outputs)
+// TODO
+retVariableType functionName(paramsVariableType params1);

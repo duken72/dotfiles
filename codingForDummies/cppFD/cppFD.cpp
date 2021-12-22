@@ -1,40 +1,38 @@
 /*This comment helps shit.
 have fun checking it.*/
 
-/* to compile then run a program
-g++ main.cpp -o main.out
-./main.out input.txt
-*/
-
-#include <vector>
-#include <iostream> //standard lib folder
-#include "header.hpp" //looks in current dir first, if not, goes to standard lib
+//look at standard library folder
+#include <iostream> 
+//looks in current directory first
+#include "header.hpp" 
 
 int main()
 {
     // Basic IO
     cout << "Hello World" << endl;
-    cout << "fuck u motherfucker" << endl; //anyway sorry
-    cerr << "error message"<<endl;
-    
-    cout <<"size of int is "<<sizeof(int)<<"\n"; //4
-    cout <<"size of float is "<<sizeof(float)<<"\n"; //4
-    cout <<"size of double is "<<sizeof(double)<<"\n"; //8
-    
+    cerr << "error message" << endl;
+    // sizeof
+    cout << "size of int is " << sizeof(int) << "\n"; //4
+    cout << "size of float is " << sizeof(float) << "\n"; //4
+    cout << "size of double is " << sizeof(double) << "\n"; //8    
     // Constant
-    const int shit = 72; // can't change const variable, ex error: shit = 27;
-    
+    const int shit = 72; // can't change const variable
+    shit = 27; 
+    // Enumerated Constant
     enum ANIMALS {Dog, Duck, Dick}; //ANIMALS has 3 possible values
     ANIMALS duke; //duke as a variable of type ANIMALS
     duke = Duck;
     cout<<duke<<endl; //1
     
     // Formating output
-    std::cout<<"ahoy"<<std::setw(14)<<"fu"<<"/t"<<endl; // #include <iomanip>
+    // #include <iomanip>
+    std::cout << "ahoy" << std::setw(14) << "fuck" << "/t" << "you" << endl;
     
     // File IO
+    // #include <fstream>
+    // output stream
     string line;
-    ofstream myfileI ("input.txt", ios::app); // output stream
+    ofstream myfileI ("input.txt", ios::app);
     if (myfileI.is_open())
     {
         myfileI << "\nI am adding a line.\n";
@@ -42,19 +40,20 @@ int main()
         myfileI.close();
     }
     else cout << "Unable to open file for writing";
-
-    ifstream myfileO ("input.txt"); // input stream, though it's already opened from above    
+    // input stream
+    // though it's already opened from above
+    ifstream myfileO ("input.txt"); 
     if (myfileO.is_open())
     {
-        while ( getline (myfileO,line) )
+        while(getline (myfileO,line))
         {
             cout << line << '\n';
         }
         myfileO.close();
     }
     else cout << "Unable to open file for reading";
-    
-    cin>>var;
+    // User inputs
+    std::cin >> var;
     std::getline(std::cin, variableName);
     // endl = "\n" + flush output;
     
@@ -63,27 +62,40 @@ int main()
     y = ++x; // x=x+1, y=x
     
     // Logic Operators
+    // True = 1, False = 0
     int D = 1, U = 1, K = 0, E = 0;
-    cout << D&&U << endl;
-    cout << U||K << endl;
-    cout << !E||K << endl;
+    std::string TorF[] = {"False", "True"};
+    std::cout << D&&U << endl;
+    std::cout << U||K << endl;
+    std::cout << !E||K << endl;
     
     // Control flow
-    if ()
-    {}
-    else if ()
-    {}
+    // if-else if-else
+    if (1==2)
+    {
+        //statements to execute
+    }
+    else if (1!=2)
+    {
+        //statements to execute
+    }
     else
-    {}
-    
+    {
+        //statements to execute
+    }
+    // switch statements
     switch(var)
     {
-        case(1): commands; break; //if break, exit the switch loop
-        case(2): commands; // if no break, continue with next case's commands
-        default: commands; //if none of the above cases
+        //if break, exit the switch loop
+        case(1): commands; break;
+        // if no break, continue with next case's commands
+        case(2): commands;
+        //if none of the above cases
+        default: commands;
     }
-    
-    for(int i=0; i<72; i++) // #include cstddef, size_t i =0
+    // for loops
+    // #include cstddef, size_t i =0
+    for(int i=0; i<72; i++)
     {}
     
     while()
@@ -101,40 +113,20 @@ int main()
     // continue; to exit that iteration, ignore lower commands in the loop, and start with the next iteration
      
     // pointer
+    // pointerToD is the pointer of d, DEREFERENCING
     int d = 72;
-    int * pointerToD = &d; // pointerToD is the pointer of d, DEREFERENCING
-    cout<<"address of d is at &a = "<<&d<<endl;
-    cout<<"value at address &d is d ="<< * pointerToD<<endl; // value at that pointer
+    int * pointerToD = &d;
+    cout<<"address of d is at &d = "<<&d<<endl;
+    cout<<"value at address &d is d ="<< * pointerToD<<endl;
     // for char (void *) &givenChar
     
     // Array
-    variableType arrayName [] = {variables to be stored in the array};
+    // type arrayName [] = {variables to be stored in the array};
     int searchKey[2] = {1, 2};
-    variableType arrayName[size of dim.1][size of dim. 2] ...[size of dim. n]
+    // type arrayName[sizeDim1][sizeDim2]...[sizeDimN]
     int searchKey[2][3] = {1, 2, 3, 4, 5, 6};   
-    variableType arrayName[index number] // to access specifix index
-    
-    // Functions
-    template <typename T, typename U> //tell the compiler that we are using a template, when delaring
-    retVariableType functionName(paramsVariableType params1); // declaration before main, ex: in header.hpp
-    
-    template <typename T> // then defining func: T functionName(T input1, U input2){}
-    retVariableType functionName(paramsVariableType params) // define conventionally after main, but also just put it in header.hpp 
-    {
-        commands;
-        return ?;
-    }
-    void printShit(int m1, float m2, int shit)
-    functionName(); // to call it
-    
-    // to change value of variable, either return it, or reference it by address function(int &var)
-    // to pass array:
-    void functionName(variableType *arrayName)
-    void functionName(variableType arrayName[length of array])
-    void functionName(variableType arrayName[])
-    // good practice to set variables we don't want to change as const: function(const int input)
-        
-    // overloading function with different input argument types, or number of input arguments
+    // to access specifix index
+    variableType arrayName[ind1][ind2]
     
     // vectors and iterators
     std::vector<int> vectorInts;
@@ -155,3 +147,41 @@ int main()
     
     return 0;
 }
+
+// Functions
+// Declaration, before main, should be described in header.hpp
+retVariableType functionName(paramsVariableType params);
+// Definition, conventionally after main
+// could also just put it in header.hpp 
+retVariableType functionName(paramsVariableType params)
+{
+    commands;
+    return params;
+}
+// to change value of variable, reference it by its pointer
+// could also return the variable, but prior method is better
+void function(int &var);
+int main()
+{
+    int a = 7;
+    increment(a);
+}
+void increment(int &input)
+{
+    input++;
+}
+// Arrays as Function parameters:
+// Pass as a pointer
+void functionName(variableType *arrayName)
+// Pass as a sized array
+void functionName(variableType arrayName[length of array])
+// Pass as an unsized array
+void functionName(variableType arrayName[])
+// Set variables we don't want to change as const
+void function(const int input);    
+// overloading function with different input argument types
+// or number of input arguments
+
+//tell the compiler that we are using a template, when delaring
+template <typename T, typename U>
+template <typename T> // then defining func: T functionName(T input1, U input2){}

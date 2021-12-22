@@ -46,3 +46,6 @@ export ROS_VERSION=2
 export ROS_PYTHON_VERSION=3
 export ROS_DISTRO=foxy
 source /opt/ros2/foxy/setup.zsh
+#source /usr/share/colcon_cd/function/colcon_cd.sh
+export _colcon_cd_root=/opt/ros/foxy
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh

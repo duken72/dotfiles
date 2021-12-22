@@ -120,10 +120,12 @@ alias upg='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
 # Arch Linux
 alias pas='sudo pacman -S'
+alias par='sudo pacman -R'
 alias pass='pacman -Ss'
 alias pasyu='sudo pacman -Syu'
 alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias aa='sudo aura -A'
+alias ar='sudo aura -R'
 alias ass='aura -As'
 alias asu='sudo aura -Au'
 if [[ -e /usr/bin/apt-get ]]; then

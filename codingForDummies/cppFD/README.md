@@ -1,20 +1,34 @@
 # C++ for dummies
 
-### Style Guide
+
+## Compiling
+```bash
+g++ main.cpp -o main.out
+./main.out input.txt
+```
+### Compiler path vs Include path in VSCode
+?? GOSH FUCK THIS STUPID INCLUDE PATHS
+
+-------
+
+### RAII
+Resource Acquisition is Initialization
+
+## Style Guide
 - [Google Style Guide](https://google.github.io/styleguide/cppguide.html)
 - [Modern C++ Coding Guidelines](https://github.com/Microsoft/AirSim/blob/master/docs/coding_guidelines.md)
 
 ### Naming Conventions
 | Code Element          	| Style                            	|
 |-----------------------	|----------------------------------	|
-| Namespace             	| under_scored                     	|
-| Class name            	| CamelCase                        	|
-| Function name         	| camelCase                        	|
-| Parameters/Locals     	| under_scored                     	|
-| Member variables      	| under_scored_with_               	|
-| Enums and its members 	| CamelCase                        	|
-| Constants             	| UPPER_CASE                       	|
 | File names            	| Match case of class name in file 	|
+| Parameters/Locals     	| duke_the_duck                    	|
+| Constants             	| DUKE_THE_DUCK                    	|
+| Namespace             	| duke_the_duck                    	|
+| Function name         	| dukeTheDuck                      	|
+| Class name            	| DukeTheDuck                      	|
+| Member variables      	| duke_the_duck_                   	|
+| Enums and its members 	| DukeTheDuck                       |
 
 ### Header Files
 ```cpp
@@ -52,3 +66,7 @@ inline namespace inner {
 }  // namespace inner
 }  // namespace outer
 ```
+
+-------
+
+## TODO
