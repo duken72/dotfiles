@@ -1,5 +1,7 @@
 ## dotfiles
 
+My personal dotfiles
+
 ``` bash
 chmod +x initdotfiles
 ./initdotfiles
