@@ -72,7 +72,7 @@ alias ebashrc='v ~/.bashrc'
 alias tbashrc='. ~/.bashrc'
 alias ezshrc='v ~/.zshrc'
 alias tzshrc='. ~/.zshrc'
-alias econky='v ~/dotfiles/.config/conky/conky.conf'
+alias econky='v ~/.config/conky/conky.conf'
 alias polybar='polybar --reload duck-mainbar'
 
 # Applications specific
