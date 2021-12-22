@@ -60,7 +60,7 @@ sudo ln -s ~/dotfiles/bin/ssound /usr/local/bin/ssound
 sudo ln -s ~/dotfiles/bin/backup_config /usr/local/bin/backup_config
 sudo ln -s ~/dotfiles/bin/movescreen.py /usr/local/bin/movescreen.py
 
-cd ~/bin
+cd /usr/local/bin
 sudo chmod +x gap
 sudo chmod +x dps
 sudo chmod +x ssound

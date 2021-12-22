@@ -25,6 +25,14 @@ alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias df="df -h"
 alias less='less -N' # with line number
+# View files and folders
+if [[ -e /usr/bin/fdfind ]]; then
+  alias fd='fdfind'
+fi
+function cdfd {
+	clear
+	builtin cd $(fd -t d "$@" ~)
+	}
 
 # navigation
 alias   c='cl; cd'
@@ -42,21 +50,22 @@ alias docs='clear && cd ~/Documents'
 alias vids='clear && cd ~/Videos'
 alias down='clear && cd ~/Downloads'
 alias music='clear && cd ~/Music'
-alias report='clear && cd ~/Documents/weekly_report'
-alias thesis='clear && cd ~/Documents/thesis_report'
+alias report='cdfd weekly_report'
+alias thesis='cdfd thesis_report'
 alias cdgit='clear && cd ~/git'
+alias dotfs='cdfd dotfiles'
 alias config='clear && cd ~/dotfiles/.config'
-alias dotfs='clear && cd ~/dotfiles'
 # CD GUIDE FOR DUMMIES
-alias codefd='clear && cd ~/dotfiles/codingForDummies'
-alias bashfd='clear && cd ~/dotfiles/codingForDummies/bashFD'
-alias cppfd='clear && cd ~/dotfiles/codingForDummies/cppFD'
-alias rosfd='clear && cd ~/dotfiles/codingForDummies/rosFD'
-alias ros2fd='clear && cd ~/dotfiles/codingForDummies/ros2FD'
+alias codefd='cdfd codingForDummies'
+alias bashfd='cdfd bashFD'
+alias pyfd='cdfd pyFD'
+alias cppfd='cdfd cppFD'
+alias rosfd='cdfd rosFD'
+alias ros2fd='cdfd ros2FD'
 # CD WORKING
-alias metrics='clear && cd ~//bcr2/ros_ws/src/bcr2_core/cero2_metrics'
-alias wm='clear && cd ~//bcr2/ros_ws/src/bcr2_core/slam_world_model'
-alias wmr='clear && cd ~//bcr2/ros_ws/src/bcr2_core/slam_world_model_ros'
+alias metrics='clear && cd $(fd cero2_metrics ~)'
+alias wm='clear && cd $(fd slam_world_model ~)'
+alias wmr='clear && cd $(fd slam_world_model_ros ~)'
 
 # System
 alias hist='history'
@@ -96,18 +105,13 @@ alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 
-# View files and folders
-if [[ -e /usr/bin/fdfind ]]; then
-  alias fd='fdfind'
-fi
-
 # ROS
-alias roswss='clear && cd ~/ros_wss'
-alias dukews='clear && cd ~/ros_wss/dukeCPPws/src'
-alias offcpp='clear && cd ~/ros_wss/dukeCPPws/src/offlineCPP'
-alias jnoffcpp='clear && cdoffcpp && .. && jn'
-alias testcpp='clear && cd ~/ros_wss/testCPPws/src'
-alias ros2ws='clear && cd ~/ros_wss/ros2ws/src'
+alias roswss='cdfd ros_wss'
+alias dukews='cdfd dukeCPPws && cd src'
+alias offcpp='cdfd offlineCPP'
+alias jnoffcpp='cdoffcpp && jn'
+alias testcpp='cdfd testCPPws && cd src'
+alias ros2ws='cdfd ros2ws && cd src'
 
 alias cometrics='metrics && bldr-activate && code .'
 alias cobcr2='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
@@ -171,21 +175,21 @@ alias gac='gaa && gci'
 # gap # add, commit with message, then push to origin
 
 # Sync dotfiles
-alias dst='cd ~/dotfiles && gst'
-alias dpl='cd ~/dotfiles && gpl'
+alias dst='dotfs && gst'
+alias dpl='dotfs && gpl'
 # dps # dotfiles push
 
 # Guide FD
-alias bashg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/)'
-alias bashgg='less $(fd bashFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias gitg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/)'
-alias gitgg='less $(fd gitFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias vimg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/)'
-alias vimgg='less $(fd vimFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias lessg='less $(fd lessFD.bash ~/dotfiles/codingForDummies/)'
-alias rosg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/)'
-alias rosgg='less $(fd rosFD.bash ~/dotfiles/codingForDummies/) | grep'
-alias ros2g='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/)'
-alias ros2gg='less $(fd ros2FD.bash ~/dotfiles/codingForDummies/) | grep'
-alias pyg='less $(fd pyFD.py ~/dotfiles/codingForDummies/)'
-alias pygg='less $(fd pyFD.py ~/dotfiles/codingForDummies/) | grep'
+alias bashg='less $(fd bashFD.bash ~)'
+alias bashgg='less $(fd bashFD.bash ~) | grep'
+alias gitg='less $(fd gitFD.bash ~)'
+alias gitgg='less $(fd gitFD.bash ~) | grep'
+alias vimg='less $(fd vimFD.bash ~)'
+alias vimgg='less $(fd vimFD.bash ~) | grep'
+alias lessg='less $(fd lessFD.bash ~)'
+alias rosg='less $(fd rosFD.bash ~)'
+alias rosgg='less $(fd rosFD.bash ~) | grep'
+alias ros2g='less $(fd ros2FD.bash ~)'
+alias ros2gg='less $(fd ros2FD.bash ~) | grep'
+alias pyg='less $(fd pyFD.py ~)'
+alias pygg='less $(fd pyFD.py ~) | grep'
