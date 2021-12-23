@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="history:hist:ls:la:ll:pwd:clear:cl:"
 # append to the history file, don't overwrite it
 shopt -s histappend
-HISTSIZE=270
-HISTFILESIZE=270
+HISTSIZE=570
+HISTFILESIZE=570
 HISTFILE="$HOME/.history"
 
 
@@ -78,6 +78,14 @@ esac
 
 if [ -f ~/.aliases ]; then
     source ~/.aliases
+fi
+if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
+  source /usr/share/git/completion/git-completion.bash
+  __git_complete g __git_main
+  __git_complete gc _git_checkout
+  __git_complete gp _git_pull
+else
+  echo "Error loading git completions"
 fi
 
 # colored GCC warnings and errors

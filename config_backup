@@ -1,0 +1,49 @@
+#!/bin/bash
+
+## Create backup folder
+if ! [ -d ~/config_backup ]; then
+	mkdir -p ~/config_backup
+fi
+cd ~/config_backup
+
+## autostart
+if [ -d ~/.config/autostart ]; then
+	mv -i ~/.config/autostart .
+fi
+## conky
+if [ -d ~/.config/conky ]; then
+	mv -i ~/.config/conky .
+fi
+## moc
+if [ -d ~/.moc ]; then
+	mkdir -p ~/config_backup/moc
+	mv -i ~/.moc/* ~/config_backup/moc
+fi
+## neofetch
+if [ -d ~/.config/neofetch ]; then
+	mv -i ~/.config/neofetch .
+fi
+## polybar
+if [ -d ~/.config/polybar ]; then
+	mv -i ~/.config/polybar .
+fi
+## ranger
+if [ -d ~/.config/ranger ]; then
+	mv -i ~/.config/ranger .
+fi
+## redshift
+if [ -d ~/.config/redshift ]; then
+	mv -i ~/.config/redshift .
+fi
+## rofi
+if [ -d ~/.config/rofi ]; then
+	mv -i ~/.config/rofi .
+fi
+## terminator
+if [ -d ~/.config/terminator ]; then
+	mv -i ~/.config/terminator .
+fi
+## vis
+if [ -d ~/.config/vis ]; then
+	mv -i ~/.config/vis .
+fi

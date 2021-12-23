@@ -8,10 +8,9 @@ fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # HISTORY
-export SAVEHIST=$HISTSIZE
+HISTSIZE=570
+SAVEHIST=570
 HISTFILE="$HOME/.history"
-HISTSIZE=270
-SAVEHIST=270
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
@@ -27,8 +26,12 @@ setopt HIST_REDUCE_BLANKS
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
+
 # https://github.com/zsh-users/zsh-autosuggestions
-# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ln -s /usr/share/git/completion/git-completion.zsh ~/.zsh/completion/_git
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 
 # Key binding
@@ -41,11 +44,11 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
     # etc.
 
 ## ROS2
-export ROS_DOMAIN_ID=72
-export ROS_VERSION=2
-export ROS_PYTHON_VERSION=3
-export ROS_DISTRO=foxy
-source /opt/ros2/foxy/setup.zsh
+#export ROS_DOMAIN_ID=72
+#export ROS_VERSION=2
+#export ROS_PYTHON_VERSION=3
+#export ROS_DISTRO=foxy
+#source /opt/ros2/foxy/setup.zsh
 #source /usr/share/colcon_cd/function/colcon_cd.sh
-export _colcon_cd_root=/opt/ros/foxy
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+#export _colcon_cd_root=/opt/ros/foxy
+#source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh

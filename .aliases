@@ -14,7 +14,7 @@ alias ld="ls -lhF --color | grep --color=never '^d'"
 alias lla='ls -Alh'
 alias la='ls -A'
 alias l='ls -C'
-alias aliasg='alias | grep'
+alias ag='alias | grep'
 
 # Overwrite existing commands for better defaults
 function cd {
@@ -23,18 +23,19 @@ function cd {
 alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
+alias cp='cp -r'
 alias df="df -h"
 alias less='less -N' # with line number
-# View files and folders
 if [[ -e /usr/bin/fdfind ]]; then
   alias fd='fdfind'
 fi
 function cdfd {
 	clear
 	builtin cd $(fd -t d "$@" ~)
+	la
 	}
 
-# navigation
+# Navigation
 alias   c='cl; cd'
 alias  cL='cl; ls'
 alias  ..='cd ..'
@@ -45,27 +46,30 @@ alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
 
 # CD GENERICS
-alias pics='clear && cd ~/Pictures'
+alias dotfs='cdfd dotfiles'
+alias dotfs-co='dotfs && coh'
+alias config='clear && cd ~/dotfiles/.config'
 alias docs='clear && cd ~/Documents'
-alias vids='clear && cd ~/Videos'
 alias down='clear && cd ~/Downloads'
+alias cdgit='clear && cd ~/git'
 alias music='clear && cd ~/Music'
+alias pics='clear && cd ~/Pictures'
+alias vids='clear && cd ~/Videos'
+
 alias report='cdfd weekly_report'
 alias thesis='cdfd thesis_report'
-alias cdgit='clear && cd ~/git'
-alias dotfs='cdfd dotfiles'
-alias config='clear && cd ~/dotfiles/.config'
 # CD GUIDE FOR DUMMIES
 alias codefd='cdfd codingForDummies'
+alias codefd-co='codefd && coh'
 alias bashfd='cdfd bashFD'
 alias pyfd='cdfd pyFD'
 alias cppfd='cdfd cppFD'
 alias rosfd='cdfd rosFD'
 alias ros2fd='cdfd ros2FD'
 # CD WORKING
-alias metrics='clear && cd $(fd cero2_metrics ~)'
-alias wm='clear && cd $(fd slam_world_model ~)'
-alias wmr='clear && cd $(fd slam_world_model_ros ~)'
+alias metrics='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/cero2_metrics'
+alias wm='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model'
+alias wmr='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model_ros'
 
 # System
 alias hist='history'
@@ -90,6 +94,7 @@ alias python='python3'
 alias v='vim'
 alias sv='sudo -E vim'
 alias co='code'
+alias coh='code .'
 alias jn='jupyter-notebook'
 alias o='xdg-open'
 alias of='o .'
@@ -109,12 +114,14 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 alias roswss='cdfd ros_wss'
 alias dukews='cdfd dukeCPPws && cd src'
 alias offcpp='cdfd offlineCPP'
-alias jnoffcpp='cdoffcpp && jn'
+alias jnoffcpp='offcpp && jn'
 alias testcpp='cdfd testCPPws && cd src'
 alias ros2ws='cdfd ros2ws && cd src'
+alias cppws='cdfd cppws'
 
-alias cometrics='metrics && bldr-activate && code .'
-alias cobcr2='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
+alias cppws-co='cppws && coh'
+alias metrics-co='metrics && bldr-activate && coh'
+alias bcr2-co='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
 
 # OSD
 alias vc='osd-vpn-connect'
@@ -123,19 +130,19 @@ alias upd='sudo apt-get update'
 alias upg='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
 # Arch Linux
-alias pas='sudo pacman -S'
-alias par='sudo pacman -R'
-alias pass='pacman -Ss'
-alias pasyu='sudo pacman -Syu'
+alias pacs='sudo pacman -S'
+alias pacr='sudo pacman -R'
+alias pacss='pacman -Ss'
+alias pacsyu='sudo pacman -Syu'
 alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
-alias aa='sudo aura -A'
-alias ar='sudo aura -R'
-alias ass='aura -As'
-alias asu='sudo aura -Au'
+alias auraa='sudo aura -A'
+alias aurar='sudo aura -R'
+alias auraas='aura -As'
+alias auraau='sudo aura -Au'
 if [[ -e /usr/bin/apt-get ]]; then
   alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
 elif [[ -e /usr/bin/pacman ]]; then
-  alias sup='pasyu && asu'
+  alias sup='pacsyu && auraau'
 fi
 
 # MOUNT USB
@@ -155,9 +162,8 @@ alias wdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
 
 # Git
 alias g='git'
-if type _git &> /dev/null; then
-	complete -o default -o nospace -F _git g;
-fi;
+alias gp="git push"
+alias gco="git checkout"
 alias gi='git init'
 alias ga='git add'
 alias gcl='git clone'
@@ -193,3 +199,5 @@ alias ros2g='less $(fd ros2FD.bash ~)'
 alias ros2gg='less $(fd ros2FD.bash ~) | grep'
 alias pyg='less $(fd pyFD.py ~)'
 alias pygg='less $(fd pyFD.py ~) | grep'
+alias dockerg='less $(fd dockerFD.bash ~)'
+alias dockergg='less $(fd dockerFD.bash ~) | grep'

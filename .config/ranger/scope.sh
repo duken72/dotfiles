@@ -74,6 +74,12 @@ handle_extension() {
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
+	## DOCX
+	docx)
+	    ## Preview as text conversion
+	    docx2txt < "${FILE_PATH}" && exit 5
+	    exit 1;;
+
         ## BitTorrent
         torrent)
             transmission-show -- "${FILE_PATH}" && exit 5

@@ -180,7 +180,7 @@ Remember to uncomment the server names, then resynchronize.
 ### CUSTOMIZE
 - Cursor: [Night Diamond theme](https://www.deviantart.com/biueguy/art/Night-Diamond-v3-0-Sapphire-Blue-177119871) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
 - Polybar: check Polybar wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
-- Ranger: [image preview with ueberzug](https://github-wiki-see.page/m/ranger/ranger/wiki/Image-Previews), [video thumbnail with ffmpeg](https://www.reddit.com/r/NixOS/comments/74wftw/video_previews_wranger/)
+- Ranger: [image preview with ueberzug](https://github-wiki-see.page/m/ranger/ranger/wiki/Image-Previews), [video thumbnail with ffmpeg](https://www.reddit.com/r/NixOS/comments/74wftw/video_previews_wranger/), [docx2txt](http://docx2txt.sourceforge.net/)
 - Zsh with terminator and [Powerlevel10k](https://dev.to/web3coach/best-terminal-setup-terminator-zsh-powerlevel10k-7pl)
 - [Move between monitors](https://github.com/calandoa/movescreen)
 - Window manager theme: [True Minimalist](https://www.xfce-look.org/p/1016640/)

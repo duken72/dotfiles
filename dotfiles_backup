@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Create backup folder
+if ! [ -d ~/dotfiles_backup ]; then
+	mkdir -p ~/dotfiles_backup
+fi
+cd ~/dotfiles_backup
+
+# Backup existing dotfiles
+# .rc
+if [ -f ~/.bashrc ]; then
+	mv -i ~/.bashrc .
+fi
+if [ -f ~/.zshrc ]; then
+	mv -i ~/.zshrc .
+fi
+if [ -d ~/.zsh ]; then
+	mv -i ~/.zsh .
+fi
+if [ -f ~/.vimrc ]; then
+	mv -i ~/.vimrc .
+fi
+# Aliases
+if [ -f ~/.bash_aliases ]; then
+	mv -i ~/.bash_aliases .
+fi
+if [ -f ~/.bash_logout ]; then
+	mv -i ~/.bash_logout .
+fi
+if [ -f ~/.aliases ]; then
+	mv -i ~/.aliases .
+fi
+# ZSH theme
+if [ -f ~/.p10k.zsh ]; then
+	mv -i ~/.p10k.zsh .
+fi
+if [ -d ~/powerlevel10k ]; then
+	mv -i ~/powerlevel10k .
+fi
+# Git
+if [ -f ~/.gitconfig ]; then
+	mv -i ~/.gitconfig .
+fi
+# Profile
+if [ -f ~/.profile ]; then
+	mv -i ~/.profile .
+fi
