@@ -121,6 +121,7 @@ if [ -d /usr/share/fzf ]; then
   source /usr/share/fzf/key-bindings.bash
   source /usr/share/fzf/completion.bash
 fi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # if [[ "$(uname)" == "Linux" ]]; then {do_something}; fi
 # Check before using shell-specific features
@@ -146,3 +147,4 @@ if [ -d /opt/ros ]; then
   fi
 fi
 [ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc
+
