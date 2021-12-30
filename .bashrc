@@ -76,9 +76,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
+[ -f ~/.aliases ] && source ~/.aliases
+
 if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
   source /usr/share/git/completion/git-completion.bash
   __git_complete g __git_main
@@ -117,6 +116,11 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# fuzzy finder
+if [ -d /usr/share/fzf ]; then
+  source /usr/share/fzf/key-bindings.bash
+  source /usr/share/fzf/completion.bash
+fi
 
 # if [[ "$(uname)" == "Linux" ]]; then {do_something}; fi
 # Check before using shell-specific features
@@ -126,14 +130,19 @@ export EDITOR="$VISUAL"
 
 
 # Sources ROS
-# source /opt/ros/noetic/setup.bash
-source /opt/ros/foxy/setup.bash
-export ROS_DOMAIN_ID=12
-export ROBOTNAME=bcr2-tc1-rng-07
-export ROS_PARTICIPANT_ID=27
-source ~/bcr2_setup/bldr.bashrc
+if [ -d /opt/ros ]; then
+  # source /opt/ros/noetic/setup.bash
+  source /opt/ros/foxy/setup.bash
+  export ROS_DOMAIN_ID=12
+  export ROBOTNAME=bcr2-tc1-rng-07
+  export ROS_PARTICIPANT_ID=27
 
-source /usr/share/colcon_cd/function/colcon_cd.sh
-export _colcon_cd_root=/opt/ros/foxy/
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-source /home/ngu7rng/bcr2_setup/bldr.bashrc
+  if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
+    source /usr/share/colcon_cd/function/colcon_cd.sh
+  fi
+  export _colcon_cd_root=/opt/ros/foxy/
+  if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
+    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+  fi
+fi
+[ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc

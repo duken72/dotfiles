@@ -23,15 +23,15 @@ setopt HIST_REDUCE_BLANKS
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
+[[ -f ~/.aliases ]] && source ~/.aliases
 
-# https://github.com/zsh-users/zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-# ln -s /usr/share/git/completion/git-completion.zsh ~/.zsh/completion/_git
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+if [[ -d ~/.zsh ]]; then
+  # https://github.com/zsh-users/zsh-autosuggestions
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+  # ln -s /usr/share/git/completion/git-completion.zsh ~/.zsh/completion/_git
+  fpath=(~/.zsh/completion $fpath)
+  autoload -Uz compinit && compinit -i
+fi
 
 
 # Key binding
@@ -43,12 +43,20 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
     [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
     # etc.
 
+# fuzzy finder
+if [ -d /usr/share/fzf ]; then
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi
+
 ## ROS2
-#export ROS_DOMAIN_ID=72
-#export ROS_VERSION=2
-#export ROS_PYTHON_VERSION=3
-#export ROS_DISTRO=foxy
-#source /opt/ros2/foxy/setup.zsh
-#source /usr/share/colcon_cd/function/colcon_cd.sh
-#export _colcon_cd_root=/opt/ros/foxy
-#source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+if [ -d /opt/ros2/foxy ]; then
+  source /opt/ros2/foxy/setup.zsh
+  export ROS_DOMAIN_ID=72
+  export ROS_VERSION=2
+  export ROS_PYTHON_VERSION=3
+  export ROS_DISTRO=foxy
+  export _colcon_cd_root=/opt/ros/foxy
+  source /usr/share/colcon_cd/function/colcon_cd.sh
+  source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+fi
