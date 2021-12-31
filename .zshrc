@@ -60,3 +60,5 @@ if [ -d /opt/ros2/foxy ]; then
   source /usr/share/colcon_cd/function/colcon_cd.sh
   source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 fi
+
+

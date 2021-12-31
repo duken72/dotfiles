@@ -8,25 +8,41 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if type exa > /dev/null; then
+  alias exa='exa --git'
+  export EXA_COLORS="uu=1;31:da=1;35"
+  alias ll='exa -l'
+  alias ld="exa -lD"
+  alias lla='exa -la'
+  alias la='exa -a'
+  alias ls='exa'
+  alias l='exa'
+  alias tree='exa -la --tree'
+  function cd {
+    builtin cd "$@" && exa
+    }
+else
+  alias ll='ls -lh'
+  alias ld="ls -lhF --color | grep --color=never '^d'"
+  alias lla='ls -Alh'
+  alias la='ls -A'
+  alias l='ls -C'
+  function cd {
+    builtin cd "$@" && ls -CA
+    }
+fi
 alias grepr='grep -R'
-alias ll='ls -lh'
-alias ld="ls -lhF --color | grep --color=never '^d'"
-alias lla='ls -Alh'
-alias la='ls -A'
-alias l='ls -C'
 alias ag='alias | grep'
 
 # Overwrite existing commands for better defaults
-function cd {
-	builtin cd "$@" && ls -CA
-	}
 alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias cp='cp -r'
 alias df="df -h"
 alias less='less -N' # with line number
-if [[ -e /usr/bin/fdfind ]]; then
+# if [[ -e /usr/bin/fdfind ]]; then
+if type fdfind > /dev/null;  then
   alias fd='fdfind'
 fi
 function cdfd {
@@ -37,7 +53,7 @@ function cdfd {
 
 # Navigation
 alias   c='cl; cd'
-alias  cL='cl; ls'
+alias  cL='cl; exa'
 alias  ..='cd ..'
 alias ...='cd ../..'
 alias  .2='cd ../..'
@@ -64,6 +80,7 @@ alias cfd-co='cfd && coh'
 alias bashfd='cdfd bashFD'
 alias pyfd='cdfd pyFD'
 alias cppfd='cdfd cppFD'
+alias cmakefd='cdfd cmakeFD'
 alias rosfd='cdfd rosFD'
 alias ros2fd='cdfd ros2FD'
 # CD WORKING
@@ -130,8 +147,10 @@ alias upd='sudo apt-get update'
 alias upg='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
 # Arch Linux
-alias pacs='sudo pacman -S'
-alias pacr='sudo pacman -R'
+# alias pacs='sudo pacman -S'
+alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+# alias pacr='sudo pacman -R'
+alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 alias pacss='pacman -Ss'
 alias pacsyu='sudo pacman -Syu'
 alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
@@ -139,9 +158,10 @@ alias auraa='sudo aura -A'
 alias aurar='sudo aura -R'
 alias auraas='aura -As'
 alias auraau='sudo aura -Au'
-if [[ -e /usr/bin/apt-get ]]; then
+if type apt-get > /dev/null; then
   alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
-elif [[ -e /usr/bin/pacman ]]; then
+# elif [[ -e /usr/bin/pacman ]]; then
+elif type pacman > /dev/null; then
   alias sup='pacsyu && auraau'
 fi
 
@@ -186,18 +206,18 @@ alias dpl='dotfs && gpl'
 # dps # dotfiles push
 
 # Guide FD
-alias bashg='less $(fd bashFD.bash ~)'
-alias bashgg='less $(fd bashFD.bash ~) | grep'
-alias gitg='less $(fd gitFD.bash ~)'
-alias gitgg='less $(fd gitFD.bash ~) | grep'
-alias vimg='less $(fd vimFD.bash ~)'
-alias vimgg='less $(fd vimFD.bash ~) | grep'
-alias lessg='less $(fd lessFD.bash ~)'
-alias rosg='less $(fd rosFD.bash ~)'
-alias rosgg='less $(fd rosFD.bash ~) | grep'
-alias ros2g='less $(fd ros2FD.bash ~)'
-alias ros2gg='less $(fd ros2FD.bash ~) | grep'
-alias pyg='less $(fd pyFD.py ~)'
-alias pygg='less $(fd pyFD.py ~) | grep'
-alias dockerg='less $(fd dockerFD.bash ~)'
-alias dockergg='less $(fd dockerFD.bash ~) | grep'
+alias bashg='bat $(fd bashFD.bash ~)'
+alias bashgg='rg $(fd bashFD.bash ~) -e'
+alias gitg='bat $(fd gitFD.bash ~)'
+alias gitgg='rg $(fd gitFD.bash ~) -e'
+alias vimg='bat $(fd vimFD.bash ~)'
+alias vimgg='rg $(fd vimFD.bash ~) -e'
+alias lessg='bat $(fd lessFD.bash ~)'
+alias rosg='bat $(fd rosFD.bash ~)'
+alias rosgg='rg $(fd rosFD.bash ~) -e'
+alias ros2g='bat $(fd ros2FD.bash ~)'
+alias ros2gg='rg $(fd ros2FD.bash ~) -e'
+alias pyg='bat $(fd pyFD.py ~)'
+alias pygg='rg $(fd pyFD.py ~) -e'
+alias dockerg='bat $(fd dockerFD.bash ~)'
+alias dockergg='rg $(fd dockerFD.bash ~) -e'
