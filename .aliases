@@ -17,10 +17,10 @@ if type exa > /dev/null; then
   alias la='exa -a'
   alias ls='exa'
   alias l='exa'
-  alias tree='exa -la --tree'
+  alias tree='exa -l --tree --icons --git-ignore --level=2'
   function cd {
     builtin cd "$@" && exa
-    }
+  }
 else
   alias ll='ls -lh'
   alias ld="ls -lhF --color | grep --color=never '^d'"
@@ -29,7 +29,7 @@ else
   alias l='ls -C'
   function cd {
     builtin cd "$@" && ls -CA
-    }
+  }
 fi
 alias grepr='grep -R'
 alias ag='alias | grep'
@@ -41,7 +41,6 @@ alias mkdir='mkdir -p'
 alias cp='cp -r'
 alias df="df -h"
 alias less='less -N' # with line number
-# if [[ -e /usr/bin/fdfind ]]; then
 if type fdfind > /dev/null;  then
   alias fd='fdfind'
 fi
@@ -49,7 +48,7 @@ function cdfd {
 	clear
 	builtin cd $(fd -t d "$@" ~)
 	la
-	}
+}
 
 # Navigation
 alias   c='cl; cd'
@@ -62,8 +61,8 @@ alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
 
 # CD GENERICS
-alias dotfs='cdfd dotfiles'
-alias dotfs-co='dotfs && coh'
+alias dfs='cdfd dotfiles'
+alias dfsco='dfs && coh'
 alias config='clear && cd ~/dotfiles/.config'
 alias docs='clear && cd ~/Documents'
 alias down='clear && cd ~/Downloads'
@@ -76,7 +75,7 @@ alias report='cdfd weekly_report'
 alias thesis='cdfd thesis_report'
 # CD GUIDE FOR DUMMIES
 alias cfd='cdfd codingForDummies'
-alias cfd-co='cfd && coh'
+alias cfdco='cfd && coh'
 alias bashfd='cdfd bashFD'
 alias pyfd='cdfd pyFD'
 alias cppfd='cdfd cppFD'
@@ -136,9 +135,9 @@ alias testcpp='cdfd testCPPws && cd src'
 alias ros2ws='cdfd ros2ws && cd src'
 alias cppws='cdfd cppws'
 
-alias cppws-co='cppws && coh'
-alias metrics-co='metrics && bldr-activate && coh'
-alias bcr2-co='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
+alias cppwsco='cppws && coh'
+alias metricsco='metrics && bldr-activate && coh'
+alias bcr2co='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
 
 # OSD
 alias vc='osd-vpn-connect'
@@ -147,22 +146,26 @@ alias upd='sudo apt-get update'
 alias upg='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
 # Arch Linux
-# alias pacs='sudo pacman -S'
-alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-# alias pacr='sudo pacman -R'
-alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-alias pacss='pacman -Ss'
+if type fzf > /dev/null; then
+  alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+  alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+  alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+else
+  alias pacs='sudo pacman -S'
+  alias pacss='pacman -Ss'
+  alias pacr='sudo pacman -R'
+fi
 alias pacsyu='sudo pacman -Syu'
-alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
 alias auraa='sudo aura -A'
 alias aurar='sudo aura -R'
 alias auraas='aura -As'
 alias auraau='sudo aura -Au'
+alias orphans='sudo pacman -Rs $(pacman -Qqtd)'
+# Update Packages
 if type apt-get > /dev/null; then
-  alias sup='sudo apt-get update && time sudo apt-get dist-upgrade'
-# elif [[ -e /usr/bin/pacman ]]; then
+  alias sup='upd && time upg'
 elif type pacman > /dev/null; then
-  alias sup='pacsyu && auraau'
+  alias sup='pacsyu; auraau'
 fi
 
 # MOUNT USB
@@ -201,8 +204,8 @@ alias gac='gaa && gci'
 # gap # add, commit with message, then push to origin
 
 # Sync dotfiles
-alias dst='dotfs && gst'
-alias dpl='dotfs && gpl'
+alias dst='dfs && gst'
+alias dpl='dfs && gpl'
 # dps # dotfiles push
 
 # Guide FD
