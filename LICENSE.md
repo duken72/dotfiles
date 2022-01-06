@@ -1,6 +1,6 @@
-MIT License
+# MIT LICENSE
 
-Copyright (c) 2021 Huu Duc Nguyen 
+Copyright (c) 2021-2022 Huu Duc Nguyen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

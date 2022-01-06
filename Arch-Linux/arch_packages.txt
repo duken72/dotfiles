@@ -6,23 +6,25 @@ xorg xorg-xinit picom
 xfce4 xfce4-goodies xdg-user-dirs xfce4-panel-profiles
 lightdm lightdm-gtk-greeter lightdm-webkit-theme-osmos lightdm-webkit2-greeter
 alsa-utils pavucontrol pulseaudio pulseaudio-ctl sof-firmware
-xf86-video-vesa  lib32-mesa lib32-nvidia-utils lib32-systemd
+xf86-video-vesa lib32-mesa lib32-nvidia-utils lib32-systemd
 aura-bin
 
 zsh zsh-autosuggestions zsh-completions
 fd git htop terminator man-pages sxhkd
+exa bat sd fzf ripgrep
 
-brave-bin discord steam 
-conky polybar rofi ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg neofetch
+brave-bin discord steam visual-studio-code-bin
+conky polybar rofi neofetch
+ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg
 zip gzip unzip
-visual-studio-code-bin gimp libreoffice-fresh zathura zathura-pdf-mupdf
-eog moc mpd mpv cli-visualizer redshift
-blueberry bluez bluez-utils
-font-manager
-tty-clock-git
-ibus-unikey
+eog gimp libreoffice-fresh zathura zathura-pdf-mupdf
+moc mpd mpv cli-visualizer redshift
+font-manager tty-clock-git ibus-unikey libratbag
 udisks2 ntfs-3g
-ligratbag
+blueberry bluez bluez-utils
+
+make cmake opencv gcc
+docker ros2 graphicsmagick
 
 virtualbox woeusb
 libsecret
