@@ -1,7 +1,7 @@
 .vscode
-/.config/moc
-!/.config/moc/themes
-!/.config/moc/config
-!/.config/moc/keymap
-!/.config/moc/equalizer
-!/.config/moc/softmixer
+.config/moc
+!.config/moc/themes
+!.config/moc/config
+!.config/moc/keymap
+!.config/moc/equalizer
+!.config/moc/softmixer
