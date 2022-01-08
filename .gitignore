@@ -1,3 +1,7 @@
 .vscode
-**/moc/last_directory
-*.m3u
+/.config/moc
+!/.config/moc/themes
+!/.config/moc/config
+!/.config/moc/keymap
+!/.config/moc/equalizer
+!/.config/moc/softmixer
