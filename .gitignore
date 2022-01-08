@@ -1,1 +1,3 @@
 .vscode
+**/moc/last_directory
+**/*/*.m3u
