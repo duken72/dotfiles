@@ -335,7 +335,7 @@ label-volume-foreground = ${colors.white}
 label-volume-background = ${colors.red-3}
 
 label-muted = "%{T4}婢%{T1}"
-label-muted-foreground = ${colors.grey}
+label-muted-foreground = ${colors.red-1}
 label-muted-background = ${colors.red-3}
 
 [module/battery]

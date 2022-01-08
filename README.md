@@ -2,7 +2,6 @@
 
 [![tokei](https://tokei.rs/b1/github/duken72/dotfiles)](https://github.com/duken72/dotfiles)
 
-
 My personal dotfiles and configs.
 
 ## Table of Contents
