@@ -169,6 +169,7 @@ elif type pacman > /dev/null; then
 fi
 alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon '
 # MOUNT USB
+alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
 alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
 alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
