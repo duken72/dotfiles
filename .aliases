@@ -126,7 +126,7 @@ alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 
-# ROS
+# Workspaces
 alias roswss='cdfd ros_wss'
 alias dukews='cdfd dukeCPPws && cd src'
 alias offcpp='cdfd offlineCPP'
@@ -134,6 +134,7 @@ alias jnoffcpp='offcpp && jn'
 alias testcpp='cdfd testCPPws && cd src'
 alias ros2ws='cdfd ros2ws && cd src'
 alias cppws='cdfd cppws'
+alias cmakews='cdfd cmakews'
 
 alias cppwsco='cppws && coh'
 alias metricsco='metrics && bldr-activate && coh'
