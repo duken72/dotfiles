@@ -86,6 +86,7 @@ alias ros2fd='cdfd ros2FD'
 alias metrics='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 alias wm='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model'
 alias wmr='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model_ros'
+alias eb='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/bcr2_experimental_functions'
 
 # System
 alias hist='history'
