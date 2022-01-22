@@ -11,6 +11,7 @@
 	co = checkout
 	df = diff
 	st = status
+	sta = stash
 	i = init
 	ps = push
 	pl = pull
