@@ -17,7 +17,9 @@ if type exa > /dev/null; then
   alias la='exa -a'
   alias ls='exa'
   alias l='exa'
-  alias tree='exa -l --tree --icons --git-ignore --level=2'
+  alias tree2='exa -l --tree --icons --git-ignore --level=2'
+  alias tree1='exa -l --tree --icons --git-ignore --level=1'
+  alias tree='exa -l --tree --icons --git-ignore'
   function cd {
     builtin cd "$@" && exa
   }
