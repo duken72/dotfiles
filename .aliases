@@ -87,6 +87,7 @@ alias metrics='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/cero2_metrics'
 alias wm='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model'
 alias wmr='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model_ros'
 alias eb='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/bcr2_experimental_functions'
+alias oc='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/cero2_online_coverage_path_planning'
 
 # System
 alias hist='history'
