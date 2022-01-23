@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CONFIGS=("terminator" "ranger" "neofetch" "htop" "zathura"
+  "autostart" "polybar" "redshift" "rofi" "vis"
+)
+
+for CONFIG in "${CONFIGS[@]}"; do
+  ln -sv ~/dotfiles/.config/$CONFIG ~/.config/$CONFIG
+done
+cp -rv ~/dotfiles/.config/conky ~/.config
+cp -rv ~/dotfiles/.config/moc/* ~/.moc

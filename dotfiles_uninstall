@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Remove symbolic links for dotfiles
+echo "Removing symbolic links for rc files .."
+DOTFILES=(
+  ".profile" ".aliases"
+  ".bash_logout" ".bashrc"
+  ".zshrc" ".zsh" ".p10k.zsh" "powerlevel10k"
+  ".gitconfig" ".vimrc"
+)
+
+for DOTFILE in "${DOTFILES[@]}"; do
+  if [ -L ~/$DOTFILE ]; then
+    rm -v ~/$DOTFILE
+  fi
+done
+
+# Remove symbolic links for local binaries
+echo; echo "Removing symbolic links for local binaries .."
+BINARIES=("dps" "gap" "movescreen.py" "ssound")
+for BINARY in "${BINARIES[@]}"; do
+  if [ -L /usr/local/bin/$BINARY ]; then
+    sudo rm -v /usr/local/bin/$BINARY
+  fi
+done
+
+echo; echo "Symbolic links are removed."
+echo ".. but .. why?? .. why meeeh :("
