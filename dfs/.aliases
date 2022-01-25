@@ -90,6 +90,7 @@ alias wm='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model'
 alias wmr='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/slam_world_model_ros'
 alias eb='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/bcr2_experimental_functions'
 alias oc='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/cero2_online_coverage_path_planning'
+alias occo='clear && cd $HOME/bcr2/ros_ws/src/bcr2_core/cero2_online_coverage_path_planning && bcr2co'
 
 # System
 alias hist='history'
@@ -142,7 +143,7 @@ alias cmakews='cdfd cmakews'
 
 alias cppwsco='cppws && coh'
 alias metricsco='metrics && bldr-activate && coh'
-alias bcr2co='clear && bldr-cd && bldr-activate && code ~/bcr2/ros_ws/src/'
+alias bcr2co='code ~/bcr2/ros_ws/src/ && bldr-activate'
 
 # OSD
 alias vc='osd-vpn-connect'
