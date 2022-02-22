@@ -288,7 +288,7 @@ format-disconnected = "%{T6}睊"
 format-disconnected-background = ${colors.red-1}
 label-connected = %{T2}%signal%
 
-ramp-signal-0 = "直"
+ramp-signal-0 = "%{T1}直"
 ramp-signal-1 = "%{T2}直"
 ramp-signal-2 = "%{T3}直"
 ramp-signal-3 = "%{T4}直"
