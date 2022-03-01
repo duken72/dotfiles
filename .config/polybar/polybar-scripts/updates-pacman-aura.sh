@@ -4,8 +4,8 @@ if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
     updates_arch=0
 fi
 
-if ! updates_aur=$(aura -Qum 2> /dev/null | wc -l); then
-    updates_aur=0
+if ! updates_aur=$(aura -Au --dryrun | grep -c "::" ); then
+     updates_aur=0
 fi
 
 updates=$((updates_arch + updates_aur))
