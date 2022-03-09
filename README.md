@@ -1,9 +1,11 @@
+<!-- omit in toc -->
 # dotfiles
 
 [![tokei](https://tokei.rs/b1/github/duken72/dotfiles)](https://github.com/duken72/dotfiles)
 
 My personal dotfiles and configs.
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Screenshots](#screenshots)
@@ -60,7 +62,7 @@ Arch Linux:
 
 ### Backup existing dotfiles and configs
 
-I'm actually .. kind of .. proud of my `.aliases`. Though not much, but I have gone quite a long way, from ground zero.
+I'm, actually .. kind of .. proud of my `.aliases`. Though not much, but I have gone quite a long way, from ground zero.
 
 ### Install dotfiles and configs
 
