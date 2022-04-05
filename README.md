@@ -16,6 +16,8 @@ My personal dotfiles and configs.
   - [Install dotfiles and configs](#install-dotfiles-and-configs)
 - [License](#license)
 
+-------
+
 ## Screenshots
 
 For backgrounds, check folder [Wallpapers](Wallpapers).
@@ -23,6 +25,8 @@ For backgrounds, check folder [Wallpapers](Wallpapers).
 ![screenshot](Screenshot/Screenshot_2022-01-06_21-28-44.png)
 
 ![screenshot](Screenshot/Screenshot_2022-01-06_21-30-06.png)
+
+-------
 
 ## Packages
 
@@ -58,28 +62,40 @@ Arch Linux:
 ??
 ```
 
+-------
+
 ## dotfiles and configs
 
 ### Backup existing dotfiles and configs
 
 I'm, actually .. kind of .. proud of my `.aliases`. Though not much, but I have gone quite a long way, from ground zero.
 
-### Install dotfiles and configs
-
 Backup if needed:
 
 ```bash
-dotfiles_backup
-config_backup
+chmod +x *_backup
+./dotfiles_backup
+./config_backup
 ```
+
+### Install dotfiles and configs
 
 Sync all, or choose what you want.
 
 ``` bash
-chmod +x dotfiles_init config_init
+chmod +x *_install
 ./dotfiles_install
 ./config_install
 ```
+
+Uninstall with:
+
+```bash
+chmod +x dotfiles_uninstall
+./dotfiles_uninstall
+```
+
+-------
 
 ## License
 

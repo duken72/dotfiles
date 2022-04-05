@@ -76,11 +76,14 @@ alias vids='clear && cd ~/Videos'
 
 alias report='cdfd weekly_report'
 alias thesis='cdfd thesis_report'
-alias intern='cd ~/git/internReport'
+alias intern='cd ~/git/intern_report'
 alias notes='cd ~/git/learningNotes'
 alias noco='cd ~/git/learningNotes && coh'
 alias nol='cd ~/git/notesLatex'
 alias nolco='cd ~/git/notesLatex && coh'
+alias nn='cd ~/git/neural-network-test'
+alias nnco='nn && coh'
+
 # CD GUIDE FOR DUMMIES
 alias cfd='cdfd codingForDummies && gst'
 alias cfdco='cdfd codingForDummies && coh'
