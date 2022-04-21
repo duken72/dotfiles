@@ -15,7 +15,7 @@ done
 
 # Create symbolic links for local binaries
 echo; echo "Creating symbolic links for local binaries .."
-BINARIES=("dps" "gap" "movescreen.py" "ssound")
+BINARIES=("dps" "gap" "movescreen.py" "ssound" "pdfcompress" "pdfcompressDir")
 for BINARY in "${BINARIES[@]}"; do
   if [ -f /usr/local/bin/$BINARY ]; then
     sudo rm -v /usr/local/bin/$BINARY
