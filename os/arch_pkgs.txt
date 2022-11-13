@@ -1,0 +1,37 @@
+NOTE: package group first
+base-devel xorg
+xfce4 xfce4-goodies
+
+base base-devel linux-lts linux-firmware linux-lts-headers
+iw iwd vim efibootmgr grub openssh
+
+xf86-video-intel nvidia nvidia-utils
+xorg xorg-xinit lightdm lightdm-gtk-greeter picom
+(lightdm-webkit2-greeter lightdm-webkit-theme-osmos)
+xfce4 xfce4-goodies xdg-user-dirs xfce4-panel-profiles
+
+alsa-utils pavucontrol pulseaudio pulseaudio-ctl sof-firmware
+xf86-video-vesa lib32-mesa lib32-nvidia-utils lib32-systemd
+
+aura-bin
+
+zsh zsh-autosuggestions zsh-completions
+fd git htop terminator man-pages sxhkd
+exa bat sd fzf ripgrep
+trash-cli espeak-ng
+
+brave-bin discord steam visual-studio-code-bin
+conky polybar rofi neofetch
+ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg
+zip gzip unzip
+eog gimp libreoffice-fresh zathura zathura-pdf-mupdf
+moc mpd mpv cli-visualizer redshift
+font-manager tty-clock-git ibus-unikey libratbag
+udisks2 ntfs-3g
+blueberry bluez bluez-utils
+
+make cmake opencv gcc
+docker ros2 graphicsmagick
+
+virtualbox woeusb
+libsecret

@@ -1,0 +1,47 @@
+[user]
+	email = duke7295@gmail.com
+	name = Duke Nguyen
+	signingkey = 493E6A1C4C65BA53
+[credential]
+	helper = store
+[alias]
+	i = init
+	cl = clone
+	st = status
+	a = add
+	ci = commit
+	ps = push
+	pl = pull
+	ft = fetch
+	mg = merge
+	br = branch
+	co = checkout
+	df = diff
+	sh = show
+	bl = blame
+	sta = stash
+	cfg = config
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = auto
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    side-by-side = true
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

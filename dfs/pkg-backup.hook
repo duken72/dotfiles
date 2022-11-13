@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Backup package information
+When = PostTransaction
+Exec = /home/duken72/dotfiles/pkg_backup.sh

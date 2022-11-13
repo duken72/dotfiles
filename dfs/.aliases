@@ -1,0 +1,254 @@
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias ldir='vdir'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+if type exa > /dev/null; then
+  alias exa='exa --git'
+  export EXA_COLORS="uu=1;31:da=1;35"
+  alias ll='exa -l'
+  alias ldir="exa -lD"
+  alias lla='exa -la'
+  alias la='exa -a'
+  alias ls='exa'
+  alias l='exa'
+  alias tree2='exa -l --tree --icons --git-ignore --level=2'
+  alias tree1='exa -l --tree --icons --git-ignore --level=1'
+  alias tree='exa -l --tree --icons --git-ignore'
+  function cd {
+    builtin cd "$@" && exa
+  }
+else
+  alias ll='ls -lh'
+  alias ldir="ls -lhF --color | grep --color=never '^d'"
+  alias lla='ls -Alh'
+  alias la='ls -A'
+  alias l='ls -C'
+  function cd {
+    builtin cd "$@" && ls -CA
+  }
+fi
+alias grepr='grep -R'
+alias ag='alias | grep'
+
+# Overwrite existing commands for better defaults
+alias rm='rm -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias cp='cp -r'
+alias df='df -h'
+alias duh='du -ahd 1'
+alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r' # with line number
+if type fdfind > /dev/null;  then
+  alias fd='fdfind'
+fi
+function cdfd {
+	clear
+	builtin cd $(fd -t d "$1" ~)
+	la
+}
+alias ip='ip -color=auto'
+alias dmesg='dmesg --color=always'
+alias diff='diff --color=auto'
+
+# Navigation
+alias   c='cl; cd'
+alias  cL='cl; exa'
+alias  ..='cd ..'
+alias ...='cd ../..'
+alias  .2='cd ../..'
+alias  .3='cd ../../..'
+alias  .4='cd ../../../..'
+alias  .5='cd ../../../../..'
+
+# CD GENERICS
+alias dfs='cdfd dotfiles'
+alias dfsco='dfs && coh'
+alias config='clear && cd ~/dotfiles/.config'
+alias docs='clear && cd ~/Documents'
+alias books='clear && cd ~/Documents/books'
+alias app='clear && cd ~/Documents/application'
+alias down='clear && cd ~/Downloads'
+alias music='clear && cd ~/Music'
+alias pics='clear && cd ~/Pictures'
+alias vids='clear && cd ~/Videos'
+alias ws='clear && cd ~/WS'
+alias phanh='clear && cd ~/Pictures/phanh'
+alias cv='cdfd Curriculum-Vitae-Latex'
+
+alias thesis='clear && cd ~/WS/thesis_report'
+alias notes='clear && cd ~/WS/learningNotes'
+alias noco='clear && cd ~/WS/learningNotes && coh'
+alias nol='clear && cd ~/WS/notesLatex'
+alias nolco='clear && cd ~/WS/notesLatex && coh'
+alias nn='clear && cd ~/WS/neural-network-test'
+alias nnco='clear && nn && coh'
+alias meta='cdfd Meta-Hacker-Cup-2022 && coh'
+
+# CD GUIDE FOR DUMMIES
+alias cfd='cdfd codingForDummies && gst'
+alias cfdco='cdfd codingForDummies && coh'
+alias bashfd='cdfd bashFD'
+alias pyfd='cdfd pyFD'
+alias cppfd='cdfd cppFD'
+alias cmakefd='cdfd cmakeFD'
+alias rosfd='cdfd rosFD'
+alias ros2fd='cdfd ros2FD'
+
+# CD WORKING
+# alias something='clear && cd $HOME/something'
+
+# System
+alias hist='history'
+alias cl='clear' #for terminator, just Ctrl+L
+alias rb='reboot'
+alias sdn='shutdown now'
+
+# .alias, .rc and .config
+# sudo chsh -s $(which zsh) # or bash
+alias ealias='v ~/.aliases'
+alias ebashrc='v ~/.bashrc'
+alias ezshrc='v ~/.zshrc'
+alias talias='. ~/.aliases'
+alias tbashrc='. ~/.bashrc'
+alias tzshrc='. ~/.zshrc'
+alias econky='v ~/.config/conky/conky.conf'
+alias polybar='polybar --reload duck-mainbar'
+
+# Applications specific
+alias py='python3'
+alias python='python3'
+alias v='vim'
+alias sv='sudo -E vim'
+alias co='code'
+alias coh='code .'
+alias jn='jupyter-notebook'
+alias o='xdg-open'
+alias of='o .'
+alias ra='ranger'
+alias pdfConvert='soffice --headless --convert-to pdf' # convert a file to pdf, at least work with pptx
+alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+
+alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
+# alias nwtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias weather='curl wttr.in Karlsruhe'
+alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
+alias diet='cl && cat ~/Documents/diet.md'
+alias usound='amixer -q -D pulse sset Master 14%+'
+alias dsound='amixer -q -D pulse sset Master 14%-'
+# ssound # set sound to "$1"%
+
+# Workspaces
+alias cppws='cdfd cppws'
+alias cppwsco='cppws && coh'
+alias ros2ws='cdfd ros2ws && cd src'
+
+# alias somethingco='something && bldr-activate && coh'
+
+# OSD
+# alias vc='osd-vpn-connect'
+# Ubuntu
+alias upd='sudo apt-get update'
+alias upg='sudo apt dist-upgrade'
+# dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
+# Arch Linux
+if type fzf > /dev/null; then
+  alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+  alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+  alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+else
+  alias pacs='sudo pacman -S'
+  alias pacss='pacman -Ss'
+  alias pacr='sudo pacman -R'
+fi
+alias pacsyu='sudo pacman -Syu'
+alias pacq='pacman -Q'
+alias pacg='pacman -Sg'
+alias auraa='sudo aura -A'
+alias aurar='sudo aura -R'
+alias auraas='aura -As'
+alias auraau='sudo aura -Au'
+alias orphans='pacman -Qtdq | sudo pacman -Rns -'
+alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
+# Update Packages
+if type apt-get > /dev/null; then
+  alias sup='upd && time upg'
+elif type pacman > /dev/null; then
+  alias sup='pacsyu; auraau'
+fi
+alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon '
+# MOUNT USB
+alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
+alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
+alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
+
+# DUAL BOOT with WINDOWS
+WIN=/media/${USERNAME}
+WINPATH=${WIN}/Windows/Users
+alias mountwin='umountw; sudo mkdir ${WIN}/Windows && sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}/Windows/'
+alias umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
+alias wvid='cd ${WINPATH}/Duke\ Nguyen/Videos'
+alias wmusic='cd ${WINPATH}/Duke\ Nguyen/Music'
+alias wpic='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
+alias wdoc='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
+alias wdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
+
+# Git
+alias g='git'
+alias gp='git push'
+alias gco='git checkout'
+alias gi='git init'
+alias ga='git add'
+alias gcl='git clone'
+alias gst='git status'
+alias gaa='git add .'
+alias gci='git commit -m'
+alias gcis='git commit -S -m'
+alias gpl='git pull origin'
+alias gps='git push origin'
+alias gft='git fetch'
+alias gbr='git branch'
+alias gsh='git show'
+alias gbl='git blame'
+alias gdf='git diff'
+alias gac='gaa; gci'
+alias gacs='gaa; gcis'
+function gap {    # git add, commit with message, push
+  gac "$1"; gps
+}
+function gaps {   # git add, commit with message and sign, push
+  gacs "$1"; gps
+}
+
+# Sync dotfiles
+alias dst='dfs && gst'
+alias dpl='dfs && gpl'
+function dps {    # dotfiles push
+  cd ~/dotfiles
+  gaps "$1"
+}
+
+# Guide For Dummies
+alias bashg='bat $(fd bashFD.bash ~)'
+alias bashgg='rg $(fd bashFD.bash ~) -e'
+alias gitg='bat $(fd gitFD.bash ~)'
+alias gitgg='rg $(fd gitFD.bash ~) -e'
+alias vimg='bat $(fd vimFD.bash ~)'
+alias vimgg='rg $(fd vimFD.bash ~) -e'
+alias lessg='bat $(fd lessFD.bash ~)'
+alias rosg='bat $(fd rosFD.bash ~)'
+alias rosgg='rg $(fd rosFD.bash ~) -e'
+alias ros2g='bat $(fd ros2FD.bash ~)'
+alias ros2gg='rg $(fd ros2FD.bash ~) -e'
+alias pyg='bat $(fd pyFD.py ~)'
+alias pygg='rg $(fd pyFD.py ~) -e'
+alias dockerg='bat $(fd dockerFD.bash ~)'
+alias dockergg='rg $(fd dockerFD.bash ~) -e'
+
+alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
