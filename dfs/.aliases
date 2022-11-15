@@ -68,7 +68,7 @@ alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
 
 # CD GENERICS
-alias dfs='cdfd dotfiles'
+alias dfs='clear && cd ~/dotfiles'
 alias dfsco='dfs && coh'
 alias config='clear && cd ~/dotfiles/.config'
 alias docs='clear && cd ~/Documents'
@@ -79,16 +79,18 @@ alias music='clear && cd ~/Music'
 alias pics='clear && cd ~/Pictures'
 alias vids='clear && cd ~/Videos'
 alias ws='clear && cd ~/WS'
+alias test='clear && cd ~/WS/test'
 alias phanh='clear && cd ~/Pictures/phanh'
-alias cv='cdfd Curriculum-Vitae-Latex'
 
-alias thesis='clear && cd ~/WS/thesis_report'
-alias notes='clear && cd ~/WS/learningNotes'
-alias noco='clear && cd ~/WS/learningNotes && coh'
-alias nol='clear && cd ~/WS/notesLatex'
-alias nolco='clear && cd ~/WS/notesLatex && coh'
-alias nn='clear && cd ~/WS/neural-network-test'
-alias nnco='clear && nn && coh'
+# CD WORKSPACES
+alias cv='cdfd Curriculum-Vitae-Latex'
+alias thesis='cdfd thesis_report'
+alias notes='cdfd learningNotes'
+alias noco='cdfd learningNotes && coh'
+alias nol='cdfd notesLatex'
+alias nolco='cdfd notesLatex && coh'
+alias nn='cdfd neural-network-test'
+alias nnco='nn && coh'
 alias meta='cdfd Meta-Hacker-Cup-2022 && coh'
 
 # CD GUIDE FOR DUMMIES
@@ -111,7 +113,6 @@ alias rb='reboot'
 alias sdn='shutdown now'
 
 # .alias, .rc and .config
-# sudo chsh -s $(which zsh) # or bash
 alias ealias='v ~/.aliases'
 alias ebashrc='v ~/.bashrc'
 alias ezshrc='v ~/.zshrc'
@@ -145,8 +146,8 @@ alias dsound='amixer -q -D pulse sset Master 14%-'
 # ssound # set sound to "$1"%
 
 # Workspaces
-alias cppws='cdfd cppws'
-alias cppwsco='cppws && coh'
+alias cppt='cdfd cpp-test'
+alias cpptco='cppt && coh'
 alias ros2ws='cdfd ros2ws && cd src'
 
 # alias somethingco='something && bldr-activate && coh'
@@ -252,3 +253,4 @@ alias dockerg='bat $(fd dockerFD.bash ~)'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
 alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
+alias ssh-ubuntu='ssh -p 2222 duken72@localhost'

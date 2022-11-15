@@ -33,3 +33,4 @@ done
 
 # Reinstall when needed
 # pacman -S --needed - < pkg_pacman.txt
+# xargs sudo apt -y install < packages.txt

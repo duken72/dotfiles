@@ -8,8 +8,8 @@ fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # HISTORY
-HISTSIZE=972
-SAVEHIST=972
+HISTSIZE=2795
+SAVEHIST=2795
 HISTFILE="$HOME/.history"
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
@@ -20,15 +20,13 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
-
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 if [[ -d ~/.zsh ]]; then
   # https://github.com/zsh-users/zsh-autosuggestions
   source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-  # ln -s /usr/share/git/completion/git-completion.zsh ~/.zsh/completion/_git
   fpath=(~/.zsh/completion $fpath)
   autoload -Uz compinit && compinit -i
 fi
@@ -40,16 +38,15 @@ bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
-    [[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
-    [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
-    # etc.
+[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+# etc.
 
 # fuzzy finder
 if [ -d /usr/share/fzf ]; then
   source /usr/share/fzf/key-bindings.zsh
   source /usr/share/fzf/completion.zsh
 fi
-
 ## ROS2
 if [ -d /opt/ros2/foxy ]; then
   source /opt/ros2/foxy/setup.zsh
@@ -61,7 +58,9 @@ if [ -d /opt/ros2/foxy ]; then
   source /usr/share/colcon_cd/function/colcon_cd.sh
   source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 fi
-
-## Additional path for Mujoco
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin:/usr/lib/nvidia
-export LD_PRELOAD=/usr/lib/libGLEW.so
+## Mujoco
+[[ -d ~/.mujoco/mujoco210/bin ]] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin
+## NVIDIA
+[[ -d /usr/lib/nvidia ]] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
+## libGLEW
+[[ -f /usr/lib/libGLEW.so ]] && export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libGLEW.so

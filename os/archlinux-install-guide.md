@@ -269,7 +269,7 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 - [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
 - [Wifi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
 - Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl)
-- Replacement for G-HUB: [Libratbag](https://womanonrails.com/logitech-g915-tkl)
+- Replacement for G-HUB: [Libratbag](https://womanonrails.com/logitech-g915-tkl), and maybe [piper](https://github.com/libratbag/piper) as frontend application
 - Unibus-vn: [enable macro](https://github.com/vn-input/ibus-unikey/issues/11)
 - [Rollback updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux) to what is working
 - Setting up [cleaning hooks](https://averagelinuxuser.com/clean-arch-linux/#1-clean-package-cache)
