@@ -58,9 +58,10 @@ if [ -d /opt/ros2/foxy ]; then
   source /usr/share/colcon_cd/function/colcon_cd.sh
   source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 fi
-## Mujoco
-[[ -d ~/.mujoco/mujoco210/bin ]] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin
 ## NVIDIA
 [[ -d /usr/lib/nvidia ]] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 ## libGLEW
 [[ -f /usr/lib/libGLEW.so ]] && export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libGLEW.so
+## python startup script
+export PYTHONSTARTUP=~/.pythonrc
+
