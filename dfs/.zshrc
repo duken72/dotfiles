@@ -61,7 +61,7 @@ fi
 ## NVIDIA
 [[ -d /usr/lib/nvidia ]] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 ## libGLEW
-[[ -f /usr/lib/libGLEW.so ]] && export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libGLEW.so
+# [[ -f /usr/lib/libGLEW.so ]] && export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libGLEW.so
 ## python startup script
 export PYTHONSTARTUP=~/.pythonrc
 

@@ -8,18 +8,21 @@
 	i = init
 	cl = clone
 	st = status
+	df = diff
+	sh = show
+	sta = stash
 	a = add
 	ci = commit
+	cis = commit -S -m
+	ac = commit -am
+	acs = commit -S -am
+	ft = fetch
 	ps = push
 	pl = pull
-	ft = fetch
 	mg = merge
 	br = branch
 	co = checkout
-	df = diff
-	sh = show
 	bl = blame
-	sta = stash
 	cfg = config
 [color]
 	branch = auto

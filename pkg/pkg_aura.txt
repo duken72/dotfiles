@@ -1,9 +1,10 @@
 aic94xx-firmware 30-9
 alpine 2.26-1
+ast-firmware 501-1
 aura-bin 3.2.9-1
 brave-bin 1:1.46.144-1
 cli-visualizer 1.8-10
-julia-bin 1.8.3-2
+julia-bin 1.8.4-1
 lightdm-webkit-theme-osmos 2.0.3-1
 pulseaudio-ctl 1.70-1
 python-imageio 2.22.4-1

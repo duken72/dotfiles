@@ -280,3 +280,6 @@ alias deact='deactivate'
 
 alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
 alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
+
+# Steam
+# alias steamid=find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i <game_name>
