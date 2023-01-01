@@ -2,28 +2,37 @@
 	email = duke7295@gmail.com
 	name = Duke Nguyen
 	signingkey = 493E6A1C4C65BA53
+
 [credential]
 	helper = store
+
 [alias]
 	i = init
 	cl = clone
 	st = status
-	df = diff
-	sh = show
-	sta = stash
 	a = add
-	ci = commit
+	aa = add .
+	rst = restore
+	rs = reset
+	ci = commit -m
 	cis = commit -S -m
 	ac = commit -am
 	acs = commit -S -am
 	ft = fetch
-	ps = push
-	pl = pull
+	p = push
+	ps = push origin
+	pl = pull origin
 	mg = merge
 	br = branch
+	ba = branch -a
 	co = checkout
+	df = diff
+	sh = show
 	bl = blame
 	cfg = config
+	h = help
+	l = log
+
 [color]
 	branch = auto
 	diff = auto

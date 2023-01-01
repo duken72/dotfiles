@@ -216,29 +216,11 @@ alias wdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
 
 # Git
 alias g='git'
-alias gp='git push'
-alias gco='git checkout'
-alias gi='git init'
-alias ga='git add'
-alias gcl='git clone'
-alias gst='git status'
-alias gaa='git add .'
-alias gci='git commit -m'
-alias gcis='git commit -S -m'
-alias gpl='git pull origin'
-alias gps='git push origin'
-alias gft='git fetch'
-alias gbr='git branch'
-alias gsh='git show'
-alias gbl='git blame'
-alias gdf='git diff'
-alias gac='gaa; gci'
-alias gacs='gaa; gcis'
 function gap {    # git add, commit with message, push
-  gac "$1"; gps
+  git add .; git commit -m "$1"; git push origin
 }
 function gaps {   # git add, commit with message and sign, push
-  gacs "$1"; gps
+  git add .; git commit -S -m "$1"; git push origin
 }
 
 # Docker
@@ -250,8 +232,8 @@ alias dcon='docker ps'
 alias drm='docker rm'
 
 # Sync dotfiles
-alias dst='dfs && gst'
-alias dpl='dfs && gpl'
+alias dst='dfs && git status'
+alias dpl='dfs && git pull origin'
 function dps {    # dotfiles push
   cd ~/dotfiles
   gaps "$1"
