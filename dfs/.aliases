@@ -103,7 +103,7 @@ alias aocco='cdfd Advent-of-Code && coh'
 alias grl='clear && cd ~/WS/test/goalRL-test'
 
 # CD GUIDE FOR DUMMIES
-alias cfd='cdfd codingForDummies && gst'
+alias cfd='cdfd codingForDummies && g st'
 alias cfdco='cdfd codingForDummies && coh'
 alias bashfd='cdfd bashFD'
 alias pyfd='cdfd pyFD'
@@ -223,6 +223,23 @@ function gap {    # git add, commit with message, push
 function gaps {   # git add, commit with message and sign, push
   git add .; git commit -S -m "$1"; git push origin
 }
+alias gi='git init'
+alias gcl='git clone'
+alias gst='git status'
+alias ga='git add'
+alias gaa='git add .'
+alias grst='git restore'
+alias grs='git reset'
+alias gci='git commit -m'
+alias gcis='git commit -S -m'
+alias gac='git commit -am'
+alias gacs='git commit -S -am'
+alias gft='git fetch'
+alias gps='git push origin'
+alias gpl='git pull origin'
+alias gbr='git branch'
+alias gba='git branch -a'
+alias gdf='git diff'
 
 # Docker
 alias dp='docker pull'
