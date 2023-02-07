@@ -97,6 +97,7 @@ alias nnco='nn && coh'
 alias meta='cdfd Meta-Hacker-Cup-2022'
 alias metaco='cdfd Meta-Hacker-Cup-2022 && coh'
 alias ccom='cdfd coding-competitions'
+alias cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
 alias aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
 alias aocco='cdfd Advent-of-Code && coh'
 alias grl='clear && cd ~/WS/test/goalRL-test'
@@ -230,6 +231,7 @@ alias di='docker images'
 alias drmi='docker rmi'
 alias dcon='docker ps'
 alias drm='docker rm'
+alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 
 # Sync dotfiles
 alias dst='dfs && git status'
@@ -264,4 +266,6 @@ alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
 alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
 # Steam
-# alias steamid=find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i <game_name>
+function steamid {
+	find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
+}

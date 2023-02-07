@@ -51,6 +51,19 @@ Example:
 	]
 },
 
+"Add C++ #if": {
+	"scope": "cpp",
+	"prefix": ["cpp-#if", "#if"],
+	"description": "Add C++ #if",
+	"body": [
+		"#if $0",
+		"",
+		"#else   ${LINE_COMMENT} !$0",
+		"",
+		"#endif  ${LINE_COMMENT} $0"
+	]
+},
+
 "C++ namespace": {
 	"scope": "cpp",
 	"prefix": ["cpp-namespace", "namespace"],
