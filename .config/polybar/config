@@ -338,15 +338,26 @@ label-muted-background = ${colors.red-3}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 100
+full-at = 97
+low-at = 10
 poll-interval = 27
 
 format-charging = <animation-charging><label-charging>
 format-discharging = <ramp-capacity><label-discharging>
+format-full = <label-full>
+format-low = <label-low>
 
 format-full-prefix = " %{T2}%{T2}"
 format-full-prefix-foreground = ${colors.green}
 format-full-prefix-background = ${colors.red-1}
+format-full-foreground = ${colors.white}
+format-full-background = ${colors.red-1}
+
+format-low-prefix = " %{T2}%{T2}"
+format-low-prefix-foreground = ${colors.red-2}
+format-low-prefix-background = ${colors.red-1}
+format-low-foreground = ${colors.white}
+format-low-background = ${colors.red-1}
 
 ramp-capacity-0 = " %{T2}"
 ramp-capacity-1 = " %{T2}"
