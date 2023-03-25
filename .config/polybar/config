@@ -38,10 +38,17 @@ black = #1B1717
 grey = #444444
 maroon = #810000
 green = #49FF00
-red-1 = #BD1616
-red-2 = #FF2626
-red-3 = #FE8F8F
-red-4 = #FCD2D1
+; RED
+; red-1 = #BD1616
+; red-2 = #FF2626
+; red-3 = #FE8F8F
+; red-4 = #FCD2D1
+; GREEN
+red-1 = #379237
+red-2 = #5BB318
+red-3 = #7DCE13
+red-4 = #EAE509
+
 pink = #FCD2D1
 white = #FFFFFF
 
@@ -128,19 +135,19 @@ format-offset =
 [module/split-left-1]
 type = custom/text
 content = %{T3}%{T-}
-content-foreground = ${colors.red-1} 
-content-background = ${colors.red-2} 
+content-foreground = ${colors.red-1}
+content-background = ${colors.red-2}
 
 [module/split-left-2]
 type = custom/text
 content = %{T3}%{T-}
-content-foreground = ${colors.red-2} 
-content-background = ${colors.red-3} 
+content-foreground = ${colors.red-2}
+content-background = ${colors.red-3}
 
 [module/split-left-3]
 type = custom/text
 content = %{T3}%{T-}
-content-foreground = ${colors.red-3} 
+content-foreground = ${colors.red-3}
 
 [module/split-right-1]
 type = custom/text
@@ -317,7 +324,7 @@ interval = 7
 time = %I:%M%P - %a, %d/%m/%Y 
 ;format-prefix = "%{T3}%{T1} "
 ;format-prefix-foreground = ${colors.foreground}
-format-foreground = ${colors.red-4}
+format-foreground = ${colors.red-2}
 label = %{T2}%time%
 
 [module/pulseaudio]
