@@ -26,11 +26,14 @@ while read pkg; do
     sed -i "/$pkg/d" ${PKG_DIR}/pkg_pacman.txt
 done < ${PKG_DIR}/pkg_group.txt
 # Special case coincidences
-SPECIAL_PKGS=("cmake" "ripgrep" "pacman-contrib")
-for PKG in "${SPECIAL_PKGS[@]}"; do
-    pacman -Q $PKG >> ${PKG_DIR}/pkg_pacman.txt
-done
+# SPECIAL_PKGS=("cmake" "ripgrep" "pacman-contrib")
+# for PKG in "${SPECIAL_PKGS[@]}"; do
+#     pacman -Q $PKG >> ${PKG_DIR}/pkg_pacman.txt
+# done
 
 # Reinstall when needed
 # pacman -S --needed - < pkg_pacman.txt
 # xargs sudo apt -y install < packages.txt
+# pacman -S $(gawk -F'-' '$2 != "local" {print}' pkg_latex.txt)
+# tllocalmgr --noconfirm install $(gawk '/local/ {gsub("texlive-local-",""); print}' pkg_latex.txt)
+

@@ -42,6 +42,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias cp='cp -r'
+alias acp='rsync -rah --info=progress2'
 alias df='df -h'
 alias duh='du -ahd 1'
 alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r' # with line number

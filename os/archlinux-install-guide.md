@@ -1,4 +1,15 @@
-# Arch-Linux
+<!-- omit in toc -->
+# Arch Linux
+
+<!-- omit in toc -->
+## Table of Contents
+
+- [Installation](#installation)
+- [General Guide](#general-guide)
+- [Customization / Tinkering](#customization--tinkering)
+  - [Applications](#applications)
+  - [Setting up GPU for Deep Learning](#setting-up-gpu-for-deep-learning)
+  - [PROBLEMS](#problems)
 
 ## Installation
 
@@ -133,27 +144,27 @@
       networkctl list
       ```
 
-    - Wired adapter: /etc/systemd/network/20-wired.network
+      - Wired adapter: /etc/systemd/network/20-wired.network
 
-      ```txt
-      [Match]
-      Name=eno1
-      [Network]
-      DHCP=yes
-      [DHCP]
-      RouteMetric=10
-      ```
+        ```txt
+        [Match]
+        Name=eno1
+        [Network]
+        DHCP=yes
+        [DHCP]
+        RouteMetric=10
+        ```
 
-    - Wireless adapter: /etc/systemd/network/25-wireless.network
+      - Wireless adapter: /etc/systemd/network/25-wireless.network
 
-      ```txt
-      [Match]
-      Name=wlan0
-      [Network]
-      DHCP=yes
-      [DHCP]
-      RouteMetric=20
-      ```
+        ```txt
+        [Match]
+        Name=wlan0
+        [Network]
+        DHCP=yes
+        [DHCP]
+        RouteMetric=20
+        ```
 
     - Restart the system to apply changes:
 
@@ -186,8 +197,8 @@
     (sudo) pacman -S xf86-video-intel nvidia nvidia-utils
                       xorg xorg-xinit lightdm lightdm-gtk-greeter picom
                       xfce4 xfce4-goodies xdg-user-dirs
-                      zsh fd htop terminator git man-pages
-                      rofi neofetch sxhkd udisks2 ntfs-3g zip unzip
+                      zsh fd htop terminator git man-pages neofetch
+                      rofi polybar sxhkd udisks2 ntfs-3g zip unzip
                       pulseaudio pavucontrol alsa-utils
                       ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg
                       zathura zathura-pdf-mupdf
@@ -197,7 +208,7 @@
     cd aura-bin
     makepkg
     sudo pacman -U aura-bin-...
-    sudo aura -A polybar xfce4-panel-profiles
+    sudo aura -A xfce4-panel-profiles
     ```
 
     Some extension for `ranger`: `ueberzug ffmpegthumbnailer docx2txt ffmpeg`
@@ -216,7 +227,7 @@ Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/
 
 -------
 
-### GENERAL GUIDE
+## General Guide
 
 - [PACMAN](https://youtu.be/HD7jJEh4ZaM)
 - [AUR Helper - AURA](https://youtu.be/xPRJWHghWM8)
@@ -224,17 +235,34 @@ Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/
 
 -------
 
-### CUSTOMIZE
+## Customization / Tinkering
 
-- Cursor: [Night Diamond theme](https://www.deviantart.com/biueguy/art/Night-Diamond-v3-0-Sapphire-Blue-177119871) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
-- Polybar: check Polybar wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
+- Manage XFCE window manager hotkeys
+- Window manager theme: [True Minimalist](https://www.xfce-look.org/p/1016640/) and [guide to install](https://wiki.xfce.org/howto/install_new_themes)
+- Fonts: [JetBrainsNL Mono Nerd](https://archlinux.org/packages/community/any/ttf-jetbrains-mono-nerd/), size 11-12
+- Mouse cursor: [Night Diamond theme](https://www.gnome-look.org/p/1295073/) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
+- [Polybar](https://github.com/polybar/polybar): check Polybar wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
 - Ranger: [image preview with ueberzug](https://github-wiki-see.page/m/ranger/ranger/wiki/Image-Previews), [video thumbnail with ffmpeg](https://www.reddit.com/r/NixOS/comments/74wftw/video_previews_wranger/), [docx2txt](http://docx2txt.sourceforge.net/)
 - Zsh with terminator and [Powerlevel10k](https://dev.to/web3coach/best-terminal-setup-terminator-zsh-powerlevel10k-7pl)
 - [Move between monitors](https://github.com/calandoa/movescreen)
-- Window manager theme: [True Minimalist](https://www.xfce-look.org/p/1016640/)
-- Conky: fork from [xypnox](https://github.com/xypnox/dotfiles)
 - [Redshift](https://wiki.archlinux.org/title/redshift) and [Backlight](https://wiki.archlinux.org/title/backlight)
-- Alpine email: [bcacciaaudio.com](https://bcacciaaudio.com/2018/10/09/alpine-mail-setup-with-gmail/), [salixos.org](https://docs.salixos.org/wiki/How_to_set_up_Alpine_with_a_Gmail_account), [linuxshelltips.com](https://www.linuxshelltips.com/alpine-gmail-imap-in-linux/), [wesleyac.com](https://blog.wesleyac.com/posts/setting-up-alpine-gmail-with-arch-linux)
+- Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl) (get the key code with `showkey`, then setup keyboard shortcut to a `pulseaudio-ctl` command)
+- Unibus-vn: [enable macro](https://github.com/vn-input/ibus-unikey/issues/11)
+- [Rollback updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux) to what is working
+- Setting up [cleaning hooks](https://averagelinuxuser.com/clean-arch-linux/#1-clean-package-cache)
+- [Pacman Tips and tricks](https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Back_up_the_pacman_database)
+- Replacement for G-HUB: [Libratbag](https://womanonrails.com/logitech-g915-tkl), and maybe [piper](https://github.com/libratbag/piper) as frontend application
+- A bit troublesome with the [Osmos theme](https://github.com/Warinyourself/lightdm-webkit-theme-osmos)
+
+### Applications
+
+- Email client in terminal: [Alpine](https://alpineapp.email/) ([bcacciaaudio.com](https://bcacciaaudio.com/2018/10/09/alpine-mail-setup-with-gmail/), [salixos.org](https://docs.salixos.org/wiki/How_to_set_up_Alpine_with_a_Gmail_account), [linuxshelltips.com](https://www.linuxshelltips.com/alpine-gmail-imap-in-linux/), [wesleyac.com](https://blog.wesleyac.com/posts/setting-up-alpine-gmail-with-arch-linux))
+- Desktop system monitor: [Conky](https://github.com/brndnmtthws/conky) (fork from [xypnox](https://github.com/xypnox/dotfiles))
+- 2FA: Authy
+- Download manager: [xdman](https://xtremedownloadmanager.com/), [youtube-dl](https://youtube-dl.org/)
+- Online meeting: zoom
+- Cleaning: trash-cli, rmlint
+- Bluetooth: blueberry, bluez-utils
 
 -------
 
@@ -268,10 +296,4 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 ### PROBLEMS
 
 - [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
-- [Wifi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
-- Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl)
-- Replacement for G-HUB: [Libratbag](https://womanonrails.com/logitech-g915-tkl), and maybe [piper](https://github.com/libratbag/piper) as frontend application
-- Unibus-vn: [enable macro](https://github.com/vn-input/ibus-unikey/issues/11)
-- [Rollback updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux) to what is working
-- Setting up [cleaning hooks](https://averagelinuxuser.com/clean-arch-linux/#1-clean-package-cache)
-- [Pacman Tips and tricks](https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Back_up_the_pacman_database)
+- [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)

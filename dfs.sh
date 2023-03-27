@@ -3,9 +3,8 @@
 RED='\033[1;31m'
 NC='\033[0m'
 
-DOTFILES=(".aliases" ".bash_logout" ".bashrc"
-    ".gitconfig" ".p10k.zsh" ".profile"
-    ".vimrc" ".zshrc" ".zsh" "powerlevel10k"
+DOTFILES=(".aliases" ".bash_logout" ".bashrc" ".gitconfig" ".profile" ".pythonrc"
+    ".vimrc" ".p10k.zsh" ".zshrc" ".zsh" "powerlevel10k" ".zkbd"
 )
 
 function help() {
@@ -18,7 +17,6 @@ function help() {
     echo "  -h, --help                  Display help"
     echo "  -i, --install               Install dotfiles"
     echo "  -u, --uninstall             Uninstall dotfiles"
-    echo "  -b, --backup                Backup dotfiles"
     echo "  -ib, --install-binaries     Backup dotfiles"
     echo "  -ub, --uninstall-binaries   Backup dotfiles"
     exit
@@ -49,17 +47,8 @@ function error-invalid-option() {
 function install_dotfiles() {
     check_path_dotfiles
     echo "install dotfiles at HOME = $HOME"
-    echo "cleanup existing dotfiles"
     for DOTFILE in "${DOTFILES[@]}"; do
-        if [ -L ~/$DOTFILE ]; then
-            rm -v ~/$DOTFILE
-        elif [ -f ~/$DOTFILE ] || [ -d ~/$DOTFILE ]; then
-            mv -v ~/$DOTFILE "~/${DOTFILE}.bak"
-        fi
-    done
-    echo "install new dotfiles"
-    for DOTFILE in "${DOTFILES[@]}"; do
-        ln -sv ~/dotfiles/dfs/$DOTFILE ~/$DOTFILE
+        ln -svbf --suffix='.bak' ~/dotfiles/dfs/$DOTFILE -t ~/
     done
     echo "dotfiles are installed. Enjoy :)"
     exit
@@ -76,34 +65,12 @@ function uninstall_dotfiles() {
     exit
 }
 
-function backup_dotfiles() {
-    echo "backup dotfiles at HOME = ${HOME}/dotfiles_backup"; echo
-    if [ ! -d ~/dotfiles_backup ]; then
-        mkdir -pv ~/dotfiles_backup
-    fi
-    for DOTFILE in "${DOTFILES[@]}"; do
-        if ([ -f ~/$DOTFILE ] || [ -d ~/$DOTFILE ]) && [ ! -L ~/$DOTFILE ]; then
-            mv -v ~/$DOTFILE ~/dotfiles_backup
-        fi
-    done
-    echo "dotfiles are backed up"
-    exit
-}
-
 function install_binaries() {
     check_path_binaries
     echo "install binaries at /usr/local/bin"
-    echo "cleanup existing binaries"
     for BINARY in bin/*; do
         BINARY=${BINARY#"bin/"}
-        if [ -f /usr/local/bin/$BINARY ]; then
-            sudo rm -v /usr/local/bin/$BINARY
-        fi
-    done
-    echo "install new binaries"
-    for BINARY in bin/*; do
-        BINARY=${BINARY#"bin/"}
-        sudo ln -sv ~/dotfiles/bin/$BINARY /usr/local/bin/$BINARY
+        sudo ln -svbf --suffix='.bak' ~/dotfiles/bin/$BINARY -t /usr/local/bin
     done
     echo "binaries are installed. Enjoy :)"
     exit
@@ -129,7 +96,6 @@ while [ "$1" != "" ]; do
         -h | --help)                help;;
         -i | --install)             install_dotfiles;;
         -u | --uninstall)           uninstall_dotfiles;;
-        -b | --backup)              backup_dotfiles;;
         -ib | --install-binaries)   install_binaries;;
         -ub | --uninstall-binaries) uninstall_binaries;;
         *)                          error-invalid-option;;

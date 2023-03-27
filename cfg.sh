@@ -3,9 +3,11 @@
 RED='\033[1;31m'
 NC='\033[0m'
 
-CONFIGS=("autostart" "conky" "htop" "neofetch" "polybar"
-    "ranger" "redshift" "rofi" "terminator" "vis" "zathura"
+CONFIGS=("autostart" "gtk-3.0" "htop" "neofetch" "polybar"
+    "pulseaudio-ctl" "ranger" "redshift" "rofi" "terminator"
+    "vis" "vscode" "zathura" ".moc"
 )
+# conky
 
 function help() {
     echo "shell script for config management."
@@ -17,7 +19,6 @@ function help() {
     echo "  -h, --help                  Display help"
     echo "  -i, --install               Install config"
     echo "  -u, --uninstall             Uninstall config"
-    echo "  -b, --backup                Backup config"
     exit
 }
 
@@ -38,19 +39,9 @@ function error() {
 function install() {
     check_path
     echo "install config at HOME = $HOME/.config"
-    echo "cleanup existing config"
     for CONFIG in "${CONFIGS[@]}"; do
-        if [ -L ~/.config/$CONFIG ]; then
-            rm -v ~/.config/$CONFIG
-        elif [ -d ~/.config/$CONFIG ]; then
-            mv -v ~/.config/$CONFIG "~/.config/${CONFIG}.bak"
-        fi
+        ln -svbf --suffix='.bak' ~/dotfiles/.config/$CONFIG -t ~/.config
     done
-    echo "install new config"
-    for CONFIG in "${CONFIGS[@]}"; do
-        ln -sv ~/dotfiles/.config/$CONFIG ~/.config/$CONFIG
-    done
-    # cp -rv ~/dotfiles/.config/moc/* ~/.moc
     echo "config is installed. Enjoy :)"
     exit
 }
@@ -66,23 +57,6 @@ function uninstall() {
     exit
 }
 
-function backup() {
-    echo "backup config at HOME = ${HOME}/config_backup"
-    if [ ! -d ~/config_backup ]; then
-        mkdir -pv ~/config_backup
-    fi
-    for CONFIG in "${CONFIGS[@]}"; do
-        if [ -d ~/.config/$CONFIG ] && [ ! -L ~/.config/$CONFIG ]; then
-            mv -iv ~/.config/$CONFIG ~/config_backup
-        fi
-    done
-    # if [ -d ~/.moc ] && [ ! -L ~/.moc ]; then
-    #     mv -iv ~/.moc ~/config_backup
-    # fi
-    echo "config are backed up"
-    exit
-}
-
 ########################################################
 # MAIN
 ########################################################
@@ -91,7 +65,6 @@ while [ "$1" != "" ]; do
         -h | --help)        help;;
         -i | --install)     install;;
         -u | --uninstall)   uninstall;;
-        -b | --backup)      backup;;
         *)                  error;;
     esac
     shift

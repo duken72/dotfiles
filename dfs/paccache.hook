@@ -6,6 +6,6 @@ Type = Package
 Target = *
 
 [Action]
-Description = Cleaning pacman cache with paccache …
+Description = Cleaning pacman cache with paccache
 When = PostTransaction
 Exec = /usr/bin/paccache -r

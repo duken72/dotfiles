@@ -1,1 +1,0 @@
-/home/duken72/dotfiles/dfs/.zsh
