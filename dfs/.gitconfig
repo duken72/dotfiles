@@ -1,7 +1,7 @@
 [user]
 	email = duke7295@gmail.com
 	name = Duke Nguyen
-	signingkey = 493E6A1C4C65BA53
+	signingkey = 75074A42197607BB
 
 [credential]
 	helper = store
@@ -48,7 +48,7 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    light = false      # set to true if you're in a terminal with a light background color
     side-by-side = true
     line-numbers = true
 

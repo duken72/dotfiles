@@ -10,29 +10,29 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if type exa > /dev/null; then
-  alias exa='exa --git --git-ignore'
-  export EXA_COLORS="uu=1;31:da=1;35"
-  alias ll='exa -l'
-  alias ldir="exa -lD"
-  alias lla='exa -la'
-  alias la='exa -a'
-  alias ls='exa'
-  alias l='exa'
-  alias tree2='exa -l --tree --icons --git-ignore --level=2'
-  alias tree1='exa -l --tree --icons --git-ignore --level=1'
-  alias tree='exa -l --tree --icons --git-ignore'
-  function cd {
-    builtin cd "$@" && exa
-  }
+    alias exa='exa --git --git-ignore'
+    export EXA_COLORS="uu=1;31:da=1;35"
+    alias ll='exa -l --icons'
+    alias ldir='exa -lD --icons'
+    alias lla='exa -la --icons'
+    alias la='exa -a'
+    alias ls='exa'
+    alias l='exa'
+    # alias tree='exa -l --tree --icons --git-ignore'
+    alias tree1='exa -l --tree --icons --git-ignore --level=1'
+    alias tree2='exa -l --tree --icons --git-ignore --level=2'
+    function cd {
+        builtin cd "$@" && exa
+    }
 else
-  alias ll='ls -lh'
-  alias ldir="ls -lhF --color | grep --color=never '^d'"
-  alias lla='ls -Alh'
-  alias la='ls -A'
-  alias l='ls -C'
-  function cd {
-    builtin cd "$@" && ls -CA
-  }
+    alias ll='ls -lh'
+    alias ldir="ls -lhF --color | grep --color=never '^d'"
+    alias lla='ls -Alh'
+    alias la='ls -A'
+    alias l='ls -C'
+    function cd {
+        builtin cd "$@" && ls -CA
+    }
 fi
 alias grepr='grep -R'
 alias ag='alias | grep'
@@ -41,22 +41,33 @@ alias ag='alias | grep'
 alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
-alias cp='cp -r'
-alias acp='rsync -rah --info=progress2'
+alias dirs='dirs -v'
+if type bat > /dev/null; then
+    alias cat='bat'
+else
+    alias cat='cat -n'
+fi
+if type rsync > /dev/null; then
+    alias rsync='rsync -rahp --info=progress2'
+    #alias cp='rsync'
+else
+    alias cp='cp -r'
+fi
 alias df='df -h'
 alias duh='du -ahd 1'
 alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r' # with line number
 if type fdfind > /dev/null;  then
-  alias fd='fdfind'
+    alias fd='fdfind'
 fi
 function cdfd {
-	clear
-	builtin cd $(fd -t d "$1" ~)
-	la
+    clear
+    builtin cd $(fd -t d "$1" ~)
+    la
 }
 alias ip='ip -color=auto'
 alias dmesg='dmesg --color=always'
 alias diff='diff --color=auto'
+alias zip='zip -er9'
 
 # Navigation
 alias   c='cl; cd'
@@ -72,6 +83,7 @@ alias  .5='cd ../../../../..'
 alias dfs='clear && cd ~/dotfiles'
 alias dfsco='dfs && coh && exit'
 alias config='clear && cd ~/dotfiles/.config'
+alias cfg='clear && cd ~/.config'
 alias docs='clear && cd ~/Documents'
 alias books='clear && cd ~/Documents/books'
 alias app='clear && cd ~/Documents/application'
@@ -81,14 +93,11 @@ alias pics='clear && cd ~/Pictures'
 alias imgs='clear && cd ~/Pictures'
 alias vids='clear && cd ~/Videos'
 alias ws='clear && cd ~/WS'
-alias offcpp='clear && cd ~/WS/offlineCPP'
 alias phd='clear && cd ~/Documents/phd-rbo'
 alias test='clear && cd ~/WS/test'
-alias phanh='clear && cd ~/Pictures/phanh'
 
 # CD WORKSPACES
 alias cv='cdfd Curriculum-Vitae-Latex'
-alias thesis='cdfd thesis_report'
 alias notes='cdfd learningNotes'
 alias noco='cdfd learningNotes && coh && exit'
 alias nol='cdfd notesLatex'
@@ -105,12 +114,6 @@ alias grl='clear && cd ~/WS/test/goalRL-test'
 # CD GUIDE FOR DUMMIES
 alias cfd='cdfd codingForDummies && g st'
 alias cfdco='cdfd codingForDummies && coh && exit'
-alias bashfd='cdfd bashFD'
-alias pyfd='cdfd pyFD'
-alias cppfd='cdfd cppFD'
-alias cmakefd='cdfd cmakeFD'
-alias rosfd='cdfd rosFD'
-alias ros2fd='cdfd ros2FD'
 
 # CD WORKING
 # alias something='clear && cd $HOME/something'
@@ -124,12 +127,11 @@ alias sdn='shutdown now'
 
 # .alias, .rc and .config
 alias ealias='v ~/.aliases'
-alias ebashrc='v ~/.bashrc'
-alias ezshrc='v ~/.zshrc'
 alias talias='. ~/.aliases'
+alias ebashrc='v ~/.bashrc'
 alias tbashrc='. ~/.bashrc'
+alias ezshrc='v ~/.zshrc'
 alias tzshrc='. ~/.zshrc'
-alias econky='v ~/.config/conky/conky.conf'
 alias polybar='polybar --reload duck-mainbar'
 
 # Applications specific
@@ -137,7 +139,7 @@ alias py='python3'
 alias python='python3'
 alias ipy='ipython3'
 alias ipython='ipython3'
-alias v='vim'
+alias v='nvim'
 alias sv='sudo -E vim'
 alias co='code'
 alias coh='code .'
@@ -150,13 +152,16 @@ alias pdfConvert='soffice --headless --convert-to pdf' # convert a file to pdf, 
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
-# alias nwtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias weather='curl wttr.in Karlsruhe'
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
-alias diet='cl && cat ~/Documents/diet.md'
+function diet {
+    cd ~/Documents && clear
+    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' diet2.md 
+    # cat diet.md
+}
 alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
-# ssound # set sound to "$1"%
 
 # Workspaces
 alias cppt='cdfd cpp-test'
@@ -164,7 +169,7 @@ alias pyt='cdfd py-test'
 alias cpptco='cppt && coh'
 alias ros2ws='cdfd ros2ws && cd src'
 
-# alias somethingco='something && bldr-activate && coh'
+# alias wsco='cd ws && ws-activate && coh'
 
 # OSD
 # alias vc='osd-vpn-connect'
@@ -174,13 +179,13 @@ alias upg='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary to complete upgrade, resolve dependencies
 # Arch Linux
 if type fzf > /dev/null; then
-  alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-  alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-  alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+    alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+    alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+    alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 else
-  alias pacs='sudo pacman -S'
-  alias pacss='pacman -Ss'
-  alias pacr='sudo pacman -R'
+    alias pacs='sudo pacman -S'
+    alias pacss='pacman -Ss'
+    alias pacr='sudo pacman -R'
 fi
 alias pacsyu='sudo pacman -Syu'
 alias pacq='pacman -Q'
@@ -195,11 +200,11 @@ alias cache_show='find ~/.cache/ -type f -atime +72'
 alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
 # Update Packages
 if type apt-get > /dev/null; then
-  alias sup='upd && time upg'
+    alias sup='upd && time upg'
 elif type pacman > /dev/null; then
-  alias sup='pacsyu; auraau'
+    alias sup='pacsyu; auraau'
 fi
-alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon '
+alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
 # MOUNT USB
 alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
 alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
@@ -219,10 +224,10 @@ alias wdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
 # Git
 alias g='git'
 function gap {    # git add, commit with message, push
-  git add .; git commit -m "$1"; git push origin
+    git add .; git commit -m "$1"; git push origin
 }
 function gaps {   # git add, commit with message and sign, push
-  git add .; git commit -S -m "$1"; git push origin
+    git add .; git commit -S -m "$1"; git push origin
 }
 alias gi='git init'
 alias gcl='git clone'
@@ -255,8 +260,8 @@ alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --vol
 alias dst='dfs && git status'
 alias dpl='dfs && git pull origin'
 function dps {    # dotfiles push
-  cd ~/dotfiles
-  gaps "$1"
+    cd ~/dotfiles
+    gaps "$1"
 }
 
 # Guide For Dummies

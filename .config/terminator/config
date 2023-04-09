@@ -5,12 +5,14 @@
   [[default]]
     background_darkness = 0.72
     background_type = transparent
-    cursor_color = "#aaaaaa"
+    font = JetBrainsMonoNL Nerd Font Light 10
     foreground_color = "#ffffff"
     show_titlebar = False
     scrollbar_position = hidden
     disable_mousewheel_zoom = True
+    use_system_font = False
     bold_is_bright = True
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[window0]]]

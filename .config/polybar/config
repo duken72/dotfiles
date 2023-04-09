@@ -173,7 +173,7 @@ content-foreground = ${colors.red-4}
 [module/xfcestart]
 type = custom/script
 exec = echo " %{T6}%{T1} "
-tail = true
+tail = false
 format-foreground = ${colors.white}
 format-background = ${colors.red-1}
 click-left = xfce4-popup-whiskermenu

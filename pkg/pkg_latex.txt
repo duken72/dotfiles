@@ -19,6 +19,8 @@ texlive-local-fontaxes
 texlive-local-hyphenat
 texlive-local-ifmtarg
 texlive-local-ifoddpage
+texlive-local-l3kernel
+texlive-local-l3packages
 texlive-local-lastpage
 texlive-local-makecell
 texlive-local-moderncv

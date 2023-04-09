@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-    *) return;;
+    *i*) ;;
+        *) return;;
 esac
 
 
@@ -36,12 +36,12 @@ shopt -s globstar
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-  debian_chroot=$(cat /etc/debian_chroot)
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-  xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -50,37 +50,37 @@ esac
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	  color_prompt=yes
-  else
-	  color_prompt=
-  fi
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	    # We have color support; assume it's compliant with Ecma-48
+	    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	    # a case would tend to support setf rather than setaf.)
+	    color_prompt=yes
+    else
+	    color_prompt=
+    fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in xterm*|rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1";;*);;
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1";;*);;
 esac
 
 [ -f ~/.aliases ] && source ~/.aliases
 
 if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
-  source /usr/share/git/completion/git-completion.bash
-  __git_complete g __git_main
-  __git_complete gc _git_checkout
-  __git_complete gp _git_pull
+    source /usr/share/git/completion/git-completion.bash
+    __git_complete g __git_main
+    __git_complete gc _git_checkout
+    __git_complete gp _git_pull
 else
-  echo "Error loading git completions"
+    echo "Error loading git completions"
 fi
 
 # colored GCC warnings and errors
@@ -96,17 +96,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
 fi
-
-# RUBY
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
-# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # Default text editor
 export VISUAL=vim
@@ -114,8 +108,8 @@ export EDITOR="$VISUAL"
 
 # fuzzy finder
 if [ -d /usr/share/fzf ]; then
-  source /usr/share/fzf/key-bindings.bash
-  source /usr/share/fzf/completion.bash
+    source /usr/share/fzf/key-bindings.bash
+    source /usr/share/fzf/completion.bash
 fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -125,22 +119,25 @@ fi
 # You can also make it machine-specific
 # if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi
 
+# 'bat' as the default pager for 'man'
+if type bat > /dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
 
 # Sources ROS
 if [ -d /opt/ros ]; then
-  # source /opt/ros/noetic/setup.bash
-  source /opt/ros/foxy/setup.bash
-  export ROS_DOMAIN_ID=12
-  export ROBOTNAME=bcr2-tc1-rng-07
-  export ROS_PARTICIPANT_ID=27
+    # source /opt/ros/noetic/setup.bash
+    source /opt/ros/foxy/setup.bash
+    export ROS_DOMAIN_ID=12
+    export ROBOTNAME=bcr2-tc1-rng-07
+    export ROS_PARTICIPANT_ID=27
 
-  if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
-    source /usr/share/colcon_cd/function/colcon_cd.sh
-  fi
-  export _colcon_cd_root=/opt/ros/foxy/
-  if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
-    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-  fi
+    if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
+        source /usr/share/colcon_cd/function/colcon_cd.sh
+    fi
+    export _colcon_cd_root=/opt/ros/foxy/
+    if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
+        source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 fi
 
 [ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc

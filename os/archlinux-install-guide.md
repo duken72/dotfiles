@@ -253,6 +253,7 @@ Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/
 - [Pacman Tips and tricks](https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Back_up_the_pacman_database)
 - Replacement for G-HUB: [Libratbag](https://womanonrails.com/logitech-g915-tkl), and maybe [piper](https://github.com/libratbag/piper) as frontend application
 - A bit troublesome with the [Osmos theme](https://github.com/Warinyourself/lightdm-webkit-theme-osmos)
+- Terminus fonts as console font: put `vconsole.conf` in `/etc`
 
 ### Applications
 
