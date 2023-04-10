@@ -1,2 +1,3 @@
 .vscode
 .config/**/last_directory
+.config/nvim/lazy-lock.json

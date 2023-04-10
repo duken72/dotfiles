@@ -68,6 +68,7 @@ ttf-jetbrains-mono-nerd 2.3.3-2
 udisks2 2.9.4-1
 unrar 1:6.2.6-1
 virtualbox 7.0.6-3
+wget 1.21.3-1
 wmctrl 1.07-6
 xdg-user-dirs 0.18-1
 xf86-video-intel 1:2.99.917+923+gb74b67f0-1
