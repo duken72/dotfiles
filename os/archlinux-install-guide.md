@@ -196,7 +196,7 @@
     ```bash
     # lspci -v | grep -A1 -e VGA -e 3D
     sudo pacman -S xf86-video-intel nvidia nvidia-utils # choose suitable graphic drivers
-    vim /etc/pacman.conf # ParallelDownloads = 5
+    vim /etc/pacman.conf # ParallelDownloads = 5, Include multilib
     cd ~ && git clone https://github.com/duken72/dotfiles.git
     cd ~/dotfiles/pkg && ./pacman_install.sh
     ```

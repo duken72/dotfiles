@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo pacman -Syu
 sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs \
     lightdm lightdm-gtk-greeter \
     xfce4 xfce4-screensaver xfce4-screenshooter xfce4-notifyd xfce4-whiskermenu-plugin \

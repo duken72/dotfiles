@@ -50,6 +50,7 @@ function install_dotfiles() {
     for DOTFILE in "${DOTFILES[@]}"; do
         ln -svbf --suffix='.bak' ~/dotfiles/dfs/$DOTFILE -t ~/
     done
+    sudo chsh -s $(which zsh)
     echo "dotfiles are installed. Enjoy :)"
     exit
 }
@@ -61,6 +62,7 @@ function uninstall_dotfiles() {
             rm -v ~/$DOTFILE
         fi
     done
+    sudo chsh -s $(which bash)
     echo "dotfiles are uninstalled .. but .. why?? .. why meeeh :("
     exit
 }
