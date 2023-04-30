@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo cp ~/dotfiles/dfs/hook/*.hook /usr/share/libalpm/hooks
 sudo pacman -Syu
 sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs \
     lightdm lightdm-gtk-greeter \

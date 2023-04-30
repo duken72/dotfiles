@@ -1,6 +1,6 @@
 # Redshift
 
-To change the icons, put the images in `/usr/share/icons/hicolor/scalable/apps`. Rename accordingly to:
+Put the images in `/usr/share/icons/hicolor/scalable/apps`
 
 - `redshift-status-off.svg`
 - `redshift-status-on.svg`

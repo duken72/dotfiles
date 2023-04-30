@@ -45,6 +45,9 @@ function install() {
     done
     cp ~/dotfiles/.config/user-dirs.dirs ~/.config
     cp -r ~/dotfiles/.config/xfce4/* ~/.config/xfce4
+    sudo ln -svf ~/dotfiles/.config/TrueMinimalist -t /usr/share/themes
+    sudo ln -svf ~/dotfiles/.config/Night_Diamond_Red -t ~/.local/share/icons
+    sudo cp ~/dotfiles/.config/redshift/*.svg /usr/share/icons/hicolor/scalable/apps
     echo "config is installed. Enjoy :)"
     exit
 }

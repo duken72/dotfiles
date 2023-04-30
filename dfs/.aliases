@@ -42,6 +42,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
+alias cp='cp -r'
 if type bat > /dev/null; then
     alias cat='bat'
 else
@@ -50,8 +51,6 @@ fi
 if type rsync > /dev/null; then
     alias rsync='rsync -rahp --info=progress2'
     #alias cp='rsync'
-else
-    alias cp='cp -r'
 fi
 alias df='df -h'
 alias duh='du -ahd 1'
