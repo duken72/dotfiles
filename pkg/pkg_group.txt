@@ -1,6 +1,5 @@
 binutils
 gcc
-gettext
 libtool
 exo
 garcon

@@ -24,12 +24,17 @@ setopt HIST_REDUCE_BLANKS
 [[ -e ~/.profile ]]     && emulate sh -c 'source ~/.profile'
 [[ -f ~/.aliases ]]     && source ~/.aliases
 
+# Auto completions
 if [[ -d ~/.zsh ]]; then
     # https://github.com/zsh-users/zsh-autosuggestions
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
     fpath=(~/.zsh/completion $fpath)
     autoload -Uz compinit && compinit -i
 fi
+
+# Default text editor
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # Color for man-pages
 export MANPAGER="less -R --use-color -Dd+r -Du+b"

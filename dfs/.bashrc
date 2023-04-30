@@ -103,7 +103,7 @@ if ! shopt -oq posix; then
 fi
 
 # Default text editor
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # fuzzy finder

@@ -90,8 +90,8 @@
     ```bash
     vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
     vim /etc/pacman.conf # ParallelDownloads = 5
-    pacstrap /mnt base base-devel linux-lts linux-firmware sof-firmware
-              iw iwd vim grub efibootmgr openssh
+    pacstrap /mnt base base-devel linux(-lts) linux-firmware sof-firmware
+              iw iwd vim nvim grub efibootmgr openssh git
     ```
 
 9. Configure the system
@@ -181,7 +181,8 @@
     ```bash
     useradd -g users -G wheel,storage,power,audio,video,optical -m user_name
     passwd user_name
-    visudo #change %wheel ALL NOPASSWD ALL, can sudo without passwd
+    ln -svf /usr/bin/vim /usr/bin/vi
+    visudo # uncomment %wheel ALL NOPASSWD ALL, can sudo without passwd
 
     # if openssh installed
     systemctl start sshd
@@ -190,18 +191,30 @@
     ```
 
 13. Drivers and packages installation:
+    Clone the dotfiles and run the script:
 
     ```bash
     # lspci -v | grep -A1 -e VGA -e 3D
+    sudo pacman -S xf86-video-intel nvidia nvidia-utils # choose suitable graphic drivers
     vim /etc/pacman.conf # ParallelDownloads = 5
-    (sudo) pacman -S xf86-video-intel nvidia nvidia-utils
-                      xorg xorg-xinit lightdm lightdm-gtk-greeter picom
-                      xfce4 xfce4-goodies xdg-user-dirs
-                      zsh fd htop terminator git man-pages neofetch
-                      rofi polybar sxhkd udisks2 ntfs-3g zip unzip
-                      pulseaudio pavucontrol alsa-utils
-                      ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg
-                      zathura zathura-pdf-mupdf
+    cd ~ && git clone https://github.com/duken72/dotfiles.git
+    cd ~/dotfiles/pkg && ./pacman_install.sh
+    ```
+
+    ```bash
+    sudo pacman -S xorg xorg-xinit lightdm lightdm-gtk-greeter picom xdg-user-dirs \
+                  xfce4 xfce4-screensaver xfce4-screenshooter \
+                  xfce4-notifyd xfce4-whiskermenu-plugin  \
+                  zsh fd htop terminator man-pages neofetch \
+                  rofi polybar sxhkd udisks2 ntfs-3g zip unzip \
+                  pulseaudio pavucontrol alsa-utils \
+                  ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
+                  zathura zathura-pdf-mupdf \
+                  # remove xfce4 terminal and the whole xfce4-goodies, except a few
+
+    gawk '{print $1}' pkg_pacman.txt > /tmp/t.txt
+    cd /tmp
+    pacman -S - < t.txt # when install pkg group, use ^x to exclude x
 
     # AURA - AUR helper
     git clone https://aur.archlinux.org/aura-bin.git
@@ -210,8 +223,6 @@
     sudo pacman -U aura-bin-...
     sudo aura -A xfce4-panel-profiles
     ```
-
-    Some extension for `ranger`: `ueberzug ffmpegthumbnailer docx2txt ffmpeg`
 
 14. Post-installation: Setting up desktop environment\
 Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/eHdP4sT7-8U), [vid_3](https://youtu.be/FudOL0-B9Hs).

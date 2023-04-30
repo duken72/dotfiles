@@ -1,7 +1,12 @@
--- VIM commands
+-- VIM commands :help :map-modes
+-- https://stackoverflow.com/a/3776182/11397588
 vim.cmd([[
-vnoremap jk <ESC>
+" Map <jk> to <ESC> in all modes except normal mode
 inoremap jk <ESC>
+vnoremap jk <ESC>
+cnoremap jk <ESC>
+onoremap jk <ESC>
+tnoremap jk <ESC>
 ]])
 
 -- [[ Setting options ]]
@@ -50,16 +55,26 @@ vim.g.loaded_netrwPlugin = 1
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- Keymaps for similar VSCode function
+vim.keymap.set('n', '<C-s>', ':w <CR>', { silent = true, desc = '[S]ave file' })
+vim.keymap.set('n', '<C-q>', ':qa <CR>', { silent = true, desc = '[Q]uit all' })
+
+vim.keymap.set('n', '<C-h>', ':%s/', { silent = true, desc = '[R]eplace all' })
+vim.keymap.set('n', ';', ':', { silent = true, desc = 'Enter command mode' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
+  { desc = "Go to previous diagnostic message" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
+  { desc = "Go to next diagnostic message" })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
+  { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
+  { desc = "Open diagnostics list" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -269,6 +284,17 @@ require('lazy').setup({
     end,
   },
 
+  { -- Customizable greeter for neovim
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end,
+  },
+
+  -- Markdown preview
+  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+
 --[[
   { -- A file explorer
     'nvim-tree/nvim-tree.lua',
@@ -285,14 +311,6 @@ require('lazy').setup({
     end,
   }
 --]]
-
-  { -- Customizable greeter for neovim
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
-        require'alpha'.setup(require'alpha.themes.dashboard'.config)
-    end,
-  }
 
 })
 
@@ -312,10 +330,9 @@ greeter.section.buttons.val = {
     greeter.button( "Spc sg",   "󰈬  Find word", ":Telescope grep_string<CR>"),
     greeter.button( "q",        "  Quit",      ":qa<CR>"),
 }
-local v = vim.version()
 greeter.section.footer.val = {
   ' ' .. #vim.tbl_keys(require("lazy").plugins()) .. ' plugins ' ..
-  "-- NVIM v" .. v.major .. '.' .. v.minor .. '.' .. v.patch
+  "-- NEOVIM v" .. vim.version().major .. '.' .. vim.version().minor .. '.' .. vim.version().patch
 }
 
 -- [[ Configure Telescope ]]
@@ -335,21 +352,28 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
+  { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,
+  { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
-
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+      winblend = 10,
+      previewer = false,
+    })
+  end,
+  { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files,
+  { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags,
+  { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
+  { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep,
+  { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics,
+  { desc = '[S]earch [D]iagnostics' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -599,15 +623,34 @@ cmp.event:on(
 )
 
 -- [[ Configure nvterm ]]
-require("nvterm").setup()
-local tmaps = {
-  {{'n', 't'}, '<A-h>', function() require("nvterm.terminal").toggle('horizontal') end },
-  {{'n', 't'}, '<A-v>', function() require("nvterm.terminal").toggle('vertical') end },
-  {{'n', 't'}, '<A-i>', function() require("nvterm.terminal").toggle('float') end },
-}
-for _, map in ipairs(tmaps) do
-  vim.keymap.set(map[1], map[2], map[3], { noremap = true, silent = true })
-end
+require("nvterm").setup({
+  float = {
+    relative = 'editor',
+    row = 0.14,
+    col = 0.14,
+    width = 0.72,
+    height = 0.72,
+    border = "single",
+  },
+  horizontal = { location = "rightbelow", split_ratio = .25, },
+  vertical = { location = "rightbelow", split_ratio = .4 },
+})
+local nvterm = require("nvterm.terminal")
+vim.keymap.set({'n', 't'}, '<A-h>', function() nvterm.toggle('horizontal') end,
+  { noremap = true, silent = true, desc = '[H]orizontal terminal' })
+vim.keymap.set({'n', 't'}, '<A-v>', function() nvterm.toggle('vertical') end,
+  { noremap = true, silent = true, desc = '[V]ertical terminal' })
+vim.keymap.set({'n', 't'}, '<A-f>', function() nvterm.toggle('float') end,
+  { noremap = true, silent = true, desc = '[F]loating terminal' })
+
+-- [[ Configure Glow - Markdown preview ]]
+vim.keymap.set('n', '<leader>m', ":Glow <CR>", { desc = '[M]arkdown preview' })
+
+-- [[ Transparent background ]]
+-- vim.cmd([[
+-- highlight Normal guibg=none
+-- highlight signcolumn guibg=none
+-- ]])
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

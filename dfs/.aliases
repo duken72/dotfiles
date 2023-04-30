@@ -81,12 +81,11 @@ alias  .5='cd ../../../../..'
 
 # CD GENERICS
 alias dfs='clear && cd ~/dotfiles'
-alias dfsco='dfs && coh && exit'
 alias config='clear && cd ~/dotfiles/.config'
 alias cfg='clear && cd ~/.config'
 alias docs='clear && cd ~/Documents'
 alias books='clear && cd ~/Documents/books'
-alias app='clear && cd ~/Documents/application'
+alias pd='clear && cd ~/Documents/personal-docs'
 alias down='clear && cd ~/Downloads'
 alias music='clear && cd ~/Music'
 alias pics='clear && cd ~/Pictures'
@@ -99,23 +98,21 @@ alias test='clear && cd ~/WS/test'
 # CD WORKSPACES
 alias cv='cdfd Curriculum-Vitae-Latex'
 alias notes='cdfd learningNotes'
-alias noco='cdfd learningNotes && coh && exit'
+alias nov='cdfd learningNotes && v'
 alias nol='cdfd notesLatex'
-alias nolco='cdfd notesLatex && coh'
 alias nn='cdfd neural-network-test'
-alias nnco='nn && coh'
+alias nnv='nn && v'
 alias ccom='cdfd coding-competitions'
-alias cf='clear; cd ~/WS/coding-competitions && coh && exit'
+alias cf='clear; cd ~/WS/coding-competitions && v'
 alias cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
-alias aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
-alias aocco='cdfd Advent-of-Code && coh'
 alias grl='clear && cd ~/WS/test/goalRL-test'
 
 # CD GUIDE FOR DUMMIES
 alias cfd='cdfd codingForDummies && g st'
-alias cfdco='cdfd codingForDummies && coh && exit'
+alias cfdco='cdfd codingForDummies && v && exit'
 
 # CD WORKING
+alias aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
 # alias something='clear && cd $HOME/something'
 
 # System
@@ -136,13 +133,11 @@ alias polybar='polybar --reload duck-mainbar'
 
 # Applications specific
 alias py='python3'
-alias python='python3'
 alias ipy='ipython3'
-alias ipython='ipython3'
 alias v='nvim'
-alias sv='sudo -E vim'
 alias co='code'
-alias coh='code .'
+alias coh='code . && exit'
+alias sv='sudo -E nvim'
 alias run='./run.sh'
 alias jn='jupyter-notebook'
 alias o='xdg-open'
@@ -164,12 +159,8 @@ alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 
 # Workspaces
-alias cppt='cdfd cpp-test'
-alias pyt='cdfd py-test'
-alias cpptco='cppt && coh'
 alias ros2ws='cdfd ros2ws && cd src'
-
-# alias wsco='cd ws && ws-activate && coh'
+# alias wsco='cd ws && ws-activate && v'
 
 # OSD
 # alias vc='osd-vpn-connect'
