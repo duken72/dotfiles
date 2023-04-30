@@ -3,9 +3,9 @@
 RED='\033[1;31m'
 NC='\033[0m'
 
-CONFIGS=("autostart" "gtk-3.0" "htop" "neofetch" "polybar"
-    "pulseaudio-ctl" "ranger" "redshift" "rofi" "terminator"
-    "vis" "vscode" "zathura" ".moc"
+CONFIGS=(".moc" "autostart" "gtk-3.0" "htop" "neofetch" "nvim"
+    "polybar" "pulseaudio-ctl" "ranger" "redshift" "rofi" "terminator"
+    "vis" "vscode" "zathura" "user-dirs.locale"
 )
 # conky
 
@@ -37,11 +37,14 @@ function error() {
 }
 
 function install() {
+    sudo cp ~/dotfiles/.config/vconsole.conf /etc/vconsole.conf
     check_path
     echo "install config at HOME = $HOME/.config"
     for CONFIG in "${CONFIGS[@]}"; do
         ln -svbf --suffix='.bak' ~/dotfiles/.config/$CONFIG -t ~/.config
     done
+    cp ~/dotfiles/.config/user-dirs.dirs ~/.config
+    cp -r ~/dotfiles/.config/xfce4/* ~/.config/xfce4
     echo "config is installed. Enjoy :)"
     exit
 }

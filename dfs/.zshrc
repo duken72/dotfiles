@@ -56,10 +56,11 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 if [ -d /usr/share/fzf ]; then
     if type bat > /dev/null; then
         source ~/dotfiles/dfs/fzf/key-bindings.zsh
+        source ~/dotfiles/dfs/fzf/completion.zsh
     else
         source /usr/share/fzf/key-bindings.zsh
+        source /usr/share/fzf/completion.zsh
     fi
-    source /usr/share/fzf/completion.zsh
 fi
 
 ## ROS2

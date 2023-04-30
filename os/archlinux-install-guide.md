@@ -91,7 +91,7 @@
     vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
     vim /etc/pacman.conf # ParallelDownloads = 5
     pacstrap /mnt base base-devel linux(-lts) linux-firmware sof-firmware
-              iw iwd vim nvim grub efibootmgr openssh git
+              iw iwd vim neovim grub efibootmgr openssh git
     ```
 
 9. Configure the system

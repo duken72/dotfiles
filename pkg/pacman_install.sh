@@ -25,3 +25,4 @@ sudo aura -A brave-bin cli-visualizer pulseaudio-ctl siji-git \
 cd ~/dotfiles/pkg
 sudo pacman -S $(gawk -F'-' '$2 != "local" {print}' pkg_latex.txt)
 tllocalmgr --noconfirm install $(gawk '/local/ {gsub("texlive-local-",""); print}' pkg_latex.txt)
+texhash

@@ -1,6 +1,6 @@
 #EXTM3U
-#MOCSERIAL: 0
-#EXTINF:238,Ailee FanDuo - I Will Show You (Fantastic Duo)
+#MOCSERIAL: 256
+#EXTINF:239,Ailee FanDuo - I Will Show You (Fantastic Duo)
 /home/duken72/Music/kpop/Best/I Will Show You Ailee Fantastic Duo.mp3
 #EXTINF:312,Taeyang FanDuo - Eyes Nose Lips (Fantastic Duo)
 /home/duken72/Music/kpop/Best/Eyes Nose Lips Taeyang Fantastic Duo.mp3
@@ -80,7 +80,7 @@
 /home/duken72/Music/vn/Justa Tee/Xin Anh Dung - Emily, LiL Knight, JustaT.mp3
 #EXTINF:271,Soobin Hoàng Sơn - Xin Đừng Lặng Im (Xin Đừng Lặng Im)
 /home/duken72/Music/vn/Soobin Hoàng Sơn/Xin Đừng Lặng Im Soobin Hoàng Sơn.mp3
-#EXTINF:227,Adam Lambert -  Whataya Want From Me (For Your Entertainment)
+#EXTINF:227,Adam Lambert - Whataya Want From Me (For Your Entertainment)
 /home/duken72/Music/english/Adam Lambert/Whataya Want From Me - Adam Lambert, Pink.mp3
 #EXTINF:295,1 Adele - Hello (25)
 /home/duken72/Music/english/Adele/Hello Adele.mp3
@@ -108,17 +108,17 @@
 /home/duken72/Music/english/Britney Spears/Everytime - Britney Spears.mp3
 #EXTINF:223,Bruno Mars - Grenade (Doo-Wops & Hooligans)
 /home/duken72/Music/english/Bruno Mars/Grenade - Bruno Mars.mp3
-#EXTINF:257,Bruno Mars - It Will Rain  (The Twilight Saga: Breaking Dawn – Part 1)
+#EXTINF:257,Bruno Mars - It Will Rain (The Twilight Saga: Breaking Dawn – Part 1)
 /home/duken72/Music/english/Bruno Mars/It Will Rain Bruno Mars.mp3
 #EXTINF:213,1 Bruno Mars - When I Was Your Man (Unorthodox Jukebox)
 /home/duken72/Music/english/Bruno Mars/When I Was Your Man - Bruno Mars.MP3
-#EXTINF:200,2 Carrie Underwood - Before He Cheats (Some Heart)
+#EXTINF:202,2 Carrie Underwood - Before He Cheats (Some Heart)
 /home/duken72/Music/english/Carrie Underwood/Before He Cheats.mp3
 #EXTINF:240,Carrie Underwood - Blown Away (Blown Away)
 /home/duken72/Music/english/Carrie Underwood/Blown Away - Carrie Underwood.mp3
 #EXTINF:247,5 Carrie Underwood - Starts With Goodbye (Some Heart)
 /home/duken72/Music/english/Carrie Underwood/Starts With Goodbye.mp3
-#EXTINF:222,Cee Lo Green - Forget You (The Lady Killer)
+#EXTINF:222,0 Cee Lo Green - Forget You (The Lady Killer)
 /home/duken72/Music/english/Cee Lo/Forget You - Cee Lo Green.mp3
 #EXTINF:211,1 Charlie Puth - Attention (Voicenotes)
 /home/duken72/Music/english/Charlie Puth/Attention Charlie Puth.mp3
@@ -166,7 +166,7 @@
 /home/duken72/Music/english/High School Musical/Gotta Go My Own Way.mp3
 #EXTINF:180,6 High School Musical - When There Was Me and You (High School Musical 1)
 /home/duken72/Music/english/High School Musical/When There Was Me and You.mp3
-#EXTINF:232,Hoobastank - The Reason
+#EXTINF:242,Hoobastank - The Reason
 /home/duken72/Music/english/Hoobastank/The Reason - Hoobastank.mp3
 #EXTINF:223,Imagine Dragons - Bleeding Out (Night Visions)
 /home/duken72/Music/english/Imagine Dragons/Bleeding Out Imagine Dragons.mp3
