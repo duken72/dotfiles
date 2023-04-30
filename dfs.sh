@@ -3,8 +3,8 @@
 RED='\033[1;31m'
 NC='\033[0m'
 
-DOTFILES=(".aliases" ".bash_logout" ".bashrc" ".gitconfig" ".profile" ".pythonrc"
-    ".vimrc" ".p10k.zsh" ".zshrc" ".zsh" "powerlevel10k" ".zkbd"
+DOTFILES=(".aliases" ".bash_logout" ".bashrc" ".gitconfig" ".profile" ".face"
+    ".pythonrc" ".vimrc" ".p10k.zsh" ".zshrc" ".zsh" "powerlevel10k" ".zkbd"
 )
 
 function help() {
