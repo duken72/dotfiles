@@ -251,7 +251,7 @@ output = eDP1
 ;output = HDMI1
 enable-scroll = true
 format = "<label>%"
-label ="%{T6}󰃟%{T1} %{T2}%percentage%"
+label ="%{T6}󰃟%{T2}%percentage%"
 format-foreground = ${colors.pink}
 format-background = ${colors.red-2}
 
@@ -260,7 +260,7 @@ type = internal/xbacklight
 output = HDMI1
 enable-scroll = true
 format = "<label>%"
-label ="%{T6}󰃟%{T1} %{T2}%percentage%"
+label ="%{T6}󰃟%{T2}%percentage%"
 format-foreground = ${colors.pink}
 format-background = ${colors.red-2}
 
@@ -287,7 +287,7 @@ format-connected = <ramp-signal><label-connected>
 format-connected-background = ${colors.red-1}
 format-disconnected = "%{T6}󰖪"
 format-disconnected-background = ${colors.red-1}
-label-connected = "%{T2}%signal% "
+label-connected = "%{T2}%signal%"
 
 ramp-signal-0 = "%{T1}󰖩"
 ramp-signal-1 = "%{T2}󰖩"
@@ -300,10 +300,10 @@ ramp-signal-5 = "%{T6}󰖩"
 type = internal/network
 interface = eno1
 ;ping-interval = 5
-label-connected = " %{T2}󰈁%{T1} "
+label-connected = "%{T6}󰈁%{T1}"
 label-connected-background = ${colors.red-1}
 ;label-connected = " %downspeed:2% %upspeed:2%"
-format-disconnected =" %{T2}󰈂%{T1} "
+format-disconnected =" %{T6}󰈂%{T1}"
 format-disconnected-background = ${colors.red-1}
 
 [module/date]
@@ -352,34 +352,34 @@ format-discharging = <ramp-capacity><label-discharging>
 format-full = <label-full>
 format-low = <label-low>
 
-format-full-prefix = " %{T2}󰁹%{T2}"
+format-full-prefix = "%{T4}󰁹%{T2}"
 format-full-prefix-foreground = ${colors.green}
 format-full-prefix-background = ${colors.red-1}
 format-full-foreground = ${colors.white}
 format-full-background = ${colors.red-1}
 
-format-low-prefix = " %{T2}󰂃%{T2}"
+format-low-prefix = "%{T4}󰂃%{T2}"
 format-low-prefix-foreground = ${colors.red-2}
 format-low-prefix-background = ${colors.red-1}
 format-low-foreground = ${colors.white}
 format-low-background = ${colors.red-1}
 
-ramp-capacity-0 = " %{T2}󰁺"
-ramp-capacity-1 = " %{T2}󰁼"
-ramp-capacity-2 = " %{T2}󰁾"
-ramp-capacity-3 = " %{T2}󰂀"
-ramp-capacity-4 = " %{T2}󰂂"
+ramp-capacity-0 = "%{T4}󰁺"
+ramp-capacity-1 = "%{T4}󰁼"
+ramp-capacity-2 = "%{T4}󰁾"
+ramp-capacity-3 = "%{T4}󰂀"
+ramp-capacity-4 = "%{T4}󰂂"
 ramp-capacity-foreground = ${colors.green}
 ramp-capacity-background = ${colors.red-1}
 
 label-charging = "%{T2}%percentage%%%{T1}"
 label-charging-background = ${colors.red-1}
-animation-charging-0 = %{T2}󰂄
+animation-charging-0 = %{T4}󰂄
 animation-charging-foreground = ${colors.green}
 animation-charging-background = ${colors.red-1}
 animation-charging-framerate = 7200
 
-label-discharging = "%{T2}%percentage%%%{T1}"
+label-discharging = "%{T4}%percentage%%%{T1}"
 label-discharging-background = ${colors.red-1}
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-background = ${colors.red-1}
