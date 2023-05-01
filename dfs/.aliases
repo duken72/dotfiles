@@ -80,7 +80,7 @@ alias  .5='cd ../../../../..'
 
 # CD GENERICS
 alias dfs='clear && cd ~/dotfiles'
-alias config='clear && cd ~/dotfiles/.config'
+alias cf='clear && cd ~/dotfiles/.config'
 alias cfg='clear && cd ~/.config'
 alias docs='clear && cd ~/Documents'
 alias books='clear && cd ~/Documents/books'
@@ -101,8 +101,7 @@ alias nov='cdfd learningNotes && v'
 alias nol='cdfd notesLatex'
 alias nn='cdfd neural-network-test'
 alias nnv='nn && v'
-alias ccom='cdfd coding-competitions'
-alias cf='clear; cd ~/WS/coding-competitions && v'
+alias ccom='cdfd coding-competitions && v'
 alias cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
 alias grl='clear && cd ~/WS/test/goalRL-test'
 
