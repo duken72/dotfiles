@@ -46,8 +46,14 @@ function install() {
     cp ~/dotfiles/.config/user-dirs.dirs ~/.config
     cp -r ~/dotfiles/.config/xfce4/* ~/.config/xfce4
     sudo ln -svf ~/dotfiles/.config/TrueMinimalist -t /usr/share/themes
+    mkdir -p ~/.local/share/icons
     sudo ln -svf ~/dotfiles/.config/Night_Diamond_Red -t ~/.local/share/icons
     sudo cp ~/dotfiles/.config/redshift/*.svg /usr/share/icons/hicolor/scalable/apps
+    # LightDM
+    sudo cp ~/dotfiles/Wallpapers/syn* /usr/share/pixmaps
+    sudo cp ~/dotfiles/.config/LightDM/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
+    sudo cp ~/dotfiles/dfs/.face /var/lib/AccountsService/icons/duken72.png
+    sudo cp ~/dotfiles/.config/LightDM/duken72 /var/lib/AccountsService/users/duken72
     echo "config is installed. Enjoy :)"
     exit
 }

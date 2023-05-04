@@ -50,7 +50,7 @@ function install_dotfiles() {
     for DOTFILE in "${DOTFILES[@]}"; do
         ln -svbf --suffix='.bak' ~/dotfiles/dfs/$DOTFILE -t ~/
     done
-    sudo chsh -s $(which zsh)
+    chsh -s $(which zsh)
     echo "dotfiles are installed. Enjoy :)"
     exit
 }

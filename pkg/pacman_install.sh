@@ -8,7 +8,8 @@ sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs \
     rofi polybar sxhkd udisks2 ntfs-3g zip unzip \
     pulseaudio pavucontrol alsa-utils \
     ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
-    zathura zathura-pdf-mupdf
+    zathura zathura-pdf-mupdf \
+    npm accountsservice
 
 awk '{print $1}' ~/dotfiles/pkg/pkg_pacman.txt > /tmp/t.txt
 sudo pacman -S --needed - < /tmp/t.txt # when install pkg group, use ^x to exclude x
