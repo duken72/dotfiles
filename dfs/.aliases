@@ -67,6 +67,9 @@ alias ip='ip -color=auto'
 alias dmesg='dmesg --color=always'
 alias diff='diff --color=auto'
 alias zip='zip -er9'
+if type glow > /dev/null; then
+    alias glow='glow -p'
+fi
 
 # Navigation
 alias   c='cl; cd'
@@ -91,7 +94,8 @@ alias pics='clear && cd ~/Pictures'
 alias imgs='clear && cd ~/Pictures'
 alias vids='clear && cd ~/Videos'
 alias ws='clear && cd ~/WS'
-alias phd='clear && cd ~/Documents/phd-rbo'
+alias td='clear && cd ~/WS/TODO'
+alias phd='clear && cd ~/WS/phd-rbo'
 alias test='clear && cd ~/WS/test'
 
 # CD WORKSPACES
