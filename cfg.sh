@@ -23,8 +23,8 @@ function help() {
 }
 
 function check_path() {
-    if [ ! -d ~/dotfiles/.config ]; then
-        echo -e "${RED}path doesn't exist: $HOME/dotfiles/.config${NC}"
+    if [ ! -d ~/dotfiles/config ]; then
+        echo -e "${RED}path doesn't exist: $HOME/dotfiles/config${NC}"
         echo "please run: 'cd ~ && git clone https://github.com/duken72/dotfiles.git'"
         exit
     fi
@@ -37,23 +37,26 @@ function error() {
 }
 
 function install() {
-    sudo cp ~/dotfiles/.config/vconsole.conf /etc/vconsole.conf
+    sudo cp ~/dotfiles/config/vconsole.conf /etc/vconsole.conf
     check_path
     echo "install config at HOME = $HOME/.config"
     for CONFIG in "${CONFIGS[@]}"; do
-        ln -svbf --suffix='.bak' ~/dotfiles/.config/$CONFIG -t ~/.config
+        ln -svbf --suffix='.bak' ~/dotfiles/config/$CONFIG -t ~/.config
     done
-    cp ~/dotfiles/.config/user-dirs.dirs ~/.config
-    cp -r ~/dotfiles/.config/xfce4/* ~/.config/xfce4
-    sudo ln -svf ~/dotfiles/.config/TrueMinimalist -t /usr/share/themes
+    cp ~/dotfiles/config/user-dirs.dirs ~/.config
+    cd ~/dotfiles/config/xfce4/xfconf/xfce-perchannel-xml
+    for FILE in *; do
+        ln -svf ~/dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/$FILE -t ~/.config/xfce4/xfconf/xfce-perchannel-xml
+    done
+    sudo ln -svf ~/dotfiles/config/TrueMinimalist -t /usr/share/themes
     mkdir -p ~/.local/share/icons
-    sudo ln -svf ~/dotfiles/.config/Night_Diamond_Red -t ~/.local/share/icons
-    sudo cp ~/dotfiles/.config/redshift/*.svg /usr/share/icons/hicolor/scalable/apps
+    sudo ln -svf ~/dotfiles/config/Night_Diamond_Red -t ~/.local/share/icons
+    sudo ln -svf ~/dotfiles/config/redshift/*.svg -t /usr/share/icons/hicolor/scalable/apps
     # LightDM
     sudo cp ~/dotfiles/Wallpapers/syn* /usr/share/pixmaps
-    sudo cp ~/dotfiles/.config/LightDM/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
+    sudo cp ~/dotfiles/config/LightDM/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
     sudo cp ~/dotfiles/dfs/.face /var/lib/AccountsService/icons/duken72.png
-    sudo cp ~/dotfiles/.config/LightDM/duken72 /var/lib/AccountsService/users/duken72
+    sudo cp ~/dotfiles/config/LightDM/duken72 /var/lib/AccountsService/users/duken72
     echo "config is installed. Enjoy :)"
     exit
 }

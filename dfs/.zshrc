@@ -29,6 +29,7 @@ if [[ -d ~/.zsh ]]; then
     # https://github.com/zsh-users/zsh-autosuggestions
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
     fpath=(~/.zsh/completion $fpath)
+    fpath=(~/.zsh/zsh-completions/src $fpath)
     autoload -Uz compinit && compinit -i
 fi
 
