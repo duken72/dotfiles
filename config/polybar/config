@@ -99,7 +99,7 @@ font-5 = "JetBrainsMonoNL Nerd Font Mono:style=Medium,Regular:size=35;9"
 ;blueberry powermenu temperature memory cpu xkeyboard updates-pacman-aurhelper
 modules-left = xfcestart split-left-1 ewmh split-left-2 xwindow split-left-3
 modules-center = time
-modules-right = split-right-4 pulseaudio xbacklight1 split-right-3 eth wlan split-right-2 cpu memory temperature split-right-1 battery
+modules-right = split-right-4 pulseaudio xbacklight backlight split-right-3 eth wlan split-right-2 cpu memory temperature split-right-1 battery
 tray-detached = false
 tray-position = right
 tray-offset-x = 0
@@ -244,19 +244,19 @@ icon-next = 
 label-song-maxlen = 25
 label-song-ellipsis = true
 
-[module/xbacklight1]
+[module/xbacklight]
 type = internal/xbacklight
-output = eDP-1
 enable-scroll = true
 format = <label>
 label = %{T6}󰃟%{T2}%percentage%
 format-foreground = ${colors.red-1}
 format-background = ${colors.red-4}
 
-[module/xbacklight2]
-type = internal/xbacklight
-output = HDMI-1-0
+[module/backlight]
+type = internal/backlight
 enable-scroll = true
+card = intel_backlight
+use-actual-brightness = true
 format = <label>
 label = %{T6}󰃟%{T2}%percentage%
 format-foreground = ${colors.red-1}
