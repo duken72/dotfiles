@@ -145,6 +145,9 @@ alias run='./run.sh'
 alias jn='jupyter-notebook'
 alias o='xdg-open'
 alias of='o .'
+function opdf {
+    xdg-open "$@" && exit
+}
 alias ra='ranger'
 alias pdfConvert='soffice --headless --convert-to pdf' # convert a file to pdf, at least work with pptx
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
