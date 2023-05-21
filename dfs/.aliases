@@ -207,8 +207,8 @@ alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
 alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
 alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
 alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
-alias nas='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data ~/nas && cd ~/nas'
-alias afs='sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/RBO/ ~/afs && cd ~/afs'
+alias nas='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data ~/WS/nas && cd ~/WS/nas'
+alias afs='sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/RBO/ ~/WS/afs && cd ~/WS/afs'
 
 # DUAL BOOT with WINDOWS
 WIN=/media/${USERNAME}
