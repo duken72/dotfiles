@@ -108,6 +108,7 @@ alias nn='cdfd neural-network-test'
 alias nnv='nn && v'
 alias ccom='cdfd coding-competitions && v'
 alias cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
+alias gl='clear && cd ~/WS/parrobots'
 alias grl='clear && cd ~/WS/test/goalRL-test'
 
 # CD GUIDE FOR DUMMIES

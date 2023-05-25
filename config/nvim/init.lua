@@ -293,7 +293,7 @@ require('lazy').setup({
   },
 
   -- Markdown preview
-  -- {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
 
   -- Markdown TOC
   {"mzlogin/vim-markdown-toc", }
@@ -650,7 +650,7 @@ vim.keymap.set({'n', 't'}, '<A-f>', function() nvterm.toggle('float') end,
   { noremap = true, silent = true, desc = '[F]loating terminal' })
 
 -- [[ Configure Glow - Markdown preview ]]
--- vim.keymap.set('n', '<leader>m', ":Glow <CR>", { desc = '[M]arkdown preview' })
+vim.keymap.set('n', '<leader>m', ":Glow <CR>", { desc = '[M]arkdown preview' })
 
 -- [[ Transparent background ]]
 -- vim.cmd([[
