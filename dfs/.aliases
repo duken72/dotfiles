@@ -211,10 +211,10 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
 # MOUNT TUB
 alias tubm='nasd && nasp && ws'
+alias tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
 alias nas='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data ~/WS/nas && cd ~/WS/nas'
 alias nasd='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/duc ~/WS/nasd && cd ~/WS/nasd'
 alias nasp='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/parrobots ~/WS/nasp && cd ~/WS/nasp'
-
 alias afs='sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/RBO ~/WS/afs && cd ~/WS/afs'
 alias afsd='sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/Staff/Duc ~/WS/afsd && cd ~/WS/afsd'
 
@@ -223,11 +223,6 @@ WIN=/media/${USERNAME}
 WINPATH=${WIN}/Windows/Users
 alias mountwin='umountw; sudo mkdir ${WIN}/Windows && sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}/Windows/'
 alias umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
-alias wvid='cd ${WINPATH}/Duke\ Nguyen/Videos'
-alias wmusic='cd ${WINPATH}/Duke\ Nguyen/Music'
-alias wpic='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Pictures'
-alias wdoc='cd ${WINPATH}/Duke\ Nguyen/OneDrive/Documents'
-alias wdown='cd ${WINPATH}/Duke\ Nguyen/Downloads'
 
 # Git
 alias g='git'
