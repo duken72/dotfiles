@@ -67,9 +67,9 @@ alias ip='ip -color=auto'
 alias dmesg='dmesg --color=always'
 alias diff='diff --color=auto'
 alias zip='zip -er9'
-if type glow > /dev/null; then
-    alias glow='glow -p'
-fi
+#if type glow > /dev/null; then
+#    alias glow='glow -p'
+#fi
 
 # Navigation
 alias   c='cl; cd'
@@ -92,32 +92,27 @@ alias pd='clear && cd ~/Documents/personal-docs'
 alias down='clear && cd ~/Downloads'
 alias music='clear && cd ~/Music'
 alias pics='clear && cd ~/Pictures'
-alias imgs='clear && cd ~/Pictures'
-alias vids='clear && cd ~/Videos'
+alias img='clear && cd ~/Pictures'
+alias vid='clear && cd ~/Videos'
 alias ws='clear && cd ~/WS'
 alias td='clear && cd ~/WS/TODO'
 alias phd='clear && cd ~/WS/phd-rbo'
 alias test='clear && cd ~/WS/test'
 
 # CD WORKSPACES
-alias cv='cdfd Curriculum-Vitae-Latex'
-alias notes='cdfd learningNotes'
-alias nov='cdfd learningNotes && v'
-alias nol='cdfd notesLatex'
+# alias something='clear && cd $HOME/something'
+alias cfd='clear && cd ~/WS/codingForDummies && git status'
+alias cv='clear && cd ~/WS/Curriculum-Vitae-Latex'
+alias notes='clear && cd ~/WS/learningNotes'
+alias nov='clear && cd ~/WS/learningNotes && v'
+alias nol='clear && cd ~/WS/notesLatex'
 alias nn='cdfd neural-network-test'
 alias nnv='nn && v'
-alias ccom='cdfd coding-competitions && v'
+alias ccom='clear && cd ~/WS/coding-competitions && v'
+alias aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
 alias cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
 alias gl='clear && cd ~/WS/parrobots'
 alias grl='clear && cd ~/WS/test/goalRL-test'
-
-# CD GUIDE FOR DUMMIES
-alias cfd='cdfd codingForDummies && g st'
-alias cfdco='cdfd codingForDummies && v && exit'
-
-# CD WORKING
-alias aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
-# alias something='clear && cd $HOME/something'
 
 # System
 alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
@@ -155,7 +150,7 @@ alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-alias weather='curl wttr.in Karlsruhe'
+alias weather='curl wttr.in Berlin'
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 function diet {
     cd ~/Documents && clear
