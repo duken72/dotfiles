@@ -296,7 +296,9 @@ require('lazy').setup({
   {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
 
   -- Markdown TOC
-  {"mzlogin/vim-markdown-toc", }
+  {"mzlogin/vim-markdown-toc", },
+
+  -- UML preview
 
 --[[
   { -- A file explorer
