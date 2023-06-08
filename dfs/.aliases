@@ -175,6 +175,7 @@ if grep -q "ubuntu" <<< $ID; then
     alias upg='sudo apt dist-upgrade'
     alias sup='upd && time upg'
     alias fd='fdfind'
+    alias agi='apt-get install'
 fi
 # dist-upgrade will install & remove packages as necessary
 # to complete upgrade, resolve dependencies
