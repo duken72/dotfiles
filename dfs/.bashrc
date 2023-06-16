@@ -16,11 +16,12 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="history:hist:ls:la:ll:pwd:clear:cl:"
 # append to the history file, don't overwrite it
 shopt -s histappend
-HISTSIZE=972
-HISTFILESIZE=972
+HISTSIZE=1400
+HISTFILESIZE=2700
 HISTFILE="$HOME/.history"
 
 
+# Auto cd to directories when only path is given as cmd
 shopt -s autocd
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
@@ -68,20 +69,13 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-#case "$TERM" in xterm*|rxvt*)
-#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#esac
-
-[ -f ~/.aliases ] && source ~/.aliases
-
-if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
-    source /usr/share/git/completion/git-completion.bash
-    __git_complete g __git_main
-    __git_complete gc _git_checkout
-    __git_complete gp _git_pull
-else
-    echo "Error loading git completions"
-fi
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -92,6 +86,14 @@ export RCUTILS_COLORIZED_OUTPUT=1
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+
+# ALIAS DEFINITIONS
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc
+
+
+# Auto-completions / suggestions
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -100,50 +102,68 @@ if ! shopt -oq posix; then
         . /usr/share/bash-completion/bash_completion
     elif [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
+    fi
 fi
 
-# Default text editor
-export VISUAL=nvim
-export EDITOR="$VISUAL"
+# Git completion
+if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
+    source /usr/share/git/completion/git-completion.bash
+    __git_complete g __git_main
+    __git_complete gc _git_checkout
+    __git_complete gp _git_pull
+#else
+#    echo "Error loading git completions"
+fi
 
-# fuzzy finder
+# Fuzzy finder FZF key-bindings and completion
 if [ -d /usr/share/fzf ]; then
     source /usr/share/fzf/key-bindings.bash
     source /usr/share/fzf/completion.bash
 fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# if [[ "$(uname)" == "Linux" ]]; then {do_something}; fi
-# Check before using shell-specific features
-# if [[ "$SHELL" == "zsh" ]]; then {do_something}; fi
-# You can also make it machine-specific
-# if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi
+
+# Default text editor
+if [ -x /usr/bin/nvim ]; then
+    export VISUAL=nvim
+elif [ -x /usr/bin/vim ]; then
+    export VISUAL=vim
+elif [ -x /usr/bin/vi ]; then
+    export VISUAL=vi
+fi
+export EDITOR="$VISUAL"
 
 # 'bat' as the default pager for 'man'
-if type bat > /dev/null; then
+if [ -x /usr/bin/bat ]; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
-# Sources ROS
+# ROS - Robotic Operating System
 if [ -d /opt/ros ]; then
-    # source /opt/ros/noetic/setup.bash
-    source /opt/ros/foxy/setup.bash
-    export ROS_DOMAIN_ID=12
-    export ROBOTNAME=bcr2-tc1-rng-07
-    export ROS_PARTICIPANT_ID=27
+    if [ -d /opt/ros/noetic ]; then
+        source /opt/ros/noetic/setup.bash
+    elif [ -d /opt/ros/foxy ]; then
+        source /opt/ros/foxy/setup.bash
+        export ROS_DOMAIN_ID=14
+        export ROBOTNAME=duken72
+        export ROS_PARTICIPANT_ID=27
 
-    if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
-        source /usr/share/colcon_cd/function/colcon_cd.sh
+        if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
+            source /usr/share/colcon_cd/function/colcon_cd.sh
+        fi
+        export _colcon_cd_root=/opt/ros/foxy/
+        if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
+            source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+        fi
     fi
-    export _colcon_cd_root=/opt/ros/foxy/
-    if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
-        source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 fi
 
-if [ -f ~/bcr2_setup/bldr.bashrc ]; then
-    source ~/bcr2_setup/bldr.bashrc
-fi
 
-# Additional path for Mujoco
+# Mujoco
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin:/usr/lib/nvidia
 
+
+# OS, shell or machine-specific commands
+# if [[ "$(uname)" == "Linux" ]]; then {do_asdf}; fi
+# if [[ "$SHELL" == "zsh" ]]; then {do_asdf}; fi
+# if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi

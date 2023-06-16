@@ -1,3 +1,4 @@
+# enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -8,8 +9,18 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+alias ll='ls -lh'
+alias ldir="ls -lhF --color | grep --color=never '^d'"
+alias lla='ls -Alh'
+alias la='ls -A'
+alias l='ls -C'
+function cd {
+    builtin cd "$@" && ls -CA
+}
+alias cL='cl; ls'
 
-if type exa > /dev/null; then
+# Replace ls with exa
+if [ -x /usr/bin/exa ]; then
     alias exa='exa --git --git-ignore'
     export EXA_COLORS="uu=1;31:da=1;35"
     alias ll='exa -l --icons'
@@ -24,31 +35,21 @@ if type exa > /dev/null; then
     function cd {
         builtin cd "$@" && exa
     }
-else
-    alias ll='ls -lh'
-    alias ldir="ls -lhF --color | grep --color=never '^d'"
-    alias lla='ls -Alh'
-    alias la='ls -A'
-    alias l='ls -C'
-    function cd {
-        builtin cd "$@" && ls -CA
-    }
+    alias cL='cl; exa'
 fi
 alias grepr='grep -R'
 alias ag='alias | grep'
 
+
 # Overwrite existing commands for better defaults
-alias rm='rm -i'
-alias mv='mv -i'
+#alias rm='rm -i'
+#alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
 alias cp='cp -r'
-if type bat > /dev/null; then
-    alias cat='bat'
-else
-    alias cat='cat -n'
-fi
-if type rsync > /dev/null; then
+#alias cat='cat -n'
+[ -x /usr/bin/bat ] && alias cat='bat'
+if [ -x /usr/bin/rsync ]; then
     alias rsync='rsync -rahp --info=progress2'
     #alias cp='rsync'
 fi
@@ -64,76 +65,82 @@ alias ip='ip -color=auto'
 alias dmesg='dmesg --color=always'
 alias diff='diff --color=auto'
 alias zip='zip -er9'
-#if type glow > /dev/null; then
-#    alias glow='glow -p'
-#fi
+[ -x /usr/bin/glow ] && alias glow='glow -p'
+
 
 # Navigation
 alias   c='cl; cd'
-alias  cL='cl; exa'
-alias  ..='cd ..'
 alias ...='cd ../..'
 alias  .2='cd ../..'
 alias  .3='cd ../../..'
 alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
+# this is actually already included with "shopt -s autocd"
+alias  ..='cd ..'
 
 # CD GENERICS
-alias dfs='clear && cd ~/dotfiles'
-alias cf='clear && cd ~/dotfiles/config'
-alias cfg='clear && cd ~/.config'
-alias pkg='clear && cd ~/dotfiles/pkg'
-alias docs='clear && cd ~/Documents'
+alias   dfs='clear && cd ~/dotfiles'
+alias    cf='clear && cd ~/dotfiles/config'
+alias   cfg='clear && cd ~/.config'
+alias   pkg='clear && cd ~/dotfiles/pkg'
+alias  docs='clear && cd ~/Documents'
 alias books='clear && cd ~/Documents/books'
-alias pd='clear && cd ~/Documents/personal-docs'
-alias down='clear && cd ~/Downloads'
+alias    pd='clear && cd ~/Documents/personal-docs'
+alias  down='clear && cd ~/Downloads'
 alias music='clear && cd ~/Music'
-alias pics='clear && cd ~/Pictures'
-alias img='clear && cd ~/Pictures'
-alias vid='clear && cd ~/Videos'
-alias ws='clear && cd ~/WS'
-alias td='clear && cd ~/WS/TODO'
-alias phd='clear && cd ~/WS/phd-rbo'
-alias test='clear && cd ~/WS/test'
+alias  pics='clear && cd ~/Pictures'
+alias   img='clear && cd ~/Pictures'
+alias   vid='clear && cd ~/Videos'
+alias    ws='clear && cd ~/WS'
+alias    td='clear && cd ~/WS/TODO'
+alias   phd='clear && cd ~/WS/phd-rbo'
 
 # CD WORKSPACES
-# alias something='clear && cd $HOME/something'
-alias cfd='clear && cd ~/WS/codingForDummies && git status'
-alias cv='clear && cd ~/WS/Curriculum-Vitae-Latex'
+# alias asdf='clear && cd $HOME/asdf'
+alias   cfd='clear && cd ~/WS/codingForDummies && git status'
+alias    cv='clear && cd ~/WS/Curriculum-Vitae-Latex'
 alias notes='clear && cd ~/WS/learningNotes'
-alias nov='clear && cd ~/WS/learningNotes && v'
-alias nol='clear && cd ~/WS/notesLatex'
-alias nn='cdfd neural-network-test'
-alias nnv='nn && v'
-alias ccom='clear && cd ~/WS/coding-competitions && v'
-alias aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
-alias cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
-alias gl='clear && cd ~/WS/parrobots && act'
-alias grl='clear && cd ~/WS/test/goalRL-test'
+alias   nov='clear && cd ~/WS/learningNotes && v'
+alias   nol='clear && cd ~/WS/notesLatex'
+alias    nn='cdfd neural-network-test'
+alias   nnv='nn && v'
+alias  ccom='clear && cd ~/WS/coding-competitions && v'
+alias   aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
+alias    cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
+alias    gl='clear && cd ~/WS/parrobots && act'
+alias   grl='clear && cd ~/WS/test/goalRL-test'
 
 # System
 alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
-alias cl='clear' #for terminator, just Ctrl+L
+alias cl='clear' # for terminator, just Ctrl+L
 alias rb='reboot'
 alias sdn='shutdown now'
 
 # .alias, .rc and .config
-alias ealias='v ~/.aliases'
-alias talias='. ~/.aliases'
+alias  ealias='v ~/.aliases'
+alias  talias='. ~/.aliases'
 alias ebashrc='v ~/.bashrc'
 alias tbashrc='. ~/.bashrc'
-alias ezshrc='v ~/.zshrc'
-alias tzshrc='. ~/.zshrc'
+alias  ezshrc='v ~/.zshrc'
+alias  tzshrc='. ~/.zshrc'
 alias polybar='polybar --reload duck-mainbar'
 
 # Applications specific
 alias py='python3'
 alias ipy='ipython3'
-alias v='nvim'
-alias co='code'
-alias coh='code . && exit'
-alias sv='sudo -E nvim'
+if [ -x /usr/bin/nvim ]; then
+    alias v='nvim'
+elif [ -x /usr/bin/vim ]; then
+    alias v='vim'
+elif [ -x /usr/bin/vi ]; then
+    alias v='vi'
+fi
+if [ -x /usr/bin/code ]; then
+    alias co='code'
+    alias coh='code . && exit'
+fi
+alias sv='sudo -E v'
 alias run='./run.sh'
 alias jn='jupyter-notebook'
 alias o='xdg-open'
@@ -175,21 +182,21 @@ if grep -q "ubuntu" <<< $ID; then
     alias upg='sudo apt dist-upgrade'
     alias sup='upd && time upg'
     alias fd='fdfind'
-    alias agi='apt-get install'
+    alias agi='sudo apt-get -y install'
+    alias ai='sudo apt -y install'
 fi
 # dist-upgrade will install & remove packages as necessary
 # to complete upgrade, resolve dependencies
 
 # Arch Linux
 if grep -q "arch" <<< $ID; then
+    alias pacs='sudo pacman -S'
+    alias pacss='pacman -Ss'
+    alias pacr='sudo pacman -R'
     if type fzf > /dev/null; then
         alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
         alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
         alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-    else
-        alias pacs='sudo pacman -S'
-        alias pacss='pacman -Ss'
-        alias pacr='sudo pacman -R'
     fi
     alias pacsyu='sudo pacman -Syu'
     alias sup='pacsyu; auraau'
@@ -208,8 +215,8 @@ fi
 alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
 
 # MOUNT USB
-alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
-alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
+alias       usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
+alias   usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
 alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
 # MOUNT TUB
@@ -235,32 +242,32 @@ function gap {    # git add, commit with message, push
 function gaps {   # git add, commit with message and sign, push
     git add .; git commit -S -m "$1"; git push origin
 }
-alias gi='git init'
-alias gcl='git clone'
-alias gst='git status'
-alias ga='git add'
-alias gaa='git add .'
+alias   gi='git init'
+alias  gcl='git clone'
+alias  gst='git status'
+alias   ga='git add'
+alias  gaa='git add .'
 alias grst='git restore'
-alias grs='git reset'
-alias gci='git commit -m'
+alias  grs='git reset'
+alias  gci='git commit -m'
 alias gcis='git commit -S -m'
-alias gac='git commit -am'
+alias  gac='git commit -am'
 alias gacs='git commit -S -am'
-alias gft='git fetch'
-alias gps='git push origin'
-alias gpl='git pull origin'
-alias gbr='git branch'
-alias gba='git branch -a'
-alias gdf='git diff'
+alias  gft='git fetch'
+alias  gps='git push origin'
+alias  gpl='git pull origin'
+alias  gbr='git branch'
+alias  gba='git branch -a'
+alias  gdf='git diff'
 
 # Docker
-alias dp='docker pull'
-alias dt='docker tag'
-alias di='docker images'
+alias   dp='docker pull'
+alias   dt='docker tag'
+alias   di='docker images'
 alias drmi='docker rmi'
 alias dcon='docker ps'
-alias dca='docker ps -a'
-alias drm='docker rm'
+alias  dca='docker ps -a'
+alias  drm='docker rm'
 alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 
 # Sync dotfiles
@@ -272,10 +279,10 @@ function dps {    # dotfiles push
 }
 
 # Guide For Dummies
-alias bashg='bat $(fd bashFD.bash ~)'
+alias  bashg='cat $(fd bashFD.bash ~)'
 alias bashgg='rg $(fd bashFD.bash ~) -e'
-alias gitg='bat $(fd gitFD.bash ~)'
-alias gitgg='rg $(fd gitFD.bash ~) -e'
+alias   gitg='bat $(fd gitFD.bash ~)'
+alias  gitgg='rg $(fd gitFD.bash ~) -e'
 alias vimg='bat $(fd vimFD.bash ~)'
 alias vimgg='rg $(fd vimFD.bash ~) -e'
 alias lessg='bat $(fd lessFD.bash ~)'
