@@ -131,16 +131,15 @@ alias py='python3'
 alias ipy='ipython3'
 if [ -x /usr/bin/nvim ]; then
     alias v='nvim'
-elif [ -x /usr/bin/vim ]; then
+    alias sv='sudo -E nvim'
+else
     alias v='vim'
-elif [ -x /usr/bin/vi ]; then
-    alias v='vi'
+    alias sv='sudo -E vim'
 fi
 if [ -x /usr/bin/code ]; then
     alias co='code'
     alias coh='code . && exit'
 fi
-alias sv='sudo -E v'
 alias run='./run.sh'
 alias jn='jupyter-notebook'
 alias o='xdg-open'

@@ -19,3 +19,5 @@ EAP-PEAP-ServerDomainMask=*.tu-clausthal.de
 [Settings]
 Autoconnect=true
 ```
+
+If needed, download the `python` script from [eduroam.org](https://cat.eduroam.org/) and run to get the output for your university
