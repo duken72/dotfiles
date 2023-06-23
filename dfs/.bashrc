@@ -20,6 +20,8 @@ HISTSIZE=1400
 HISTFILESIZE=2700
 HISTFILE="$HOME/.history"
 
+# Shorten the current directory path shown on terminal
+PROMPT_DIRTRIM=2
 
 # Auto cd to directories when only path is given as cmd
 shopt -s autocd
