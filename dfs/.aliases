@@ -108,6 +108,7 @@ alias  ccom='clear && cd ~/WS/coding-competitions && v'
 alias   aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
 alias    cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
 alias    gl='clear && cd ~/WS/parrobots && act'
+alias   gl1='clear && cd ~/WS/parroplots && act'
 alias   grl='clear && cd ~/WS/test/goalRL-test'
 
 # System
