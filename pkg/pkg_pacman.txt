@@ -3,7 +3,7 @@ base 3-1
 base-devel 1-1
 bat 0.23.0-3
 deluge-gtk 1:2.1.1-4
-discord 0.0.27-2
+discord 0.0.28-1
 docker 1:24.0.2-1
 docx2txt 1.4-5
 easytag 2.4.3-6
@@ -23,9 +23,9 @@ hyperfine 1.17.0-1
 ibus-unikey 0.6.1-7
 ifuse 1.1.4-4
 intel-gpu-tools 1.27-2
-ipython 8.14.0-1
 iw 5.19-2
-iwd 2.6-1
+iwd 2.7-1
+jupyter-notebook 6.5.4-3
 lib32-systemd 253.5-1
 libratbag 0.17-1
 libreoffice-fresh 7.5.4-3
@@ -54,7 +54,7 @@ reflector 2023-1
 ripgrep 13.0.0-3
 rofi 1.7.5-1
 sd 0.7.6-2
-sof-firmware 2.2.5-1
+sof-firmware 2.2.6-1
 sshfs 3.7.3-1
 steam 1.0.0.78-1
 sxhkd 0.6.2-3
@@ -66,6 +66,7 @@ tree 2.1.1-1
 ttf-jetbrains-mono-nerd 3.0.2-1
 unrar 1:6.2.8-1
 virtualbox 7.0.8-2
+vlc 3.0.18-12
 wmctrl 1.07-6
 xdg-user-dirs 0.18-1
 zip 3.0-10
