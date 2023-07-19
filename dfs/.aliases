@@ -222,6 +222,10 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 # MOUNT TUB
 alias tubm='nasd && nasp && ws'
 alias tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
+function mount_nas {
+    sudo openconnect vpn.tu-berlin.de
+    sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$1" && cd ~/WS/"$1"
+}
 alias nas='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data ~/WS/nas && cd ~/WS/nas'
 alias nasd='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/duc ~/WS/nasd && cd ~/WS/nasd'
 alias nasp='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/parrobots ~/WS/nasp && cd ~/WS/nasp'
