@@ -164,8 +164,11 @@ function diet {
 alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 
-# Workspaces
-alias ros2ws='cdfd ros2ws && cd src'
+# ROS Workspaces
+alias ract='source devel/setup.bash'
+alias r2ws='cd ~/WS/ros2_ws     && ract && cd src'
+alias  rws='cd ~/WS/ros_ws      && ract && cd src'
+alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
 # alias wsco='cd ws && ws-activate && v'
 
 # OS specific
