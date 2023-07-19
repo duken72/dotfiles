@@ -4,29 +4,27 @@
 <!-- omit in toc -->
 ## Table of Contents
 
-- [Installation](#installation)
-- [General Guide](#general-guide)
-- [Customization / Tinkering](#customization--tinkering)
-  - [Applications](#applications)
-  - [Setting up GPU for Deep Learning](#setting-up-gpu-for-deep-learning)
-  - [PROBLEMS](#problems)
+<!-- vim-markdown-toc GFM -->
+
+* [Installation](#installation)
+* [General Guide](#general-guide)
+* [Customization / Tinkering](#customization--tinkering)
+    * [Applications](#applications)
+    * [Setting up GPU for Deep Learning](#setting-up-gpu-for-deep-learning)
+    * [TROUBLE-SHOOTING](#trouble-shooting)
+
+<!-- vim-markdown-toc -->
 
 ## Installation
 
 - [To remove Windows completely](https://www.daangeurts.nl/blog/removing-windows-and-installing-arch-linux/)
 - Check [Arch Linux wiki installation guide](https://wiki.archlinux.org/title/Installation_guide).
 - Example videos: [1](https://youtu.be/HpskN_jKyhc), [2](https://youtu.be/cM2UDz8BepU), [3](https://youtu.be/DPLnBPM4DhI)
-- **NOTE:** If you intend to use multiple distro, have a separate `/home` partition
+- **NOTE:** If you intend to use multiple distro, consider having a separate `/home` partition
 
-1. Get the lastest iso to USB thumb drive as a boot device, consider using balenaEtcher.
-2. Set root password: SKIP THIS
-
-    ```bash
-    passwd
-    ```
-
-3. Could skip iso image verification, setting console keyboard layout
-4. Verify boot mode:
+1. Get the lastest iso to USB thumb drive as a boot device
+2. Could skip iso image verification, setting console keyboard layout
+3. Verify boot mode:
 
     ```bash
     ls /sys/firmware/efi/efivars
@@ -34,12 +32,11 @@
 
     Command exit with no error, file exists.
 
-5. Setup network connection
+4. Setup network connection
 
     ```bash
     ip link
     iwctl
-    help
     [iwd]# device list
     [iwd]# station device_name scan
     [iwd]# station device_name get-networks
@@ -48,14 +45,14 @@
     ping archlinux.org
     ```
 
-6. Update system clock
+5. Update system clock
 
     ```bash
     timedatectl set-ntp true
     timedatectl status #to check
     ```
 
-7. Partition the disks
+6. Partition the disks
 
     ```bash
     lsblk #to view Partitions
@@ -65,13 +62,13 @@
    - Create new partitions:
 
      - Boot partition: first sector - default, 2nd sector - 512M, hex code - ef00 (recheck), name - boot
-     - Swap partition: first sector - default, 2nd sector - 1Gb, hex code - 8200, name - swap\
-        **NOTE:** increase swap: 20Gb if 16Gb of RAM, 35Gb if 32Gb of RAM. Need 32Gb of RAM, 16Gb sucks.
-     - File system: first sector - default, 2nd sector - default, hex code - 8300, name - arch??
+     - Swap partition: first sector - default, 2nd sector - 1Gb, hex code - 8200, name - swap
+        **NOTE:** increase swap: 20Gb if 16Gb of RAM, 35Gb if 32Gb of RAM.
+     - File system: first sector - default, 2nd sector - default, hex code - 8300, name - arch
    - Format partitions
 
       ```bash
-      mkfs.fat -F 32 /dev/efi_system_partition (efi_system_partition is sda1, or sth, check lsblk)
+      mkfs.fat -F 32 /dev/efi_system_partition (sda1)
       mkswap /dev/swap_partition (sda2)
       mkfs.ext4 /dev/root_partition (sda3)
       ```
@@ -85,16 +82,16 @@
       mount /dev/sda1 /mnt/boot
       ```
 
-8. Package Installation
+7. Package Installation
 
     ```bash
     vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
     vim /etc/pacman.conf # ParallelDownloads = 5
-    pacstrap /mnt base base-devel linux(-lts) linux-firmware sof-firmware
-              iw iwd vim neovim grub efibootmgr openssh git
+    pacstrap /mnt base base-devel linux(-lts) linux-headers linux-firmware sof-firmware
+              iw iwd vi vim grub efibootmgr openssh git
     ```
 
-9. Configure the system
+8. Configure the system
 
     ```bash
     genfstab -U /mnt >> /mnt/etc/fstab
@@ -113,18 +110,18 @@
     passwd # set root password
     ```
 
-10. Create bootloader
+9. Create bootloader
 
     ```bash
     # pacman -Sy grub efibootmgr
-    grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB # esp is /boot
+    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     grub-mkconfig -o /boot/grub/grub.cfg
 
     exit # Exit and reboot. Pull out the flash drive.
     shutdown -r now
     ```
 
-11. Setup network connection:
+10. Setup network connection:
 
     - Login as root
 
@@ -144,7 +141,7 @@
       networkctl list
       ```
 
-      - Wired adapter: /etc/systemd/network/20-wired.network
+      - Wired adapter: `/etc/systemd/network/20-wired.network`
 
         ```txt
         [Match]
@@ -155,7 +152,7 @@
         RouteMetric=10
         ```
 
-      - Wireless adapter: /etc/systemd/network/25-wireless.network
+      - Wireless adapter: `/etc/systemd/network/25-wireless.network`
 
         ```txt
         [Match]
@@ -166,7 +163,7 @@
         RouteMetric=20
         ```
 
-    - Restart the system to apply changes:
+    - Restart the `systemd` services to apply changes:
 
       ```bash
       systemctl restart systemd-networkd
@@ -176,12 +173,12 @@
       ping google.com
       ```
 
-12. Create users:
+11. Create users:
 
     ```bash
     useradd -g users -G wheel,storage,power,audio,video,optical -m user_name
     passwd user_name
-    ln -svf /usr/bin/vim /usr/bin/vi
+    # ln -svf /usr/bin/vim /usr/bin/vi
     visudo # uncomment %wheel ALL NOPASSWD ALL, can sudo without passwd
 
     # if openssh installed
@@ -190,13 +187,13 @@
     ip addr
     ```
 
-13. Drivers and packages installation:
+12. Drivers and packages installation:
     Clone the dotfiles and run the script:
 
     ```bash
-    # lspci -v | grep -A1 -e VGA -e 3D
-    sudo pacman -S xf86-video-intel nvidia nvidia-utils # choose suitable graphic drivers
     vim /etc/pacman.conf # ParallelDownloads = 5, Include multilib
+    # lspci -v | grep -A1 -e VGA -e 3D
+    sudo pacman -S xf86-video-intel nvidia(-dkms) nvidia-utils # choose suitable graphic drivers
     cd ~ && git clone https://github.com/duken72/dotfiles.git
     cd ~/dotfiles/pkg && ./pacman_install.sh
     ```
@@ -210,7 +207,6 @@
                   pulseaudio pavucontrol alsa-utils \
                   ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
                   zathura zathura-pdf-mupdf \
-                  # remove xfce4 terminal and the whole xfce4-goodies, except a few
 
     gawk '{print $1}' pkg_pacman.txt > /tmp/t.txt
     cd /tmp
@@ -224,7 +220,7 @@
     sudo aura -A xfce4-panel-profiles
     ```
 
-14. Post-installation: Setting up desktop environment\
+13. Post-installation: Setting up desktop environment\
 Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/eHdP4sT7-8U), [vid_3](https://youtu.be/FudOL0-B9Hs).
 
     ```bash
@@ -305,7 +301,7 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 
 -------
 
-### PROBLEMS
+### TROUBLE-SHOOTING
 
 - [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
 - [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
