@@ -176,39 +176,38 @@ if grep -q "osd" <<< $ID; then
     alias vc='osd-vpn-connect'
 fi
 
-# Ubuntu
+# Ubuntu - apt (Advance Package Tool)
+# apt install, remove, purge, upgrade, update, search
 if grep -q "ubuntu" <<< $ID; then
-    alias upd='sudo apt-get update'
-    alias upg='sudo apt dist-upgrade'
-    alias sup='upd && time upg'
-    alias fd='fdfind'
-    alias agi='sudo apt-get -y install'
-    alias ai='sudo apt -y install'
-fi
+    alias  aptud='sudo apt update'
+    alias  aptug='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary
 # to complete upgrade, resolve dependencies
+    alias aptudg='upd && time upg'
+    alias     fd='fdfind'
+    alias     ai='sudo apt -y install'
+fi
 
-# Arch Linux
+# Arch Linux - pacman (package manager) and aura (AUR helper)
 if grep -q "arch" <<< $ID; then
-    alias pacs='sudo pacman -S'
+    alias  pacs='sudo pacman -S'
     alias pacss='pacman -Ss'
-    alias pacr='sudo pacman -R'
+    alias  pacr='sudo pacman -R'
     if type fzf > /dev/null; then
         alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
         alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
         alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
     fi
-    alias pacsyu='sudo pacman -Syu'
-    alias sup='pacsyu; auraau'
-    alias pacq='pacman -Q'
-    alias pacg='pacman -Sg'
-    alias auraa='sudo aura -Akax'
-    alias aurar='sudo aura -R'
-    alias auraas='aura -As'
-    alias auraau='sudo aura -Au'
-    alias orphans='pacman -Qtdq | sudo pacman -Rns -'
+    alias   pacsyu='sudo pacman -Syu'
+    alias     pacq='pacman -Q'
+    alias     pacg='pacman -Sg'
+    alias    auraa='sudo aura -Akax'
+    alias    aurar='sudo aura -R'
+    alias   auraas='aura -As'
+    alias   auraau='sudo aura -Au'
+    alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
     alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
-    alias cache_show='find ~/.cache/ -type f -atime +72'
+    alias  cache_show='find ~/.cache/ -type f -atime +72'
     alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
 fi
 
@@ -283,24 +282,24 @@ function dps {    # dotfiles push
 }
 
 # Guide For Dummies
-alias  bashg='cat $(fd bashFD.bash ~)'
-alias bashgg='rg $(fd bashFD.bash ~) -e'
-alias   gitg='bat $(fd gitFD.bash ~)'
-alias  gitgg='rg $(fd gitFD.bash ~) -e'
-alias vimg='bat $(fd vimFD.bash ~)'
-alias vimgg='rg $(fd vimFD.bash ~) -e'
-alias lessg='bat $(fd lessFD.bash ~)'
-alias rosg='bat $(fd rosFD.bash ~)'
-alias rosgg='rg $(fd rosFD.bash ~) -e'
-alias ros2g='bat $(fd ros2FD.bash ~)'
-alias ros2gg='rg $(fd ros2FD.bash ~) -e'
-alias pyg='bat $(fd pyFD.py ~)'
-alias pygg='rg $(fd pyFD.py ~) -e'
-alias dockerg='bat $(fd dockerFD.bash ~)'
+alias    bashg='cat $(fd bashFD.bash ~)'
+alias   bashgg='rg $(fd bashFD.bash ~) -e'
+alias     gitg='bat $(fd gitFD.bash ~)'
+alias    gitgg='rg $(fd gitFD.bash ~) -e'
+alias     vimg='bat $(fd vimFD.bash ~)'
+alias    vimgg='rg $(fd vimFD.bash ~) -e'
+alias    lessg='bat $(fd lessFD.bash ~)'
+alias     rosg='bat $(fd rosFD.bash ~)'
+alias    rosgg='rg $(fd rosFD.bash ~) -e'
+alias    ros2g='bat $(fd ros2FD.bash ~)'
+alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
+alias      pyg='bat $(fd pyFD.py ~)'
+alias     pygg='rg $(fd pyFD.py ~) -e'
+alias  dockerg='bat $(fd dockerFD.bash ~)'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
 # Python venv
-alias act='source bin/activate'
+alias   act='source bin/activate'
 alias deact='deactivate'
 
 alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
@@ -310,3 +309,4 @@ alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 function steamid {
 	find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
 }
+
