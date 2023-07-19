@@ -1,7 +1,7 @@
 aic94xx-firmware 30-9
 ast-firmware 501-1
 aura-bin 3.2.9-1
-brave-bin 1:1.52.130-1
+brave-bin 1:1.56.9-1
 cli-visualizer 1.8-10
 pulseaudio-ctl 1.70-1
 siji-git r23.c691f20-2
