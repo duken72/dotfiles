@@ -207,7 +207,7 @@ if grep -q "arch" <<< $ID; then
     alias    auraa='sudo aura -Akax'
     alias    aurar='sudo aura -R'
     alias   auraas='aura -As'
-    alias   auraau='sudo aura -Au'
+    alias   auraau='sudo aura -Aukax'
     alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
     alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
     alias  cache_show='find ~/.cache/ -type f -atime +72'
