@@ -1,3 +1,6 @@
+# OS specific
+OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
+
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -47,7 +50,8 @@ alias ag='alias | grep'
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
 alias cp='cp -r'
-#alias cat='cat -n'
+# alias cat='cat -n'
+# [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
 [ -x /usr/bin/bat ] && alias cat='bat'
 if [ -x /usr/bin/rsync ]; then
     alias rsync='rsync -rahp --info=progress2'
@@ -171,17 +175,14 @@ alias  rws='cd ~/WS/ros_ws      && ract && cd src'
 alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
 # alias wsco='cd ws && ws-activate && v'
 
-# OS specific
-ID=$(grep -v _ID /etc/os-release | grep ID=)
-
 # OSD
-if grep -q "osd" <<< $ID; then
+if [ $OS = 'osd' ]; then
     alias vc='osd-vpn-connect'
 fi
 
 # Ubuntu - apt (Advance Package Tool)
 # apt install, remove, purge, upgrade, update, search
-if grep -q "ubuntu" <<< $ID; then
+if [ $OS = 'ubuntu' ]; then
     alias  aptud='sudo apt update'
     alias  aptug='sudo apt dist-upgrade'
 # dist-upgrade will install & remove packages as necessary
@@ -192,7 +193,7 @@ if grep -q "ubuntu" <<< $ID; then
 fi
 
 # Arch Linux - pacman (package manager) and aura (AUR helper)
-if grep -q "arch" <<< $ID; then
+if [ $OS = 'arch' ]; then
     alias  pacs='sudo pacman -S'
     alias pacss='pacman -Ss'
     alias  pacr='sudo pacman -R'

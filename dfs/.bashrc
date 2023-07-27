@@ -120,11 +120,9 @@ if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
 fi
 
 # Fuzzy finder FZF key-bindings and completion
-if [ -d /usr/share/fzf ]; then
-    source /usr/share/fzf/key-bindings.bash
-    source /usr/share/fzf/completion.bash
-fi
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source ~/dotfiles/dfs/fzf/completion.bash
+source ~/dotfiles/dfs/fzf/key-bindings.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
 # Default text editor
