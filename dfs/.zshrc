@@ -58,6 +58,7 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 source ~/dotfiles/dfs/fzf/completion.zsh
 source ~/dotfiles/dfs/fzf/key-bindings.zsh
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/dotfiles/dfs/fzf-tab/fzf-tab.plugin.zsh
 
 ## ROS2
 if [ -d /opt/ros2/foxy ]; then
