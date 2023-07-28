@@ -5,7 +5,9 @@ brave-bin 1:1.56.9-1
 cli-visualizer 1.8-10
 pulseaudio-ctl 1.70-1
 siji-git r23.c691f20-2
+skypeforlinux-stable-bin 8.99.0.403-1
 slack-desktop 4.33.73-1
+tllocalmgr-git v0.8.3.r3.9958378-1
 tty-clock-git 1:2.3.r40.f2f847c-2
 upd72020x-fw 1.0.0-1
 wd719x-firmware 1-7
