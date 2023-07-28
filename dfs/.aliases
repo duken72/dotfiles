@@ -303,7 +303,7 @@ alias  dockerg='bat $(fd dockerFD.bash ~)'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
 # Python venv
-alias   act='source bin/activate'
+alias   act='source venv/bin/activate'
 alias deact='deactivate'
 
 alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
