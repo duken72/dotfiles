@@ -1,6 +1,6 @@
-# OS specific
 OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
 
+# Overwrite existing commands for better defaults
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -12,192 +12,131 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-alias ll='ls -lh'
-alias ldir="ls -lhF --color | grep --color=never '^d'"
-alias lla='ls -Alh'
-alias la='ls -A'
-alias l='ls -C'
-function cd {
-    builtin cd "$@" && ls -CA
-}
-alias cL='cl; ls'
+alias grepr='grep -R'
 
 # Replace ls with exa
 if [ -x /usr/bin/exa ]; then
-    alias exa='exa --git --git-ignore'
     export EXA_COLORS="uu=1;31:da=1;35"
-    alias ll='exa -l --icons'
-    alias ldir='exa -lD --icons'
-    alias lla='exa -la --icons'
-    alias la='exa -a'
-    alias ls='exa'
-    alias l='exa'
-    # alias tree='exa -l --tree --icons --git-ignore'
-    alias tree1='exa -l --tree --icons --git-ignore --level=1'
-    alias tree2='exa -l --tree --icons --git-ignore --level=2'
+    alias   exa='exa --git --git-ignore'
+    alias     l='exa'
+    alias    ls='exa'
+    alias    la='exa -a'
+    alias    ll='exa -l --icons'
+    alias   lla='exa -la --icons'
+    alias  ldir='exa -lD --icons'
+    alias tree1='exa -l --tree --icons --level=1'
+    alias tree2='exa -l --tree --icons --level=2'
+    alias    cL='cl; exa'
     function cd {
-        builtin cd "$@" && exa
+        builtin cd "$@" && exa --git --git-ignore
     }
-    alias cL='cl; exa'
+else
+    alias    l='ls -C'
+    alias   la='ls -A'
+    alias   ll='ls -lh'
+    alias  lla='ls -Alh'
+    alias ldir="ls -lhF --color | grep --color=never '^d'"
+    alias   cL='cl; ls'
+    function cd {
+        builtin cd "$@" && ls -CA
+    }
 fi
-alias grepr='grep -R'
-alias ag='alias | grep'
 
-
-# Overwrite existing commands for better defaults
-#alias rm='rm -i'
-#alias mv='mv -i'
-alias mkdir='mkdir -p'
-alias dirs='dirs -v'
-alias cp='cp -r'
-# alias cat='cat -n'
+# alias rm='rm -i' # interactive
+# alias mv='mv -i' # interactive
+# alias cat='cat -n' # with line numbers
 # [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
 [ -x /usr/bin/bat ] && alias cat='bat'
+alias mkdir='mkdir -p'
+alias dirs='dirs -v'
+alias cp='cp -r' # recursive
 if [ -x /usr/bin/rsync ]; then
     alias rsync='rsync -rahp --info=progress2'
     #alias cp='rsync'
 fi
-alias df='df -h'
-alias duh='du -ahd 1'
-alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r' # with line number
-function cdfd {
-    clear
-    builtin cd $(fd -t d "$1" ~)
-    la
-}
-alias ip='ip -color=auto'
-alias dmesg='dmesg --color=always'
-alias diff='diff --color=auto'
-alias zip='zip -er9'
-[ -x /usr/bin/glow ] && alias glow='glow -p'
+alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r'
+alias ip='ip -color=auto' # with colors
+alias dmesg='dmesg --color=always' # with colors
+alias diff='diff --color=auto' # with colors
+alias zip='zip -er9' # encryption and recursive
 
 
-# Navigation
+# -------------------------------------------------------- #
+# CD GENERIC
 alias   c='cl; cd'
+alias  ..='cd ..'
 alias ...='cd ../..'
 alias  .2='cd ../..'
 alias  .3='cd ../../..'
 alias  .4='cd ../../../..'
 alias  .5='cd ../../../../..'
-# this is actually already included with "shopt -s autocd"
-alias  ..='cd ..'
 
-# CD GENERICS
-alias   dfs='clear && cd ~/dotfiles'
-alias    cf='clear && cd ~/dotfiles/config'
-alias   cfg='clear && cd ~/.config'
-alias   pkg='clear && cd ~/dotfiles/pkg'
-alias  docs='clear && cd ~/Documents'
-alias books='clear && cd ~/Documents/books'
-alias    pd='clear && cd ~/Documents/personal-docs'
-alias  down='clear && cd ~/Downloads'
-alias music='clear && cd ~/Music'
-alias  pics='clear && cd ~/Pictures'
-alias   img='clear && cd ~/Pictures'
-alias   vid='clear && cd ~/Videos'
-alias    ws='clear && cd ~/WS'
-alias    td='clear && cd ~/WS/TODO'
-alias   phd='clear && cd ~/WS/phd-rbo'
+alias   dfs='c ~/dotfiles'
+alias   pkg='c ~/dotfiles/pkg'
+alias  docs='c ~/Documents'
+alias books='c ~/Documents/books'
+alias    pd='c ~/Documents/personal-docs'
+alias  down='c ~/Downloads'
+alias music='c ~/Music'
+alias  pics='c ~/Pictures'
+alias   img='c ~/Pictures'
+alias   vid='c ~/Videos'
 
-# CD WORKSPACES
-# alias asdf='clear && cd $HOME/asdf'
-alias   cfd='clear && cd ~/WS/codingForDummies && git status'
-alias    cv='clear && cd ~/WS/Curriculum-Vitae-Latex'
-alias notes='clear && cd ~/WS/learningNotes'
-alias   nov='clear && cd ~/WS/learningNotes && v'
-alias   nol='clear && cd ~/WS/notesLatex'
-alias    nn='cdfd neural-network-test'
-alias   nnv='nn && v'
-alias  ccom='clear && cd ~/WS/coding-competitions && v'
-alias   aoc='clear && cd ~/WS/Advent-of-Code/AoC-2022'
-alias    cs='clear && cd ~/WS/codingForDummies/cppFD/CS'
-alias    gl='clear && cd ~/WS/parrobots && act'
-alias   gl1='clear && cd ~/WS/parroplots && act'
-alias   grl='clear && cd ~/WS/test/goalRL-test'
 
+# -------------------------------------------------------- #
 # System
-alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
+# Memory
+alias   df='df -h'
+alias  duh='du -ahd 1'
+alias  mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
-alias cl='clear' # for terminator, just Ctrl+L
-alias rb='reboot'
-alias sdn='shutdown now'
+alias   cl='clear' # for terminator, just Ctrl+L
+alias   rb='shutdown -r now'
+alias  sdn='shutdown now'
 
-# .alias, .rc and .config
+# dotfiles and config
+alias      ag='alias | grep'
 alias  ealias='v ~/.aliases'
-alias  talias='. ~/.aliases'
 alias ebashrc='v ~/.bashrc'
-alias tbashrc='. ~/.bashrc'
 alias  ezshrc='v ~/.zshrc'
+alias  talias='. ~/.aliases'
+alias tbashrc='. ~/.bashrc'
 alias  tzshrc='. ~/.zshrc'
+alias      cf='c ~/dotfiles/config'
+alias     cfg='c ~/.config'
 alias polybar='polybar --reload duck-mainbar'
-
-# Applications specific
-alias py='python3'
-alias ipy='ipython3'
-if [ -x /usr/bin/nvim ]; then
-    alias v='nvim'
-    alias sv='sudo -E nvim'
-else
-    alias v='vim'
-    alias sv='sudo -E vim'
-fi
-if [ -x /usr/bin/code ]; then
-    alias co='code'
-    alias coh='code . && exit'
-fi
-alias run='./run.sh'
-alias jn='jupyter-notebook'
-alias o='xdg-open'
-alias of='o .'
-function opdf {
-    xdg-open "$@" && exit
+# syncing with git
+alias dst='dfs && git status'
+alias dpl='dfs && git pull origin'
+function dps {    # dotfiles push
+    cd ~/dotfiles
+    gaps "$1"
 }
-alias ra='ranger'
-alias pdfConvert='soffice --headless --convert-to pdf' # convert a file to pdf, at least work with pptx
-alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
-alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-alias weather='curl wttr.in Berlin'
-alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
-function diet {
-    cd ~/Documents && clear
-    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' diet2.md 
-    # cat diet.md
-}
-alias usound='amixer -q -D pulse sset Master 14%+'
-alias dsound='amixer -q -D pulse sset Master 14%-'
-
-# ROS Workspaces
-alias ract='source devel/setup.bash'
-alias r2ws='cd ~/WS/ros2_ws     && ract && cd src'
-alias  rws='cd ~/WS/ros_ws      && ract && cd src'
-alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
-# alias wsco='cd ws && ws-activate && v'
+# -------------------------------------------------------- #
+# OS SPECIFIC
 
 # OSD
-if [ $OS = 'osd' ]; then
-    alias vc='osd-vpn-connect'
-fi
+[[ $OS = 'osd' ]] && alias vc='osd-vpn-connect'
 
-# Ubuntu - apt (Advance Package Tool)
-# apt install, remove, purge, upgrade, update, search
+# Ubuntu
 if [ $OS = 'ubuntu' ]; then
+    # apt - Advance Package Tool
+    alias     ai='sudo apt -y install'
     alias  aptud='sudo apt update'
     alias  aptug='sudo apt dist-upgrade'
-# dist-upgrade will install & remove packages as necessary
-# to complete upgrade, resolve dependencies
-    alias aptudg='upd && time upg'
+    alias aptudg='aptud && time aptug'
+    # dist-upgrade will install & remove packages as necessary to resolve dependencies
     alias     fd='fdfind'
-    alias     ai='sudo apt -y install'
 fi
 
-# Arch Linux - pacman (package manager) and aura (AUR helper)
+# Arch Linux
 if [ $OS = 'arch' ]; then
+    # pacman - Package Manager
     alias  pacs='sudo pacman -S'
     alias pacss='pacman -Ss'
     alias  pacr='sudo pacman -R'
-    if type fzf > /dev/null; then
+    if [ -x /usr/bin/fzf ]; then
         alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
         alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
         alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
@@ -206,50 +145,97 @@ if [ $OS = 'arch' ]; then
     alias   pacsyu='sudo pacman -Syu'
     alias     pacq='pacman -Q'
     alias     pacg='pacman -Sg'
+
+    # AURA - AUR Helper
     alias    auraa='sudo aura -Akax'
     alias    aurar='sudo aura -R'
     alias   auraas='aura -As'
     alias   auraau='sudo aura -Aukax'
+
+    # System cleaning
     alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
     alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
     alias  cache_show='find ~/.cache/ -type f -atime +72'
     alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
 fi
 
-alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
+# DUAL BOOT with WINDOWS
+# WIN=/media/${USERNAME}/Windows
+# alias unmountw='sudo umount ${WIN}'
+# alias   mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}'
 
-# MOUNT USB
+
+# -------------------------------------------------------- #
+# Applications specific
+
+# Generic
+alias o='xdg-open'
+alias of='o .'
+alias run='./run.sh'
+
+# Mount
 alias       usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
 alias   usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
 alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
-# MOUNT TUB
-alias tubm='nasd && nasp && ws'
-alias tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
-function mount_nas {
-    sudo openconnect vpn.tu-berlin.de
-    sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$1" && cd ~/WS/"$1"
-}
-alias nas='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data ~/WS/nas && cd ~/WS/nas'
-alias nasd='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/duc ~/WS/nasd && cd ~/WS/nasd'
-alias nasp='sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/parrobots ~/WS/nasp && cd ~/WS/nasp'
-alias afs='sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/RBO ~/WS/afs && cd ~/WS/afs'
-alias afsd='sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/Staff/Duc ~/WS/afsd && cd ~/WS/afsd'
+# Python
+alias    py='python3'
+alias   ipy='ipython3'
+alias   act='source venv/bin/activate'
+alias deact='deactivate'
 
-# DUAL BOOT with WINDOWS
-WIN=/media/${USERNAME}
-WINPATH=${WIN}/Windows/Users
-alias mountwin='umountw; sudo mkdir ${WIN}/Windows && sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}/Windows/'
-alias umountw='cd ${WIN} && sudo umount Windows ;sudo rmdir ${WIN}/Windows && cd' 
+# Editors
+# Vim, Neovim
+if [ -x /usr/bin/nvim ]; then
+    alias v='nvim'
+else
+    alias v='vim'
+fi
+alias sv='sudo -E v'
+# VSCode
+if [ -x /usr/bin/code ]; then
+    alias co='code'
+    alias coh='code . && exit'
+fi
+# Jupyter-notebook
+alias jn='jupyter-notebook'
+# Glow for Markdown
+[ -x /usr/bin/glow ] && alias glow='glow -p'
+
+# PDF
+function opdf {
+    xdg-open "$@" && exit
+}
+# convert a file to pdf, at least work with pptx
+alias pdfConvert='soffice --headless --convert-to pdf'
+
+# Latex
+alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+
+# Others
+alias ra='ranger'
+alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
+
+# Utilities
+# alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
+alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
+alias weather='curl wttr.in Berlin'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
+function diet {
+    cd ~/Documents && clear
+    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' diet2.md 
+    # cat diet.md
+}
+alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
+alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
+
+# Alsa mixer
+alias usound='amixer -q -D pulse sset Master 14%+'
+alias dsound='amixer -q -D pulse sset Master 14%-'
 
 # Git
 alias g='git'
-function gap {    # git add, commit with message, push
-    git add .; git commit -m "$1"; git push origin
-}
-function gaps {   # git add, commit with message and sign, push
-    git add .; git commit -S -m "$1"; git push origin
-}
 alias   gi='git init'
 alias  gcl='git clone'
 alias  gst='git status'
@@ -258,8 +244,8 @@ alias  gaa='git add .'
 alias grst='git restore'
 alias  grs='git reset'
 alias  gci='git commit -m'
-alias gcis='git commit -S -m'
 alias  gac='git commit -am'
+alias gcis='git commit -S -m'
 alias gacs='git commit -S -am'
 alias  gft='git fetch'
 alias  gps='git push origin'
@@ -267,6 +253,8 @@ alias  gpl='git pull origin'
 alias  gbr='git branch'
 alias  gba='git branch -a'
 alias  gdf='git diff'
+function gap { gaa; gci "$1"; gps }
+function gaps { gaa; gcis "$1"; gps }
 
 # Docker
 alias   dp='docker pull'
@@ -278,40 +266,65 @@ alias  dca='docker ps -a'
 alias  drm='docker rm'
 alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 
-# Sync dotfiles
-alias dst='dfs && git status'
-alias dpl='dfs && git pull origin'
-function dps {    # dotfiles push
-    cd ~/dotfiles
-    gaps "$1"
-}
-
-# Guide For Dummies
-alias    bashg='cat $(fd bashFD.bash ~)'
-alias   bashgg='rg $(fd bashFD.bash ~) -e'
-alias     gitg='bat $(fd gitFD.bash ~)'
-alias    gitgg='rg $(fd gitFD.bash ~) -e'
-alias     vimg='bat $(fd vimFD.bash ~)'
-alias    vimgg='rg $(fd vimFD.bash ~) -e'
-alias    lessg='bat $(fd lessFD.bash ~)'
-alias     rosg='bat $(fd rosFD.bash ~)'
-alias    rosgg='rg $(fd rosFD.bash ~) -e'
-alias    ros2g='bat $(fd ros2FD.bash ~)'
-alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
-alias      pyg='bat $(fd pyFD.py ~)'
-alias     pygg='rg $(fd pyFD.py ~) -e'
-alias  dockerg='bat $(fd dockerFD.bash ~)'
-alias dockergg='rg $(fd dockerFD.bash ~) -e'
-
-# Python venv
-alias   act='source venv/bin/activate'
-alias deact='deactivate'
-
-alias gtd='o ~/git/learningNotes/notes/images/workflow-diagram-gtd.png'
-alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
-
 # Steam
 function steamid {
 	find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
 }
 
+
+# -------------------------------------------------------- #
+# Workspaces
+# on GitHub
+alias    ws='c ~/WS'
+alias   cfd='c ~/WS/codingForDummies && gst'
+alias    cv='c ~/WS/Curriculum-Vitae-Latex'
+alias notes='c ~/WS/learningNotes'
+alias   nov='c ~/WS/learningNotes && v'
+alias   nol='c ~/WS/notesLatex'
+alias    nn='c ~/WS/neural-network-test && v'
+alias  ccom='c ~/WS/coding-competitions && v'
+alias   aoc='c ~/WS/Advent-of-Code/AoC-2022'
+alias    cs='c ~/WS/codingForDummies/cppFD/CS'
+alias   phd='c ~/WS/phd-rbo'
+alias   grl='c ~/WS/test/goalRL-test'
+
+alias    td='c ~/WS/TODO'
+
+# on GitLab
+alias    gl='c ~/WS/parrobots && act'
+alias   gl1='c ~/WS/parroplots && act'
+
+# ROS
+alias ract='source devel/setup.bash'
+alias r2ws='cd ~/WS/ros2_ws     && ract && cd src'
+alias  rws='cd ~/WS/ros_ws      && ract && cd src'
+alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
+
+# TUB
+alias   tubm='nasd && nasp && ws'
+alias  tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
+alias tubvpn='sudo openconnect vpn.tu-berlin.de'
+function mnas { sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2" }
+function mafs { sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2" }
+alias  nas='mnas "" nas'
+alias nasd='mnas duc nasd'
+alias nasp='mnas parrobots nasp'
+alias  afs='mafs RBO afs'
+alias afsd='mafs Staff/Duc afsd'
+
+# Guide For Dummies
+alias    bashg='cat $(fd bashFD.bash ~)'
+alias     gitg='cat $(fd gitFD.bash ~)'
+alias     vimg='cat $(fd vimFD.bash ~)'
+alias    lessg='cat $(fd lessFD.bash ~)'
+alias     rosg='cat $(fd rosFD.bash ~)'
+alias    ros2g='cat $(fd ros2FD.bash ~)'
+alias      pyg='cat $(fd pyFD.py ~)'
+alias  dockerg='cat $(fd dockerFD.bash ~)'
+alias   bashgg='rg $(fd bashFD.bash ~) -e'
+alias    gitgg='rg $(fd gitFD.bash ~) -e'
+alias    vimgg='rg $(fd vimFD.bash ~) -e'
+alias    rosgg='rg $(fd rosFD.bash ~) -e'
+alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
+alias     pygg='rg $(fd pyFD.py ~) -e'
+alias dockergg='rg $(fd dockerFD.bash ~) -e'

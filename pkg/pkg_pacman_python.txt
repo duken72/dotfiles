@@ -1,3 +1,2 @@
 python-pandas
-python-virtualenv
 python-pylint
