@@ -1,12 +1,12 @@
 -- VIM commands :help :map-modes
 -- https://stackoverflow.com/a/3776182/11397588
 vim.cmd([[
-" Map <jk> to <ESC> in all modes except normal mode
-inoremap jk <ESC>
-vnoremap jk <ESC>
-cnoremap jk <ESC>
-onoremap jk <ESC>
-tnoremap jk <ESC>
+  " Map <jk> to <ESC> in all modes except normal mode
+  inoremap jk <ESC>
+  vnoremap jk <ESC>
+  cnoremap jk <ESC>
+  onoremap jk <ESC>
+  tnoremap jk <ESC>
 ]])
 
 -- [[ Setting options ]]
@@ -58,7 +58,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Keymaps for similar VSCode function
 vim.keymap.set('n', '<C-s>', ':w <CR>', { silent = true, desc = '[S]ave file' })
 vim.keymap.set('n', '<C-q>', ':qa <CR>', { silent = true, desc = '[Q]uit all' })
-
 vim.keymap.set('n', '<C-h>', ':%s/', { silent = true, desc = '[R]eplace all' })
 vim.keymap.set('n', ';', ':', { silent = true, desc = 'Enter command mode' })
 
@@ -191,8 +190,7 @@ require('lazy').setup({
         end,
       },
 
-      -- autopairing of (){}[] etc
-      {
+      { -- autopairing of (){}[] etc
         "windwp/nvim-autopairs",
         opts = {
           fast_wrap = {},
@@ -207,8 +205,7 @@ require('lazy').setup({
         end,
       },
 
-      -- cmp sources plugins
-      {
+      { -- cmp sources plugins
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
@@ -292,11 +289,13 @@ require('lazy').setup({
     end,
   },
 
-  -- Markdown preview
-  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+  { -- Markdown preview
+    "ellisonleao/glow.nvim", config = true, cmd = "Glow"
+  },
 
-  -- Markdown TOC
-  {"mzlogin/vim-markdown-toc", },
+  { -- Markdown TOC
+    "mzlogin/vim-markdown-toc",
+  },
 
   -- UML preview
 
@@ -506,6 +505,15 @@ local servers = {
         autoSearchPaths = true,
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
+      }
+    }
+  },
+
+  pylsp = {
+    plugins = {
+      pycodestyles = {
+        ignore = {'W391'},
+        maxLineLength = 100,
       }
     }
   },

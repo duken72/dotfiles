@@ -268,7 +268,8 @@ alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --vol
 
 # Steam
 function steamid {
-	find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
+    find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
+    echo "prime-run steam steam://rungameid/[steamid]"
 }
 
 
@@ -291,8 +292,9 @@ alias   grl='c ~/WS/test/goalRL-test'
 alias    td='c ~/WS/TODO'
 
 # on GitLab
-alias    gl='c ~/WS/parrobots && act'
-alias   gl1='c ~/WS/parroplots && act'
+alias    gl='c ~/WS/GitLab/parrobots && act'
+alias   gl1='c ~/WS/GitLab/parroplots && act'
+alias    gh='c ~/WS/GitHub/parroplots && act'
 
 # ROS
 alias ract='source devel/setup.bash'
