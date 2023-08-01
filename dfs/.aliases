@@ -1,4 +1,4 @@
-OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
+export OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
 
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep

@@ -60,16 +60,20 @@ source ~/dotfiles/dfs/fzf/key-bindings.zsh
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/dotfiles/dfs/fzf-tab/fzf-tab.plugin.zsh
 
-## ROS2
-if [ -d /opt/ros2/foxy ]; then
-    source /opt/ros2/foxy/setup.zsh
-    export ROS_DOMAIN_ID=72
-    export ROS_VERSION=2
-    export ROS_PYTHON_VERSION=3
-    export ROS_DISTRO=foxy
-    export _colcon_cd_root=/opt/ros/foxy
-    source /usr/share/colcon_cd/function/colcon_cd.sh
-    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+# ROS - Robotic Operating System
+if [ -d /opt/ros ]; then
+    if [ -d /opt/ros/noetic ]; then
+        source /opt/ros/noetic/setup.zsh
+    elif [ -d /opt/ros2/foxy ]; then
+        source /opt/ros2/foxy/setup.zsh
+        export ROS_DOMAIN_ID=72
+        export ROS_VERSION=2
+        export ROS_PYTHON_VERSION=3
+        export ROS_DISTRO=foxy
+        export _colcon_cd_root=/opt/ros/foxy
+        source /usr/share/colcon_cd/function/colcon_cd.sh
+        source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+    fi
 fi
 
 ## NVIDIA
