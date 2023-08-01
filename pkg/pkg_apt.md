@@ -2,6 +2,7 @@
 
 - `fzf` has to be installed from source
 - `git-delta-musl_0.15.1_amd64.deb` to avoid [issue with `glibc`](https://github.com/dandavison/delta/issues/1250)
+- `neovim` also install using `AppImage`, with `npm` and `python3.8-venv`
 
 ```txt
 tmux
