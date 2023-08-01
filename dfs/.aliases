@@ -96,9 +96,9 @@ alias  sdn='shutdown now'
 
 # dotfiles and config
 alias      ag='alias | grep'
-alias  ealias='v ~/.aliases'
-alias ebashrc='v ~/.bashrc'
-alias  ezshrc='v ~/.zshrc'
+alias  ealias='v ~/.aliases && . ~/.aliases'
+alias ebashrc='v ~/.bashrc  && . ~/.bashrc'
+alias  ezshrc='v ~/.zshrc   && . ~/.zshrc'
 alias  talias='. ~/.aliases'
 alias tbashrc='. ~/.bashrc'
 alias  tzshrc='. ~/.zshrc'
