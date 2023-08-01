@@ -236,7 +236,7 @@ alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
 
 # Git
-alias g='git'
+alias    g='git'
 alias   gi='git init'
 alias  gcl='git clone'
 alias  gst='git status'
@@ -254,8 +254,12 @@ alias  gpl='git pull origin'
 alias  gbr='git branch'
 alias  gba='git branch -a'
 alias  gdf='git diff'
-function gap { gaa; gci "$1"; gps }
-function gaps { gaa; gcis "$1"; gps }
+function gap {
+    gaa; gci "$1"; gps
+}
+function gaps {
+    gaa; gcis "$1"; gps
+}
 
 # Docker
 alias   dp='docker pull'
@@ -307,8 +311,12 @@ alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
 alias   tubm='nasd && nasp && ws'
 alias  tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
 alias tubvpn='sudo openconnect vpn.tu-berlin.de'
-function mnas { sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2" }
-function mafs { sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2" }
+function mnas {
+    sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+}
+function mafs {
+    sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+}
 alias  nas='mnas "" nas'
 alias nasd='mnas duc nasd'
 alias nasp='mnas parrobots nasp'

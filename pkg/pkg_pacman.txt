@@ -22,6 +22,7 @@ htop 3.2.2-1
 hyperfine 1.17.0-1
 ibus-unikey 0.6.1-7
 ifuse 1.1.4-4
+inetutils 2.4-1
 intel-gpu-tools 1.27-2
 iw 5.19-2
 iwd 2.7-1

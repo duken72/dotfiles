@@ -94,7 +94,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ALIAS DEFINITIONS
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.aliases ] && source ~/.aliases
-[ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc
+# [ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc
 
 
 # Auto-completions / suggestions
@@ -163,9 +163,3 @@ fi
 
 # Mujoco
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin:/usr/lib/nvidia
-
-
-# OS, shell or machine-specific commands
-# if [[ "$(uname)" == "Linux" ]]; then {do_asdf}; fi
-# if [[ "$SHELL" == "zsh" ]]; then {do_asdf}; fi
-# if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi
