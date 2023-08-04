@@ -205,7 +205,7 @@ alias jn='jupyter-notebook'
 
 # PDF
 function opdf {
-    xdg-open "$@" && exit
+    xdg-open "$1"; exit
 }
 # convert a file to pdf, at least work with pptx
 alias pdfConvert='soffice --headless --convert-to pdf'
