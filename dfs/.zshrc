@@ -128,6 +128,9 @@ if [ -d /opt/ros ]; then
         source /usr/share/colcon_cd/function/colcon_cd.sh
         source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
     fi
+    if [[ -f ~/WS/duc_ws/devel/setup.zsh ]]; then
+        source ~/WS/duc_ws/devel/setup.zsh
+    fi
 fi
 
 ## NVIDIA

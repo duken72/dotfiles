@@ -92,8 +92,8 @@ alias  duh='du -ahd 1'
 alias  mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
 alias   cl='clear' # for terminator, just Ctrl+L
-alias   rb='shutdown -r now'
-alias  sdn='shutdown now'
+alias   rb='sudo shutdown -r now'
+alias  sdn='sudo shutdown now'
 
 # dotfiles and config
 alias      ag='alias | grep'
@@ -302,10 +302,15 @@ alias   gl1='c ~/WS/GitLab/parroplots && act'
 alias    gh='c ~/WS/GitHub/parroplots && act'
 
 # ROS
-alias ract='source devel/setup.bash'
+if [[ "$SHELL" == "/usr/bin/zsh" ]]; then
+    alias ract='source devel/setup.zsh'
+elif [[ "$SHELL" == "/usr/bin/bash" ]]; then
+    alias ract='source devel/setup.bash'
+fi
 alias r2ws='cd ~/WS/ros2_ws     && ract && cd src'
 alias  rws='cd ~/WS/ros_ws      && ract && cd src'
 alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
+alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 
 # TUB
 alias   tubm='nasd && nasp && ws'
