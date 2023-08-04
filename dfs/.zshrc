@@ -97,6 +97,7 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 # 'bat' as the default pager for 'man'
 if type bat > /dev/null; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
 fi
 
 # Key binding
