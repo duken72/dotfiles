@@ -280,7 +280,7 @@ label = %{T1}%percentage_used:2%%{T4}󰍛
 [module/wlan]
 type = internal/network
 interface-type = wireless
-;interval = 5
+interval = 5
 accumulate-stats = true
 format-connected = <ramp-signal><label-connected>
 label-connected = %{T1}%signal%|%downspeed:2%
