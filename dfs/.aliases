@@ -201,8 +201,6 @@ if [ -x /usr/bin/code ]; then
 fi
 # Jupyter-notebook
 alias jn='jupyter-notebook'
-# Glow for Markdown
-[ -x /usr/bin/glow ] && alias glow='glow -p'
 
 # PDF
 function opdf {

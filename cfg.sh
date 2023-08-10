@@ -5,9 +5,8 @@ NC='\033[0m'
 
 CONFIGS=(".moc" "autostart" "gtk-3.0" "htop" "neofetch" "nvim"
     "polybar" "pulseaudio-ctl" "ranger" "redshift" "rofi" "terminator"
-    "vis" "vscode" "zathura" "user-dirs.locale"
+    "vis" "vscode" "zathura" "user-dirs.locale" "glow"
 )
-# conky
 
 function help() {
     echo "shell script for config management."
