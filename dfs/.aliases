@@ -189,10 +189,11 @@ alias deact='deactivate'
 # Vim, Neovim
 if [ -x /usr/bin/nvim ]; then
     alias v='nvim'
+    alias sv='sudo -E nvim'
 else
     alias v='vim'
+    alias sv='sudo -E vim'
 fi
-alias sv='sudo -E v'
 # VSCode
 if [ -x /usr/bin/code ]; then
     alias co='code'
