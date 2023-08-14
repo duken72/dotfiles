@@ -3,3 +3,4 @@ config/**/last_directory
 config/nvim/lazy-lock.json
 config/ranger/plugins/__pycache__
 slack.desktop
+skypeforlinux.desktop
