@@ -343,3 +343,12 @@ alias    rosgg='rg $(fd rosFD.bash ~) -e'
 alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
 alias     pygg='rg $(fd pyFD.py ~) -e'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
+
+# BORIS
+function boris {
+    SOCK=/tmp/.X11-unix
+    XAUTH=/tmp/.docker.xauth
+    xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+    chmod 777 $XAUTH
+    docker run --rm -ti --net=host -e DISPLAY -v ${HOME}:/home/${USER} -w /home/${USER} -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH olivierfriard/boris
+}
