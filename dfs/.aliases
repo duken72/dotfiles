@@ -201,6 +201,7 @@ if [ -x /usr/bin/code ]; then
 fi
 # Jupyter-notebook
 alias jn='jupyter-notebook'
+alias jl='jupyter-lab'
 
 # PDF
 function opdf {

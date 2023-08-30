@@ -239,6 +239,7 @@ Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/
 - [PACMAN](https://youtu.be/HD7jJEh4ZaM)
 - [AUR Helper - AURA](https://youtu.be/xPRJWHghWM8)
 - [Tiling Window Managers](https://youtu.be/Obzf9ppODJU)
+- [Dual boot with Ubuntu](https://www.linuxandubuntu.com/home/dual-boot-ubuntu-and-arch-linux)
 
 -------
 
