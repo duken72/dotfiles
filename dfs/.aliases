@@ -200,8 +200,12 @@ if [ -x /usr/bin/code ]; then
     alias coh='code . && exit'
 fi
 # Jupyter-notebook
-alias jn='jupyter-notebook'
-alias jl='jupyter-lab'
+function jn {
+    tmux new -d -s jupyter "jupyter-notebook '$1'"
+}
+function jl {
+    tmux new -d -s jupyter "jupyter-lab '$1'"
+}
 
 # PDF
 function opdf {
