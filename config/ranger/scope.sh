@@ -121,6 +121,11 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        ## Jupyter notebook previewer
+        ipynb)
+            nbread "${FILE_PATH}" && { dump | trim; exit 5; } || exit 2
+            ;;
     esac
 }
 
