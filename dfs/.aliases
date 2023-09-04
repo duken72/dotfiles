@@ -254,9 +254,9 @@ alias gcis='git commit -S -m'
 alias gacs='git commit -S -am'
 alias  gft='git fetch'
 alias  gps='git push origin'
-alias  gpl='git pull origin'
-alias  gbr='git branch'
-alias  gba='git branch -a'
+alias  gpl='git pull origin --prune'
+alias  gbr='git branch -a'
+alias  gbd='git branch -D'
 alias  gdf='git diff'
 function gap {
     gaa; gci "$1"; gps
