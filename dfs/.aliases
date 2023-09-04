@@ -321,7 +321,12 @@ alias   tubm='nasd && nasp && ws'
 alias  tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
 alias tubvpn='sudo openconnect vpn.tu-berlin.de'
 function mnas {
-    sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+    if mountpoint -q ~/WS/"$2"; then
+        echo "Already mounted"
+        cd ~/WS/"$2"
+    else
+        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+    fi
 }
 function mafs {
     sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2"
