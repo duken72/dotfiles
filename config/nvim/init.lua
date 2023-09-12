@@ -332,7 +332,7 @@ greeter.section.buttons.val = {
     greeter.button( "Spc ?",    "  Recent"   , ":Telescope oldfiles<CR>"),
     greeter.button( "Spc sf",   "  Find file", ":Telescope find_files<CR>"),
     greeter.button( "Spc sg",   "󰈬  Find word", ":Telescope grep_string<CR>"),
-    greeter.button( "q",        "  Quit",      ":qa<CR>"),
+    greeter.button( "q",        "  Quit",      ":qa<CR>"),
 }
 greeter.section.footer.val = {
   ' ' .. #vim.tbl_keys(require("lazy").plugins()) .. ' plugins ' ..

@@ -16,20 +16,20 @@ fi
 alias grepr='grep -R'
 
 # Replace ls with exa
-if [ -x /usr/bin/exa ]; then
-    export EXA_COLORS="uu=1;31:da=1;35"
-    alias   exa='exa --git --git-ignore'
-    alias     l='exa'
-    alias    ls='exa'
-    alias    la='exa -a'
-    alias    ll='exa -l --icons'
-    alias   lla='exa -la --icons'
-    alias  ldir='exa -lD --icons'
-    alias tree1='exa -l --tree --icons --level=1'
-    alias tree2='exa -l --tree --icons --level=2'
-    alias    cL='cl; exa'
+if [ -x /usr/bin/eza ]; then
+    export EZA_COLORS="uu=1;31:da=1;35"
+    alias   eza='eza --git --git-ignore'
+    alias     l='eza'
+    alias    ls='eza'
+    alias    la='eza -a'
+    alias    ll='eza -l --icons'
+    alias   lla='eza -la --icons'
+    alias  ldir='eza -lD --icons'
+    alias tree1='eza -l --tree --icons --level=1'
+    alias tree2='eza -l --tree --icons --level=2'
+    alias    cL='cl; eza'
     function cd {
-        builtin cd "$@" && exa --git --git-ignore
+        builtin cd "$@" && eza --git --git-ignore
     }
 else
     alias    l='ls -C'
