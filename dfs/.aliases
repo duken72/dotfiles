@@ -319,17 +319,30 @@ alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 # TUB
 alias   tubm='nasd && nasp && ws'
 alias  tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
-alias tubvpn='sudo openconnect vpn.tu-berlin.de'
 function mnas {
     if mountpoint -q ~/WS/"$2"; then
         echo "Already mounted"
         cd ~/WS/"$2"
     else
+        STR=$(networkctl status)
+        IP_LAB="130.149.238"
+        if [[ "$STR" == *"$IP_LAB"* ]]; then
+            echo "Already in the lab network"
+        else
+            echo "NOT in the lab network, connect via VPN ..."
+            sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de
+        fi
         sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2"
     fi
 }
 function mafs {
-    sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+    if mountpoint -q ~/WS/"$2"; then
+        echo "Already mounted"
+        cd ~/WS/"$2"
+    else
+        echo "Mounting directory ..."
+        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+    fi
 }
 alias  nas='mnas "" nas'
 alias nasd='mnas duc nasd'
