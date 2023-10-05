@@ -96,10 +96,10 @@ font-3 = "JetBrainsMonoNL Nerd Font Mono:style=Medium,Regular:size=27;7"
 font-4 = "JetBrainsMonoNL Nerd Font Mono:style=Medium,Regular:size=29;7"
 font-5 = "JetBrainsMonoNL Nerd Font Mono:style=Medium,Regular:size=35;9"
 
-;blueberry powermenu temperature memory cpu xkeyboard updates-pacman-aurhelper
+;blueberry powermenu temperature memory cpu memory xkeyboard updates-pacman-aurhelper
 modules-left = xfcestart split-left-1 ewmh split-left-2 xwindow split-left-3
 modules-center = time
-modules-right = split-right-4 pulseaudio backlight split-right-3 eth wlan split-right-2 cpu memory temperature split-right-1 battery
+modules-right = split-right-4 pulseaudio backlight split-right-3 eth wlan split-right-2 temperature split-right-1 battery
 tray-detached = false
 tray-position = right
 tray-offset-x = 0
@@ -372,9 +372,9 @@ format-background = ${colors.red-2}
 format-warn = <ramp><label-warn>
 format-warn-background = ${colors.red-2}
 label-warn = %{T1}%temperature-c%
-ramp-0 = " %{T3}"
-ramp-1 = " %{T3}󰈸"
-ramp-2 = " %{T3}󱗗"
+ramp-0 = "%{T3}"
+ramp-1 = "%{T3}󰈸"
+ramp-2 = "%{T3}󱗗"
 
 [module/powermenu]
 type = custom/menu

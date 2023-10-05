@@ -170,7 +170,13 @@ fi
 # Applications specific
 
 # Generic
-alias o='xdg-open'
+function o {
+    if [[ "$1" == *".pdf" ]]; then
+        xdg-open "$1"; exit
+    else
+        xdg-open "$1"
+    fi
+}
 alias of='o .'
 alias run='./run.sh'
 
@@ -207,10 +213,6 @@ function jl {
     tmux new -d -s jupyter "jupyter-lab '$1'"
 }
 
-# PDF
-function opdf {
-    xdg-open "$1"; exit
-}
 # convert a file to pdf, at least work with pptx
 alias pdfConvert='soffice --headless --convert-to pdf'
 
@@ -281,6 +283,8 @@ function steamid {
     echo "prime-run steam steam://rungameid/[steamid]"
 }
 
+# Nvidia
+alias nvidia-smi='clear; nvidia-smi'
 
 # -------------------------------------------------------- #
 # Workspaces
