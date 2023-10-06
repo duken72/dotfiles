@@ -258,6 +258,7 @@ alias  gft='git fetch'
 alias  gps='git push origin'
 alias  gpl='git pull origin --prune'
 alias  gbr='git branch -a'
+alias  gco='git checkout'
 alias  gbd='git branch -D'
 alias  gdf='git diff'
 function gap {
@@ -300,6 +301,7 @@ alias  ccom='c ~/WS/coding-competitions && v'
 alias   aoc='c ~/WS/Advent-of-Code/AoC-2022'
 alias    cs='c ~/WS/codingForDummies/cppFD/CS'
 alias   phd='c ~/WS/phd-rbo'
+alias   mdl='c ~/WS/phd-rbo/experiments/MDL-2020'
 alias   grl='c ~/WS/test/goalRL-test'
 
 alias    td='c ~/WS/TODO'
@@ -322,7 +324,14 @@ alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 
 # TUB
 alias   tubm='nasd && nasp && ws'
-alias  tubum='sudo umount ~/WS/nasd && ~/WS/nasp'
+function tubum {
+    if mountpoint -q ~/WS/nasd; then
+        sudo umount ~/WS/nasd
+    fi
+    if mountpoint -q ~/WS/nasp; then
+        sudo umount ~/WS/nasp
+    fi
+}
 function mnas {
     if mountpoint -q ~/WS/"$2"; then
         echo "Already mounted"
