@@ -231,11 +231,17 @@ require('lazy').setup({
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    -- See `:help ibl`
+    main = "ibl",
+    config = function()
+      require("ibl").setup ({
+        indent = { char = '┊', },
+        whitespace = {
+          highlight = { "Function", "Label" },
+          remove_blankline_trail = true,
+        }
+      })
+    end,
   },
 
   { -- "gc" to comment visual regions/lines
@@ -667,6 +673,13 @@ vim.keymap.set('n', '<leader>m', ":Glow <CR>", { desc = '[M]arkdown preview' })
 -- highlight Normal guibg=none
 -- highlight signcolumn guibg=none
 -- ]])
+
+-- [[ Fold text function ]]
+vim.opt.foldenable = true
+vim.opt.foldlevel = 20
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
