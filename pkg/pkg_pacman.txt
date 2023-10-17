@@ -3,8 +3,10 @@ base 3-2
 base-devel 1-1
 bat 0.23.0-3
 bind 9.18.19-1
+bluez 5.70-1
+bluez-utils 5.70-1
 deluge-gtk 1:2.1.1-4
-discord 0.0.31-1
+discord 0.0.32-1
 docker 1:24.0.6-1
 docx2txt 1.4-5
 easytag 2.4.3-6
@@ -34,7 +36,6 @@ libratbag 0.17-1
 libreoffice-fresh 7.6.2-3
 linux-firmware-qlogic 20230804.7be2766d-2
 man-pages 6.05.01-1
-moc 1:2.5.2-8
 mpd 0.23.14-1
 mpv 1:0.36.0-1
 ncdu 2.3-1
