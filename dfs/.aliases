@@ -307,9 +307,7 @@ alias   grl='c ~/WS/test/goalRL-test'
 alias    td='c ~/WS/TODO'
 
 # on GitLab
-alias    gh='c ~/WS/GitHub/parroplots && act'
-alias    gl='c ~/WS/GitLab/parroplots && act'
-alias   gl1='c ~/WS/GitLab/parrobots && act'
+alias    gh='c ~/WS/parroplots && act'
 
 # ROS
 if [[ "$SHELL" == "/usr/bin/zsh" ]]; then
@@ -393,3 +391,6 @@ function boris {
 #     chmod 777 $XAUTH
 #     docker run --rm -ti --net=host -e DISPLAY -v ${HOME}:/home/${USER} -w /home/${USER} -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH olivierfriard/boris
 # }
+
+# MOC - Music On Console
+alias mocp='mocp -O shuffle=yes -O repeat=yes'
