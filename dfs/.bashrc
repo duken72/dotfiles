@@ -163,3 +163,7 @@ fi
 
 # Mujoco
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin:/usr/lib/nvidia
+
+# Jplag
+export PATH=/home/duken72/.local/bin:/home/duken72/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/duken72/WS/test/plagiarism_check/scripts
+export JPLAG_PATH=/home/duken72/WS/test/plagiarism_check/scripts

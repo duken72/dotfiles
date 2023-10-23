@@ -258,8 +258,8 @@ alias  gft='git fetch'
 alias  gps='git push origin'
 alias  gpl='git pull origin --prune'
 alias  gbr='git branch -a'
-alias  gco='git checkout'
 alias  gbd='git branch -D'
+alias  gco='git checkout'
 alias  gdf='git diff'
 function gap {
     gaa; gci "$1"; gps
@@ -362,6 +362,7 @@ alias nasd='mnas duc nasd'
 alias nasp='mnas parrobots nasp'
 alias  afs='mafs RBO afs'
 alias afsd='mafs Staff/Duc afsd'
+alias afst='mafs RBO/Teaching/Courses/robotics afst'
 
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
