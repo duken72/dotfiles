@@ -306,7 +306,6 @@ alias   grl='c ~/WS/test/goalRL-test'
 
 alias    td='c ~/WS/TODO'
 
-# on GitLab
 alias    gh='c ~/WS/parroplots && act'
 
 # ROS
@@ -323,12 +322,17 @@ alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 # TUB
 alias   tubm='nasd && nasp && ws'
 function tubum {
-    if mountpoint -q ~/WS/nasd; then
-        sudo umount ~/WS/nasd
-    fi
-    if mountpoint -q ~/WS/nasp; then
-        sudo umount ~/WS/nasp
-    fi
+    for DIR in ~/WS/nas*; do
+        if mountpoint -q "$DIR"; then
+            sudo umount "$DIR"
+        fi
+    done
+
+    for DIR in ~/WS/afs*; do
+        if mountpoint -q "$DIR"; then
+            sudo umount "$DIR"
+        fi
+    done
 }
 function mnas {
     if mountpoint -q ~/WS/"$2"; then
