@@ -171,11 +171,8 @@ fi
 
 # Generic
 function o {
-    if [[ "$1" == *".pdf" ]]; then
-        xdg-open "$1"; exit
-    else
-        xdg-open "$1"
-    fi
+    xdg-open "$1"
+    [[ "$1" == *".pdf" ]] && exit
 }
 alias of='o .'
 alias run='./run.sh'
@@ -385,17 +382,14 @@ alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
 # BORIS
 function boris {
-    tmux new-session -d -s boris
-    tmux send-keys "cd ~/WS/BORIS && act && python start_boris.py" C-m
-    tmux detach -s boris
+    session="boris"
+    tmux has-session -t $session 2>/dev/null
+    if [ $? != 0 ]; then
+        tmux new-session -d -s $session
+    fi
+    tmux send-keys -t $session "cd ~/WS/BORIS && act && python start_boris.py" C-m
+    tmux detach -s $session
 }
-# function boris {
-#     SOCK=/tmp/.X11-unix
-#     XAUTH=/tmp/.docker.xauth
-#     xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
-#     chmod 777 $XAUTH
-#     docker run --rm -ti --net=host -e DISPLAY -v ${HOME}:/home/${USER} -w /home/${USER} -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH olivierfriard/boris
-# }
 
 # MOC - Music On Console
 alias mocp='mocp -O shuffle=yes -O repeat=yes'
