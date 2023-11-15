@@ -317,8 +317,8 @@ alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
 alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 
 # TUB
-alias   tubm='nasd && nasp && ws'
-function tubum {
+alias tm='nasd && nasp && ws'
+function tum {
     for DIR in ~/WS/nas*; do
         if mountpoint -q "$DIR"; then
             sudo umount "$DIR"
@@ -332,6 +332,7 @@ function tubum {
     done
 }
 function mnas {
+    cd ~/WS
     if mountpoint -q ~/WS/"$2"; then
         echo "Already mounted"
         cd ~/WS/"$2"
@@ -348,6 +349,7 @@ function mnas {
     fi
 }
 function mafs {
+    cd ~/WS
     if mountpoint -q ~/WS/"$2"; then
         echo "Already mounted"
         cd ~/WS/"$2"
