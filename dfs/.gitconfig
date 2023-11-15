@@ -14,6 +14,7 @@
 	aa = add .
 	rst = restore
 	rs = reset
+	c = commit
 	ci = commit -m
 	cis = commit -S -m
 	ac = commit -am
