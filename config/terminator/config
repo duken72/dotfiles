@@ -7,7 +7,7 @@
   [[default]]
     background_darkness = 0.72
     background_type = transparent
-    font = JetBrainsMonoNL Nerd Font Light 13
+    font = JetBrainsMonoNL NF Light 13
     foreground_color = "#ffffff"
     show_titlebar = False
     scrollbar_position = hidden
