@@ -524,8 +524,6 @@ local servers = {
     }
   },
 
-  awk_ls = {},
-
   bashls = {
     bashIde = {
       globPattern = "*@(.sh|.inc|.bash|.command)",
