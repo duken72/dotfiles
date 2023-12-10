@@ -57,7 +57,7 @@ if [ -x /usr/bin/rsync ]; then
 fi
 alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r'
 alias ip='ip -color=auto' # with colors
-alias dmesg='dmesg --color=always' # with colors
+alias dmesg='sudo dmesg -H --color=always' # with colors
 alias diff='diff --color=auto' # with colors
 alias zip='zip -er9' # encryption and recursive
 

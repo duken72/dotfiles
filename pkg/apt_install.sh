@@ -12,9 +12,8 @@ sudo apt install brave-browser
 
 # Install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-cd ~/.fzf
-sudo mv bin/fzf /usr/bin
-sudo mv bin/fzf-tmux /usr/bin
+cd ~/.fzf && ./install
+sudo mv bin/* /usr/bin
 rm -rf ~/.fzf
 
 # Install JetBrains Mono Nerd Font
