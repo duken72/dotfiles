@@ -43,9 +43,9 @@ else
     }
 fi
 
-# alias rm='rm -i' # interactive
-# alias mv='mv -i' # interactive
-# alias cat='cat -n' # with line numbers
+alias rm='rm -vrI' # interactive
+alias mv='mv -v' # interactive
+alias cat='cat -n' # with line numbers
 # [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
 [ -x /usr/bin/bat ] && alias cat='bat'
 alias mkdir='mkdir -p'
