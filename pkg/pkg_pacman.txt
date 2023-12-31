@@ -69,6 +69,7 @@ tree 2.1.1-1
 ttf-jetbrains-mono-nerd 3.1.1-1
 udisks2 2.10.1-2
 unrar 1:6.2.12-1
+virtualbox 7.0.12-1
 vlc 3.0.20-4
 wget 1.21.4-1
 wmctrl 1.07-6

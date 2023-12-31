@@ -88,7 +88,7 @@
     vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
     vim /etc/pacman.conf # ParallelDownloads = 5
     pacstrap /mnt base base-devel linux(-lts) linux-headers linux-firmware sof-firmware
-              iw iwd vi vim grub efibootmgr openssh git
+              iw iwd vi vim grub efibootmgr openssh git pacman-contrib
     ```
 
 8. Configure the system
@@ -115,6 +115,8 @@
     ```bash
     # pacman -Sy grub efibootmgr
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+    # Edit GRUB default time out
+    sudo vim /etc/default/grub
     grub-mkconfig -o /boot/grub/grub.cfg
 
     exit # Exit and reboot. Pull out the flash drive.
@@ -126,21 +128,14 @@
     - Login as root
 
       ```bash
-      systemctl start systemd-networkd
-      systemctl start systemd-resolved
-      networkctl list #to have the network device names, should be one wired and one carrier for wireless
-
-      sudo systemctl start iwd
-      sudo systemctl enable iwd
-      iwctl #check also https://github.com/tomaspinho/rtl8821ce
-      ```
-
-    - Create config files, with names of devices from:
-
-      ```bash
+      # show network device names (one wired and one wireless carrier)
       networkctl list
+
+      sudo systemctl enable --now iwd
+      iwctl
       ```
 
+    - Create config files, with names of devices from above:
       - Wired adapter: `/etc/systemd/network/20-wired.network`
 
         ```txt
@@ -163,13 +158,11 @@
         RouteMetric=20
         ```
 
-    - Restart the `systemd` services to apply changes:
+    - Enable and start the `systemd` services:
 
       ```bash
-      systemctl restart systemd-networkd
-      systemctl restart systemd-resolved
-      systemctl enable systemd-networkd
-      systemctl enable systemd-resolved
+      systemctl enable --now systemd-networkd
+      systemctl enable --now systemd-resolved
       ping google.com
       ```
 
@@ -182,8 +175,7 @@
     visudo # uncomment %wheel ALL NOPASSWD ALL, can sudo without passwd
 
     # if openssh installed
-    systemctl start sshd
-    systemctl enable sshd
+    systemctl enable --now sshd
     ip addr
     ```
 
@@ -199,14 +191,14 @@
     ```
 
     ```bash
-    sudo pacman -S xorg xorg-xinit lightdm lightdm-gtk-greeter picom xdg-user-dirs \
-                  xfce4 xfce4-screensaver xfce4-screenshooter \
-                  xfce4-notifyd xfce4-whiskermenu-plugin  \
-                  zsh fd htop terminator man-pages neofetch \
-                  rofi polybar sxhkd udisks2 ntfs-3g zip unzip \
-                  pulseaudio pavucontrol alsa-utils \
-                  ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
-                  zathura zathura-pdf-mupdf \
+    sudo pacman -S --needed xorg xorg-xinit lightdm lightdm-gtk-greeter picom \
+                    xdg-user-dirs xfce4 xfce4-screensaver xfce4-screenshooter \
+                    xfce4-notifyd xfce4-whiskermenu-plugin  \
+                    zsh fd htop terminator man-pages neofetch \
+                    rofi polybar sxhkd udisks2 ntfs-3g zip unzip \
+                    pulseaudio pavucontrol alsa-utils \
+                    ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
+                    zathura zathura-pdf-mupdf
 
     gawk '{print $1}' pkg_pacman.txt > /tmp/t.txt
     cd /tmp
