@@ -46,7 +46,6 @@
       <property name="Print" type="string" value="xfce4-screenshooter"/>
       <property name="&lt;Primary&gt;Escape" type="string" value="xfdesktop --menu"/>
       <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
-      <property name="&lt;Alt&gt;&lt;Super&gt;s" type="string" value="orca"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;f" type="string" value="thunar"/>
       <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
@@ -67,6 +66,12 @@
       <property name="&lt;Super&gt;o" type="string" value="obsidian"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Left" type="string" value="/usr/local/bin/movescreen.py left"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Right" type="string" value="/usr/local/bin/movescreen.py right"/>
+      <property name="AudioPlay" type="string" value="mocp --toggle-pause"/>
+      <property name="AudioNext" type="string" value="mocp --next"/>
+      <property name="AudioPrev" type="string" value="mocp --previous"/>
+      <property name="&lt;Shift&gt;AudioNext" type="string" value="mocp --seek +5"/>
+      <property name="&lt;Shift&gt;AudioPrev" type="string" value="mocp --seek -5"/>
+      <property name="&lt;Shift&gt;AudioPause" type="string" value="mocp --toggle shuffle"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">

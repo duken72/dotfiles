@@ -1,6 +1,9 @@
 #!/bin/bash
 
-PKG_DIR=/home/$USER/dotfiles/pkg
+PKG_DIR=/home/duken72/dotfiles/pkg
+# This command will be run with super user privilege
+# In that case, $USER will be root
+# PKG_DIR=/home/$USER/dotfiles/pkg
 
 # Clear content
 > ${PKG_DIR}/pkg_pacman.txt
