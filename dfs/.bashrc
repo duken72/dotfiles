@@ -158,6 +158,10 @@ if [ -d /opt/ros ]; then
             source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
         fi
     fi
+
+    if [ -f ~/WS/catkin_ws/devel/setup.bash ]; then
+        source ~/WS/catkin_ws/devel/setup.bash
+    fi
 fi
 
 
