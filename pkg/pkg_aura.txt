@@ -1,13 +1,13 @@
 aic94xx-firmware 30-10
 ast-firmware 501-1
 aura-bin 3.2.9-1
-brave-bin 1:1.61.116-1
+brave-bin 1:1.62.162-1
 cli-visualizer 1.8-10
 moc-pulse 2.5.2-11
 pulseaudio-ctl 1.70-1
 siji-git r23.c691f20-2
 skypeforlinux-stable-bin 8.109.0.209-1
-slack-desktop 4.35.131-1
+slack-desktop 4.36.140-1
 tty-clock-git 1:2.3.r40.f2f847c-2
 upd72020x-fw 1:1.0.0-2
 wd719x-firmware 1-7
