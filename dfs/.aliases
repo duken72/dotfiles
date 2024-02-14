@@ -302,8 +302,8 @@ alias   phd='c ~/WS/phd-rbo'
 alias   mdl='c ~/WS/phd-rbo/experiments/MDL-2020'
 alias   grl='c ~/WS/test/goalRL-test'
 alias    td='c ~/WS/TODO'
-alias    gh='c ~/WS/parroplots && act'
-alias    rl='c ~/WS/flash-representation-learning && act'
+alias   par='c ~/WS/parroplots && act'
+alias   frl='c ~/WS/flash-representation-learning && act'
 alias   rob='c ~/WS/rob-ws23'
 # ROS
 if [[ "$SHELL" == "/usr/bin/zsh" ]]; then

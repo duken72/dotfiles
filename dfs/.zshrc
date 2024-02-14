@@ -133,6 +133,9 @@ if [ -d /opt/ros ]; then
     if [[ -f ~/WS/duc_ws/devel/setup.zsh ]]; then
         source ~/WS/duc_ws/devel/setup.zsh
     fi
+    if [[ -f ~/WS/catkin_ws/devel/setup.zsh ]]; then
+        source ~/WS/catkin_ws/devel/setup.zsh
+    fi
 fi
 
 ## NVIDIA
