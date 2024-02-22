@@ -12,7 +12,7 @@ docker 1:25.0.2-1
 docx2txt 1.4-5
 easytag 2.4.3-8
 eog 45.2-1
-eza 0.18.2-1
+eza 0.18.3-1
 fd 9.0.0-1
 firewalld 2.1.1-1
 font-manager 0.8.8-1
@@ -42,7 +42,7 @@ neofetch 7.1.0-2
 neovim 0.9.5-2
 nfs-utils 2.6.4-1
 numlockx 1.2-5
-nvidia-dkms 545.29.06-3
+nvidia-dkms 545.29.06-4
 nvidia-prime 1.0-4
 nvtop 3.0.2-1
 obsidian 1.5.3-4
@@ -50,7 +50,7 @@ openconnect 1:9.12-1
 openjdk-src 21.0.2.u13-3
 pacman-contrib 1.10.4-1
 pavucontrol 1:5.0+r64+geba9ca6-1
-picom 11.1-1
+picom 11.2-1
 polybar 3.7.1-1
 pv 1.8.5-2
 ranger 1.9.3-9

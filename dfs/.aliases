@@ -318,6 +318,16 @@ alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 
 # TUB
 alias tm='nasd && nasp && ws'
+function tuvpn {
+    STR=$(networkctl status)
+    IP_LAB="130.149.238"
+    if [[ "$STR" == *"$IP_LAB"* ]]; then
+        echo "Already in the lab network"
+    else
+        echo "NOT in the lab network, connect via VPN ..."
+        tmux new -d -s tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de"
+    fi
+}
 function tum {
     for DIR in ~/WS/nas*; do
         if mountpoint -q "$DIR"; then
@@ -337,14 +347,7 @@ function mnas {
         echo "Already mounted"
         cd ~/WS/"$2"
     else
-        STR=$(networkctl status)
-        IP_LAB="130.149.238"
-        if [[ "$STR" == *"$IP_LAB"* ]]; then
-            echo "Already in the lab network"
-        else
-            echo "NOT in the lab network, connect via VPN ..."
-            sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de
-        fi
+        tuvpn
         sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2"
     fi
 }
