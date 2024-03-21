@@ -28,6 +28,7 @@ hyperfine 1.18.0-2
 ibus-unikey 0.6.1-7
 ifuse 1.1.4-4
 inetutils 2.5-1
+inkscape 1.3.2-4
 intel-gpu-tools 1.27-2
 iw 6.7-1
 iwd 2.16-1
