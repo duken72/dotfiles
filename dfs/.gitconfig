@@ -1,7 +1,7 @@
 [user]
-	email = huuduc.nguyen7295@gmail.com
+	email = tech.hodapp@simplelogin.com
 	name = Huu Duc Nguyen
-	signingkey = CAEBF92F
+	signingkey = 0BB9AB87
 
 [credential]
 	helper = store
