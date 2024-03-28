@@ -1,7 +1,7 @@
 [user]
 	email = tech.hodapp@simplelogin.com
-	name = Duke Nguyen
-	signingkey = 75074A42197607BB
+	name = Huu Duc Nguyen
+	signingkey = 0BB9AB87
 
 [credential]
 	helper = store

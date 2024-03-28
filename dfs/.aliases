@@ -398,3 +398,6 @@ function boris {
 
 # MOC - Music On Console
 alias mocp='mocp -O shuffle=yes -O repeat=yes'
+
+# SAB Paper
+alias sab='c ~/WS/Nguyen-24-SAB && v *.tex'
