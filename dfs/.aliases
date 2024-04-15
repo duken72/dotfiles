@@ -328,7 +328,6 @@ alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
 alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 
 # TUB
-alias tm='nasd && nasp && ws'
 function tuvpn {
     STR=$(networkctl status)
     IP_LAB="130.149.238"
@@ -354,30 +353,30 @@ function tum {
 }
 function mnas {
     cd ~/WS
-    if mountpoint -q ~/WS/"$2"; then
+    if mountpoint -q ~/WS/nas; then
         echo "Already mounted"
-        cd ~/WS/"$2"
+        cd ~/WS/nas
     else
         tuvpn
-        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas && cd ~/WS/nas
     fi
 }
 function mafs {
     cd ~/WS
-    if mountpoint -q ~/WS/"$2"; then
+    if mountpoint -q ~/WS/afs; then
         echo "Already mounted"
-        cd ~/WS/"$2"
+        cd ~/WS/afs
     else
         echo "Mounting directory ..."
-        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/"$2" && cd ~/WS/"$2"
+        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs && cd ~/WS/afs
     fi
 }
-alias  nas='mnas "" nas'
-alias nasd='mnas duc nasd'
-alias nasp='mnas parrobots nasp'
-alias  afs='mafs RBO afs'
-alias afsd='mafs Staff/Duc afsd'
-alias afst='mafs RBO/Teaching/Courses/robotics afst'
+alias  nas='mnas ""'
+alias nasd='mnas duc'
+alias nasp='mnas parrobots'
+alias  afs='mafs RBO'
+alias afsd='mafs Staff/Duc'
+alias afst='mafs RBO/Teaching/Courses/robotics'
 
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
