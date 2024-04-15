@@ -267,9 +267,15 @@ function gaps {
 }
 
 # SVN
-function svndiff {
-    svn diff -x -w "$@" | delta
-}
+alias  sco='svn checkout'
+alias supd='svn update'
+alias  sst='svn status'
+alias   sa='svn add'
+alias sdel='svn delete'
+alias   sm='svn move'
+alias   sr='svn revert'
+alias  sdf='svn diff -x -w "$@" | delta'
+alias   sc='svn commit -m'
 
 # Docker
 alias   dp='docker pull'
