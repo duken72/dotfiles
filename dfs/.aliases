@@ -266,6 +266,11 @@ function gaps {
     gaa; gcis "$1"; gps
 }
 
+# SVN
+function svndiff {
+    svn diff -x -w "$@" | delta
+}
+
 # Docker
 alias   dp='docker pull'
 alias   dt='docker tag'
