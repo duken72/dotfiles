@@ -557,8 +557,10 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
+  -- CPP
   clangd = {},
 
+  -- Python
   pyright = {
     python = {
       analysis = {
@@ -568,7 +570,6 @@ local servers = {
       }
     }
   },
-
   pylsp = {
     plugins = {
       pycodestyles = {
@@ -578,12 +579,14 @@ local servers = {
     }
   },
 
+  -- Shell, BASH
   bashls = {
     bashIde = {
       globPattern = "*@(.sh|.inc|.bash|.command)",
     }
   },
 
+  -- Lua
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -592,7 +595,14 @@ local servers = {
     },
   },
 
+  -- Markdown
   marksman = {},
+
+  -- Cmake
+  cmake = {},
+
+  -- Latex
+  texlab = {},
 }
 
 -- Setup neovim lua configuration
