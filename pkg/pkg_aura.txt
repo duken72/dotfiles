@@ -1,7 +1,7 @@
 aic94xx-firmware 30-10
 ast-firmware 501-1
 aura-bin 3.2.9-1
-brave-bin 1:1.64.122-1
+brave-bin 1:1.65.114-1
 cli-visualizer 1.8-10
 moc-pulse 2.5.2-11
 pulseaudio-ctl 1.70-1
