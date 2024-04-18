@@ -275,7 +275,7 @@ alias sdel='svn delete'
 alias   sm='svn move'
 alias   sr='svn revert'
 alias  sdf='svn diff -x -w "$@" | delta'
-alias   sc='svn commit -m'
+alias  sci='svn commit -m'
 
 # Docker
 alias   dp='docker pull'
