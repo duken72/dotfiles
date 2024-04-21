@@ -62,6 +62,7 @@ ripgrep 14.1.0-1
 rofi 1.7.5-2
 sd 1.0.0-1
 sequoia-sq 0.34.0-1
+shfmt 3.7.0-1
 sof-firmware 2024.03-1
 sshfs 3.7.3-1
 steam 1.0.0.79-1
