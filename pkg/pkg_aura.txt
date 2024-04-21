@@ -11,7 +11,10 @@ slack-desktop 4.37.101-1
 slack-desktop-debug 4.37.101-1
 tty-clock-git 1:2.3.r40.f2f847c-2
 upd72020x-fw 1:1.0.0-2
+vale 3.3.0-1
+vale-debug 3.3.0-1
 wd719x-firmware 1-7
 xfce4-panel-profiles 1.0.14-2
+zoom 6.0.2-1
 zotero 6.0.37-1
 zotero-debug 6.0.37-1
