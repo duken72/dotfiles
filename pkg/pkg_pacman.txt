@@ -8,11 +8,11 @@ bind 9.18.26-1
 bluez-utils 5.75-1
 deluge-gtk 1:2.1.1-4
 discord 0.0.50-1
-docker 1:26.0.1-1
+docker 1:26.0.2-1
 docx2txt 1.4-5
 easytag 2.4.3-8
 eog 45.3-1
-eza 0.18.10-1
+eza 0.18.11-1
 fd 9.0.0-2
 firewalld 2.1.2-1
 font-manager 0.8.8-1
@@ -43,7 +43,7 @@ neofetch 7.1.0-2
 neovim 0.9.5-5
 nfs-utils 2.6.4-1
 numlockx 1.2-5
-nvidia-dkms 550.67-1
+nvidia-dkms 550.76-1
 nvidia-prime 1.0-4
 nvtop 3.1.0-1
 obsidian 1.5.12-1
@@ -51,7 +51,6 @@ openconnect 1:9.12-1
 openjdk-src 22.0.1.u0-1
 pacman-contrib 1.10.5-1
 pavucontrol 1:5.0+r66+gc330506-1
-picom 11.2-1
 polybar 3.7.1-1
 pv 1.8.5-2
 ranger 1.9.3-10
