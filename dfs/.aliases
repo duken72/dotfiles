@@ -339,37 +339,45 @@ function tuvpn {
     fi
 }
 function tum {
-    for DIR in ~/WS/nas*; do
-        if mountpoint -q "$DIR"; then
-            sudo umount "$DIR"
-        fi
+    for DIR in ("~/WS/afs" "~/WS/nas"); do
+        echo "$DIR"
     done
-
-    for DIR in ~/WS/afs*; do
-        if mountpoint -q "$DIR"; then
-            sudo umount "$DIR"
-        fi
-    done
+    if mountpoint -q ~/WS/afs; then
+        sudo umount ~/WS/afs
+    fi
+    if mountpoint -q ~/WS/nas; then
+        sudo umount ~/WS/nas
+    fi
+    if [ -d ~/WS/nas ]; then
+        rmdir ~/WS/nas
+    fi
+    if [ -d ~/WS/afs ]; then
+        rmdir ~/WS/afs
+    fi
 }
 function mnas {
-    cd ~/WS
+    if [ ! -d ~/WS/nas ]; then
+        mkdir -p ~/WS/nas
+    fi
     if mountpoint -q ~/WS/nas; then
         echo "Already mounted"
-        cd ~/WS/nas
     else
         tuvpn
-        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas && cd ~/WS/nas
+        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas
     fi
+    cd ~/WS/nas
 }
 function mafs {
-    cd ~/WS
+    if [ ! -d ~/WS/afs ]; then
+        mkdir -p ~/WS/afs
+    fi
     if mountpoint -q ~/WS/afs; then
         echo "Already mounted"
-        cd ~/WS/afs
     else
         echo "Mounting directory ..."
-        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs && cd ~/WS/afs
+        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs
     fi
+    cd ~/WS/afs
 }
 alias  nas='mnas ""'
 alias nasd='mnas duc'
