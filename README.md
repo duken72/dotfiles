@@ -1,22 +1,24 @@
-<!-- omit in toc -->
-# dotfiles
+# `dotfiles`
 
 [![tokei](https://tokei.rs/b1/github/duken72/dotfiles)](https://github.com/duken72/dotfiles)
 
-My personal dotfiles and configs.
+My personal `dotfiles` and `configs`.
 
-<!-- omit in toc -->
 ## Table of Contents
 
-- [Screenshots](#screenshots)
-- [Packages](#packages)
-  - [Install packages and dependencies](#install-packages-and-dependencies)
-- [dotfiles and configs](#dotfiles-and-configs)
-  - [Backup existing dotfiles and configs](#backup-existing-dotfiles-and-configs)
-  - [Install dotfiles and configs](#install-dotfiles-and-configs)
-- [License](#license)
+<!-- vim-markdown-toc GFM -->
 
--------
+* [Screenshots](#screenshots)
+* [Packages](#packages)
+  * [Install packages and dependencies](#install-packages-and-dependencies)
+* [`dotfiles` and `configs`](#dotfiles-and-configs)
+  * [Backup existing `dotfiles` and `configs`](#backup-existing-dotfiles-and-configs)
+  * [Install `dotfiles` and `configs`](#install-dotfiles-and-configs)
+* [License](#license)
+
+<!-- vim-markdown-toc -->
+
+---
 
 ## Screenshots
 
@@ -26,7 +28,7 @@ For backgrounds, check [Wallpapers](Wallpapers).
 
 ![screenshot](Screenshot/Screenshot_2022-01-06_21-30-06.png)
 
--------
+---
 
 ## Packages
 
@@ -34,19 +36,19 @@ Packages that I currently use at [pkg_pacman.txt](pkg_pacman.txt) and [pkg_aura.
 
 Some worth-mentioned names:
 
-- Shell: zsh with zsh-autosuggestions, zsh-completions, powerlevel10k
-- Panel: polybar
-- App launcher: rofi
-- Desktop system monitor: conky
-- Browser: brave
-- exa (replacement for ls), also ranger
-- Media player: moc, mpd, mpv
-- fd, fzf (replace find)
-- bat (replace less and cat)
-- sd (replace sed)
-- ripgrep (replace grep)
-- redshift
-- Others: cli-visualizer (audio visualizer), tty-clock-git, neofetch, lightdm-webkit-theme-osmos, etc.
+- Shell: `zsh` with `zsh-autosuggestions`, `zsh-completions`, `powerlevel10k`
+- Panel: `polybar`
+- App launcher: `rofi`
+- Desktop system monitor: `conky`
+- Browser: `brave`
+- `exa` (replacement for `ls`), also `ranger`
+- Media player: `moc`, `mpd`, `mpv`
+- `fd`, `fzf` (replace find)
+- `bat` (replace `less` and `cat`)
+- `sd` (replace `sed`)
+- `ripgrep` (replace `grep`)
+- `redshift`
+- Others: `cli-visualizer` (audio visualizer), `tty-clock-git`, `neofetch`, `lightdm-webkit-theme-osmos`, etc.
 
 ### Install packages and dependencies
 
@@ -63,15 +65,15 @@ pacman -S --needed - < pkg_pacman.txt
 aura -A - < pkg_aura.txt
 ```
 
--------
+---
 
-## dotfiles and configs
+## `dotfiles` and `configs`
 
 ```bash
 chmod +x *.sh
 ```
 
-### Backup existing dotfiles and configs
+### Backup existing `dotfiles` and `configs`
 
 I'm, actually .. kind of .. proud of my `.aliases`. Though not much, but I have gone quite a long way, from ground zero.
 
@@ -83,11 +85,11 @@ Backup if needed:
 ./pkg_backup
 ```
 
-### Install dotfiles and configs
+### Install `dotfiles` and `configs`
 
 Sync all, or choose what you want.
 
-``` bash
+```bash
 ./dfs.sh -i
 ./cfg.sh -i
 ```
@@ -99,7 +101,7 @@ Uninstall with:
 ./cfg.sh -u
 ```
 
--------
+---
 
 ## License
 
