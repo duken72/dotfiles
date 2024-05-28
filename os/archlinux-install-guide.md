@@ -1,7 +1,9 @@
 <!-- omit in toc -->
+
 # Arch Linux
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 <!-- vim-markdown-toc GFM -->
@@ -26,102 +28,103 @@
 2. Could skip iso image verification, setting console keyboard layout
 3. Verify boot mode:
 
-    ```bash
-    ls /sys/firmware/efi/efivars
-    ```
+   ```bash
+   ls /sys/firmware/efi/efivars
+   ```
 
-    Command exit with no error, file exists.
+   Command exit with no error, file exists.
 
 4. Setup network connection
 
-    ```bash
-    ip link
-    iwctl
-    [iwd]# device list
-    [iwd]# station device_name scan
-    [iwd]# station device_name get-networks
-    [iwd]# station device_name connect SSID_name
-    Ctrl+D to exit [iwd]
-    ping archlinux.org
-    ```
+   ```bash
+   ip link
+   iwctl
+   [iwd]# device list
+   [iwd]# station device_name scan
+   [iwd]# station device_name get-networks
+   [iwd]# station device_name connect SSID_name
+   Ctrl+D to exit [iwd]
+   ping archlinux.org
+   ```
 
 5. Update system clock
 
-    ```bash
-    timedatectl set-ntp true
-    timedatectl status #to check
-    ```
+   ```bash
+   timedatectl set-ntp true
+   timedatectl status #to check
+   ```
 
 6. Partition the disks
 
-    ```bash
-    lsblk #to view Partitions
-    cgdisk /dev/sda #choose the largest Partition
-    ```
+   ```bash
+   lsblk #to view Partitions
+   cgdisk /dev/sda #choose the largest Partition
+   ```
 
    - Create new partitions:
 
      - Boot partition: first sector - default, 2nd sector - 512M, hex code - ef00 (recheck), name - boot
      - Swap partition: first sector - default, 2nd sector - 1Gb, hex code - 8200, name - swap
-        **NOTE:** increase swap: 20Gb if 16Gb of RAM, 35Gb if 32Gb of RAM.
+       **NOTE:** increase swap: 20Gb if 16Gb of RAM, 35Gb if 32Gb of RAM.
      - File system: first sector - default, 2nd sector - default, hex code - 8300, name - arch
+
    - Format partitions
 
-      ```bash
-      mkfs.fat -F 32 /dev/efi_system_partition (sda1)
-      mkswap /dev/swap_partition (sda2)
-      mkfs.ext4 /dev/root_partition (sda3)
-      ```
+     ```bash
+     mkfs.fat -F 32 /dev/efi_system_partition (sda1)
+     mkswap /dev/swap_partition (sda2)
+     mkfs.ext4 /dev/root_partition (sda3)
+     ```
 
    - Mount partitions
 
-      ```bash
-      mount /dev/root_partition /mnt (root_partition as sda3)
-      swapon /dev/swap_partition
-      mkdir -p /mnt/boot
-      mount /dev/sda1 /mnt/boot
-      ```
+     ```bash
+     mount /dev/root_partition /mnt (root_partition as sda3)
+     swapon /dev/swap_partition
+     mkdir -p /mnt/boot
+     mount /dev/sda1 /mnt/boot
+     ```
 
 7. Package Installation
 
-    ```bash
-    vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
-    vim /etc/pacman.conf # ParallelDownloads = 5
-    pacstrap /mnt base base-devel linux(-lts) linux-headers linux-firmware sof-firmware
-              iw iwd vi vim grub efibootmgr openssh git pacman-contrib
-    ```
+   ```bash
+   vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
+   vim /etc/pacman.conf # ParallelDownloads = 5
+   pacstrap /mnt base base-devel linux(-lts) linux-headers linux-firmware sof-firmware
+             iw iwd vi vim grub efibootmgr openssh git pacman-contrib
+   ```
 
 8. Configure the system
 
-    ```bash
-    genfstab -U /mnt >> /mnt/etc/fstab
-    arch-chroot /mnt # enter system, to exit: exit
+   ```bash
+   genfstab -U /mnt >> /mnt/etc/fstab
+   arch-chroot /mnt # enter system, to exit: exit
 
-    # Set time zone, region/city is Europe/Berlin, check with Tab
-    ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
-    hwclock --systohc
+   # Set time zone, region/city is Europe/Berlin, check with Tab
+   ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+   hwclock --systohc
 
-    vim /etc/locale.gen # en_US.UTF-8 UTF-8
-    locale-gen
-    vim /etc/locale.conf # LANG=en_US.UTF-8
-    vim /etc/hostname # hostname (duken - arch)
+   vim /etc/locale.gen # en_US.UTF-8 UTF-8
+   locale-gen
+   vim /etc/locale.conf # LANG=en_US.UTF-8
+   vim /etc/hostname # hostname (duken - arch)
 
-    mkinitcpio -P # (as long as the commands exit successfully)
-    passwd # set root password
-    ```
+   mkinitcpio -P # (as long as the commands exit successfully)
+   passwd # set root password
+   ```
 
 9. Create bootloader
 
-    ```bash
-    # pacman -Sy grub efibootmgr
-    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-    # Edit GRUB default time out
-    sudo vim /etc/default/grub
-    grub-mkconfig -o /boot/grub/grub.cfg
+   ```bash
+   # pacman -Sy grub efibootmgr
+   grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+   # Edit GRUB default time out
+   sudo vim /etc/default/grub
+   grub-mkconfig -o /boot/grub/grub.cfg
 
-    exit # Exit and reboot. Pull out the flash drive.
-    shutdown -r now
-    ```
+   exit # Exit and reboot. Pull out the flash drive.
+   shutdown -r now
+   ```
 
 10. Setup network connection:
 
@@ -136,6 +139,7 @@
       ```
 
     - Create config files, with names of devices from above:
+
       - Wired adapter: `/etc/systemd/network/20-wired.network`
 
         ```txt
@@ -213,18 +217,25 @@
     ```
 
 13. Post-installation: Setting up desktop environment\
-Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/eHdP4sT7-8U), [vid_3](https://youtu.be/FudOL0-B9Hs).
 
-    ```bash
-    systemctl enable lightdm
-    systemctl list-unit-files --state=enabled
-    reboot
-    ```
+    - Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/eHdP4sT7-8U), [vid_3](https://youtu.be/FudOL0-B9Hs).
 
-    Go to <https://archlinux.org/mirrorlist>, choose only `https`, not `http`, just `IPv4`, not `IPv6`, use mirror status.
-    Remember to uncomment the server names, then resynchronize.
+      ```bash
+      systemctl enable lightdm
+      systemctl list-unit-files --state=enabled
+      reboot
+      ```
 
--------
+    - Go to <https://archlinux.org/mirrorlist>, choose only `https`, not `http`, just `IPv4`, not `IPv6`, use mirror status.
+      Remember to uncomment the server names, then resynchronize.
+
+    - To provide domain name resolution for software that reads `/etc/resolv.conf`:
+
+      ```bash
+      ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+      ```
+
+---
 
 ## General Guide
 
@@ -233,7 +244,7 @@ Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/
 - [Tiling Window Managers](https://youtu.be/Obzf9ppODJU)
 - [Dual boot with Ubuntu](https://www.linuxandubuntu.com/home/dual-boot-ubuntu-and-arch-linux)
 
--------
+---
 
 ## Customization / Tinkering
 
@@ -265,7 +276,7 @@ Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/
 - Cleaning: trash-cli, rmlint
 - Bluetooth: blueberry, bluez-utils
 
--------
+---
 
 ### Setting up GPU for Deep Learning
 
@@ -275,7 +286,7 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 
   ```bash
   sudo pacman -S cuda cudnn nvidia-dkms nvidia-utils
-  sudo pacman -S 
+  sudo pacman -S
   sudo pacman -S python-tensorflow-opt-cuda
   sudo pacman -S python-pytorch-opt-cuda
   ```
@@ -292,7 +303,7 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
   torch.cuda.is_available()
   ```
 
--------
+---
 
 ### TROUBLE-SHOOTING
 
