@@ -29,11 +29,7 @@ if [ -x /usr/bin/eza ]; then
     alias tree2='eza -l --tree --icons --level=2'
     alias    cL='cl; eza'
     function cd {
-        if [[ -d "$@" ]]; then
-            builtin cd "$@" && eza --git --git-ignore
-        else
-            echo "Directory '$@' does not exist."
-        fi
+        builtin cd "$@" && eza --git --git-ignore
     }
 else
     alias    l='ls -C'
@@ -43,11 +39,7 @@ else
     alias ldir="ls -lhF --color | grep --color=never '^d'"
     alias   cL='cl; ls'
     function cd {
-        if [[ -d "$@" ]]; then
-            builtin cd "$@" && ls -CA
-        else
-            echo "Directory '$@' does not exist."
-        fi
+        builtin cd "$@" && ls -CA
     }
 fi
 
@@ -68,6 +60,7 @@ alias ip='ip -color=auto' # with colors
 alias dmesg='sudo dmesg -H --color=always' # with colors
 alias diff='diff --color=auto' # with colors
 alias zip='zip -er9' # encryption and recursive
+alias curl='curl --compressed'
 
 
 # -------------------------------------------------------- #
@@ -91,7 +84,6 @@ alias dow='c ~/Downloads'
 alias mus='c ~/Music'
 alias pic='c ~/Pictures'
 alias vid='c ~/Videos'
-alias deu='c ~/WS/deutsch-A2'
 alias etc='c /etc'
 alias var='c /var'
 alias tmp='c /tmp'
@@ -100,13 +92,13 @@ alias tmp='c /tmp'
 # -------------------------------------------------------- #
 # System
 # Memory
-alias   df='df -h'
-alias  duh='du -ahd 1'
-alias  mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
+alias df='df -h'
+alias duh='du -ahd 1'
+alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
-alias   cl='clear' # for terminator, just Ctrl+L
-alias   rb='sudo shutdown -r now'
-alias  sdn='sudo shutdown now'
+alias cl='clear' # for terminator, just Ctrl+L
+alias rb='sudo shutdown -r now'
+alias sdn='sudo shutdown now'
 
 # dotfiles and config
 alias      ag='alias | grep'
@@ -174,9 +166,10 @@ if [ $OS = 'arch' ]; then
 fi
 
 # DUAL BOOT with WINDOWS
-# WIN=/media/${USERNAME}/Windows
-# alias unmountw='sudo umount ${WIN}'
-# alias   mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}'
+if [ -d /media/${USERNAME}/Windows ]; then
+    alias unmountw='sudo umount ${WIN}'
+    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}'
+fi
 
 
 # -------------------------------------------------------- #
@@ -190,37 +183,48 @@ function o {
 alias of='o .'
 alias run='./run.sh'
 
+# TMUX
+function tmux_start_detach_session {
+    # $1 - session name
+    # $2 - command
+    tmux new -d -s "$1" "$2"
+}
+
 # Mount
-alias       usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
-alias   usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
+alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
+alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
 alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
 # Python
-alias    py='python3'
-alias   ipy='ipython3'
-alias   act='source venv/bin/activate'
+alias py='python3'
+alias ipy='ipython3'
+function act {
+    for DIR in venv .venv; do
+        if [ -d "$DIR" ]; then
+            source "$DIR/bin/activate"
+            break
+        fi
+    done
+}
 alias deact='deactivate'
 
 # Editors
-# Vim, Neovim
-if [ -x /usr/bin/nvim ]; then
-    alias v='nvim'
-    alias sv='sudo -E nvim'
-else
-    alias v='vim'
-    alias sv='sudo -E vim'
-fi
-# VSCode
-if [ -x /usr/bin/code ]; then
-    alias co='code'
-    alias coh='code . && exit'
-fi
+# The first existing editor will be chosen by priority:
+# Neovim, Vim, Vi, VSCode
+for editor in nvim vim vi code; do
+  if type $editor &> /dev/null; then
+    alias v='$editor'
+    alias sv='sudo -E $editor'
+    break
+  fi
+done
+
 # Jupyter-notebook
 function jn {
-    tmux new -d -s jupyter "jupyter-notebook '$1'"
+    tmux_start_detach_session jupyter "jupyter-notebook '$1'"
 }
 function jl {
-    tmux new -d -s jupyter "jupyter-lab '$1'"
+    tmux_start_detach_session jupyter "jupyter-lab '$1'"
 }
 
 # convert a file to pdf, at least work with pptx
@@ -311,34 +315,38 @@ alias nvidia-smi='clear; nvidia-smi'
 
 # -------------------------------------------------------- #
 # Workspaces
-# on GitHub
 alias    ws='c ~/WS'
-alias   cfd='c ~/WS/codingForDummies && gst'
-alias    cv='c ~/WS/Curriculum-Vitae-Latex'
-alias notes='c ~/WS/learningNotes'
-alias   nov='c ~/WS/learningNotes && v'
-alias   nol='c ~/WS/notesLatex'
-alias    nn='c ~/WS/neural-network-test && v'
-alias  ccom='c ~/WS/coding-competitions && v'
-alias   aoc='c ~/WS/Advent-of-Code/AoC-2023'
-alias    cs='c ~/WS/codingForDummies/cppFD/CS'
-alias   phd='c ~/WS/phd-rbo'
-alias   mdl='c ~/WS/phd-rbo/experiments/MDL-2020'
-alias   grl='c ~/WS/test/goalRL-test'
-alias    td='c ~/WS/TODO'
-alias   par='c ~/WS/parroplots && act'
-alias   frl='c ~/WS/flash-representation-learning && act'
-alias   rob='c ~/WS/rob-ws23'
+# on GitHub
+alias cfd='c ~/WS/codingForDummies && gst'
+alias  cv='c ~/WS/Curriculum-Vitae-Latex'
+alias not='c ~/WS/learningNotes'
+alias nov='c ~/WS/learningNotes && v'
+alias nol='c ~/WS/notesLatex'
+alias  nn='c ~/WS/neural-network-test && v'
+alias ccom='c ~/WS/coding-competitions && v'
+alias aoc='c ~/WS/Advent-of-Code/AoC-2023'
+alias phd='c ~/WS/phd-rbo'
+alias mlb='c ~/WS/phd-rbo/experiments/MDL-2020'
+alias grl='c ~/WS/test/goalRL-test'
+alias par='c ~/WS/parroplots && act'
+alias frl='c ~/WS/flash-representation-learning && act'
+# Others
+alias rob='c ~/WS/rob-ws23'
+alias  td='c ~/WS/TODO'
 # ROS
-if [[ "$SHELL" == "/usr/bin/zsh" ]]; then
-    alias ract='source devel/setup.zsh'
-elif [[ "$SHELL" == "/usr/bin/bash" ]]; then
-    alias ract='source devel/setup.bash'
-fi
-alias r2ws='cd ~/WS/ros2_ws     && ract && cd src'
-alias  rws='cd ~/WS/ros_ws      && ract && cd src'
-alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
-alias  dws='cd ~/WS/duc_ws      && ract && cd src'
+for shell in zsh bash fish; do
+    if [[ "$SHELL" == "/usr/bin/$shell" ]]; then
+        alias ract='source devel/setup.$shell'
+        break
+    fi
+done
+function cd_ros_ws {
+    cd "$1" && ract && cd src
+}
+alias r2ws='cd_ros_ws ~/WS/ros2_ws'
+alias  rws='cd_ros_ws ~/WS/ros_ws'
+alias  cws='cd_ros_ws ~/WS/catkin_ws'
+alias  dws='cd_ros_ws ~/WS/duc_ws'
 
 # TUB
 # Connect to TU VPN
@@ -349,7 +357,7 @@ function tuvpn {
         echo "Already in the lab network"
     else
         echo "NOT in the lab network, connect via VPN ..."
-        tmux new -d -s tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de"
+        tmux_start_detach_session tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de"
     fi
 }
 # Un-mount and remove directory
@@ -389,10 +397,10 @@ function mafs {
     fi
     cd ~/WS/afs
 }
-alias nas='mnas ""'
+alias  nas='mnas ""'
 alias nasd='mnas duc'
 alias nasp='mnas parrobots'
-alias afs='mafs RBO'
+alias  afs='mafs RBO'
 alias afsd='mafs Staff/Duc'
 alias afst='mafs RBO/Teaching/Courses/robotics'
 
@@ -415,13 +423,7 @@ alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
 # BORIS
 function boris {
-    session="boris"
-    tmux has-session -t $session 2>/dev/null
-    if [ $? != 0 ]; then
-        tmux new-session -d -s $session
-    fi
-    tmux send-keys -t $session "cd ~/WS/BORIS && act && python start_boris.py" C-m
-    tmux detach -s $session
+    tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"
 }
 
 # MOC - Music On Console
@@ -429,3 +431,4 @@ alias mocp='mocp -O shuffle=yes -O repeat=yes'
 
 # SAB Paper
 alias sab='c ~/WS/Nguyen-24-SAB && v *.tex'
+alias deu='c ~/WS/deutsch-A2'
