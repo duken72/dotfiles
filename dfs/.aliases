@@ -328,6 +328,7 @@ alias  cws='cd ~/WS/catkin_ws   && ract && cd src'
 alias  dws='cd ~/WS/duc_ws      && ract && cd src'
 
 # TUB
+# Connect to TU VPN
 function tuvpn {
     STR=$(networkctl status)
     IP_LAB="130.149.238"
@@ -338,43 +339,47 @@ function tuvpn {
         tmux new -d -s tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de"
     fi
 }
+# Un-mount and remove directory
 function tum {
-    for DIR in ~/WS/nas*; do
-        if mountpoint -q "$DIR"; then
-            sudo umount "$DIR"
+    for DIR in ~/WS/afs ~/WS/nas; do
+        if mountpoint -q $DIR; then
+            sudo umount $DIR
         fi
-    done
-
-    for DIR in ~/WS/afs*; do
-        if mountpoint -q "$DIR"; then
-            sudo umount "$DIR"
+        if [ -d $DIR ]; then
+            rmdir $DIR
         fi
     done
 }
+# Mount NAS directory
 function mnas {
-    cd ~/WS
+    if [ ! -d ~/WS/nas ]; then
+        mkdir -p ~/WS/nas
+    fi
     if mountpoint -q ~/WS/nas; then
         echo "Already mounted"
-        cd ~/WS/nas
     else
         tuvpn
-        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas && cd ~/WS/nas
+        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas
     fi
+    cd ~/WS/nas
 }
+# Mount AFS directory
 function mafs {
-    cd ~/WS
+    if [ ! -d ~/WS/afs ]; then
+        mkdir -p ~/WS/afs
+    fi
     if mountpoint -q ~/WS/afs; then
         echo "Already mounted"
-        cd ~/WS/afs
     else
         echo "Mounting directory ..."
-        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs && cd ~/WS/afs
+        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs
     fi
+    cd ~/WS/afs
 }
-alias  nas='mnas ""'
+alias nas='mnas ""'
 alias nasd='mnas duc'
 alias nasp='mnas parrobots'
-alias  afs='mafs RBO'
+alias afs='mafs RBO'
 alias afsd='mafs Staff/Duc'
 alias afst='mafs RBO/Teaching/Courses/robotics'
 
