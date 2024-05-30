@@ -29,7 +29,11 @@ if [ -x /usr/bin/eza ]; then
     alias tree2='eza -l --tree --icons --level=2'
     alias    cL='cl; eza'
     function cd {
-        builtin cd "$@" && eza --git --git-ignore
+        if [[ -d "$@" ]]; then
+            builtin cd "$@" && eza --git --git-ignore
+        else
+            echo "Directory '$@' does not exist."
+        fi
     }
 else
     alias    l='ls -C'
@@ -39,7 +43,11 @@ else
     alias ldir="ls -lhF --color | grep --color=never '^d'"
     alias   cL='cl; ls'
     function cd {
-        builtin cd "$@" && ls -CA
+        if [[ -d "$@" ]]; then
+            builtin cd "$@" && ls -CA
+        else
+            echo "Directory '$@' does not exist."
+        fi
     }
 fi
 
@@ -64,24 +72,28 @@ alias zip='zip -er9' # encryption and recursive
 
 # -------------------------------------------------------- #
 # CD GENERIC
-alias   c='cl; cd'
-alias  ..='cd ..'
+alias c='cl; cd'
+alias -- -='cd -'
+alias ..='cd ..'
 alias ...='cd ../..'
-alias  .2='cd ../..'
-alias  .3='cd ../../..'
-alias  .4='cd ../../../..'
-alias  .5='cd ../../../../..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 
-alias   dfs='c ~/dotfiles'
-alias   pkg='c ~/dotfiles/pkg'
-alias  docs='c ~/Documents'
-alias books='c ~/Documents/books'
-alias    pd='c ~/Documents/personal-docs'
-alias  down='c ~/Downloads'
-alias music='c ~/Music'
-alias  pics='c ~/Pictures'
-alias   img='c ~/Pictures'
-alias   vid='c ~/Videos'
+alias dfs='c ~/dotfiles'
+alias dot='c ~/dotfiles'
+alias pkg='c ~/dotfiles/pkg'
+alias doc='c ~/Documents'
+alias bok='c ~/Documents/books'
+alias pds='c ~/Documents/personal-docs'
+alias dow='c ~/Downloads'
+alias mus='c ~/Music'
+alias pic='c ~/Pictures'
+alias vid='c ~/Videos'
+alias etc='c /etc'
+alias var='c /var'
+alias tmp='c /tmp'
 
 
 # -------------------------------------------------------- #
