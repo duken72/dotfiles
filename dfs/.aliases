@@ -18,16 +18,17 @@ alias grepr='grep -R'
 # Replace ls with exa
 if [ -x /usr/bin/eza ]; then
     export EZA_COLORS="uu=1;31:da=1;35"
-    alias   eza='eza --git --git-ignore'
-    alias     l='eza'
-    alias    ls='eza'
-    alias    la='eza -a'
-    alias    ll='eza -l --icons'
-    alias   lla='eza -la --icons'
-    alias  ldir='eza -lD --icons'
-    alias tree1='eza -l --tree --icons --level=1'
-    alias tree2='eza -l --tree --icons --level=2'
-    alias    cL='cl; eza'
+    alias  eza='eza --git --git-ignore --icons'
+    alias    l='eza'
+    alias   ls='eza'
+    alias   la='eza -a'
+    alias   ll='eza -l'
+    alias  lla='eza -la'
+    alias ldir='eza -lD'
+    alias   lt='eza --tree'
+    alias  lt1='eza -l --tree --level=1'
+    alias  lt2='eza -l --tree --level=2'
+    alias   cL='cl; eza'
     function cd {
         builtin cd "$@" && eza --git --git-ignore
     }
@@ -37,6 +38,9 @@ else
     alias   ll='ls -lh'
     alias  lla='ls -Alh'
     alias ldir="ls -lhF --color | grep --color=never '^d'"
+    alias   lt='tree'
+    alias  lt1='tree -L 1'
+    alias  lt2='tree -L 2'
     alias   cL='cl; ls'
     function cd {
         builtin cd "$@" && ls -CA
@@ -61,7 +65,8 @@ alias dmesg='sudo dmesg -H --color=always' # with colors
 alias diff='diff --color=auto' # with colors
 alias zip='zip -er9' # encryption and recursive
 alias curl='curl --compressed'
-
+alias fd='fd --color always'
+alias find='fd'
 
 # -------------------------------------------------------- #
 # CD GENERIC
@@ -189,6 +194,13 @@ function tmux_start_detach_session {
     # $2 - command
     tmux new -d -s "$1" "$2"
 }
+# https://github.com/sebastienrousseau/dotfiles/blob/master/lib/aliases/tmux/tmux.aliases.sh
+alias tm='tmux'                     # Start tmux
+alias tmn="tmux new-session"        # Start a new tmux session
+alias tmns='tmux new-session -s'    # Start a new tmux session with name
+alias tml='tmux list-sessions'      # List tmux sessions
+alias tma="tmux attach-session -t"  # Attach to a tmux session with name
+alias tmk='tmux kill-session -t'    # Kill tmux session with name
 
 # Mount
 alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
