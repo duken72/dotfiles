@@ -1,7 +1,7 @@
 aic94xx-firmware 30-10
 ast-firmware 501-1
 aura-bin 3.2.9-1
-brave-bin 1:1.66.115-1
+brave-bin 1:1.66.118-1
 cli-visualizer 1.8-10
 moc-pulse 2.5.2-12
 moc-pulse-debug 2.5.2-12
@@ -14,10 +14,9 @@ slack-desktop 4.38.125-1
 slack-desktop-debug 4.37.101-1
 tty-clock-git 1:2.3.r40.f2f847c-2
 upd72020x-fw 1:1.0.0-2
-vale 3.4.2-1
 vale-debug 3.4.2-1
 wd719x-firmware 1-7
 xfce4-panel-profiles 1.0.14-2
-zoom 6.0.2-1
+zoom 6.0.12-1
 zotero 6.0.37-1
 zotero-debug 6.0.37-1
