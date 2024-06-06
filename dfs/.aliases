@@ -89,9 +89,11 @@ alias dow='c ~/Downloads'
 alias mus='c ~/Music'
 alias pic='c ~/Pictures'
 alias vid='c ~/Videos'
+alias dev='c /dev'
 alias etc='c /etc'
-alias var='c /var'
 alias tmp='c /tmp'
+alias usr='c /usr'
+alias var='c /var'
 
 
 # -------------------------------------------------------- #
