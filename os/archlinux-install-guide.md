@@ -11,9 +11,9 @@
 * [Installation](#installation)
 * [General Guide](#general-guide)
 * [Customization / Tinkering](#customization--tinkering)
-    * [Applications](#applications)
-    * [Setting up GPU for Deep Learning](#setting-up-gpu-for-deep-learning)
-    * [TROUBLE-SHOOTING](#trouble-shooting)
+  * [Applications](#applications)
+  * [Setting up GPU for Deep Learning](#setting-up-gpu-for-deep-learning)
+  * [TROUBLE-SHOOTING](#trouble-shooting)
 
 <!-- vim-markdown-toc -->
 
@@ -24,6 +24,12 @@
 - Example videos: [1](https://youtu.be/HpskN_jKyhc), [2](https://youtu.be/cM2UDz8BepU), [3](https://youtu.be/DPLnBPM4DhI)
 - **NOTE:** If you intend to use multiple distro, consider having a separate `/home` partition
 
+0. Set font
+
+   ```bash
+   setfont /usr/share/kbd/consolefonts/ter-c20b...
+   ```
+
 1. Get the lastest iso to USB thumb drive as a boot device
 2. Could skip iso image verification, setting console keyboard layout
 3. Verify boot mode:
@@ -32,7 +38,8 @@
    ls /sys/firmware/efi/efivars
    ```
 
-   Command exit with no error, file exists.
+   - Command exit with no error, file exists.
+   - Otherwise, you are using BIOS boot mode
 
 4. Setup network connection
 
@@ -57,17 +64,16 @@
 6. Partition the disks
 
    ```bash
-   lsblk #to view Partitions
-   cgdisk /dev/sda #choose the largest Partition
+   lsblk              # to view Partitions
+   cgdisk /dev/sda    # choose the largest Partition
+   gdisk -l /dev/sda  # check if it's GPT or MBR
    ```
 
    - Create new partitions:
-
-     - Boot partition: first sector - default, 2nd sector - 512M, hex code - ef00 (recheck), name - boot
+     - Boot partition (only for UEFI boot mode, not BIOS): first sector - default, 2nd sector - 512M, hex code - ef00 (recheck), name - boot
      - Swap partition: first sector - default, 2nd sector - 1Gb, hex code - 8200, name - swap
        **NOTE:** increase swap: 20Gb if 16Gb of RAM, 35Gb if 32Gb of RAM.
      - File system: first sector - default, 2nd sector - default, hex code - 8300, name - arch
-
    - Format partitions
 
      ```bash
@@ -115,16 +121,21 @@
 
 9. Create bootloader
 
-   ```bash
-   # pacman -Sy grub efibootmgr
-   grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-   # Edit GRUB default time out
-   sudo vim /etc/default/grub
-   grub-mkconfig -o /boot/grub/grub.cfg
+- For BIOS, please refer to these tutorials:
 
-   exit # Exit and reboot. Pull out the flash drive.
-   shutdown -r now
-   ```
+  - GPT: [Rouchage](https://youtu.be/2YshYiYsvKA?si=PSiv8AeWSEZjEhwq)
+  - MBR: [DWIX](https://youtu.be/7FD3gh8mLME?si=HWI_2UroJBEKcAyw)
+
+  ```bash
+  # pacman -Sy grub efibootmgr
+  grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+  # Edit GRUB default time out
+  sudo vim /etc/default/grub
+  grub-mkconfig -o /boot/grub/grub.cfg
+
+  exit # Exit and reboot. Pull out the flash drive.
+  shutdown -r now
+  ```
 
 10. Setup network connection:
 

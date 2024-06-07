@@ -4,11 +4,11 @@ sudo pacman -Syu
 sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs \
 	lightdm lightdm-gtk-greeter \
 	xfce4 xfce4-screensaver xfce4-screenshooter xfce4-notifyd xfce4-whiskermenu-plugin \
-	zsh fd htop terminator fzf man-pages neofetch \
+	zsh fd bashtop terminator fzf man-pages neofetch \
 	rofi polybar sxhkd udisks2 ntfs-3g zip unzip \
 	pulseaudio pavucontrol alsa-utils \
 	ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
-	zathura zathura-pdf-mupdf \
+	zathura zathura-pdf-mupdf okular \
 	npm neovim accountsservice
 
 awk '{print $1}' ~/dotfiles/pkg/pkg_pacman.txt >/tmp/t.txt
