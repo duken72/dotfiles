@@ -30,7 +30,7 @@ if [ -x /usr/bin/eza ]; then
     alias  lt2='eza -l --tree --level=2'
     alias   cL='cl; eza'
     function cd {
-        builtin cd "$@" && eza --git --git-ignore
+        builtin cd "$@" && eza --git --git-ignore --icons
     }
 else
     alias    l='ls -C'
@@ -248,7 +248,7 @@ alias pdfConvert='soffice --headless --convert-to pdf'
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 # Others
-alias ra='ranger'
+alias ra='ranger && clear && ls'
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
 # Utilities
