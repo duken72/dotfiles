@@ -320,7 +320,7 @@ alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --vol
 
 # Steam
 function steamid {
-    find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
+    /usr/bin/find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
     echo "prime-run steam steam://rungameid/[steamid]"
 }
 
