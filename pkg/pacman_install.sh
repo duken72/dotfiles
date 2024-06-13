@@ -9,7 +9,7 @@ sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs \
 	pulseaudio pavucontrol alsa-utils \
 	ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg \
 	zathura zathura-pdf-mupdf okular \
-	npm neovim accountsservice
+	npm neovim accountsservice redshift
 
 awk '{print $1}' ~/dotfiles/pkg/pkg_pacman.txt >/tmp/t.txt
 sudo pacman -S --needed - </tmp/t.txt # when install pkg group, use ^x to exclude x
@@ -21,12 +21,10 @@ git clone https://aur.archlinux.org/aura-bin.git
 cd aura-bin && makepkg
 ls | grep zst | sudo pacman -U -
 sudo aura -Akax brave-bin cli-visualizer pulseaudio-ctl siji-git \
-	tty-clock-git xfce4-panel-profiles #tllocalmgr-git
+	tty-clock-git xfce4-panel-profiles
 
 # Latex
-# cd ~/dotfiles/pkg
-# sudo pacman -S $(gawk -F'-' '$2 != "local" {print}' pkg_latex.txt)
-# tllocalmgr --noconfirm install $(gawk '/local/ {gsub("texlive-local-",""); print}' pkg_latex.txt)
-# texhash
+sudo pacman -S --needed - <~/dotfiles/pkg/pkg_latex.txt
 
+# LIBALPM hooks
 sudo cp ~/dotfiles/dfs/hook/*.hook /usr/share/libalpm/hooks

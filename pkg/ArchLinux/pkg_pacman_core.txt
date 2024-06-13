@@ -45,6 +45,7 @@ ncdu
 neofetch
 neovim
 nfs-utils
+noto-fonts-emoji
 npm
 numlockx
 nvidia-dkms
