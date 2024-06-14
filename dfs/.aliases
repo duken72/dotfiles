@@ -189,6 +189,7 @@ function o {
 }
 alias of='o .'
 alias run='./run.sh'
+alias bt='bashtop'
 
 # TMUX
 function tmux_start_detach_session {
