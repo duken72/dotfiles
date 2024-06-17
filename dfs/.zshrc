@@ -146,3 +146,6 @@ fi
 ## python startup script
 export PYTHONSTARTUP=~/.pythonrc
 
+# Vale
+export VALE_CONFIG_PATH=~/dotfiles/config/vale/.vale.ini
+export VALE_STYLES_PATH=~/dotfiles/config/vale/styles
