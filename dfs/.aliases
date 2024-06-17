@@ -255,7 +255,7 @@ alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 # Utilities
 # alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
 alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
-alias weather='curl wttr.in Berlin'
+alias weather='curl wttr.in'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
 function diet {
