@@ -7,8 +7,8 @@
 [submodule "dfs/.zsh/zsh-completions"]
 	path = dfs/.zsh/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "dfs/powerlevel10k"]
-	path = dfs/powerlevel10k
+[submodule "dfs/.powerlevel10k"]
+	path = dfs/.powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "dfs/fzf-tab"]
 	path = dfs/fzf-tab
