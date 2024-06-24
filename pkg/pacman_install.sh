@@ -11,7 +11,7 @@ sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs \
 	zathura zathura-pdf-mupdf okular \
 	npm neovim accountsservice redshift
 
-awk '{print $1}' ~/dotfiles/pkg/pkg_pacman.txt >/tmp/t.txt
+awk '{print $1}' ~/.dotfiles/pkg/pkg_pacman.txt >/tmp/t.txt
 sudo pacman -S --needed - </tmp/t.txt # when install pkg group, use ^x to exclude x
 rm -f /tmp/t.txt
 
@@ -24,7 +24,7 @@ sudo aura -Akax brave-bin cli-visualizer pulseaudio-ctl siji-git \
 	tty-clock-git xfce4-panel-profiles
 
 # Latex
-sudo pacman -S --needed - <~/dotfiles/pkg/pkg_latex.txt
+sudo pacman -S --needed - <~/.dotfiles/pkg/pkg_latex.txt
 
 # LIBALPM hooks
-sudo cp ~/dotfiles/dfs/hook/*.hook /usr/share/libalpm/hooks
+sudo cp ~/.dotfiles/dfs/hook/*.hook /usr/share/libalpm/hooks
