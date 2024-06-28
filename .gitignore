@@ -6,3 +6,5 @@ config/.moc/playlist.m3u
 config/.moc/pid
 slack.desktop
 skypeforlinux.desktop
+*.protonvpn.udp.ovpn
+openvpn_pass*
