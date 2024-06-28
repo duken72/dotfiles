@@ -111,10 +111,10 @@ source ~/.zkbd/keybindings
 # etc.
 
 # fuzzy finder
-source ~/dotfiles/dfs/fzf/completion.zsh
-source ~/dotfiles/dfs/fzf/key-bindings.zsh
+source ~/.dotfiles/dfs/fzf/completion.zsh
+source ~/.dotfiles/dfs/fzf/key-bindings.zsh
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/dotfiles/dfs/fzf-tab/fzf-tab.plugin.zsh
+source ~/.dotfiles/dfs/fzf-tab/fzf-tab.plugin.zsh
 
 # ROS - Robotic Operating System
 if [ -d /opt/ros ]; then
@@ -147,5 +147,5 @@ fi
 export PYTHONSTARTUP=~/.pythonrc
 
 # Vale
-export VALE_CONFIG_PATH=~/dotfiles/config/vale/.vale.ini
-export VALE_STYLES_PATH=~/dotfiles/config/vale/styles
+export VALE_CONFIG_PATH=~/.dotfiles/config/vale/.vale.ini
+export VALE_STYLES_PATH=~/.dotfiles/config/vale/styles
