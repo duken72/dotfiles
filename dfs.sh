@@ -31,8 +31,8 @@ function check_path_dotfiles() {
 }
 
 function check_path_binaries() {
-	if [ ! -d ~/dotfiles/bin ]; then
-		echo -e "${RED}path doesn't exist: $HOME/dotfiles/dfs${NC}"
+	if [ ! -d ~/.dotfiles/bin ]; then
+		echo -e "${RED}path doesn't exist: $HOME/.dotfiles/dfs${NC}"
 		echo "please run: 'cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles'"
 		exit
 	fi
@@ -48,7 +48,7 @@ function install_dotfiles() {
 	check_path_dotfiles
 	echo "install dotfiles at HOME = $HOME"
 	for DOTFILE in "${DOTFILES[@]}"; do
-		ln -svbf --suffix='.bak' ~/.dotfiles/dfs/$DOTFILE -t ~/
+		ln -svf ~/.dotfiles/dfs/$DOTFILE -t ~/
 	done
 	chsh -s $(which zsh)
 	echo "dotfiles are installed. Enjoy :)"
@@ -72,7 +72,7 @@ function install_binaries() {
 	echo "install binaries at /usr/local/bin"
 	for BINARY in bin/*; do
 		BINARY=${BINARY#"bin/"}
-		sudo ln -svbf --suffix='.bak' ~/.dotfiles/bin/$BINARY -t /usr/local/bin
+		sudo ln -svf ~/.dotfiles/bin/$BINARY -t /usr/local/bin
 	done
 	echo "binaries are installed. Enjoy :)"
 	exit
