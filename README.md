@@ -4,7 +4,7 @@
 
 My personal `dotfiles` and `configs`.
 
-## Table of Contents
+## Table of contents
 
 <!-- vim-markdown-toc GFM -->
 
@@ -39,16 +39,16 @@ Some worth-mentioned names:
 - Shell: `zsh` with `zsh-autosuggestions`, `zsh-completions`, `powerlevel10k`
 - Panel: `polybar`
 - App launcher: `rofi`
-- Desktop system monitor: `conky`
+- Desktop system monitoring: `conky`
 - Browser: `brave`
-- `exa` (replacement for `ls`), also `ranger`
+- `eza`, as replacement for `ls`, also `ranger`
 - Media player: `moc`, `mpd`, `mpv`
-- `fd`, `fzf` (replace find)
-- `bat` (replace `less` and `cat`)
-- `sd` (replace `sed`)
-- `ripgrep` (replace `grep`)
+- `fd`, `fzf` replace `find`
+- `bat`, replace `less` and `cat`
+- `sd`, replace `sed`
+- `ripgrep`, replace `grep`
 - `redshift`
-- Others: `cli-visualizer` (audio visualizer), `tty-clock-git`, `neofetch`, `lightdm-webkit-theme-osmos`, etc.
+- Others: `cli-visualizer` for audio visualizer, `tty-clock-git`, `neofetch`, `lightdm-webkit-theme-osmos`, etc.
 
 ### Install packages and dependencies
 
@@ -105,4 +105,4 @@ Uninstall with:
 
 ## License
 
-See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
+See the [MIT LICENSE](LICENSE.md) file for license rights and limitations.

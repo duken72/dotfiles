@@ -4,10 +4,9 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-        *) return;;
+*i*) ;;
+*) return ;;
 esac
-
 
 # HISTORY RECORDING
 # See bash(1) for more options
@@ -46,7 +45,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -74,28 +73,24 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+xterm* | rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
-*)
-    ;;
+*) ;;
 esac
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export RCUTILS_COLORIZED_OUTPUT=1
 
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 
 # ALIAS DEFINITIONS
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.aliases ] && source ~/.aliases
 # [ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc
-
 
 # Auto-completions / suggestions
 # enable programmable completion features (you don't need to enable
@@ -120,10 +115,9 @@ if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
 fi
 
 # Fuzzy finder FZF key-bindings and completion
-source ~/dotfiles/dfs/fzf/completion.bash
-source ~/dotfiles/dfs/fzf/key-bindings.bash
+source ~/.dotfiles/dfs/fzf/completion.bash
+source ~/.dotfiles/dfs/fzf/key-bindings.bash
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 
 # Default text editor
 if [ -x /usr/bin/nvim ]; then
@@ -163,7 +157,6 @@ if [ -d /opt/ros ]; then
         source ~/WS/catkin_ws/devel/setup.bash
     fi
 fi
-
 
 # Mujoco
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/duken72/.mujoco/mujoco210/bin:/usr/lib/nvidia

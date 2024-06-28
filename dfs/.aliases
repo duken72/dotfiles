@@ -79,9 +79,9 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-alias dfs='c ~/dotfiles'
-alias dot='c ~/dotfiles'
-alias pkg='c ~/dotfiles/pkg'
+alias dfs='c ~/.dotfiles'
+alias dot='c ~/.dotfiles'
+alias pkg='c ~/.dotfiles/pkg'
 alias doc='c ~/Documents'
 alias bok='c ~/Documents/books'
 alias pds='c ~/Documents/personal-docs'
@@ -115,14 +115,14 @@ alias  ezshrc='v ~/.zshrc   && . ~/.zshrc'
 alias  talias='. ~/.aliases'
 alias tbashrc='. ~/.bashrc'
 alias  tzshrc='. ~/.zshrc'
-alias      cf='c ~/dotfiles/config'
+alias      cf='c ~/.dotfiles/config'
 alias     cfg='c ~/.config'
 alias polybar='polybar --reload duck-mainbar'
 # syncing with git
 alias dst='dfs && git status'
 alias dpl='dfs && git pull origin'
 function dps {    # dotfiles push
-    cd ~/dotfiles
+    cd ~/.dotfiles
     gaps "$1"
 }
 
