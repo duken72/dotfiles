@@ -1,10 +1,6 @@
-<!-- omit in toc -->
+# ArchLinux
 
-# Arch Linux
-
-<!-- omit in toc -->
-
-## Table of Contents
+## Table of contents
 
 <!-- vim-markdown-toc GFM -->
 
@@ -19,10 +15,10 @@
 
 ## Installation
 
-- [To remove Windows completely](https://www.daangeurts.nl/blog/removing-windows-and-installing-arch-linux/)
+- [To cleanly remove Windows](https://www.daangeurts.nl/blog/removing-windows-and-installing-arch-linux/)
 - Check [Arch Linux wiki installation guide](https://wiki.archlinux.org/title/Installation_guide).
 - Example videos: [1](https://youtu.be/HpskN_jKyhc), [2](https://youtu.be/cM2UDz8BepU), [3](https://youtu.be/DPLnBPM4DhI)
-- **NOTE:** If you intend to use multiple distro, consider having a separate `/home` partition
+- **NOTE:** If you intend to use multiple `distro`s, consider having a separate `/home` partition
 
 0. Set font
 
