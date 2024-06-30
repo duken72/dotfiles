@@ -1,0 +1,11 @@
+gimp
+git
+noto-fonts-emoji
+npm
+openssh
+tmux
+ueberzug
+vlc
+yt-dlp
+zathura
+zathura-pdf-mupdf
