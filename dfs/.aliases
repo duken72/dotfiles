@@ -18,7 +18,7 @@ alias grepr='grep -R'
 # Replace ls with exa
 if [ -x /usr/bin/eza ]; then
     export EZA_COLORS="uu=1;31:da=1;35"
-    alias  eza='eza --git --git-ignore --icons'
+    alias  eza='eza --git --git-ignore --icons=always'
     alias    l='eza'
     alias   ls='eza'
     alias   la='eza -a'

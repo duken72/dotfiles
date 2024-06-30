@@ -1,8 +1,10 @@
-# `apt` Packages for Ubuntu 20.04
+# Packages for `Ubuntu 20.04`
 
-- `fzf` has to be installed from source
-- `git-delta-musl_0.15.1_amd64.deb` to avoid [issue with `glibc`](https://github.com/dandavison/delta/issues/1250)
-- `neovim` also install using `AppImage`, with `npm` and `python3.8-venv`
+`apt` packages:
+
+- install `fzf` from source
+- use `git-delta-musl_0.15.1_amd64.deb` to avoid [issue with `glibc`](https://github.com/dandavison/delta/issues/1250)
+- install `neovim` using `AppImage`, with `npm` and `python3.8-venv`
 
 ```txt
 tmux

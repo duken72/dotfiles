@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# xargs sudo apt -y install < packages.txt
 sudo apt install -y vim git tree tmux fd-find zsh \
 	neofetch htop ranger terminator ncdu \
 	slack curl
