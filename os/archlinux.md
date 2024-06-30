@@ -5,7 +5,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Installation](#installation)
-* [General Guide](#general-guide)
+* [General guide](#general-guide)
 * [Customization / Tinkering](#customization--tinkering)
   * [Applications](#applications)
   * [Setting up GPU for Deep Learning](#setting-up-gpu-for-deep-learning)
@@ -26,8 +26,8 @@
    setfont /usr/share/kbd/consolefonts/ter-c20b...
    ```
 
-1. Get the lastest iso to USB thumb drive as a boot device
-2. Could skip iso image verification, setting console keyboard layout
+1. Get the latest `iso` to USB thumb drive as a boot device
+2. Could skip `iso` image verification, setting console keyboard layout
 3. Verify boot mode:
 
    ```bash
@@ -35,7 +35,7 @@
    ```
 
    - Command exit with no error, file exists.
-   - Otherwise, you are using BIOS boot mode
+   - Otherwise, you are using `BIOS` boot mode
 
 4. Setup network connection
 
@@ -66,10 +66,10 @@
    ```
 
    - Create new partitions:
-     - Boot partition (only for UEFI boot mode, not BIOS): first sector - default, 2nd sector - 512M, hex code - ef00 (recheck), name - boot
-     - Swap partition: first sector - default, 2nd sector - 1Gb, hex code - 8200, name - swap
+     - Boot partition (only for `UEFI` boot mode, not `BIOS`): first sector - default, second sector - 512M, hex code - ef00 (recheck), name - boot
+     - Swap partition: first sector - default, second sector - 1Gb, hex code - 8200, name - swap
        **NOTE:** increase swap: 20Gb if 16Gb of RAM, 35Gb if 32Gb of RAM.
-     - File system: first sector - default, 2nd sector - default, hex code - 8300, name - arch
+     - File system: first sector - default, second sector - default, hex code - 8300, name - arch
    - Format partitions
 
      ```bash
@@ -115,12 +115,12 @@
    passwd # set root password
    ```
 
-9. Create bootloader
+9. Create `bootloader`
 
-- For BIOS, please refer to these tutorials:
+- For `BIOS`, please refer to these tutorials:
 
-  - GPT: [Rouchage](https://youtu.be/2YshYiYsvKA?si=PSiv8AeWSEZjEhwq)
-  - MBR: [DWIX](https://youtu.be/7FD3gh8mLME?si=HWI_2UroJBEKcAyw)
+  - `GPT`: [Rouchage](https://youtu.be/2YshYiYsvKA?si=PSiv8AeWSEZjEhwq)
+  - `MBR`: [DWIX](https://youtu.be/7FD3gh8mLME?si=HWI_2UroJBEKcAyw)
 
   ```bash
   # pacman -Sy grub efibootmgr
@@ -145,7 +145,7 @@
       iwctl
       ```
 
-    - Create config files, with names of devices from above:
+    - Create `config` files, with names of devices from the above:
 
       - Wired adapter: `/etc/systemd/network/20-wired.network`
 
@@ -191,7 +191,7 @@
     ```
 
 12. Drivers and packages installation:
-    Clone the dotfiles and run the script:
+    Clone the `dotfiles` and run the script:
 
     ```bash
     vim /etc/pacman.conf # ParallelDownloads = 5, Include multilib
@@ -244,7 +244,7 @@
 
 ---
 
-## General Guide
+## General guide
 
 - [PACMAN](https://youtu.be/HD7jJEh4ZaM)
 - [AUR Helper - AURA](https://youtu.be/xPRJWHghWM8)
@@ -261,7 +261,7 @@
 - Mouse cursor: [Night Diamond theme](https://www.gnome-look.org/p/1295073/) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
 - [Polybar](https://github.com/polybar/polybar): check Polybar wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
 - Ranger: [image preview with ueberzug](https://github-wiki-see.page/m/ranger/ranger/wiki/Image-Previews), [video thumbnail with ffmpeg](https://www.reddit.com/r/NixOS/comments/74wftw/video_previews_wranger/), [docx2txt](http://docx2txt.sourceforge.net/)
-- Zsh with terminator and [Powerlevel10k](https://dev.to/web3coach/best-terminal-setup-terminator-zsh-powerlevel10k-7pl)
+- ZSH with terminator and [Powerlevel10k](https://dev.to/web3coach/best-terminal-setup-terminator-zsh-powerlevel10k-7pl)
 - [Move between monitors](https://github.com/calandoa/movescreen)
 - [Redshift](https://wiki.archlinux.org/title/redshift) and [Backlight](https://wiki.archlinux.org/title/backlight)
 - Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl) (get the key code with `showkey`, then setup keyboard shortcut to a `pulseaudio-ctl` command)
@@ -289,13 +289,11 @@
 
 Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-cuda-tensorflow-and-keras-on-arch-linux-with-dual-gpu-nvidia-gpu-82963d2ecb75)
 
-- You don't need to install and use `bumblebee`, `optimus-manager` or `prime` to use the GPU (either Intel or NVIDIA) for DL with `pytorch`/`tensorflow`
+- You don't need to install and use `bumblebee`, `optimus-manager` or `prime` to use the GPU, from either Intel or NVIDIA, for DL with `pytorch`/`tensorflow`
 
   ```bash
-  sudo pacman -S cuda cudnn nvidia-dkms nvidia-utils
-  sudo pacman -S
-  sudo pacman -S python-tensorflow-opt-cuda
-  sudo pacman -S python-pytorch-opt-cuda
+  sudo pacman -S cuda cudnn nvidia-dkms nvidia-utils \
+      python-tensorflow-opt-cuda python-pytorch-opt-cuda
   ```
 
 - Check in Python:
