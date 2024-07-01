@@ -50,7 +50,9 @@ function install_dotfiles() {
 	for DOTFILE in "${DOTFILES[@]}"; do
 		ln -svf ~/.dotfiles/dfs/$DOTFILE -t ~/
 	done
-	chsh -s $(which zsh)
+	if [[ ! $SHELL == *"zsh" ]]; then
+		chsh -s $(which zsh)
+	fi
 	echo "dotfiles are installed. Enjoy :)"
 	exit
 }
