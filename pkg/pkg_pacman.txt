@@ -36,6 +36,7 @@ libreoffice-fresh
 linux-firmware-qlogic
 luarocks
 man-pages
+mesa-utils
 mpd
 mpv
 ncdu
@@ -75,3 +76,4 @@ vale
 virtualbox
 wget
 wmctrl
+xf86-video-intel
