@@ -5,7 +5,6 @@ base-devel
 bashtop
 bat
 bind
-bluez-utils
 deluge-gtk
 discord
 docker

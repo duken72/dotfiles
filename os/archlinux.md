@@ -70,6 +70,7 @@
      - Boot partition, only for `UEFI` boot mode, not `BIOS`: first sector - `default`, second sector - `1G`, hex code - `ef00`, name - `boot`
      - Swap partition: first sector - `default`, second sector - `20G`, hex code - `8200`, name - `swap`.
        - **Note:** 20Gb swap for 16Gb of RAM, 35Gb swap for 32Gb of RAM.
+       - Check RAM size with: `free -ght`
      - File system: first sector - `default`, second sector - `default`, hex code - `8300`, name - `root`
    - Format partitions
 
@@ -82,9 +83,9 @@
    - Mount partitions
 
      ```bash
-     mkdir -p /mnt/boot
      mount /dev/root_partition /mnt
      swapon /dev/swap_partition
+     mkdir -p /mnt/boot
      mount /dev/boot_partition /mnt/boot
      ```
 
@@ -110,8 +111,7 @@
    vim /etc/locale.gen # en_US.UTF-8 UTF-8
    locale-gen
    echo "LANG=en_US.UTF-8" > /etc/locale.conf
-   # vim /etc/locale.conf # LANG=en_US.UTF-8
-   vim /etc/hostname # hostname (computer name)
+   echo "computer_name" > /etc/hostname
 
    mkinitcpio -P # (as long as the commands exit successfully)
    passwd # set root password
@@ -201,8 +201,8 @@
     vim /etc/pacman.conf # ParallelDownloads = 14, Include multilib
     # lspci -v | grep -A1 -e VGA -e 3D
     sudo pacman -S xf86-video-intel nvidia(-dkms) nvidia-utils # choose suitable graphic drivers
-    cd ~ && git clone https://github.com/duken72/dotfiles.git
-    cd ~/dotfiles/pkg && ./pacman_install.sh
+    cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles/pkg && ./pacman_install.sh
     ```
 
 13. Post-installation: Setting up desktop environment\
