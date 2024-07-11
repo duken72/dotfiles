@@ -1,29 +1,39 @@
 #!/bin/bash
 
 # LIBALPM hooks
+echo "Setting up LIBALPM hooks..."
 sudo ln -svf ~/.dotfiles/dfs/hook/*.hook -t /usr/share/libalpm/hooks
+echo ""
 
 # AURA - AUR helper
-cd && mkdir -p WS && cd WS
-git clone https://aur.archlinux.org/aura-bin.git
-cd aura-bin && makepkg
-ls | grep zst | sudo pacman -U -
-rm -rf ~/WS/aura-bin
+echo "Installing AURA..."
+if ! type aura >/dev/null; then
+	mkdir -p ~/WS && cd ~/WS && git clone https://aur.archlinux.org/aura-bin.git
+	cd ~/WS/aura-bin && makepkg && ls | grep zst | sudo pacman -U - && rm -rf ~/WS/aura-bin
+else
+	echo "aura already installed."
+fi
+echo ""
 
 # Install packages
 # when install pkg group, use ^x to exclude x
+echo "Installing pacman packages..."
 sudo pacman -Syu
-for file in pkg_pacman pkg_pacman_sub pkg_pacman_python pkg_latex; do
-	sudo pacman -S --needed - <"$file.txt"
+sudo pacman -S --needed zsh picom lightdm lightdm-gtk-greeter
+for file in pkg_group pkg_pacman pkg_pacman_sub pkg_pacman_python pkg_latex; do
+	sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
 done
+echo ""
 
-sudo pacman -S --needed xorg xorg-xinit picom xdg-user-dirs lightdm-gtk-greeter \
-	xfce4 xfce4-screensaver xfce4-screenshooter xfce4-notifyd xfce4-whiskermenu-plugin \
-	zsh udisks2 ntfs-3g zip unzip \
-	pulseaudio \
-	ranger ueberzug ffmpegthumbnailer docx2txt ffmpeg atool \
-	zathura zathura-pdf-mupdf \
-	npm accountsservice redshift
+echo "Installing AUR packages..."
+sudo aura -Akax --needed aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware \
+	brave-bin cli-visualizer pulseaudio-ctl \
+	moc-pulse tty-clock-git xfce4-panel-profiles \
+	skypeforlinux-bin slack-desktop zoom
+echo ""
 
-sudo aura -Akax brave-bin cli-visualizer pulseaudio-ctl siji-git \
-	tty-clock-git xfce4-panel-profiles
+echo "Removing orphans..."
+pacman -Qtdq | sudo pacman -Rns -
+echo ""
+
+echo "Installation completed."
