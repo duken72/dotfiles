@@ -13,3 +13,4 @@ upd72020x-fw
 wd719x-firmware
 xfce4-panel-profiles
 zoom
+zotero
