@@ -28,6 +28,7 @@ ibus-unikey
 ifuse
 inetutils
 inkscape
+intel-ucode
 iw
 iwd
 jupyter-notebook
@@ -43,6 +44,7 @@ ncdu
 neofetch
 neovim
 nfs-utils
+noto-fonts-emoji
 numlockx
 nvidia-dkms
 nvidia-prime

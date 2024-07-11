@@ -2,9 +2,12 @@ gimp
 git
 noto-fonts-emoji
 npm
+ntfs-3g
 openssh
 tmux
 ueberzug
+ffmpegthumbnailer
+atool
 vlc
 yt-dlp
 zathura
