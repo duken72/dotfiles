@@ -1,3 +1,4 @@
+pulseaudio
 gimp
 git
 noto-fonts-emoji

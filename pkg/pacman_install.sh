@@ -19,17 +19,18 @@ echo ""
 # when install pkg group, use ^x to exclude x
 echo "Installing pacman packages..."
 sudo pacman -Syu
-sudo pacman -S --needed zsh picom lightdm lightdm-gtk-greeter
+sudo pacman -S --needed zsh lightdm lightdm-gtk-greeter
 for file in pkg_group pkg_pacman pkg_pacman_sub pkg_pacman_python pkg_latex; do
 	sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
 done
 echo ""
 
 echo "Installing AUR packages..."
-sudo aura -Akax --needed aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware \
-	brave-bin cli-visualizer pulseaudio-ctl \
-	moc-pulse tty-clock-git xfce4-panel-profiles \
-	skypeforlinux-bin slack-desktop zoom
+sudo aura -Akax --needed aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware
+sudo aura -Akax --needed brave-bin pulseaudio-ctl
+sudo aura -Akax --needed skypeforlinux-bin slack-desktop zoom
+sudo aura -Akax --needed moc-pulse tty-clock-git cli-visualizer
+# xfce4-panel-profiles zotero
 echo ""
 
 echo "Removing orphans..."

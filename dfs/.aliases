@@ -447,4 +447,4 @@ alias mocp='mocp -O shuffle=yes -O repeat=yes'
 
 # SAB Paper
 alias sab='c ~/WS/Nguyen-24-SAB && v *.tex'
-alias deu='c ~/WS/deutsch-A2'
+alias deu='c ~/WS/notes-deu'
