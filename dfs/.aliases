@@ -163,7 +163,7 @@ if [ $OS = 'arch' ]; then
     alias    auraa='sudo aura -Akax --needed'
     alias    aurar='sudo aura -R'
     alias   auraas='aura -As'
-    alias   auraau='sudo aura -Aukax --needed'
+    alias   auraau='sudo aura -Aukax'
 
     # System cleaning
     alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
