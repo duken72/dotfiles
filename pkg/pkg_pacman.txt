@@ -13,7 +13,6 @@ easytag
 eog
 eza
 fd
-firewalld
 font-manager
 fzf
 git-delta
@@ -28,8 +27,6 @@ ifuse
 inetutils
 inkscape
 intel-ucode
-iw
-iwd
 jupyter-notebook
 libratbag
 libreoffice-fresh
@@ -42,6 +39,7 @@ mpv
 ncdu
 neofetch
 neovim
+network-manager-applet
 nfs-utils
 noto-fonts-emoji
 numlockx
