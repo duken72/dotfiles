@@ -75,4 +75,3 @@ vale
 virtualbox
 wget
 wmctrl
-xf86-video-intel
