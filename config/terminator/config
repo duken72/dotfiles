@@ -1,7 +1,6 @@
 [global_config]
   borderless = True
   inactive_color_offset = 0.72
-  suppress_multiple_term_dialog = True
 [keybindings]
 [profiles]
   [[default]]
@@ -21,10 +20,10 @@
       type = Window
       parent = ""
       order = 0
-      position = 502:295
+      position = 290:220
       maximised = False
       fullscreen = False
-      size = 902, 530
+      size = 1400, 720
       title = /usr/bin/zsh
       last_active_term = b1c6e44a-455a-4b02-818a-5bd8194495b8
       last_active_window = True
