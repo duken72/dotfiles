@@ -65,6 +65,8 @@ function install() {
 	sudo cp ~/.dotfiles/config/LightDM/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 	sudo cp ~/.dotfiles/dfs/.face /var/lib/AccountsService/icons/duken72.png
 	sudo cp ~/.dotfiles/config/LightDM/duken72 /var/lib/AccountsService/users/duken72
+	# Install nbread to preview python notebook with ranger
+	pipx install git+https://github.com/tnwei/nbread
 	echo "config is installed. Enjoy :)"
 	exit
 }
