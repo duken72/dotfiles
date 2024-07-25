@@ -14,3 +14,4 @@ vlc
 yt-dlp
 zathura
 zathura-pdf-mupdf
+subversion
