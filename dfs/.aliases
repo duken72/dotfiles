@@ -257,7 +257,17 @@ alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
 # Utilities
 # alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
-alias vnkey='echo "Switch with Alt+Shift+K" && ibus-daemon'
+alias ibus-daemon-start='tmux new -d -s "ibus-daemon" "ibus-daemon"'
+function ibus-set-keyboard {
+    tmux has-session -t "ibus-daemon" 2>/dev/null
+    if [[ $? != 0 ]]; then
+        ibus-daemon-start
+    fi
+    ibus engine $1
+}
+alias vnk='ibus-set-keyboard Unikey'
+alias dek='ibus-set-keyboard xkb:de:nodeadkeys:deu'
+alias enk='ibus-set-keyboard xkb:us::eng'
 alias weather='curl wttr.in'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --bytes'
 alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
