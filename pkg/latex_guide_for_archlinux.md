@@ -12,6 +12,9 @@ Check [Arch Wiki](https://wiki.archlinux.org/title/TeX_Live).
 - `texlive-mathscience` contains essential packages for mathematics, natural sciences and computer science.
 - `texlive-lang` group contains packages providing character sets and features for languages with non-Latin characters.
   - `texlive-langgreek` as the dependencies for `textgreek`
+- `texlive-binextra` for `latexmk`, which automatically compile `.tex` file
+  - install `biber` too
 
 ## Tips
+
 Tip: If you are missing specific `.sty` files, you can run `pacman -F` to find the Arch package that provides them
