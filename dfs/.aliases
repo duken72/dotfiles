@@ -1,6 +1,4 @@
 export OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
-export FCI_IP=172.16.0.2
-
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
@@ -125,6 +123,14 @@ function dps {    # dotfiles push
     cd ~/.dotfiles
     gaps "$1"
 }
+# NMCLI
+# alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
+
+# Mount
+alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
+alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
+alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
+
 
 # -------------------------------------------------------- #
 # OS SPECIFIC
@@ -191,6 +197,12 @@ alias of='o .'
 alias run='./run.sh'
 alias bt='bashtop'
 
+# Ranger
+function ra {
+    ranger $@
+    clear && ls
+}
+
 # TMUX
 function tmux_start_detach_session {
     # $1 - session name
@@ -205,14 +217,10 @@ alias tml='tmux list-sessions'      # List tmux sessions
 alias tma="tmux attach-session -t"  # Attach to a tmux session with name
 alias tmk='tmux kill-session -t'    # Kill tmux session with name
 
-# Mount
-alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
-alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
-alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
-
 # Python
 alias py='python3'
 alias ipy='ipython3'
+# Activate virtual environment
 function act {
     for DIR in venv .venv; do
         if [ -d "$DIR" ]; then
@@ -221,7 +229,15 @@ function act {
         fi
     done
 }
+# Deactivate virtual environment
 alias deact='deactivate'
+# Jupyter-notebook
+function jn {
+    tmux_start_detach_session jupyter "jupyter-notebook '$1'"
+}
+function jl {
+    tmux_start_detach_session jupyter "jupyter-lab '$1'"
+}
 
 # Editors
 # The first existing editor will be chosen by priority:
@@ -234,29 +250,16 @@ for editor in nvim vim vi code; do
   fi
 done
 
-# Jupyter-notebook
-function jn {
-    tmux_start_detach_session jupyter "jupyter-notebook '$1'"
-}
-function jl {
-    tmux_start_detach_session jupyter "jupyter-lab '$1'"
-}
-
 # convert a file to pdf, at least work with pptx
 alias pdfConvert='soffice --headless --convert-to pdf'
 
-# Latex
-alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+# LaTeX
+# alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+alias latexmk='tmux_start_detach_session latexmk "latexmk -pvc -pdf"'
 
-# Others
-function ra {
-    ranger $@
-    clear && ls
-}
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
-# Utilities
-# alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
+# IBUS Unikey
 alias ibus-daemon-start='tmux new -d -s "ibus-daemon" "ibus-daemon"'
 function ibus-set-keyboard {
     tmux has-session -t "ibus-daemon" 2>/dev/null
@@ -268,16 +271,6 @@ function ibus-set-keyboard {
 alias vnk='ibus-set-keyboard Unikey'
 alias dek='ibus-set-keyboard xkb:de:nodeadkeys:deu'
 alias enk='ibus-set-keyboard xkb:us::eng'
-alias weather='clear && curl wttr.in'
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --bytes'
-alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
-function diet {
-    cd ~/Documents && clear
-    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' diet2.md 
-    # cat diet.md
-}
-alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
-alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
 # Alsa mixer
 alias usound='amixer -q -D pulse sset Master 14%+'
@@ -340,6 +333,25 @@ function steamid {
 
 # Nvidia
 alias nvidia-smi='clear; nvidia-smi'
+
+# MOC - Music On Console
+alias mocp='mocp -O shuffle=yes -O repeat=yes'
+
+# BORIS
+alias boris='tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"'
+
+# Others
+alias weather='clear && curl wttr.in'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --bytes'
+alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
+function diet {
+    cd ~/Documents && clear
+    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' diet2.md 
+    # cat diet.md
+}
+alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
+alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
+
 
 # -------------------------------------------------------- #
 # Workspaces
@@ -450,14 +462,10 @@ alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
 alias     pygg='rg $(fd pyFD.py ~) -e'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
-# BORIS
-function boris {
-    tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"
-}
-
-# MOC - Music On Console
-alias mocp='mocp -O shuffle=yes -O repeat=yes'
-
+# Panda IP
+export FCI_IP=172.16.0.2
 # SAB Paper
 alias sab='c ~/WS/Nguyen-24-SAB && v *.tex'
 alias deu='c ~/WS/notes-deu'
+# DFG Report
+alias dfg='c ~/WS/2015-DFG-PriorKnowledgeML-FinalReport'
