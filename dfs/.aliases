@@ -115,7 +115,7 @@ alias tbashrc='. ~/.bashrc'
 alias  tzshrc='. ~/.zshrc'
 alias      cf='c ~/.dotfiles/config'
 alias     cfg='c ~/.config'
-alias polybar='polybar --reload duck-mainbar'
+alias polybar='tmux_start_detach_session polybar "polybar --reload duck-mainbar"'
 # syncing with git
 alias dst='dfs && git status'
 alias dpl='dfs && git pull origin'
