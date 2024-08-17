@@ -398,7 +398,8 @@ function tuvpn {
         echo "Already in the lab network"
     else
         echo "NOT in the lab network, connect via VPN ..."
-        tmux_start_detach_session tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel vpn.tu-berlin.de"
+        # tmux_start_detach_session tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel-2FA vpn.tu-berlin.de"
+        tmux_start_detach_session tub-vpn "gtk-launch com.cisco.secureclient.gui"
     fi
 }
 # Un-mount and remove directory

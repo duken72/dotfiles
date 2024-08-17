@@ -3,7 +3,6 @@ alsa-utils
 base
 base-devel
 bashtop
-bat
 bind
 deluge-gtk
 discord
@@ -12,7 +11,6 @@ docx2txt
 easytag
 eog
 eza
-fd
 font-manager
 fzf
 git-delta
@@ -40,6 +38,7 @@ ncdu
 neofetch
 neovim
 network-manager-applet
+networkmanager-openconnect
 nfs-utils
 noto-fonts-emoji
 numlockx
@@ -48,7 +47,6 @@ nvidia-prime
 nvtop
 obsidian
 okular
-openconnect
 openjdk-src
 openvpn
 pacman-contrib
@@ -58,7 +56,6 @@ pv
 ranger
 redshift
 reflector
-ripgrep
 rofi
 sd
 shfmt
@@ -70,8 +67,11 @@ terminator
 terminus-font
 tokei
 tree
+tree-sitter-cli
 ttf-jetbrains-mono-nerd
 vale
 virtualbox
+webkit2gtk
 wget
 wmctrl
+wpebackend-fdo

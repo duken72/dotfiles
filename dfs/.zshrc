@@ -145,6 +145,7 @@ fi
 
 ## python startup script
 export PYTHONSTARTUP=~/.pythonrc
+# export PIP_REQUIRE_VIRTUALENV=true
 
 # Vale
 export VALE_CONFIG_PATH=~/.dotfiles/config/vale/.vale.ini
