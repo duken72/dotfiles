@@ -74,4 +74,3 @@ virtualbox
 webkit2gtk
 wget
 wmctrl
-wpebackend-fdo

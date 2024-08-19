@@ -6,7 +6,6 @@ cli-visualizer
 moc-pulse
 pulseaudio-ctl
 python311
-skypeforlinux-bin
 slack-desktop
 tty-clock-git
 upd72020x-fw
