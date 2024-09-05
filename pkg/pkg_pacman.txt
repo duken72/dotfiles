@@ -71,6 +71,7 @@ tree-sitter-cli
 ttf-jetbrains-mono-nerd
 vale
 virtualbox
+virtualbox-guest-utils
 webkit2gtk
 wget
 wmctrl
