@@ -444,6 +444,7 @@ alias nasd='mnas duc'
 alias nasp='mnas parrobots'
 alias  afs='mafs RBO'
 alias afsd='mafs Staff/Duc'
+alias afsa='mafs RBO/Studentische\ Hilfskräfte/Ohler,\ Anton\ -\ Duc/'
 alias afst='mafs RBO/Teaching/Courses/robotics'
 
 # Guide For Dummies
