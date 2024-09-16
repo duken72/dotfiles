@@ -17,4 +17,10 @@ Check [Arch Wiki](https://wiki.archlinux.org/title/TeX_Live).
 
 ## Tips
 
-Tip: If you are missing specific `.sty` files, you can run `pacman -F` to find the Arch package that provides them
+- If you are missing specific `.sty` files, you can run `pacman -F` to find the Arch package that provides them
+- `latexmk`
+
+  ```bash
+  latexmk -pdf
+  latexmk -pvc
+  ```
