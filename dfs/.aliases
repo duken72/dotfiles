@@ -166,10 +166,10 @@ if [ $OS = 'arch' ]; then
     alias     pacg='pacman -Sg'
 
     # AURA - AUR Helper
-    alias    auraa='sudo aura -Aax'
-    alias    aurar='sudo aura -R'
+    alias    auraa='aura -Aax'
+    alias    aurar='aura -R'
     alias   auraas='aura -As'
-    alias   auraau='sudo aura -Auax'
+    alias   auraau='aura -Auax'
 
     # System cleaning
     alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
