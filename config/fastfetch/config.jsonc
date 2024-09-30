@@ -40,7 +40,7 @@
     },
     {
       "type": "custom",
-      "format": "┌──────────────────── Hardware Information ────────────────────┐",
+      "format": "┌──────────── Hardware Information ────────────┐",
       "outputColor": "green"
     },
     {
@@ -51,7 +51,7 @@
     {
       "type": "cpu",
       "key": "  󰍛",
-      "format": "{1} ({4}) @ {7}",
+      "format": "{1}",
     },
     {
       "type": "gpu",
@@ -71,7 +71,7 @@
     // "battery",
     {
       "type": "custom",
-      "format": "├──────────────────── Software Information ────────────────────┤",
+      "format": "├──────────── Software Information ────────────┤",
       "outputColor": "green"
     },
     {
@@ -95,12 +95,12 @@
     },
     {
       "type": "custom",
-      "format": "└──────────────────────────────────────────────────────────────┘",
+      "format": "└──────────────────────────────────────────────┘",
       "outputColor": "green"
     },
     {
       "type": "custom",
-      "format": "    {#white}󰮯   {#red}󰊠   {#green}󰊠   {#yellow}󰊠   {#blue}󰊠   {#magenta}󰊠   {#cyan}󰊠   {#white}󰊠  ",
+      "format": "     {#white}󰮯   {#red}󰊠   {#green}󰊠   {#yellow}󰊠   {#blue}󰊠   {#magenta}󰊠   {#cyan}󰊠   {#white}󰊠  ",
     },
   ]
 }
