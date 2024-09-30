@@ -1,6 +1,7 @@
 [global_config]
   borderless = True
   inactive_color_offset = 0.72
+  ask_before_closing = never
 [keybindings]
 [profiles]
   [[default]]
