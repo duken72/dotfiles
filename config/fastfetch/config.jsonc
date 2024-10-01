@@ -11,9 +11,10 @@
     "padding": {
       "top": 2
     },
-    "type": "kitty",
-    "source": "~/.dotfiles/config/fastfetch/logo.png",
-    "height": 9,
+    "type": "small",
+    // "type": "kitty",
+    // "source": "~/.dotfiles/config/fastfetch/logo.png",
+    // "height": 9,
   },
   "display": {
     "separator": "    ",

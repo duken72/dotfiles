@@ -1,4 +1,8 @@
-fastfetch
+if [[ "$(basename "/"$(ps -o cmd -f -p $(cat /proc/$(echo $$)/stat | cut -d \  -f 4) | tail -1 | sed 's/ .*$//'))" == "kitty" ]]; then
+    fastfetch --kitty ~/.dotfiles/config/fastfetch/logo.png --logo-height 9
+else
+    fastfetch
+fi
 
 if [[ "$(hostname)" == "panda-ctrl11" ]]; then
     # Path to your oh-my-zsh installation.
