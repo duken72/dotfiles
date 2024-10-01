@@ -11,9 +11,11 @@ docx2txt
 easytag
 eog
 eza
+fastfetch
 font-manager
 fzf
 git-delta
+git-lfs
 glow
 go
 gparted
@@ -26,6 +28,7 @@ inetutils
 inkscape
 intel-ucode
 jupyter-notebook
+kitty
 libratbag
 libreoffice-fresh
 linux-firmware-qlogic
@@ -35,7 +38,6 @@ mesa-utils
 mpd
 mpv
 ncdu
-neofetch
 neovim
 network-manager-applet
 networkmanager-openconnect
