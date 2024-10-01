@@ -353,6 +353,9 @@ function diet {
 alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
 alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
+# Kitty
+alias icat='kitten icat'
+alias diff='kitten diff'
 
 # -------------------------------------------------------- #
 # Workspaces
