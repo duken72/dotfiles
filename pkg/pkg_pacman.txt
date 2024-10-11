@@ -4,7 +4,6 @@ base
 base-devel
 bashtop
 bind
-discord
 docker
 docx2txt
 eog

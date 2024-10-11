@@ -8,7 +8,7 @@ slack.desktop
 skypeforlinux.desktop
 *.protonvpn.udp.ovpn
 openvpn_pass*
-pkg*.new
-pkg*.old
+.pkg*.new
+.pkg*.old
 .nvimlog
 *.bak
