@@ -4,6 +4,7 @@ texlive-bin
 texlive-binextra
 texlive-fontsrecommended
 texlive-fontutils
+texlive-langenglish
 texlive-langgreek
 texlive-latex
 texlive-latexextra
