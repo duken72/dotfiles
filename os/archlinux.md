@@ -5,11 +5,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Installation](#installation)
-* [General guide](#general-guide)
 * [Customization and tinkering](#customization-and-tinkering)
-  * [Applications](#applications)
-  * [Setting up `GPU` for deep learning](#setting-up-gpu-for-deep-learning)
-  * [TROUBLE-SHOOTING](#trouble-shooting)
+* [References](#references)
 
 <!-- vim-markdown-toc -->
 
@@ -95,7 +92,7 @@
    vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
    vim /etc/pacman.conf # ParallelDownloads = 14
    pacstrap -KP /mnt base base-devel linux(-lts) linux-headers linux-firmware \
-       sof-firmware iw iwd vim grub efibootmgr openssh git intel-ucode
+       sof-firmware networkmanager (iw iwd) vim grub efibootmgr openssh git intel-ucode
    ```
 
 8. Configure the system
@@ -145,11 +142,18 @@
       # show network device names (one wired and one wireless carrier)
       networkctl list
 
+      # for networkmanager
+      sudo systemctl enable --now NetworkManager
+      nmcli device wifi list
+      nmcli device wifi connect "SSID_or_BSSID" password "password"
+
+      # for iwd
       sudo systemctl enable --now iwd
       iwctl
       ```
 
-    - Create `config` files, with names of devices from the preceding:
+    - Unsure if `iwd` or also `NetworkManager` need this.
+      Create `config` files, with names of devices from the preceding:
 
       - Wired adapter: `/etc/systemd/network/20-wired.network`
 
@@ -198,9 +202,12 @@
     Clone the `dotfiles` and run the script:
 
     ```bash
-    vim /etc/pacman.conf # ParallelDownloads = 14, Include multilib
+    vim /etc/pacman.conf # ParallelDownloads = 5, Include multilib
+
+    # choose suitable graphic drivers
     # lspci -v | grep -A1 -e VGA -e 3D
-    sudo pacman -S xf86-video-intel nvidia(-dkms) nvidia-utils # choose suitable graphic drivers
+    sudo pacman -S xf86-video-intel           # Intel graphic driver
+    sudo pacman -S nvidia(-dkms) nvidia-utils # NVIDIA graphic driver
     cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles
     cd ~/.dotfiles/pkg && ./pacman_install.sh
     ```
@@ -226,73 +233,22 @@
 
 ---
 
-## General guide
+## Customization and tinkering
+
+- Manage `XFCE` window manager hotkeys
+- Applications
+  - Online meeting: `zoom`
+  - Trash management: `trash-cli`, `rmlint`
+- Trouble-shooting
+  - [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
+  - [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
+  - [Rolling back updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux)
+
+---
+
+## References
 
 - [PACMAN](https://youtu.be/HD7jJEh4ZaM)
 - [`AUR` Helper - `aura`](https://youtu.be/xPRJWHghWM8)
 - [Tiling Window Managers](https://youtu.be/Obzf9ppODJU)
 - [Dual boot with Ubuntu](https://www.linuxandubuntu.com/home/dual-boot-ubuntu-and-arch-linux)
-
----
-
-## Customization and tinkering
-
-- [Steam custom Proton GE](https://github.com/GloriousEggroll/proton-ge-custom#native)
-- Manage `XFCE` window manager hotkeys
-- Window manager theme: [True Minimalist](https://www.xfce-look.org/p/1016640/) and [guide to install](https://wiki.xfce.org/howto/install_new_themes)
-- Fonts: [JetBrainsNL Mono Nerd](https://archlinux.org/packages/community/any/ttf-jetbrains-mono-nerd/), size 11-12
-- Mouse cursor: [Night Diamond theme](https://www.gnome-look.org/p/1295073/) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
-- [`polybar`](https://github.com/polybar/polybar): check wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
-- Ranger: [image preview with `ueberzug`](https://github-wiki-see.page/m/ranger/ranger/wiki/Image-Previews), [video thumbnail with `ffmpeg`](https://www.reddit.com/r/NixOS/comments/74wftw/video_previews_wranger/), [docx2txt](http://docx2txt.sourceforge.net/)
-- `zsh` with terminator and [Powerlevel10k](https://dev.to/web3coach/best-terminal-setup-terminator-zsh-powerlevel10k-7pl)
-- [Move between monitors](https://github.com/calandoa/movescreen)
-- [Redshift](https://wiki.archlinux.org/title/redshift) and [Backlight](https://wiki.archlinux.org/title/backlight)
-- Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl) get the key code with `showkey`, then setup keyboard shortcut to a `pulseaudio-ctl` command
-- Unibus-vn: [enable macro](https://github.com/vn-input/ibus-unikey/issues/11)
-- [Rolling back updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux)
-- Setting up [cleaning hooks](https://averagelinuxuser.com/clean-arch-linux/#1-clean-package-cache)
-- [`pacman` Tips and tricks](https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Back_up_the_pacman_database)
-- Replacement for `G-HUB`: [`Libratbag`](https://womanonrails.com/logitech-g915-tkl), and maybe [piper](https://github.com/libratbag/piper) as frontend app
-- A bit troublesome with the [`Osmos` theme](https://github.com/Warinyourself/lightdm-webkit-theme-osmos)
-- Terminus fonts as console font: put `vconsole.conf` in `/etc`
-
-### Applications
-
-- email client in terminal: [Alpine](https://alpineapp.email/) [bcacciaaudio.com](https://bcacciaaudio.com/2018/10/09/alpine-mail-setup-with-gmail/), [salixos.org](https://docs.salixos.org/wiki/How_to_set_up_Alpine_with_a_Gmail_account), [linuxshelltips.com](https://www.linuxshelltips.com/alpine-gmail-imap-in-linux/), [wesleyac.com](https://blog.wesleyac.com/posts/setting-up-alpine-gmail-with-arch-linux)
-- Desktop system monitoring: [`conky`](https://github.com/brndnmtthws/conky), a fork from [`xypnox`](https://github.com/xypnox/dotfiles)
-- Download manager: [`xdman`](https://xtremedownloadmanager.com/), [youtube-dl](https://youtube-dl.org/)
-- Online meeting: `zoom`
-- Cleaning: `trash-cli`, `rmlint`
-- Bluetooth: `blueberry`, `bluez-utils`
-
----
-
-### Setting up `GPU` for deep learning
-
-Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-cuda-tensorflow-and-keras-on-arch-linux-with-dual-gpu-nvidia-gpu-82963d2ecb75)
-
-- You don't need to install and use `bumblebee`, `optimus-manager` or `prime` to use the GPU, from either Intel or NVIDIA, for DL with `pytorch`/`tensorflow`
-
-  ```bash
-  sudo pacman -S cuda cudnn nvidia-dkms nvidia-utils \
-      python-tensorflow-opt-cuda python-pytorch-opt-cuda
-  ```
-
-- Check in Python:
-
-  ```python
-  from tensorflow.python.client import device_lib
-  device_lib.list_local_devices()
-  import tensorflow as tf
-  tf.config.list_physical_devices('GPU')
-
-  import torch
-  torch.cuda.is_available()
-  ```
-
----
-
-### TROUBLE-SHOOTING
-
-- [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
-- [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
