@@ -92,7 +92,7 @@
    vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
    vim /etc/pacman.conf # ParallelDownloads = 14
    pacstrap -KP /mnt base base-devel linux(-lts) linux-headers linux-firmware \
-       sof-firmware networkmanager (iw iwd) vim grub efibootmgr openssh git intel-ucode
+       sof-firmware networkmanager (iw iwd) vim grub efibootmgr git intel-ucode
    ```
 
 8. Configure the system
