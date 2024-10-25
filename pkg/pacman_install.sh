@@ -19,7 +19,7 @@ echo ""
 # when install pkg group, use ^x to exclude x
 echo "Installing pacman packages..."
 sudo pacman -Syu
-for file in pkg_group pkg_pacman_test pkg_latex; do
+for file in pkg_group pkg_pacman pkg_latex; do
 	sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
 done
 echo ""

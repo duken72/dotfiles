@@ -1,4 +1,5 @@
 #!/bin/bash
+
 PKG_DIR=/home/duken72/.dotfiles/pkg
 
 # Clear existing content in certain files (for later concatenation)
@@ -13,14 +14,16 @@ PKG_DIR=/home/duken72/.dotfiles/pkg
 # done
 
 # Backup packages
+pacman -Qem | grep -v debug >${PKG_DIR}/.pkg_aura.new
+pacman -Qtn | grep -v python- | grep -v texlive >>${PKG_DIR}/.pkg_pacman.new
+
 pacman -Qq | grep texlive >${PKG_DIR}/pkg_latex.txt
 pacman -Qeq | grep python- >${PKG_DIR}/pkg_pacman_python.txt
 pacman -Qeqm | grep -v debug >${PKG_DIR}/pkg_aura.txt
-pacman -Qem | grep -v debug >${PKG_DIR}/.pkg_aura.new
-pacman -Qtnq | grep -v python- | grep -v texlive >>${PKG_DIR}/pkg_pacman.txt
-pacman -Qtn | grep -v python- | grep -v texlive >>${PKG_DIR}/.pkg_pacman.new
+# pacman -Qtnq | grep -v python- | grep -v texlive >>${PKG_DIR}/pkg_pacman.txt
+
 # Filter packages that are installed via pkg groups
 while read pkg; do
-	sed -i "/$pkg/d" ${PKG_DIR}/pkg_pacman.txt
 	sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.new
+	# sed -i "/$pkg/d" ${PKG_DIR}/pkg_pacman.txt
 done <${PKG_DIR}/pkg_group.txt
