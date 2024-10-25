@@ -206,8 +206,8 @@
 
     # choose suitable graphic drivers
     # lspci -v | grep -A1 -e VGA -e 3D
-    sudo pacman -S xf86-video-intel           # Intel graphic driver
-    sudo pacman -S nvidia(-dkms) nvidia-utils # NVIDIA graphic driver
+    sudo pacman -S xf86-video-intel                         # Intel graphic driver
+    sudo pacman -S nvidia(-dkms) nvidia-utils nvidia-prime  # NVIDIA graphic driver
     cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles
     cd ~/.dotfiles/pkg && ./pacman_install.sh
     ```
