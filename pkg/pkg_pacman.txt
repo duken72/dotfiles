@@ -1,4 +1,3 @@
-# Basics
 base
 base-devel
 grub
@@ -17,6 +16,8 @@ git
 wget
 nfs-utils
 fd
+ripgrep
+rsync
 sd
 pv
 eza
@@ -27,14 +28,12 @@ hyperfine
 tokei
 tmux
 
-# Audio pkgs
 sof-firmware
 alsa-plugins
 alsa-utils
 pulseaudio
 pavucontrol
 
-# Display manager
 lightdm
 lightdm-gtk-greeter
 accountsservice
@@ -48,7 +47,6 @@ rofi
 wmctrl
 linux-firmware-qlogic
 
-# Terminal pkgs
 zsh
 terminator
 kitty
@@ -64,7 +62,6 @@ fastfetch
 ncdu
 nvtop
 
-# Applications
 network-manager-applet
 eog
 gimp
@@ -78,6 +75,7 @@ tree-sitter-cli
 tree-sitter-python
 vale
 shfmt
+xclip
 glow
 
 libreoffice-fresh
@@ -98,7 +96,6 @@ obsidian
 mpd
 mpv
 
-# Fonts
 adobe-source-han-sans-otc-fonts
 noto-fonts-emoji
 terminus-font

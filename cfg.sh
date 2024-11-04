@@ -61,7 +61,7 @@ function install() {
 	# Install redshift config
 	sudo ln -svf $CONFIG_PATH/redshift/*.svg -t /usr/share/icons/hicolor/scalable/apps
 	# LightDM
-	sudo cp ~/.dotfiles/Wallpapers/syn* /usr/share/pixmaps
+	sudo cp ~/.dotfiles/Wallpapers/login*.jpg /usr/share/pixmaps
 	sudo cp ~/.dotfiles/config/LightDM/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 	sudo cp ~/.dotfiles/dfs/.face /var/lib/AccountsService/icons/duken72.png
 	sudo cp ~/.dotfiles/config/LightDM/duken72 /var/lib/AccountsService/users/duken72
