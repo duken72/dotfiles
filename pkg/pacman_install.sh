@@ -13,6 +13,7 @@ if ! type aura >/dev/null; then
 else
 	echo "aura already installed."
 fi
+sudo aura -Aax aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware
 echo ""
 
 # Install packages
@@ -25,11 +26,10 @@ done
 echo ""
 
 echo "Installing AUR packages..."
-sudo aura -Akax --needed aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware
-sudo aura -Akax --needed brave-bin pulseaudio-ctl
-sudo aura -Akax --needed moc-pulse tty-clock-git cli-visualizer
-sudo aura -Akax --needed skypeforlinux-bin slack-desktop zoom python311 zotero
-# xfce4-panel-profiles zotero
+sudo aura -Aax brave-bin pulseaudio-ctl
+sudo aura -Aax moc-pulse tty-clock-git cli-visualizer
+# sudo aura -Aax skypeforlinux-bin slack-desktop zoom python311 zotero
+# xfce4-panel-profiles
 echo ""
 
 echo "Removing orphans..."
