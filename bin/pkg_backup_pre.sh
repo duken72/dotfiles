@@ -2,11 +2,12 @@
 
 PKG_DIR=/home/duken72/.dotfiles/pkg
 
+# Backup packages
+# AUR packages
+pacman -Qem | grep -v debug >${PKG_DIR}/.pkg_aura.old
+
 # Clear existing content in certain files (for later concatenation)
 >${PKG_DIR}/.pkg_pacman.old
-
-# Backup packages
-pacman -Qem | grep -v debug >${PKG_DIR}/.pkg_aura.old
 pacman -Qtn | grep -v python- | grep -v texlive >>${PKG_DIR}/.pkg_pacman.old
 
 # Filter packages that are installed via pkg groups
