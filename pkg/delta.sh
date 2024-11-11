@@ -21,3 +21,6 @@ echo "Change of latex packages:"
 if [ -f .pkg_latex.txt ] && [ -f pkg_latex.txt ]; then
 	delta pkg_latex.txt .pkg_latex.txt
 fi
+
+# Alternative: check /var/log/pacman.log
+# rg "upgraded" /var/log/pacman.log | rg "$date" > /tmp/pacman.log && bat /tmp/pacman.log
