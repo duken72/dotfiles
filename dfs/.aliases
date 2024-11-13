@@ -180,9 +180,9 @@ if [ $OS = 'arch' ]; then
 fi
 
 # DUAL BOOT with WINDOWS
-if [ -d /media/${USERNAME}/Windows ]; then
-    alias unmountw='sudo umount ${WIN}'
-    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 ${WIN}'
+if [ -d /home/${USER}/.Windows ]; then
+    alias unmountw='sudo umount /home/$USER/.Windows'
+    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
 fi
 
 
