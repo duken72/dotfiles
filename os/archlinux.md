@@ -243,6 +243,7 @@
   - [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
   - [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
   - [Rolling back updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux)
+- Dual boot with Windows: make sure to install `fuse3`, such that when you run `sudo os-prober`, you can properly mount and detect a Windows system
 
 ---
 
