@@ -377,7 +377,7 @@ alias grl='c ~/WS/test/goalRL-test'
 alias par='c ~/WS/parroplots && act'
 alias frl='c ~/WS/flash-representation-learning && act'
 # Others
-alias rob='c ~/WS/rob-ws23'
+alias rob='c ~/WS/rob'
 alias  td='c ~/WS/TODO'
 # ROS
 for shell in zsh bash fish; do
