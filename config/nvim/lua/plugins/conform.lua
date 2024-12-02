@@ -13,6 +13,14 @@ conform.setup({
 		markdown = { "markdown-toc", "markdownlint", "prettier" },
 	},
 
+	formatters = {
+		clang_format = {
+			prepend_args = {
+				"--style='{BasedOnStyle: llvm, IndentWidth: 4, SpacesBeforeTrailingComments: 2}'",
+			},
+		},
+	},
+
 	format_on_save = {
 		-- These options will be passed to conform.format()
 		timeout_ms = 500,

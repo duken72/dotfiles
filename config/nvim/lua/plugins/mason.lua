@@ -132,14 +132,13 @@ require("mason-tool-installer").setup({
 		"isort",
 		"autoflake",
 		"autopep8",
-		-- "black",
 
 		-- Lua
 		"luacheck",
 		"stylua",
 
 		-- Markdown
-		"vale", -- also latex
+		"vale",
 		"markdownlint",
 		"markdown-toc",
 		"prettier",
