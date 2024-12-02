@@ -5,6 +5,7 @@ NC='\033[0m'
 
 DOTFILES=(".aliases" ".bash_logout" ".bashrc" ".gitconfig" ".profile" ".face"
 	".pythonrc" ".vimrc" ".p10k.zsh" ".zshrc" ".zsh" ".powerlevel10k" ".zkbd"
+	".clang-format"
 )
 
 function help() {
