@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "3 args: links, start time point, end time point"
+echo "4 args: links, start time point, end time point, filename"
 # Download the video from YouTube
 yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 $1 -o temp.mp3 &&
 	# trim and transform it to MP3
