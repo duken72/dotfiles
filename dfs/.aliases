@@ -64,7 +64,7 @@ alias dmesg='sudo dmesg -H --color=always' # with colors
 alias diff='diff --color=auto' # with colors
 alias zip='zip -er9' # encryption and recursive
 alias curl='curl --compressed'
-alias fd='fd --color always'
+# alias fd='fd --color always'
 alias find='fd'
 
 # -------------------------------------------------------- #
