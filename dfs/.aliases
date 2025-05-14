@@ -455,7 +455,7 @@ alias afst='mafs RBO/Teaching/Courses/robotics'
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
 alias     gitg='cat $(fd gitFD.bash ~)'
-alias     vimg='cat $(fd vimFD.bash ~)'
+alias     vimg='cat $(fd vimFD.vim ~)'
 alias    lessg='cat $(fd lessFD.bash ~)'
 alias     rosg='cat $(fd rosFD.bash ~)'
 alias    ros2g='cat $(fd ros2FD.bash ~)'
