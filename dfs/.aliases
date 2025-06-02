@@ -257,23 +257,23 @@ alias pdfConvert='soffice --headless --convert-to pdf'
 
 # LaTeX
 # alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
-alias latexmk='tmux_start_detach_session latexmk "latexmk -pvc -pdf"'
+function lmk {
+    tmux_start_detach_session latexmk "latexmk -pdflatex='xelatex %O %S' -pdf -pvc '$1'"
+    # tmux_start_detach_session latexmk "latexmk -pdf -pvc '$1'"
+}
 
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
 # IBUS Unikey
-alias ibus-daemon-start='tmux new -d -s "ibus-daemon" "ibus-daemon"'
+alias ibus-daemon-start='tmux_start_detach_session ibus-daemon ibus-daemon'
 function ibus-set-keyboard {
-    tmux has-session -t "ibus-daemon" 2>/dev/null
-    if [[ $? != 0 ]]; then
-        ibus-daemon-start
-    fi
-    ibus engine $1
+    tmux has-session -t "ibus-daemon" 2>/dev/null || ibus-daemon-start
+    sleep 0.14s && ibus engine $1
 }
 alias vnk='ibus-set-keyboard Unikey'
 alias dek='ibus-set-keyboard xkb:de:nodeadkeys:deu'
 alias enk='ibus-set-keyboard xkb:us::eng'
-
+alias ik='enk && tmux has-session -t "ibus-daemon" 2>/dev/null && tmk ibus-daemon'
 # Alsa mixer
 alias usound='amixer -q -D pulse sset Master 14%+'
 alias dsound='amixer -q -D pulse sset Master 14%-'
@@ -375,6 +375,7 @@ alias phd='c ~/WS/phd-rbo'
 alias par='c ~/WS/parroplots && act'
 alias grl='c ~/WS/test/goalRL-test'
 alias blg='c ~/WS/duken72.github.io/_posts'
+alias deu='c ~/WS/notes-deu'
 # Others
 alias rob='c ~/WS/rob'
 alias  td='c ~/WS/TODO'
@@ -471,8 +472,3 @@ alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
 # Panda IP
 export FCI_IP=172.16.0.2
-# SAB Paper
-alias sab='c ~/WS/Nguyen-24-SAB && v *.tex'
-alias deu='c ~/WS/notes-deu'
-# DFG Report
-alias dfg='c ~/WS/2015-DFG-PriorKnowledgeML-FinalReport'
