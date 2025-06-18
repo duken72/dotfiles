@@ -119,7 +119,7 @@ require("lazy").setup({
 	"mzlogin/vim-markdown-toc",
 
 	-- Symbols Outline
-	"simrat39/symbols-outline.nvim",
+	"hedyhli/outline.nvim",
 
 	-- A file explorer
 	-- "nvim-tree/nvim-tree.lua",

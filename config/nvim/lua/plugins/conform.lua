@@ -1,5 +1,4 @@
-local conform = require("conform")
-conform.setup({
+require("conform").setup({
 	formatters_by_ft = {
 		-- Conform will run multiple formatters sequentially
 		-- Use a sub-list to run only the first available formatter
