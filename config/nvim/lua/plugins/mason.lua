@@ -52,20 +52,20 @@ local servers = {
 	clangd = {},
 
 	-- Python
-	pyright = {
-		python = {
-			analysis = {
-				autoSearchPaths = true,
-				diagnosticMode = "workspace",
-				useLibraryCodeForTypes = true,
-			},
-		},
-	},
+	-- pyright = {
+	-- 	python = {
+	-- 		analysis = {
+	-- 			autoSearchPaths = true,
+	-- 			diagnosticMode = "workspace",
+	-- 			useLibraryCodeForTypes = true,
+	-- 		},
+	-- 	},
+	-- },
 	pylsp = {
 		plugins = {
 			pycodestyles = {
 				ignore = { "W391" },
-				maxLineLength = 100,
+				maxLineLength = 88,
 			},
 		},
 	},
