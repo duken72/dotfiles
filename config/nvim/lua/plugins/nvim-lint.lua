@@ -6,7 +6,7 @@ lint.linters_by_ft = {
 	markdown = { "vale" },
 	cpp = { "cpplint" },
 	lua = { "luacheck" },
-	-- python =    {'pylint', 'flake8', },
+	python = { "pylint", "flake8" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
