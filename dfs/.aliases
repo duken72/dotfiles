@@ -347,9 +347,7 @@ alias weather='clear && curl wttr.in'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --bytes'
 alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
 function diet {
-    cd ~/Documents && clear
-    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' diet2.md 
-    # cat diet.md
+    gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' ~/Documents/workout/diet2.md 
 }
 alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
 alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
