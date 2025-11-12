@@ -20,14 +20,16 @@ echo ""
 # when install pkg group, use ^x to exclude x
 echo "Installing pacman packages..."
 sudo pacman -Syu
-for file in pkg_group pkg_pacman pkg_latex; do
+# for file in pkg_pacman pkg_latex; do
+for file in pkg_pacman; do
 	sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
 done
 echo ""
 
 echo "Installing AUR packages..."
-sudo aura -Aax brave-bin pulseaudio-ctl
-sudo aura -Aax moc-pulse tty-clock-git cli-visualizer
+sudo aura -Aax brave-bin tty-clock-git
+sudo aura -Aax cli-visualizer
+# pulseaudio-ctl moc-pulse
 # sudo aura -Aax skypeforlinux-bin slack-desktop zoom python311 zotero
 # xfce4-panel-profiles
 echo ""

@@ -88,9 +88,10 @@
 
    ```bash
    vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
-   vim /etc/pacman.conf # ParallelDownloads = 14
-   pacstrap -KP /mnt base base-devel linux(-lts) linux-headers linux-firmware \
-       sof-firmware networkmanager (iw iwd) vim grub efibootmgr git intel-ucode
+   vim /etc/pacman.conf # ParallelDownloads = 7
+   pacstrap -KP /mnt base base-devel linux linux-headers linux-firmware \
+       sof-firmware networkmanager vim grub efibootmgr git intel-ucode
+   # Old packages: linux-lts iw iwd
    ```
 
 8. Configure the system
@@ -121,10 +122,9 @@
 - For `UEFI`:
 
   ```bash
-  # pacman -Sy grub efibootmgr
   grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
   # Edit GRUB default time out
-  sudo vim /etc/default/grub
+  sudo vim /etc/default/grub  # GRUB_TIMEOUT=1
   grub-mkconfig -o /boot/grub/grub.cfg
 
   exit # Exit and reboot. Pull out the flash drive.
@@ -141,6 +141,7 @@
       # for networkmanager
       sudo systemctl enable --now NetworkManager
       nmcli device wifi list
+      nmcli device wifi connect "SSID_or_BSSID" --ask
       nmcli device wifi connect "SSID_or_BSSID" password "password"
 
       # for iwd
@@ -148,6 +149,7 @@
       iwctl
       ```
 
+    - Skip all network settings below, still works so far
     - Unsure if `iwd` or also `NetworkManager` need this.
       Create `config` files, with names of devices from the preceding:
       - Wired adapter: `/etc/systemd/network/20-wired.network`
@@ -185,7 +187,7 @@
     ```bash
     useradd -g users -G wheel,storage,power,audio,video,optical -m user_name
     passwd user_name
-    # ln -svf /usr/bin/vim /usr/bin/vi
+    ln -svf /usr/bin/vim /usr/bin/vi
     visudo # uncomment %wheel ALL NOPASSWD ALL, can sudo without passwd
 
     # if openssh installed

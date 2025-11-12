@@ -1,58 +1,33 @@
+# System Functionalities
 base
 base-devel
 grub
 intel-ucode
 linux-headers
+sof-firmware
 pacman-contrib
-reflector
+linux-firmware-qlogic
+xdg-user-dirs
+
+# CLI Functionalities/Tools
 man-pages
-udisks2
-ntfs-3g
-sxhkd
 zip
 unzip
 tree
 git
 wget
-nfs-utils
 fd
 ripgrep
-rsync
-sd
-pv
 eza
 fzf
 git-delta
-git-lfs
-hyperfine
-tokei
-tmux
-
-sof-firmware
-alsa-plugins
-alsa-utils
-pulseaudio
-pavucontrol
-
-lightdm
-lightdm-gtk-greeter
-accountsservice
-numlockx
-picom
-xdg-user-dirs
-
-polybar
-redshift
-rofi
-wmctrl
-linux-firmware-qlogic
-
 zsh
 terminator
 kitty
+tmux
 ranger
 docx2txt
-ueberzug
+ueberzugpp
 ffmpegthumbnailer
 ffmpeg
 atool
@@ -62,26 +37,23 @@ fastfetch
 ncdu
 nvtop
 
-network-manager-applet
-eog
-gimp
-inkscape
-
 neovim
 npm
 luarocks
 tree-sitter-bash
 tree-sitter-cli
 tree-sitter-python
-vale
-shfmt
-xclip
-glow
 
-libreoffice-fresh
-openjdk-src
-hunspell-en_us
-ibus-unikey
+# Applications
+network-manager-applet
+eog
+gimp
+inkscape
+
+# libreoffice-fresh
+# openjdk-src
+# hunspell-en_us
+# ibus-unikey
 
 okular
 zathura
@@ -95,22 +67,66 @@ jupyter-notebook
 obsidian
 mpd
 mpv
+yt-dlp
+discord
 
 adobe-source-han-sans-otc-fonts
 noto-fonts-emoji
 terminus-font
 ttf-jetbrains-mono-nerd
 
-# Obvious / Uncertain
-# bind nmap
+##########################
+# Wayland + Hyprland
+##########################
+wl-clipboard
+
+##########################
+# Questionable
+##########################
+# Disk management: udisks2 ntfs-3g nfs-utils
+# CLI: rsync sd pv git-lfs hyperfine tokei
+# Code editing: vale shfmt glow
+
+##########################
+# One time use
+##########################
+# reflector
+# sudo reflector --latest 50 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+##########################
+# Optional
+##########################
+# discord
 # docker
-# discord steam
+# virtualbox virtualbox-guest-utils
+
+##########################
+# Uncertain
+##########################
+# bind nmap
 # networkmanager-openconnect openvpn
 # ifuse
 # mesa-utils
 # go
 # openssh sshfs
 # vlc
-# yt-dlp
 # subversion
-# virtualbox virtualbox-guest-utils
+
+##########################
+# XFCE + LightDM setup
+##########################
+# lightdm
+# lightdm-gtk-greeter
+# accountsservice
+# numlockx
+# picom
+# alsa-plugins
+# alsa-utils
+# pulseaudio
+# pavucontrol
+# sxhkd
+# polybar
+# redshift
+# rofi
+# wmctrl
+# xclip
