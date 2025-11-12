@@ -48,11 +48,10 @@
    ping archlinux.org
    ```
 
-5. Update system clock
+5. Use `timedatectl` to ensure the synchronized system clock
 
    ```bash
-   timedatectl set-ntp true
-   timedatectl status #to check
+   timedatectl
    ```
 
 6. Partition the disks
@@ -82,8 +81,7 @@
      ```bash
      mount /dev/root_partition /mnt
      swapon /dev/swap_partition
-     mkdir -p /mnt/boot
-     mount /dev/boot_partition /mnt/boot
+     mount --mkdir /dev/boot_partition /mnt/boot
      ```
 
 7. Package Installation
@@ -117,7 +115,6 @@
 9. Create `bootloader`
 
 - For `BIOS`, please refer to these tutorials:
-
   - `GPT`: [`Rouchage`](https://youtu.be/2YshYiYsvKA?si=PSiv8AeWSEZjEhwq)
   - `MBR`: [`DWIX`](https://youtu.be/7FD3gh8mLME?si=HWI_2UroJBEKcAyw)
 
@@ -135,7 +132,6 @@
   ```
 
 10. Setup network connection:
-
     - Login as root
 
       ```bash
@@ -154,7 +150,6 @@
 
     - Unsure if `iwd` or also `NetworkManager` need this.
       Create `config` files, with names of devices from the preceding:
-
       - Wired adapter: `/etc/systemd/network/20-wired.network`
 
         ```txt
@@ -213,7 +208,6 @@
     ```
 
 13. Post-installation: Setting up desktop environment\
-
     - Example videos: [vid_1](https://youtu.be/DAmXKDJ3D7M), [vid_2](https://youtu.be/eHdP4sT7-8U), [vid_3](https://youtu.be/FudOL0-B9Hs).
 
       ```bash
