@@ -11,6 +11,7 @@ pacman -Qem | grep -v debug >${PKG_DIR}/.pkg_aura.old
 pacman -Qtn | grep -v python- | grep -v texlive >>${PKG_DIR}/.pkg_pacman.old
 
 # Filter packages that are installed via pkg groups
-while read pkg; do
-	sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.old
-done <${PKG_DIR}/pkg_group.txt
+# TODO: run these if it's xorg + lightdm
+# while read pkg; do
+# 	sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.old
+# done <${PKG_DIR}/pkg_group.txt

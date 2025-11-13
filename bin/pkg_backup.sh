@@ -20,7 +20,8 @@ pacman -Qtn | grep -v python- | grep -v texlive >>${PKG_DIR}/.pkg_pacman.new
 # Filter packages that are installed via pkg groups
 while read pkg; do
 	sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.new
-done <${PKG_DIR}/pkg_group.txt
+done
+# done <${PKG_DIR}/pkg_group.txt
 
 pacman -Qq | grep texlive >${PKG_DIR}/.pkg_latex.txt
 pacman -Qeq | grep python- >${PKG_DIR}/.pkg_pacman_python.txt
