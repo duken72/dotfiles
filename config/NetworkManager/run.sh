@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exit
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 sudo ln -svf $ABSOLUTE_PARENT_PATH/conf.d -t /etc/NetworkManager
 sudo ln -svf $ABSOLUTE_PARENT_PATH/svg/nm*.svg /usr/share/icons/hicolor/scalable/apps

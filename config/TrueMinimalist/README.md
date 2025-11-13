@@ -1,6 +1,8 @@
 # TrueMinimalist
 
--------
+This is a windows config
+
+---
 
 - Put into `/usr/share/themes`
 - Based on Minimalistic theme. If you want a clean, sharp window use this one.
@@ -17,4 +19,4 @@ Alt+F10: Stick to all desktops
 Alt+F11: Full screen.
 Alt+Click and drag: Move around screen
 
-To change the color of the frame, simply change the "reference" pixel color. 
+To change the color of the frame, simply change the "reference" pixel color.

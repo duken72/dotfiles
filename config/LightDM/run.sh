@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo pacman -S --needed accountsservice
-
+exit
+sudo pacman -S --needed --noconfirm lightdm lightdm-gtk-greeter accountsservice numlockx 
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 sudo cp -v $ABSOLUTE_PARENT_PATH/*.jpg /usr/share/pixmaps
 sudo cp -v $ABSOLUTE_PARENT_PATH/lightdm-gtk-greeter.conf /etc/lightdm

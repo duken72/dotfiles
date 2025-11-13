@@ -1,5 +1,8 @@
 #!/bin/bash
 
+if [ -n "$WAYLAND_DISPLAY" ] || [ -S /run/user/$(id -u)/wayland-0 ]; then
+    exit
+fi
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 ln -svf $ABSOLUTE_PARENT_PATH/xfconf/xfce-perchannel-xml/* -t ~/.config/xfce4/xfconf/xfce-perchannel-xml
 ln -svf $ABSOLUTE_PARENT_PATH/*.rc -t ~/.config/xfce4

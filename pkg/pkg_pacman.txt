@@ -25,24 +25,11 @@ zsh
 terminator
 kitty
 tmux
-ranger
-docx2txt
-ueberzugpp
-ffmpegthumbnailer
-ffmpeg
-atool
 bashtop
 inetutils
 fastfetch
 ncdu
 nvtop
-
-neovim
-npm
-luarocks
-tree-sitter-bash
-tree-sitter-cli
-tree-sitter-python
 
 # Applications
 network-manager-applet
@@ -56,8 +43,6 @@ inkscape
 # ibus-unikey
 
 okular
-zathura
-zathura-pdf-mupdf
 
 python-pip
 python-pipx
@@ -85,7 +70,6 @@ wl-clipboard
 ##########################
 # Disk management: udisks2 ntfs-3g nfs-utils
 # CLI: rsync sd pv git-lfs hyperfine tokei
-# Code editing: vale shfmt glow
 
 ##########################
 # One time use
