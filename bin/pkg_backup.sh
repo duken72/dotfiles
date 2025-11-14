@@ -35,6 +35,7 @@ pacman -Qtn | grep -v python- | grep -v texlive >${PKG_DIR}/.pkg_pacman.txt
 
 # Filter packages that are installed via pkg groups when using xorg & xfce4
 if [ -n "$DISPLAY" ] || [ -S /tmp/.X11-unix/X0 ]; then
+	echo "Using xorg"
 	while read pkg; do
 		sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.txt
 	done <${PKG_DIR}/pkg_xorg.txt

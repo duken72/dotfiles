@@ -11,7 +11,7 @@ if ! type aura >/dev/null; then
 	mkdir -p ~/WS && cd ~/WS && git clone https://aur.archlinux.org/aura-bin.git
 	cd ~/WS/aura-bin && makepkg && ls | grep zst | sudo pacman -U - && rm -rf ~/WS/aura-bin
 else
-	echo "aura already installed."
+	echo "AURA already installed."
 fi
 sudo aura -Aax aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware
 echo ""
