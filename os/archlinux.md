@@ -5,17 +5,15 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Installation](#installation)
-* [Customization and tinkering](#customization-and-tinkering)
-* [References](#references)
+  * [Dual boot](#dual-boot)
+* [Trouble shooting](#trouble-shooting)
+* [See also](#see-also)
 
 <!-- vim-markdown-toc -->
 
 ## Installation
 
-- [To cleanly remove Windows](https://www.daangeurts.nl/blog/removing-windows-and-installing-arch-linux/)
-- Check [Arch Linux wiki installation guide](https://wiki.archlinux.org/title/Installation_guide).
-- Example videos: [1](https://youtu.be/HpskN_jKyhc), [2](https://youtu.be/cM2UDz8BepU), [3](https://youtu.be/DPLnBPM4DhI)
-- **Note:** If you intend to use many Linux `distro`s, consider having a separate `/home` partition
+[Arch Linux wiki installation guide](https://wiki.archlinux.org/title/Installation_guide).
 
 0. Set font
 
@@ -23,9 +21,8 @@
    setfont /usr/share/kbd/consolefonts/ter-c20b...
    ```
 
-1. Get the latest `iso` to USB thumb drive as a boot device
-2. Could skip `iso` image verification, setting console keyboard layout
-3. Verify boot mode:
+1. Get the latest `iso` to USB thumb drive as a boot device. Could skip `iso` image verification, setting console keyboard layout
+2. Verify boot mode:
 
    ```bash
    cat /sys/firmware/efi/fw_platform_size
@@ -35,7 +32,7 @@
    - If the command returns `32`, system boots in `32-bit IA32 UEFI`
    - If the file doesn't exist, system boots in `BIOS` or `CSM` mode.
 
-4. Setup network connection
+3. Setup network connection
 
    ```bash
    ip link
@@ -48,13 +45,13 @@
    ping archlinux.org
    ```
 
-5. Use `timedatectl` to ensure the synchronized system clock
+4. Use `timedatectl` to ensure the synchronized system clock
 
    ```bash
    timedatectl
    ```
 
-6. Partition the disks
+5. Partition the disks
 
    ```bash
    lsblk              # to view Partitions
@@ -84,7 +81,7 @@
      mount --mkdir /dev/boot_partition /mnt/boot
      ```
 
-7. Package Installation
+6. Package Installation
 
    ```bash
    vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
@@ -94,7 +91,7 @@
    # Old packages: linux-lts iw iwd
    ```
 
-8. Configure the system
+7. Configure the system
 
    ```bash
    genfstab -U /mnt >> /mnt/etc/fstab
@@ -114,7 +111,7 @@
    passwd # set root password
    ```
 
-9. Create `bootloader`
+8. Create `bootloader`
 
 - For `BIOS`, please refer to these tutorials:
   - `GPT`: [`Rouchage`](https://youtu.be/2YshYiYsvKA?si=PSiv8AeWSEZjEhwq)
@@ -228,25 +225,24 @@
       sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
       ```
 
----
+### Dual boot
 
-## Customization and tinkering
-
-- Manage `XFCE` window manager hotkeys
-- Applications
-  - Online meeting: `zoom`
-  - Trash management: `trash-cli`, `rmlint`
-- Trouble-shooting
-  - [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
-  - [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
-  - [Rolling back updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux)
 - Dual boot with Windows: make sure to install `fuse3`, such that when you run `sudo os-prober`, you can properly mount and detect a Windows system
+  - [To cleanly remove Windows](https://www.daangeurts.nl/blog/removing-windows-and-installing-arch-linux/)
+- [Dual boot with Ubuntu](https://www.linuxandubuntu.com/home/dual-boot-ubuntu-and-arch-linux)
+- **Note:** If you intend to use many Linux distros, consider having a separate `/home` partition
 
 ---
 
-## References
+## Trouble shooting
 
+- [No sound to speakers](https://bbs.archlinux.org/viewtopic.php?id=199067&p=2)
+- [Wi-Fi rtl8821ce driver problem](https://github.com/tomaspinho/rtl8821ce)
+- [Rolling back updates](https://linuxconfig.org/how-to-rollback-pacman-updates-in-arch-linux)
+
+## See also
+
+- Example videos: [1](https://youtu.be/HpskN_jKyhc), [2](https://youtu.be/cM2UDz8BepU), [3](https://youtu.be/DPLnBPM4DhI)
 - [PACMAN](https://youtu.be/HD7jJEh4ZaM)
 - [`AUR` Helper - `aura`](https://youtu.be/xPRJWHghWM8)
 - [Tiling Window Managers](https://youtu.be/Obzf9ppODJU)
-- [Dual boot with Ubuntu](https://www.linuxandubuntu.com/home/dual-boot-ubuntu-and-arch-linux)
