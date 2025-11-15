@@ -33,9 +33,9 @@ function help() {
 }
 
 function error() {
-	echo -e "${RED}error: Invalid option${NC}"
-	echo "check './cfg.sh --help' for valid ones."
-	exit
+	echo -e "${RED}Error: Invalid/Missing operand${NC}"
+	echo "Run './cfg.sh --help' for valid ones."
+	exit 1
 }
 
 function install() {
@@ -70,15 +70,9 @@ function uninstall() {
 ########################################################
 # MAIN
 ########################################################
-while [ "$1" != "" ]; do
-	case $1 in
-	-h | --help) help ;;
-	-i | --install) install ;;
-	-u | --uninstall) uninstall ;;
-	*) error ;;
-	esac
-	shift
-done
-
-echo -e "${RED}cfg: missing operand${NC}"
-echo "try './cfg.sh --help' for more information."
+case $1 in
+-h | --help) help ;;
+-i | --install) install ;;
+-u | --uninstall) uninstall ;;
+*) error ;;
+esac
