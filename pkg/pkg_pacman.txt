@@ -1,4 +1,4 @@
-# System Functionalities
+# System Functionalities - should already been installed
 base
 base-devel
 grub
@@ -14,91 +14,66 @@ man-pages
 zip
 unzip
 tree
-git
 wget
 fd
+fzf
 ripgrep
 eza
-fzf
+tmux
+git
 git-delta
 zsh
-terminator
 kitty
-tmux
+terminator
 bashtop
-inetutils
-fastfetch
-ncdu
 nvtop
+fastfetch
+inetutils
+ncdu
 
 # Applications
-network-manager-applet
 eog
-gimp
 inkscape
-
-# libreoffice-fresh
-# openjdk-src
-# hunspell-en_us
-# ibus-unikey
-
+gimp
+network-manager-applet
 okular
-
+# Coding
 python-pip
 python-pipx
 python-rich
 jupyter-notebook
-
+# Entertainment
 obsidian
 mpd
 mpv
 yt-dlp
 discord
-
+# Others
 adobe-source-han-sans-otc-fonts
 noto-fonts-emoji
 terminus-font
 ttf-jetbrains-mono-nerd
 
-##########################
-# Wayland + Hyprland
-##########################
-wl-clipboard
+#####################################
+# Wayland + Hyprland + Emptty setup
+#####################################
+# hyprland
+# dolphin
+# dunst
+# grim
+# kitty
+# polkit-kde-agent
+# qt5-wayland
+# qt6-wayland
+# slurp
+# uwsm
+# wofi
+# xdg-desktop-portal-hyprland
+# wl-clipboard
 
-##########################
-# Questionable
-##########################
-# Disk management: udisks2 ntfs-3g nfs-utils
-# CLI: rsync sd pv git-lfs hyperfine tokei
-
-##########################
-# One time use
-##########################
-# reflector
-# sudo reflector --latest 50 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
-##########################
-# Optional
-##########################
-# discord
-# docker
-# virtualbox virtualbox-guest-utils
-
-##########################
-# Uncertain
-##########################
-# bind nmap
-# networkmanager-openconnect openvpn
-# ifuse
-# mesa-utils
-# go
-# openssh sshfs
-# vlc
-# subversion
-
-##########################
-# XFCE + LightDM setup
-##########################
+#####################################
+# Xorg + XFCE + LightDM setup
+#####################################
 # lightdm
 # lightdm-gtk-greeter
 # accountsservice
@@ -114,3 +89,38 @@ wl-clipboard
 # rofi
 # wmctrl
 # xclip
+
+##########################
+# Optional
+##########################
+# discord
+# docker
+# virtualbox virtualbox-guest-utils
+# libreoffice-fresh
+# openjdk-src
+# hunspell-en_us
+# ibus-unikey
+
+##########################
+# Questionable
+##########################
+# Disk management: udisks2 ntfs-3g nfs-utils
+# CLI: rsync sd pv git-lfs hyperfine tokei
+
+##########################
+# One time use
+##########################
+# reflector
+# sudo reflector --latest 50 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+##########################
+# Uncertain
+##########################
+# bind nmap
+# networkmanager-openconnect openvpn
+# ifuse
+# mesa-utils
+# go
+# openssh sshfs
+# vlc
+# subversion

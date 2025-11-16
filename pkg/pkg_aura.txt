@@ -1,14 +1,19 @@
+aura-bin
+
 aic94xx-firmware
 ast-firmware
-aura-bin
+upd72020x-fw
+wd719x-firmware
+
 brave-bin
+tty-clock-git
+
 cli-visualizer
 moc-pulse
 pulseaudio-ctl
-python311
-slack-desktop
-tty-clock-git
-upd72020x-fw
-wd719x-firmware
+
 zoom
+slack-desktop
+python311
 zotero
+# xfce4-panel-profiles

@@ -15,6 +15,10 @@
 
 [Arch Linux wiki installation guide](https://wiki.archlinux.org/title/Installation_guide).
 
+```bash
+wget https://raw.githubusercontent.com/duken72/dotfiles/refs/heads/main/os/run.sh
+```
+
 0. Set font
 
    ```bash

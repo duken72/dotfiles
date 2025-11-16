@@ -11,18 +11,18 @@ RST='\033[0m'
 #############################################
 
 pre_partition() {
-	printf "%bVerify the boot mode %b\n" "$BLU" "$RST"
+	printf "%b Verify the boot mode ... %b\n" "$BLU" "$RST"
 	cat /sys/firmware/efi/fw_platform_size
 
-	printf "%bConnect to the internet %b\n" "$BLU" "$RST"
+	printf "%b Connect to the internet ... %b\n" "$BLU" "$RST"
 	ip link
 	iwctl
 	ping archlinux.org
 
-	printf "%bUpdate the system clock %b\n" "$BLU" "$RST"
+	printf "%b Update the system clock ... %b\n" "$BLU" "$RST"
 	timedatectl
 
-	printf "%Please partition the disks manually %b\n" "$BLU" "$RST"
+	printf "%b Please partition the disks manually! %b\n" "$YLW" "$RST"
 	lsblk
 }
 
@@ -32,28 +32,28 @@ format_and_mount_partitions() {
 	local swap_partition="TODO"
 	local root_partition="TODO"
 
-	printf "%bFormat the partitions %b\n" "$BLU" "$RST"
+	printf "%b Format the partitions ... %b\n" "$BLU" "$RST"
 	mkfs.ext4 "/dev/$root_partition"
 	mkfs.fat -F 32 "/dev/$boot_partition"
 	mkswap "/dev/$swap_partition"
 
-	printf "%bMount the file systems %b\n" "$BLU" "$RST"
+	printf "%b Mount the file systems ... %b\n" "$BLU" "$RST"
 	mount "/dev/$root_partition" /mnt
 	mount --mkdir "/dev/$boot_partition" /mnt/boot
 	swapon "/dev/$swap_partition"
 
-	printf "%bPlease check the partitions %b\n" "$YLW" "$RST"
+	printf "%b Please check the partitions! %b\n" "$YLW" "$RST"
 	lsblk
 }
 
 installation() {
 	vim /etc/pacman.d/mirrorlist # Clean up the mirrorlist
 	vim /etc/pacman.conf         # ParallelDownloads = 7
-	printf "%bInstall essential packages %b\n" "$BLU" "$RST"
+	printf "%b Install essential packages ... %b\n" "$BLU" "$RST"
 	pacstrap -KP /mnt base base-devel linux linux-headers linux-firmware \
 		sof-firmware networkmanager vim grub efibootmgr git intel-ucode
 
-	printf "%bFstab--needed Linux file systems %b\n" "$BLU" "$RST"
+	printf "%b Create needed Linux file systems with fstab ... %b\n" "$BLU" "$RST"
 	genfstab -U /mnt >>/mnt/etc/fstab
 }
 
@@ -62,11 +62,11 @@ configure() {
 	local timezone="TODO" # "Europe/Berlin"
 	local hostname="TODO" # "Tux-IBP16-Arch"
 
-	printf "%bConfigure time zone %b\n" "$BLU" "$RST"
+	printf "%b Configure time zone ... %b\n" "$BLU" "$RST"
 	ln -sf "/usr/share/zoneinfo/$timezone" /etc/localtime
 	hwclock --systohc
 
-	printf "%bConfigure localization (lang, dates, etc.) %b\n" "$BLU" "$RST"
+	printf "%b Configure localization (lang, dates, etc.) ... %b\n" "$BLU" "$RST"
 	vim /etc/locale.gen # en_US.UTF-8 UTF-8
 	locale-gen
 	echo "LANG=en_US.UTF-8" >/etc/locale.conf
@@ -78,29 +78,29 @@ configure() {
 	# kernel package with pacstrap. Unless for LVM, RAID, sys encryption
 	# mkinitcpio -P
 
-	printf "%bSet root password %b\n" "$BLU" "$RST"
+	printf "%b Set root password ... %b\n" "$BLU" "$RST"
 	passwd
 
-	printf "%bSet boot loader %b\n" "$BLU" "$RST"
+	printf "%b Setup boot loader ... %b\n" "$BLU" "$RST"
 	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 	# Edit GRUB default time out
 	sudo vim /etc/default/grub # GRUB_TIMEOUT=1
 	grub-mkconfig -o /boot/grub/grub.cfg
 
-	printf "%bFinished %b\n" "$GRN" "$RST"
-	printf "%bPlease exit, reboot, and pull out the flash drive %b\n" "$BLU" "$RST"
+	printf "%b Finished! %b\n" "$GRN" "$RST"
+	printf "%b Please exit, reboot, and pull out the flash drive! %b\n" "$YLW" "$RST"
 }
 
 create_user() {
 	local username="duken72"
 
-	printf "%bCreate user %b\n" "$BLU" "$RST"
+	printf "%b Create user ... %b\n" "$BLU" "$RST"
 	useradd -g users -G wheel,storage,power,audio,video,optical -m "$username"
 	passwd "$user_name"
 	ln -svf /usr/bin/vim /usr/bin/vi
 	visudo # uncomment %wheel ALL NOPASSWD ALL, can sudo without passwd
 
-	printf "%bPlease reboot and login to the user account %b\n" "$BLU" "$RST"
+	printf "%b Please reboot and login to the user account! %b\n" "$YLW" "$RST"
 }
 
 post_installation() {
@@ -108,28 +108,29 @@ post_installation() {
 	local nvidia_gpu=false
 	local intel_gpu=false
 
-	printf "%bInstall graphic driver %b\n" "$BLU" "$RST"
+	printf "%b Install graphic driver ... %b\n" "$BLU" "$RST"
 	lspci -v | grep -A1 -e VGA -e 3D
 	if $intel_gpu; then
-		printf "%bInstall graphic driver for Intel GPU %b\n" "$BLU" "$RST"
-		sudo pacman -S xf86-video-intel
+		printf "%b Install graphic driver for Intel GPU ... %b\n" "$BLU" "$RST"
+		sudo pacman -S --needed xf86-video-intel
 	fi
 	if $nvidia_gpu; then
-		printf "%bInstall graphic driver for NVIDIA GPU %b\n" "$BLU" "$RST"
+		printf "%b Install graphic driver for NVIDIA GPU ... %b\n" "$BLU" "$RST"
 		# nvidia(-dkms) nvidia-utils nvidia-prime
 		sudo pacman -S --needed nvidia nvidia-utils
 	fi
 
-	printf "%bClone dotfiles repo %b\n" "$BLU" "$RST"
+	printf "%b Clone dotfiles repo ... %b\n" "$BLU" "$RST"
 	cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles
 
-	printf "%bInstall and enable display manager %b\n" "$BLU" "$RST"
+	printf "%b Install and enable display manager ... %b\n" "$BLU" "$RST"
+	sudo pacman -S --needed emptty
 	systemctl enable emptty
 	# systemctl enable lightdm
+	printf "%b Please check if display manager is enabled! %b\n" "$YLW" "$RST"
 	systemctl list-unit-files --state=enabled
-	printf "%bCheck if display manager is enabled %b\n" "$BLU" "$RST"
 
-	printf "%bPlease reboot %b\n" "$BLU" "$RST"
+	printf "%b Please reboot! %b\n" "$YLW" "$RST"
 	# reboot
 }
 
@@ -144,8 +145,9 @@ case "$1" in
 5) create_user ;;
 6) post_installation ;;
 *)
-	printf "%bError: Invalid option: %b %b\n" "$RED" "$1" "$RST"
+	printf "%b Error: Invalid option: %b %b\n" "$RED" "$1" "$RST"
 	echo "Valid options: 1-6"
+	echo "Eg: ./run.sh 1"
 	exit 1
 	;;
 esac
