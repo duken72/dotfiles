@@ -1,112 +1,122 @@
 #!/bin/bash
 
 RED='\033[1;31m'
-NC='\033[0m'
+GRN='\033[1;32m'
+YLW='\033[1;33m'
+BLU='\033[1;34m'
+RST='\033[0m'
 
+DOTFILES_PATH="${HOME}/.dotfiles/dfs"
+BINARIES_PATH="${HOME}/.dotfiles/bin"
 DOTFILES=(".aliases" ".bash_logout" ".bashrc" ".gitconfig" ".profile" ".face"
 	".pythonrc" ".vimrc" ".p10k.zsh" ".zshrc" ".zsh" ".powerlevel10k" ".zkbd"
 	".clang-format"
 )
 
-function help() {
-	echo "shell script for dotfiles management."
-	echo
-	echo "SYNOPSIS"
-	echo "  dfs [OPTION]"
-	echo
-	echo "OPTIONS"
-	echo "  -h, --help                  Display help"
-	echo "  -i, --install               Install dotfiles"
-	echo "  -u, --uninstall             Uninstall dotfiles"
-	echo "  -ib, --install-binaries     Backup dotfiles"
-	echo "  -ub, --uninstall-binaries   Backup dotfiles"
-	exit
+########################################################
+# FUNCTIONS
+########################################################
+
+help() {
+	printf "%b Shell script for dotfile management. %b\n\n" $BLU $RST
+	printf "%b SYPNOSIS %b\n" $BLU $RST
+	printf " dfs [OPTION]\n\n"
+	printf "%b OPTIONS %b\n" $BLU $RST
+	printf " -h, --help \t\t\t Display help \n"
+	printf " -i, --install \t\t\t Install dotfiles \n"
+	printf " -u, --uninstall \t\t Uninstall dotfiles \n"
+	printf " -ib, --install-binaries \t Install binaries \n"
+	printf " -ub, --uninstall-binaries \t Uninstall binaries \n"
 }
 
-function check_path_dotfiles() {
-	if [ ! -d ~/.dotfiles/dfs ]; then
-		echo -e "${RED}path doesn't exist: $HOME/.dotfiles/dfs${NC}"
-		echo "please run: 'cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles'"
-		exit
+check_paths() {
+	if [ ! -d $DOTFILES_PATH ] || [ ! -d $BINARIES_PATH ]; then
+		printf "%b Path doesn't exists: \n%b\n%b%b\n" $RED $DOTFILES_PATH $BINARIES_PATH $RST
+		printf "%b Please run: \n git clone https://github.com/duken72/dotfiles.git ~/.dotfiles %b\n" $YLW $RST
+		exit 1
+	else
+		printf "%b Paths exists: %b%b\n" $GRN $DOTFILES_PATH $RST
+		printf "%b Paths exists: %b%b\n" $GRN $BINARIES_PATH $RST
 	fi
 }
 
-function check_path_binaries() {
-	if [ ! -d ~/.dotfiles/bin ]; then
-		echo -e "${RED}path doesn't exist: $HOME/.dotfiles/dfs${NC}"
-		echo "please run: 'cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles'"
-		exit
-	fi
+error() {
+	printf "%b Error: Invalid / Missing operand %b\n" $RED $RST
+	help
+	exit 1
 }
 
-function error-invalid-option() {
-	echo -e "${RED}error: Invalid option${NC}"
-	echo "check './dfs.sh --help' for valid ones."
-	exit
-}
+install_dotfiles() {
+	printf "%b Install dotfiles at %b %b\n" $BLU $HOME $RST
 
-function install_dotfiles() {
-	check_path_dotfiles
-	echo "install dotfiles at HOME = $HOME"
+	echo "-------------------------"
 	for DOTFILE in "${DOTFILES[@]}"; do
 		ln -svf ~/.dotfiles/dfs/$DOTFILE -t ~/
 	done
-	if [[ ! $SHELL == *"zsh" ]]; then
-		chsh -s $(which zsh)
-	fi
-	echo "dotfiles are installed. Enjoy :)"
-	exit
+
+	echo "-------------------------"
+	printf "%b Change default SHELL to zsh %b\n" $BLU $RST
+	[[ ! $SHELL == *"zsh" ]] && chsh -s $(which zsh)
+
+	echo "-------------------------"
+	printf "%b Installed dotfiles. Enjoy!! :)) %b\n" $GRN $RST
 }
 
-function uninstall_dotfiles() {
-	echo "uninstall dotfiles at HOME = $HOME"
+uninstall_dotfiles() {
+	printf "%b Uninstall dotfiles at %b %b\n" $BLU $HOME $RST
+	echo "-------------------------"
+
 	for DOTFILE in "${DOTFILES[@]}"; do
 		if [ -L ~/$DOTFILE ]; then
 			rm -v ~/$DOTFILE
 		fi
 	done
-	sudo chsh -s $(which bash)
-	echo "dotfiles are uninstalled .. but .. why?? .. why meeeh :("
-	exit
+
+	echo "-------------------------"
+	printf "%b Change default SHELL to bash %b\n" $BLU $RST
+	[[ ! $SHELL == *"bash" ]] && chsh -s $(which bash)
+
+	echo "-------------------------"
+	printf "%b Uninstalled dotfiles .. but .. why?? .. why meeh :( %b\n" $YLW $RST
 }
 
-function install_binaries() {
-	check_path_binaries
-	echo "install binaries at /usr/local/bin"
+install_binaries() {
+	printf "%b Install binaries at /usr/local/bin %b\n" $BLU $RST
+
+	echo "-------------------------"
 	for BINARY in bin/*; do
 		BINARY=${BINARY#"bin/"}
 		sudo ln -svf ~/.dotfiles/bin/$BINARY -t /usr/local/bin
 	done
-	echo "binaries are installed. Enjoy :)"
-	exit
+
+	echo "-------------------------"
+	printf "%b Installed binaries. Enjoy!! :)) %b\n" $GRN $RST
 }
 
-function uninstall_binaries() {
-	echo "uninstall binaries at /usr/local/bin"
+uninstall_binaries() {
+	printf "%b Uninstall binaries at /usr/local/bin %b\n" $BLU $RST
+	echo "-------------------------"
+
 	for BINARY in bin/*; do
 		BINARY=${BINARY#"bin/"}
 		if [ -L /usr/local/bin/$BINARY ]; then
 			sudo rm -v /usr/local/bin/$BINARY
 		fi
 	done
-	echo "binaries are uninstalled :(("
-	exit
+
+	echo "-------------------------"
+	printf "%b Uninstalled binaries .. but .. why?? .. why meeh :( %b\n" $YLW $RST
 }
 
 ########################################################
 # MAIN
 ########################################################
-while [ "$1" != "" ]; do
-	case $1 in
-	-h | --help) help ;;
-	-i | --install) install_dotfiles ;;
-	-u | --uninstall) uninstall_dotfiles ;;
-	-ib | --install-binaries) install_binaries ;;
-	-ub | --uninstall-binaries) uninstall_binaries ;;
-	*) error-invalid-option ;;
-	esac
-	shift
-done
-
-echo -e "${RED}dfs: missing operand${NC}"
-echo "try './dfs.sh --help' for more information."
+check_paths
+case $1 in
+-h | --help) help ;;
+-i | --install) install_dotfiles ;;
+-u | --uninstall) uninstall_dotfiles ;;
+-ib | --install-binaries) install_binaries ;;
+-ub | --uninstall-binaries) uninstall_binaries ;;
+*) error ;;
+esac

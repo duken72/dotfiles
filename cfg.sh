@@ -10,6 +10,7 @@ CONFIG_PATH="${HOME}/.dotfiles/config"
 ########################################################
 # FUNCTIONS
 ########################################################
+
 check_path() {
 	if [ -d $CONFIG_PATH ]; then
 		printf "%b Path exists: %b%b\n" $YLW $CONFIG_PATH $RST
@@ -23,7 +24,7 @@ check_path() {
 help() {
 	printf "%b Shell script for config management. %b\n\n" $BLU $RST
 	printf "%b SYPNOSIS %b\n" $BLU $RST
-	printf "  cfg [OPTION]\n\n"
+	printf " cfg [OPTION]\n\n"
 	printf "%b OPTIONS %b\n" $BLU $RST
 	printf " -h, --help \t\t Display help \n"
 	printf " -i, --install \t\t Install config \n"
@@ -37,17 +38,17 @@ error() {
 }
 
 install() {
-	printf "%b Install configs at $HOME/.config${RST} %b\n" $BLU $RST
-	echo "-------------------------"
+	printf "%b Install configs at %b/.config %b\n" $BLU $HOME $RST
 
 	find "$HOME/.dotfiles/config/" -type f -name "run.sh" | while read -r script; do
+		echo "-------------------------"
 		printf "%b Executing: \t%b%b\n" $YLW $RST $script
 		# Run the script (in its own directory)
 		(cd "$(dirname "$script")" && ./$(basename "$script"))
 		printf "%b Finished: \t%b%b\n" $GRN $RST $script
-		echo "-------------------------"
 	done
 
+	echo "-------------------------"
 	printf "%b Installed configs. Enjoy!! :)) %b\n" $GRN $RST
 }
 
