@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# sudo pacman -S --needed --noconfirm ranger docx2txt ueberzug \
 sudo pacman -Sy --needed --noconfirm ranger docx2txt ueberzugpp \
     ffmpegthumbnailer ffmpeg atool python-pipx
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))

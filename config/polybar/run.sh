@@ -1,5 +1,8 @@
 #!/bin/bash
 
+if pacman -Q hyprland &>/dev/null; then
+    exit
+fi
 if [ -n "$WAYLAND_DISPLAY" ] || [ -S /run/user/$(id -u)/wayland-0 ]; then
     exit
 fi
