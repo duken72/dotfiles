@@ -1,75 +1,75 @@
 #!/bin/bash
 
 RED='\033[1;31m'
-YELLOW='\033[1;33m'
-GREEN='\033[1;32m'
-NC='\033[0m'
+GRN='\033[1;32m'
+YLW='\033[1;33m'
+BLU='\033[1;34m'
+RST='\033[0m'
+CONFIG_PATH="${HOME}/.dotfiles/config"
 
-CONFIGS=(".moc" "autostart" "gtk-3.0" "neofetch" "nvim"
-	"polybar" "pulseaudio-ctl" "ranger" "redshift" "rofi" "terminator"
-	"vis" "zathura" "user-dirs.locale" "user-dirs.dirs" "glow"
-)
-
-if [ -d $HOME/.dotfiles/config ]; then
-	CONFIG_PATH="${HOME}/.dotfiles/config"
-	echo -e "${YELLOW}path exists: $CONFIG_PATH${NC}"
-else
-	echo -e "${RED}path doesn't exist: $HOME/.dotfiles/config${NC}"
-	echo "please run: 'cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles'"
-	exit
-fi
-
-function help() {
-	echo "shell script for config management."
-	echo
-	echo "SYNOPSIS"
-	echo "  cfg [OPTION]"
-	echo
-	echo "OPTIONS"
-	echo "  -h, --help                  Display help"
-	echo "  -i, --install               Install config"
-	echo "  -u, --uninstall             Uninstall config"
-	exit
+########################################################
+# FUNCTIONS
+########################################################
+check_path() {
+	if [ -d $CONFIG_PATH ]; then
+		printf "%b Path exists: %b%b\n" $YLW $CONFIG_PATH $RST
+	else
+		printf "%b Path doesn't exists: %b%b\n" $RED $CONFIG_PATH $RST
+		printf "%b Please run: \n git clone https://github.com/duken72/dotfiles.git ~/.dotfiles %b\n" $YLW $RST
+		exit 1
+	fi
 }
 
-function error() {
-	echo -e "${RED}Error: Invalid/Missing operand${NC}"
-	echo "Run './cfg.sh --help' for valid ones."
+help() {
+	printf "%b Shell script for config management. %b\n\n" $BLU $RST
+	printf "%b SYPNOSIS %b\n" $BLU $RST
+	printf "  cfg [OPTION]\n\n"
+	printf "%b OPTIONS %b\n" $BLU $RST
+	printf " -h, --help \t\t Display help \n"
+	printf " -i, --install \t\t Install config \n"
+	printf " -u, --uninstall \t Uninstall config \n"
+}
+
+error() {
+	printf "%b Error: Invalid / Missing operand %b\n" $RED $RST
+	help
 	exit 1
 }
 
-function install() {
-	echo -e "${YELLOW}Install configs at $HOME/.config${NC}"
-	echo
-	# for CONFIG in "${CONFIGS[@]}"; do
-	# 	ln -svf $CONFIG_PATH/$CONFIG -t ~/.config
-	# done
+install() {
+	printf "%b Install configs at $HOME/.config${RST} %b\n" $BLU $RST
+	echo "-------------------------"
+
 	find "$HOME/.dotfiles/config/" -type f -name "run.sh" | while read -r script; do
-		echo -e "${YELLOW}Executing:${NC} $script"
+		printf "%b Executing: \t%b%b\n" $YLW $RST $script
 		# Run the script (in its own directory)
 		(cd "$(dirname "$script")" && ./$(basename "$script"))
-		echo -e "${GREEN}Finished:${NC} $script"
+		printf "%b Finished: \t%b%b\n" $GRN $RST $script
 		echo "-------------------------"
 	done
-	echo
-	echo -e "${GREEN}Installed configs. Enjoy!! :))${NC}"
-	exit
+
+	printf "%b Installed configs. Enjoy!! :)) %b\n" $GRN $RST
 }
 
-function uninstall() {
-	echo "uninstall config at $HOME/.config"
-	for CONFIG in "${CONFIGS[@]}"; do
-		if [ -L ~/.config/$CONFIG ]; then
-			rm -v ~/.config/$CONFIG
+uninstall() {
+	printf "%b Uninstall configs at $HOME/.config %b\n" $BLU $RST
+	echo "-------------------------"
+
+	for path in "$HOME/.config"/*; do
+		if [ -L "$path" ]; then
+			printf "%b Removing config: %b%b\n" $YLW $RST $path
+			rm "$path"
 		fi
 	done
-	echo "config are uninstalled .. but .. why?? :("
-	exit
+
+	echo "-------------------------"
+	printf "%b Uninstalled configs .. but .. why?? :( %b\n" $YLW $RST
 }
 
 ########################################################
 # MAIN
 ########################################################
+check_path
 case $1 in
 -h | --help) help ;;
 -i | --install) install ;;
