@@ -1,3 +1,6 @@
+#######################################
+# TO INSTALL, REMOVE ALL COMMENTS
+#######################################
 # System Functionalities - should already been installed
 base
 base-devel
@@ -38,9 +41,6 @@ gimp
 network-manager-applet
 okular
 # Coding
-python-pip
-python-pipx
-python-rich
 jupyter-notebook
 # Entertainment
 obsidian
@@ -57,19 +57,20 @@ ttf-jetbrains-mono-nerd
 #####################################
 # Wayland + Hyprland + Emptty setup
 #####################################
-# hyprland
-# dolphin
-# dunst
-# grim
-# kitty
-# polkit-kde-agent
-# qt5-wayland
-# qt6-wayland
-# slurp
-# uwsm
-# wofi
-# xdg-desktop-portal-hyprland
-# wl-clipboard
+hyprland
+dolphin
+dunst
+grim
+kitty
+polkit-kde-agent
+qt5-wayland
+qt6-wayland
+slurp
+uwsm
+wofi
+xdg-desktop-portal-hyprland
+wl-clipboard
+waybar
 
 #####################################
 # Xorg + XFCE + LightDM setup

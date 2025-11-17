@@ -122,6 +122,8 @@ post_installation() {
 
 	printf "%b Clone dotfiles repo ... %b\n" "$BLU" "$RST"
 	cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles
+	cd ~/.dotfiles
+	git submodule update --init
 
 	printf "%b Install and enable display manager ... %b\n" "$BLU" "$RST"
 	sudo pacman -S --needed emptty

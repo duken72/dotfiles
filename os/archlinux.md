@@ -15,10 +15,6 @@
 
 [Arch Linux wiki installation guide](https://wiki.archlinux.org/title/Installation_guide).
 
-```bash
-wget https://raw.githubusercontent.com/duken72/dotfiles/refs/heads/main/os/run.sh
-```
-
 0. Set font
 
    ```bash
@@ -47,6 +43,9 @@ wget https://raw.githubusercontent.com/duken72/dotfiles/refs/heads/main/os/run.s
    [iwd]# station device_name connect SSID_name
    Ctrl+D to exit [iwd]
    ping archlinux.org
+
+   pacman -Sy wget
+   wget https://raw.githubusercontent.com/duken72/dotfiles/refs/heads/main/os/run.sh
    ```
 
 4. Use `timedatectl` to ensure the synchronized system clock
@@ -208,6 +207,7 @@ wget https://raw.githubusercontent.com/duken72/dotfiles/refs/heads/main/os/run.s
     sudo pacman -S xf86-video-intel                         # Intel graphic driver
     sudo pacman -S nvidia(-dkms) nvidia-utils nvidia-prime  # NVIDIA graphic driver
     cd ~ && git clone https://github.com/duken72/dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles && git submodule update --init
     cd ~/.dotfiles/pkg && ./pacman_install.sh
     ```
 
