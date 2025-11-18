@@ -1,48 +1,50 @@
 #!/bin/bash
+
 # This Shell script back up package info after system update/package installation
+# This sript will be run as root. Can't use $USER, ~, $XDG_SESSION_TYPE
 
-###############################################################
-# Init
-###############################################################
 RED='\033[1;31m'
-YELLOW='\033[1;33m'
-NC='\033[0m'
-# This sript will be run as root, thus you can't use $USER or ~
+YLW='\033[1;33m'
+BLU='\033[1;34m'
+RST='\033[0m'
+
 PKG_DIR=/home/duken72/.dotfiles/pkg
-echo -e "${YELLOW}The logfile directory:${NC}\t$PKG_DIR"
+printf "%b The logfile directory: %b\t%b\n" $BLU $RST $PKG_DIR
 
-# Collect packages in following package groups, which are installed when using xorg & xfce4
-# >${PKG_DIR}/pkg_xorg.txt
-# PKG_GROUPS=("base-devel" "xfce4" "xfce4-goodies" "xorg")
-# for PKG_GROUP in "${PKG_GROUPS[@]}"; do
-# 	pacman -Sg $PKG_GROUP | sd -s "${PKG_GROUP} " "" >>${PKG_DIR}/pkg_xorg.txt
-# done
-
-###############################################################
 # Backup AUR packages
-###############################################################
-echo -e "${YELLOW}Backup AUR pkg at:${NC}\t${PKG_DIR}/.pkg_aura.txt"
+printf "%b Backup AUR pkg at: %b\t\t%b/.pkg_aura.txt\n" $BLU $RST $PKG_DIR
 pacman -Qem | grep -v debug >${PKG_DIR}/.pkg_aura.txt
 
-###############################################################
 # Backup PACMAN packages
-###############################################################
-echo -e "${YELLOW}Backup pacman pkg at:${NC}\t${PKG_DIR}/.pkg_pacman.txt"
-# Clear existing content in certain files (for later concatenation)
-# >${PKG_DIR}/.pkg_pacman.txt
-# pacman -Qtn | grep -v python- | grep -v texlive >>${PKG_DIR}/.pkg_pacman.txt
+printf "%b Backup pacman pkg at: %b\t\t%b/.pkg_pacman.txt\n" $BLU $RST $PKG_DIR
 pacman -Qtn | grep -v python- | grep -v texlive >${PKG_DIR}/.pkg_pacman.txt
-
-# Filter packages that are installed via pkg groups when using xorg & xfce4
-if [ -n "$DISPLAY" ] || [ -S /tmp/.X11-unix/X0 ]; then
-	echo "Using xorg"
-	while read pkg; do
-		sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.txt
-	done <${PKG_DIR}/pkg_xorg.txt
+# Filter packages depending on display server and window manager
+if [ -n "$WAYLAND_DISPLAY" ] || [ -S /run/user/$(id -u)/wayland-0 ]; then
+	display_server="wayland"
+else
+	display_server="xorg"
 fi
+while read pkg; do
+	sed -i "/$pkg/d" ${PKG_DIR}/.pkg_pacman.txt
+done <${PKG_DIR}/pkg_${display_server}.txt
 
-echo -e "${YELLOW}Backup latex pkg at:${NC}\t${PKG_DIR}/.pkt_latex.txt"
+# Backup LaTeX packages
+printf "%b Backup LaTeX pkg at: %b\t\t%b/.pkg_latex.txt\n" $BLU $RST $PKG_DIR
 pacman -Qq | grep texlive >${PKG_DIR}/.pkg_latex.txt
 
-echo -e "${YELLOW}Backup python pkg at:${NC}\t${PKG_DIR}/.pkg_python.txt"
-pacman -Qeq | grep python- >${PKG_DIR}/.pkg_pacman_python.txt
+# Backup Python packages
+printf "%b Backup Python pkg at: %b\t\t%b/.pkg_python.txt\n" $BLU $RST $PKG_DIR
+pacman -Qeq | grep python- >${PKG_DIR}/.pkg_python.txt
+
+#############################################################
+# Old--References
+exit
+# Collect packages in following package groups,
+# which are installed when using xorg & xfce4
+>${PKG_DIR}/pkg_xorg.txt
+PKG_GROUPS=("base-devel" "xfce4" "xfce4-goodies" "xorg")
+for PKG_GROUP in "${PKG_GROUPS[@]}"; do
+	pacman -Sg $PKG_GROUP | sd -s "${PKG_GROUP} " "" >>${PKG_DIR}/pkg_xorg.txt
+done
+
+# if [ -n "$DISPLAY" ] || [ -S /tmp/.X11-unix/X0 ]; then

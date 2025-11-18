@@ -2,7 +2,6 @@ hyprland
 dolphin
 dunst
 grim
-kitty
 polkit-kde-agent
 qt5-wayland
 qt6-wayland
