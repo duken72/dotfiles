@@ -1,0 +1,17 @@
+style = ~/.config/wofi/menu.css
+
+width=350
+height=270
+location=center
+show=drun
+prompt=Apps
+filter_rate=72
+allow_markup=true
+no_actions=true
+halign=fill
+orientation=vertical
+content_halign=fill
+insensitive=true
+allow_images=true
+image_size=27
+gtk_dark=true
