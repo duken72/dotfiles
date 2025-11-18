@@ -14,11 +14,6 @@ pre_partition() {
 	printf "%b Verify the boot mode ... %b\n" "$BLU" "$RST"
 	cat /sys/firmware/efi/fw_platform_size
 
-	printf "%b Connect to the internet ... %b\n" "$BLU" "$RST"
-	ip link
-	iwctl
-	ping archlinux.org
-
 	printf "%b Update the system clock ... %b\n" "$BLU" "$RST"
 	timedatectl
 
@@ -27,10 +22,9 @@ pre_partition() {
 }
 
 format_and_mount_partitions() {
-	# nvme0n1p5
-	local boot_partition="TODO"
-	local swap_partition="TODO"
-	local root_partition="TODO"
+	local boot_partition="TODO" # nvme0n1p5
+	local swap_partition="TODO" # nvme0n1p6
+	local root_partition="TODO" # nvme0n1p7
 
 	printf "%b Format the partitions ... %b\n" "$BLU" "$RST"
 	mkfs.ext4 "/dev/$root_partition"
@@ -107,6 +101,7 @@ post_installation() {
 	# vim /etc/pacman.conf # ParallelDownloads = 5, Include multilib
 	local nvidia_gpu=false
 	local intel_gpu=false
+	local display_manager="emptty" # lightdm
 
 	printf "%b Install graphic driver ... %b\n" "$BLU" "$RST"
 	lspci -v | grep -A1 -e VGA -e 3D
@@ -126,9 +121,8 @@ post_installation() {
 	git submodule update --init
 
 	printf "%b Install and enable display manager ... %b\n" "$BLU" "$RST"
-	sudo pacman -S --needed emptty
-	systemctl enable emptty
-	# systemctl enable lightdm
+	sudo pacman -S --needed "$display_manager"
+	systemctl enable "$display_manager"
 	printf "%b Please check if display manager is enabled! %b\n" "$YLW" "$RST"
 	systemctl list-unit-files --state=enabled
 
