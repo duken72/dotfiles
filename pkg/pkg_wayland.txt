@@ -1,0 +1,13 @@
+hyprland
+dolphin
+dunst
+grim
+kitty
+polkit-kde-agent
+qt5-wayland
+qt6-wayland
+slurp
+uwsm
+wofi
+xdg-desktop-portal-hyprland
+waybar

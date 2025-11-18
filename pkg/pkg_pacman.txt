@@ -1,19 +1,7 @@
-#######################################
-# TO INSTALL, REMOVE ALL COMMENTS
-#######################################
-# System Functionalities - should already been installed
-base
-base-devel
-grub
-intel-ucode
-linux-headers
-sof-firmware
+# System Functionalities
 pacman-contrib
-linux-firmware-qlogic
-xdg-user-dirs
-
-# CLI Functionalities/Tools
 man-pages
+xdg-user-dirs
 zip
 unzip
 tree
@@ -22,9 +10,11 @@ fd
 fzf
 ripgrep
 eza
+bat
 tmux
 git
 git-delta
+git-lfs
 zsh
 kitty
 terminator
@@ -33,6 +23,7 @@ nvtop
 fastfetch
 inetutils
 ncdu
+yt-dlp
 
 # Applications
 eog
@@ -40,63 +31,22 @@ inkscape
 gimp
 network-manager-applet
 okular
-# Coding
-jupyter-notebook
-# Entertainment
 obsidian
 mpd
 mpv
-yt-dlp
-discord
+
 # Others
 adobe-source-han-sans-otc-fonts
 noto-fonts-emoji
 terminus-font
 ttf-jetbrains-mono-nerd
 
-#####################################
-# Wayland + Hyprland + Emptty setup
-#####################################
-hyprland
-dolphin
-dunst
-grim
-kitty
-polkit-kde-agent
-qt5-wayland
-qt6-wayland
-slurp
-uwsm
-wofi
-xdg-desktop-portal-hyprland
-wl-clipboard
-waybar
-
-#####################################
-# Xorg + XFCE + LightDM setup
-#####################################
-# lightdm
-# lightdm-gtk-greeter
-# accountsservice
-# numlockx
-# picom
-# alsa-plugins
-# alsa-utils
-# pulseaudio
-# pavucontrol
-# sxhkd
-# polybar
-# redshift
-# rofi
-# wmctrl
-# xclip
-
 ##########################
 # Optional
 ##########################
 # discord
 # docker
-# virtualbox virtualbox-guest-utils
+# virtualbox virtualbox-guest-iso (choose virtualbox-host-modules-arch)
 # libreoffice-fresh
 # openjdk-src
 # hunspell-en_us
@@ -106,7 +56,7 @@ waybar
 # Questionable
 ##########################
 # Disk management: udisks2 ntfs-3g nfs-utils
-# CLI: rsync sd pv git-lfs hyperfine tokei
+# CLI: rsync sd pv hyperfine tokei
 
 ##########################
 # One time use

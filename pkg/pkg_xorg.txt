@@ -14,3 +14,11 @@ xfce4-screensaver
 xfce4-screenshooter
 xf86-video-vesa
 xorg
+picom
+alsa-plugins
+alsa-utils
+pulseaudio
+pavucontrol
+sxhkd
+rofi
+wmctrl

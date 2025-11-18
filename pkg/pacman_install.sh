@@ -16,6 +16,7 @@ setup_libalpm_hooks() {
 }
 
 install_aura() {
+	printf "%b Check if AURA has been installed ... %b\n" "$BLU" "$RST"
 	if ! type aura >/dev/null; then
 		printf "%b Install AURA ... %b\n" "$BLU" "$RST"
 		mkdir -p ~/WS && cd ~/WS && git clone https://aur.archlinux.org/aura-bin.git
@@ -23,26 +24,27 @@ install_aura() {
 	else
 		printf "%b AURA is already installed. %b\n" "$GRN" "$RST"
 	fi
-}
-
-install_packages() {
-	printf "%b Check if AURA has been installed ... %b\n" "$BLU" "$RST"
-	install_aura
-	echo
 
 	printf "%b System upgrade ... %b\n" "$BLU" "$RST"
 	sudo pacman -Syu
 	echo
+}
+
+install_packages() {
+	local desktop="wayland-hyprland" # "xorg-xfce"
 
 	printf "%b Install missing module firmware with AURA ... %b\n" "$BLU" "$RST"
 	sudo aura -Aax aic94xx-firmware ast-firmware upd72020x-fw wd719x-firmware
 	echo
 
-	# when install pkg group, use ^x to exclude x
+	if [ "$desktop" = "wayland-hyprland" ]; then
+		sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/pkg_wayland.txt"
+	else
+		sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/pkg_xorg.txt"
+	fi
+
 	printf "%b Install pacman packages ... %b\n" "$BLU" "$RST"
-	for file in pkg_pacman; do
-		sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
-	done
+	sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/pkg_pacman.txt"
 	echo
 
 	printf "%b Install AUR packages ... %b\n" "$BLU" "$RST"
@@ -56,15 +58,14 @@ install_packages() {
 	printf "%b Installation completed. %b\n" "$GRN" "$RST"
 }
 
-install_packages_latex() {
-	printf "%b Install pacman packages for LaTeX ... %b\n" "$BLU" "$RST"
+install_packages_python() {
+	printf "%b Install pacman packages for python ... %b\n" "$BLU" "$RST"
 	read -r -p "Are you sure you want to continue? [y/N]: " reply
 	reply=${reply:-n} # Default to "no" if user just presses Enter
+
 	case "$reply" in
 	[Yy]*)
-		for file in pkg_latex; do
-			sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
-		done
+		sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/pkg_pacman_python.txt"
 		;;
 	*)
 		printf "%b Cancelled! %b\n" "$YLW" "$RST"
@@ -72,17 +73,14 @@ install_packages_latex() {
 	esac
 }
 
-install_packages_python() {
-	printf "%b Install pacman packages for python ... %b\n" "$BLU" "$RST"
+install_packages_latex() {
+	printf "%b Install pacman packages for LaTeX ... %b\n" "$BLU" "$RST"
 	read -r -p "Are you sure you want to continue? [y/N]: " reply
-
 	reply=${reply:-n} # Default to "no" if user just presses Enter
 
 	case "$reply" in
 	[Yy]*)
-		for file in pkg_pacman_python; do
-			sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/$file.txt"
-		done
+		sudo pacman -S --needed - <"/home/$USER/.dotfiles/pkg/pkg_latex.txt"
 		;;
 	*)
 		printf "%b Cancelled! %b\n" "$YLW" "$RST"
@@ -95,9 +93,10 @@ install_packages_python() {
 ########################################################
 case $1 in
 1) setup_libalpm_hooks ;;
-2) install_packages ;;
-3) install_packages_python ;;
-4) install_packages_latex ;;
+2) install_aura ;;
+3) install_packages ;;
+4) install_packages_python ;;
+5) install_packages_latex ;;
 *)
 	printf "%bError: Invalid option: %b %b\n" "$RED" "$1" "$RST"
 	echo "Valid options: 1-4"
