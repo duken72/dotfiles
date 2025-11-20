@@ -98,8 +98,8 @@ alias var='c /var'
 # -------------------------------------------------------- #
 # System
 # Memory
-alias df='df -h'
-alias duh='du -ahd 1'
+alias df='df -h' # try duf
+alias duh='du -ahd 1 --time'
 alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
 alias cl='clear' # for terminator, just Ctrl+L
