@@ -1,13 +1,21 @@
-:original-theme {
+/* :original-theme { */
+:root {
     --dark: #1e1e2e;
     --light-blue: #cdd6f4;
+    --red1: #FDBEB2;
+    --red2: #FE8F8E;
+    --red3: #FE5F6A;
+    --red4: #FF3046;
+    --red5: #FF0022;
+    /* #FF0022, #FF3046, #FE5F6A, #FE8F8E, #FDBEB2 */
 }
 
 window {
     margin: 100px;
     /* border: 100px solid #1e1e2e; */
-    border: 100px solid #1e1e2e;
-    background-color: #cdd6f4;
+    /* background-color: #cdd6f4; */
+    border: 100px solid var(--red5);
+    background-color: var(--red1);
     border-radius: 27px;
 }
 
@@ -16,24 +24,29 @@ window {
     margin: 4px;
     padding-left: 20px;
     border: none;
-    color: #cdd6f4;
+    /* color: #cdd6f4; */
+    color: var(--red1);
     font-weight: bold;
-    background-color: #1e1e2e;
+    /* background-color: #1e1e2e; */
+    background-color: var(--red5);
     /* background: ; */
-   	outline: none;
+    outline: none;
     border-radius: 20px;
     margin: 10px 13px;
     margin-bottom: 2px;
 }
 #input:focus {
-    border: 0px solid #1e1e2e;
+    /* border: 0px solid #1e1e2e; */
+    border: 0px solid var(--red5);
     margin-bottom: 0px;
 }
 
 #inner-box {
     margin: 4px;
-    border: 20px solid #1e1e2e;
-    color: #cdd6f4;
+    /* border: 20px solid #1e1e2e; */
+    /* color: #cdd6f4; */
+    border: 20px solid var(--red5);
+    color: var(--red1);
     font-weight: bold;
     background-color: #242446;
     /* background-color: red; */
