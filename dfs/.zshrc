@@ -1,10 +1,3 @@
-# Run fastfetch depending on the current terminal emulator
-if [[ "$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")" == "kitty" ]]; then
-    fastfetch --kitty ~/.dotfiles/config/fastfetch/logo.png --logo-height 9
-else
-    fastfetch
-fi
-
 if [[ "$(hostname)" == "panda-ctrl11" ]]; then
     # Path to your oh-my-zsh installation.
     export ZSH="$HOME/.oh-my-zsh"
