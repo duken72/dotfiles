@@ -9,7 +9,7 @@ BLU='\033[1;34m'
 RST='\033[0m'
 
 PKG_DIR=/home/duken72/.dotfiles/pkg
-printf "%b The logfile directory: %b\t%b\n" $BLU $RST $PKG_DIR
+# printf "%b The logfile directory: %b\t%b\n" $BLU $RST $PKG_DIR
 
 ###############################################################
 # Backup AUR packages
