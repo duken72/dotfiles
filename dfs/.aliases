@@ -299,6 +299,7 @@ alias  gbr='git branch -a'
 alias  gbd='git branch -D'
 alias  gco='git checkout'
 alias  gdf='git diff'
+unalias gap
 function gap {
     gaa; gci "$1"; gps
 }
