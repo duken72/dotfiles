@@ -45,6 +45,7 @@
     "group/pill#right": {
         "orientation": "inherit",
         "modules": [
+            "tray",
             "custom/weather",
             // "privacy",
             // "backlight",
@@ -52,12 +53,11 @@
             // "custom/bluetooth",
             "pulseaudio",
             "pulseaudio#microphone",
-            "tray",
             "battery",
-            "custom/gpuinfo"
+            "custom/gpuinfo",
             // "custom/cpuinfo",
             // "custom/sensorsinfo",
-            // "custom/swaync",
+            "custom/swaync"
             // "custom/hyde-menu"
         ]
     }
