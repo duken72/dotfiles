@@ -3,6 +3,7 @@ texlive-bibtexextra
 texlive-bin
 texlive-binextra
 texlive-fontsrecommended
+texlive-fontsextra
 texlive-fontutils
 texlive-langenglish
 texlive-langgreek

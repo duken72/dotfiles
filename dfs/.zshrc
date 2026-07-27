@@ -150,3 +150,5 @@ export PYTHONSTARTUP=~/.pythonrc
 # Vale
 export VALE_CONFIG_PATH=~/.dotfiles/config/vale/.vale.ini
 export VALE_STYLES_PATH=~/.dotfiles/config/vale/styles
+
+export CLAUDE_CODE_OAUTH_TOKEN="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"

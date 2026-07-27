@@ -13,7 +13,7 @@
     /* Modified by Hyde */
 
     /* Modify/add style in ~/.config/waybar/styles/ */
-    @import "/home/duken72/.local/share/waybar/styles/hyprdots.css";
+    @import "/home/duken72/.config/waybar/styles/hyprdots.css";
 
     /* Imports wallbash colors */
     @import "/home/duken72/.cache/hyde/wallbash/gtk.css";
