@@ -89,8 +89,8 @@ local servers = {
 	-- Markdown
 	marksman = {},
 
-	-- Cmake
-	cmake = {},
+	-- Cmake (neocmakelsp: prebuilt binary, cmake-language-server breaks on python >= 3.14)
+	neocmake = {},
 
 	-- Latex
 	texlab = {},
