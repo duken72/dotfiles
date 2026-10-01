@@ -1,11 +1,14 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # coding=UTF-8
+"""Mappings and helpers for displaying developer icons in ranger."""
+
 # These glyphs, and the mapping of file extensions to glyphs
 # has been copied from the vimscript code that is present in
 # https://github.com/ryanoasis/vim-devicons
 
-import re
 import os
+import importlib
+import locale
 
 
 # Get the XDG_USER_DIRS directory names from environment variables
@@ -58,7 +61,7 @@ file_node_extensions = {
     'cp'       : '',
     'cpio'     : '',
     'cpp'      : '',
-    'cs'       : '',
+    'cs'       : '󰌛',
     'csh'      : '',
     'css'      : '',
     'cue'      : '',
@@ -70,8 +73,13 @@ file_node_extensions = {
     'deb'      : '',
     'diff'     : '',
     'dll'      : '',
+    'wps'      : '',
+    'wpt'      : '',
     'doc'      : '',
     'docx'     : '',
+    'docm'     : '',
+    'dotx'     : '',
+    'dotm'     : '',
     'dump'     : '',
     'edn'      : '',
     'eex'      : '',
@@ -85,7 +93,7 @@ file_node_extensions = {
     'exe'      : '',
     'exs'      : '',
     'f#'       : '',
-    'fifo'     : 'ﳣ',
+    'fifo'     : '󰟥',
     'fish'     : '',
     'flac'     : '',
     'flv'      : '',
@@ -114,6 +122,7 @@ file_node_extensions = {
     'ico'      : '',
     'img'      : '',
     'ini'      : '',
+    'ipynb'    : '',
     'iso'      : '',
     'jar'      : '',
     'java'     : '',
@@ -122,6 +131,7 @@ file_node_extensions = {
     'jpg'      : '',
     'js'       : '',
     'json'     : '',
+    'jsonc'    : '',
     'jsx'      : '',
     'key'      : '',
     'ksh'      : '',
@@ -131,6 +141,7 @@ file_node_extensions = {
     'lhs'      : '',
     'log'      : '',
     'lua'      : '',
+    'lz'       : '',
     'lzh'      : '',
     'lzma'     : '',
     'm4a'      : '',
@@ -139,6 +150,7 @@ file_node_extensions = {
     'md'       : '',
     'mdx'      : '',
     'mjs'      : '',
+    'mka'      : '',
     'mkv'      : '',
     'ml'       : 'λ',
     'mli'      : 'λ',
@@ -152,15 +164,25 @@ file_node_extensions = {
     'nix'      : '',
     'o'        : '',
     'ogg'      : '',
+    'opus'     : '',
     'part'     : '',
-    'pdf'      : '',
+    'pdf'      : '',
     'php'      : '',
     'pl'       : '',
     'pm'       : '',
     'png'      : '',
     'pp'       : '',
-    'ppt'      : '',
-    'pptx'     : '',
+    'dps'      : '',
+    'dpt'      : '',
+    'ppt'      : '',
+    'pptx'     : '',
+    'pptm'     : '',
+    'pot'      : '',
+    'potx'     : '',
+    'potm'     : '',
+    'pps'      : '',
+    'ppsx'     : '',
+    'ppsm'     : '',
     'ps1'      : '',
     'psb'      : '',
     'psd'      : '',
@@ -169,7 +191,7 @@ file_node_extensions = {
     'pyc'      : '',
     'pyd'      : '',
     'pyo'      : '',
-    'r'        : 'ﳒ',
+    'r'        : '󰟔',
     'rake'     : '',
     'rar'      : '',
     'rb'       : '',
@@ -178,7 +200,7 @@ file_node_extensions = {
     'rmd'      : '',
     'rom'      : '',
     'rpm'      : '',
-    'rproj'    : '鉶',
+    'rproj'    : '󰗆',
     'rs'       : '',
     'rss'      : '',
     'rtf'      : '',
@@ -193,10 +215,11 @@ file_node_extensions = {
     'sql'      : '',
     'styl'     : '',
     'suo'      : '',
+    'svelte'   : '',
     'swift'    : '',
     't'        : '',
     'tar'      : '',
-    'tex'      : 'ﭨ',
+    'tex'      : '󰙩',
     'tgz'      : '',
     'toml'     : '',
     'torrent'  : '',
@@ -205,7 +228,7 @@ file_node_extensions = {
     'twig'     : '',
     'vim'      : '',
     'vimrc'    : '',
-    'vue'      : '﵂',
+    'vue'      : '󰡄',
     'wav'      : '',
     'webm'     : '',
     'webmanifest' : '',
@@ -213,8 +236,17 @@ file_node_extensions = {
     'xbps'     : '',
     'xcplayground' : '',
     'xhtml'    : '',
-    'xls'      : '',
-    'xlsx'     : '',
+    'et'       : '󰈛',
+    'ett'      : '󰈛',
+    'xls'      : '󰈛',
+    'xlt'      : '󰈛',
+    'xlsx'     : '󰈛',
+    'xlsm'     : '󰈛',
+    'xlsb'     : '󰈛',
+    'xltx'     : '󰈛',
+    'xltm'     : '󰈛',
+    'xla'      : '󰈛',
+    'xlam'     : '󰈛',
     'xml'      : '',
     'xul'      : '',
     'xz'       : '',
@@ -225,69 +257,59 @@ file_node_extensions = {
 }
 
 
-dir_node_exact_matches = {
-# English
-    '.git'                             : '',
-    'Desktop'                          : '',
-    'Documents'                        : '',
-    'Downloads'                        : '',
-    'Dotfiles'                         : '',
-    'Dropbox'                          : '',
-    'Music'                            : '',
-    'Pictures'                         : '',
-    'Public'                           : '',
-    'Templates'                        : '',
-    'Videos'                           : '',
-# Spanish
-    'Escritorio'                       : '',
-    'Documentos'                       : '',
-    'Descargas'                        : '',
-    'Música'                           : '',
-    'Imágenes'                         : '',
-    'Público'                          : '',
-    'Plantillas'                       : '',
-    'Vídeos'                           : '',
-# French
-    'Bureau'                           : '',
-    'Documents'                        : '',
-    'Images'                           : '',
-    'Musique'                          : '',
-    'Publique'                         : '',
-    'Téléchargements'                  : '',
-    'Vidéos'                           : '',
-# Portuguese
-    'Documentos'                       : '',
-    'Imagens'                          : '',
-    'Modelos'                          : '',
-    'Música'                           : '',
-    'Público'                          : '',
-    'Vídeos'                           : '',
-    'Área de trabalho'                 : '',
-# Italian
-    'Documenti'                        : '',
-    'Immagini'                         : '',
-    'Modelli'                          : '',
-    'Musica'                           : '',
-    'Pubblici'                         : '',
-    'Scaricati'                        : '',
-    'Scrivania'                        : '',
-    'Video'                            : '',
-# German
-    'Bilder'                           : '',
-    'Dokumente'                        : '',
-    'Musik'                            : '',
-    'Schreibtisch'                     : '',
-    'Vorlagen'                         : '',
-    'Öffentlich'                       : '',
-# Hungarian
-    'Dokumentumok'                     : '',
-    'Képek'                            : '',
-    'Modelli'                          : '',
-    'Zene'                             : '',
-    'Letöltések'                       : '',
-    'Számítógép'                       : '',
-    'Videók'                           : '',
+# Base mapping for English directory names
+dir_node_exact_matches_base = {
+    '.git'       : '',
+    'Desktop'    : '',
+    'Documents'  : '',
+    'Downloads'  : '',
+    'Dotfiles'   : '',
+    'Dropbox'    : '',
+    'Music'      : '',
+    'Pictures'   : '',
+    'Public'     : '',
+    'Templates'  : '',
+    'Videos'     : '',
+    'anaconda3'  : '',
+    'go'         : '',
+    'workspace'  : '',
+    'OneDrive'   : '',
 }
+
+
+# Mapping of localized directory names to their English counterparts.
+# Languages are loaded from separate modules in :mod:`ranger_devicons.locales`.
+dir_name_translations = {}
+
+
+def load_translations(lang=None):
+    """Load directory name translations for the given language."""
+    if lang is None:
+        lang = os.getenv('DEVICONS_LANG')
+        if not lang:
+            loc = locale.getdefaultlocale()[0]
+            if loc:
+                lang = loc.split('_')[0]
+    if not lang:
+        return {}
+    try:
+        module = importlib.import_module(f'ranger_devicons.locales.{lang}')
+        return getattr(module, 'translations', {})
+    except ModuleNotFoundError:
+        return {}
+
+
+# Populate translations for the current locale
+dir_name_translations.update(load_translations())
+
+
+# Working mapping used by the plugin
+dir_node_exact_matches = dict(dir_node_exact_matches_base)
+
+
+def translate_dir_name(name):
+    """Translate localized directory names to English."""
+    return dir_name_translations.get(name, name)
 
 # Python 2.x-3.4 don't support unpacking syntex `{**dict}`
 # XDG_USER_DIRS
@@ -387,7 +409,12 @@ file_node_exact_matches = {
 
 
 def devicon(file):
+    """Return the devicon for the given ranger file object."""
+
     if file.is_directory:
-        return dir_node_exact_matches.get(file.relative_path, '')
-    return file_node_exact_matches.get(os.path.basename(file.relative_path),
-                                       file_node_extensions.get(file.extension, ''))
+        dir_name = translate_dir_name(file.relative_path)
+        return dir_node_exact_matches.get(dir_name, '')
+    return file_node_exact_matches.get(
+        os.path.basename(file.relative_path),
+        file_node_extensions.get(file.extension, ''),
+    )

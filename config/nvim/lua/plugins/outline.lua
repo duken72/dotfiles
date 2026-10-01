@@ -23,6 +23,13 @@ require("outline").setup({
 	-- '?': show current keymaps in floating window
 
 	symbols = {
+		-- Defaults use math-script letters (𝓒 𝓐 𝓢 𝙏), which no installed font covers
+		icons = {
+			Class = { icon = "", hl = "Type" },
+			String = { icon = "", hl = "String" },
+			Struct = { icon = "", hl = "Structure" },
+			TypeParameter = { icon = "", hl = "Identifier" },
+		},
 		filter = {
 			default = { "String", exclude = true },
 			python = { "Function", "Class" },
