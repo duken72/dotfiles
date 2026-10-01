@@ -105,14 +105,18 @@ if ! shopt -oq posix; then
 fi
 
 # Git completion
-if [ -f "/usr/share/git/completion/git-completion.bash" ]; then
-    source /usr/share/git/completion/git-completion.bash
-    __git_complete g __git_main
-    __git_complete gc _git_checkout
-    __git_complete gp _git_pull
-#else
-#    echo "Error loading git completions"
-fi
+# Arch path first, then Debian/Ubuntu path
+for f in /usr/share/git/completion/git-completion.bash \
+    /usr/share/bash-completion/completions/git; do
+    if [ -f "$f" ]; then
+        source "$f"
+        __git_complete g __git_main
+        __git_complete gco _git_checkout
+        __git_complete gpl _git_pull
+        break
+    fi
+done
+unset f
 
 # Fuzzy finder FZF key-bindings and completion
 source ~/.dotfiles/dfs/fzf/completion.bash
