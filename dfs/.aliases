@@ -357,6 +357,9 @@ alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 alias icat='kitten icat'
 alias diff='kitten diff'
 
+# Claude Code
+alias cla='claude'
+
 # -------------------------------------------------------- #
 # Workspaces
 alias    ws='c ~/WS'
