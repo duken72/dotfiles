@@ -95,8 +95,11 @@ require("lazy").setup({
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		-- ponytail: frozen `master` branch, `main` is a rewrite needing nvim 0.12
+		-- and tree-sitter-cli 0.26 (Ubuntu ships older). Migrate when all machines have them.
+		branch = "master",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
 		},
 		config = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
