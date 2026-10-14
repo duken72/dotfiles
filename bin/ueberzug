@@ -1,0 +1,133 @@
+#!/usr/bin/python3
+# Wrapper around Ubuntu's ueberzug 18.3.1, shadows /usr/bin/ueberzug. Works around:
+# - Python >= 3.14: asyncio.get_event_loop() no longer creates a loop, so create one first
+# - Python >= 3.14: its DaemonThreadPoolExecutor copies concurrent.futures internals that
+#   changed, so use the stock ThreadPoolExecutor instead; its threads are not daemons and
+#   one blocks on X events forever, hence os._exit()
+# - Terminator: ueberzug only knows "the window of the terminal process" and guesses the
+#   padding, which is wrong with several windows, splits and tabs. Ask the Terminator
+#   plugin config/terminator/plugins/pane_geometry.py for the real window, pane position,
+#   cell size and visibility, and follow changes (tab switch, moved splitter).
+# - WSLg, without that plugin: the X server runs in another PID namespace, so ueberzug's
+#   pid -> window lookup never finds the terminal. Set WINDOWID (which ueberzug honours)
+#   from _NET_WM_PID.
+import asyncio
+import concurrent.futures
+import os
+import signal
+
+import ueberzug.layer
+import ueberzug.terminal
+import ueberzug.thread
+import ueberzug.ui
+import ueberzug.X
+import ueberzug.xutil
+from ueberzug.__main__ import main
+
+POLL_SECONDS = 0.3
+_pane_geometry = None
+
+
+def get_pane():
+    """Returns (window id, x, y, cell width, cell height, visible) of the Terminator
+    terminal we run in, or None if not in Terminator or the plugin is not loaded."""
+    global _pane_geometry
+    try:
+        if _pane_geometry is None:
+            import dbus
+            _pane_geometry = dbus.Interface(
+                dbus.SessionBus().get_object(os.environ["TERMINATOR_DBUS_NAME"],
+                                             "/net/tenshu/Terminator2/PaneGeometry"),
+                "net.tenshu.Terminator2.PaneGeometry")
+        return tuple(int(value) for value in _pane_geometry.get(os.environ["TERMINATOR_UUID"]))
+    except Exception:
+        return None
+
+
+def use_terminator_pane():
+    """Makes ueberzug place images by get_pane() instead of its own guesses."""
+    xutil, layer = ueberzug.xutil, ueberzug.layer
+
+    def get_parent_window_infos(display):
+        pane = get_pane()
+        if not pane:
+            return []
+        pty = xutil.get_first_pty(xutil.get_parent_pids(os.getpid()))
+        return [xutil.TerminalWindowInfo(pane[0], pty)]
+
+    def calculate_sizes(self, fallback_width, fallback_height):
+        _, x, y, self.font_width, self.font_height, _ = get_pane() or (0, 0, 0, 1, 1, 0)
+        # never 0: ueberzug takes a falsy padding for "not calculated yet"
+        self.padding_horizontal, self.padding_vertical = x or 0.01, y or 0.01
+
+    canvas_draw = ueberzug.ui.CanvasWindow.draw
+
+    def draw(self):
+        pane = get_pane()
+        if pane and not pane[5]:  # hidden tab or zoomed-away pane: show nothing
+            self.set_visibility_mask([])
+            ueberzug.X.OverlayWindow.draw(self)
+        else:
+            canvas_draw(self)
+
+    query_windows = layer.query_windows
+
+    async def requery_windows(display, window_factory, windows, view):
+        # SIGUSR1 handler: besides adding/removing windows, also redraw at the new position
+        # (or hide, see draw)
+        if windows:
+            windows.reset_terminal_info()
+        await query_windows(display, window_factory, windows, view)
+        if windows:
+            windows.draw()
+
+    async def watch_pane():
+        pane = get_pane()
+        while True:
+            await asyncio.sleep(POLL_SECONDS)
+            pane, old_pane = get_pane(), pane
+            if pane != old_pane:
+                os.kill(os.getpid(), signal.SIGUSR1)
+
+    xutil.get_parent_window_infos = get_parent_window_infos
+    ueberzug.terminal.TerminalInfo.calculate_sizes = calculate_sizes
+    ueberzug.ui.CanvasWindow.draw = draw
+    layer.query_windows = requery_windows
+    return watch_pane()
+
+
+def find_terminal_window():
+    """Returns the id of the biggest X window owned by one of our parent processes."""
+    # ponytail: one window per terminal process; with several windows in one process the
+    # biggest wins. Only reached without the Terminator plugin.
+    from Xlib import display
+    parents = set(ueberzug.xutil.get_parent_pids(os.getpid()))
+    dpy = display.Display()
+    net_wm_pid = dpy.intern_atom("_NET_WM_PID")
+    best_area, best_id, todo = 0, None, [dpy.screen().root]
+    while todo:
+        window = todo.pop()
+        try:
+            todo += window.query_tree().children
+            pid = window.get_full_property(net_wm_pid, 0)
+            geometry = window.get_geometry()
+        except Exception:  # window vanished meanwhile
+            continue
+        area = geometry.width * geometry.height
+        if pid and pid.value[0] in parents and area > best_area:
+            best_area, best_id = area, window.id
+    return best_id
+
+
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+if get_pane():
+    loop.create_task(use_terminator_pane())
+elif "WINDOWID" not in os.environ and "WSL_DISTRO_NAME" in os.environ:
+    window_id = find_terminal_window()
+    if window_id:
+        os.environ["WINDOWID"] = str(window_id)
+
+ueberzug.thread.DaemonThreadPoolExecutor = concurrent.futures.ThreadPoolExecutor
+main()
+os._exit(0)

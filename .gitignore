@@ -9,3 +9,4 @@ openvpn_pass*
 .pkg*
 .nvimlog
 *.bak
+config/terminator/plugins/__pycache__
