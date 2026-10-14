@@ -141,9 +141,13 @@ handle_image() {
         # SVG
         image/svg+xml|image/svg)
             #convert "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
-            rsvg-convert --keep-aspect-ratio --width "${DEFAULT_SIZE%x*}" "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}.png" \
-                    && mv "${IMAGE_CACHE_PATH}.png" "${IMAGE_CACHE_PATH}" \
-                    && exit 6
+            # rsvg-convert is not installed here; GdkPixbuf (python3-gi) renders SVG with the same librsvg
+            python3 -c '
+import sys, gi
+gi.require_version("GdkPixbuf", "2.0")
+from gi.repository import GdkPixbuf
+GdkPixbuf.Pixbuf.new_from_file_at_scale(sys.argv[1], int(sys.argv[3]), -1, True).savev(sys.argv[2], "png", [], [])
+' "${FILE_PATH}" "${IMAGE_CACHE_PATH}" "${DEFAULT_SIZE%x*}" && exit 6
             exit 1;;
 
         ## DjVu
