@@ -121,9 +121,16 @@ anything unless I ask for it.
 
 ## Drafting PR descriptions
 
-When I ask you to draft a pull request description, remind me to run the
-`ponytail-review` skill (`/ponytail-review`) on the changes. Only remind me:
-don't run the skill unless I ask for it.
+Review the changes before drafting the description, so it describes the
+final code:
+
+- When I ask you to draft a pull request description and no review has run
+  on the changes yet, remind me to run the `ponytail-review` skill
+  (`/ponytail-review`) or a review skill (e.g. `/code-review`) first. Only
+  remind me: don't run the skill unless I ask for it.
+- After such a review has run and its fixes are applied, suggest drafting
+  (or redrafting) the pull request description. Only suggest it: don't
+  draft it unless I ask for it.
 
 When writing a PR description, use the repo's own PR template if it has one
 (e.g. `.github/pull_request_template.md`). Otherwise, read
