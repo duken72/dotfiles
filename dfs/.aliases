@@ -357,10 +357,17 @@ alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 alias icat='kitten icat'
 alias diff='kitten diff'
 
+# Claude Code
+alias cla='claude'
+
 # -------------------------------------------------------- #
 # Workspaces
 alias    ws='c ~/WS'
 # on GitHub
+alias  ad='c ~/WS/adasvf && gst'
+alias ad2='c ~/WS/adasvf2 && gst'
+alias ad3='c ~/WS/adasvf3 && gst'
+alias  vf='c ~/WS/adle-vf && gst'
 alias cfd='c ~/WS/codingForDummies && gst'
 alias  cv='c ~/WS/Curriculum-Vitae-Latex'
 alias not='c ~/WS/learningNotes'
