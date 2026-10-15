@@ -23,6 +23,23 @@ When the user types `/graphify`, invoke the graphify skill
 (`~/.claude/skills/graphify/SKILL.md`) before doing anything else. The skill
 turns any input, such as code, docs, papers, or images, into a knowledge graph.
 
+When a repo has `graphify-out/graph.json`:
+
+- Before your first grep, search or source-file read for a codebase question,
+  run `graphify query "<question>"`. Put this rule in every subagent prompt
+  that explores code. Read raw files only for lines that the graph or an
+  earlier read already located.
+- Use `graphify path "<A>" "<B>"` for relationships and
+  `graphify explain "<concept>"` for focused concepts. Both return a scoped
+  subgraph, usually much smaller than `GRAPH_REPORT.md` or raw grep output.
+- If `graphify-out/wiki/index.md` exists, use it for broad navigation instead
+  of browsing raw source.
+- Read `graphify-out/GRAPH_REPORT.md` only for a broad architecture review, or
+  when query, path and explain don't give enough context.
+- If `graph.json` is committed, every build rewrites it whole, so a large diff
+  to it in a pull request is expected. Don't flag it as churn, and don't
+  suggest skipping the graph rebuild or its hooks.
+
 ## Default coding style
 
 Apply these defaults only when the working repo has no docs or config for
