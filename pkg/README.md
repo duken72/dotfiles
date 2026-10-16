@@ -95,12 +95,9 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 ## Customization
 
 - [Steam custom Proton GE](https://github.com/GloriousEggroll/proton-ge-custom#native)
-- Window manager theme: [True Minimalist](https://www.xfce-look.org/p/1016640/) and [guide to install](https://wiki.xfce.org/howto/install_new_themes)
 - Fonts: [JetBrainsNL Mono Nerd](https://archlinux.org/packages/community/any/ttf-jetbrains-mono-nerd/), size 11-12
-- Mouse cursor: [Night Diamond theme](https://www.gnome-look.org/p/1295073/) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
-- [Redshift](https://wiki.archlinux.org/title/redshift) and [Backlight](https://wiki.archlinux.org/title/backlight)
+- [Backlight](https://wiki.archlinux.org/title/backlight)
 - Unibus-vn: [enable macro](https://github.com/vn-input/ibus-unikey/issues/11)
-- [`polybar`](https://github.com/polybar/polybar): check wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
 - Ranger: [image preview with `ueberzug`](https://github-wiki-see.page/m/ranger/ranger/wiki/Image-Previews), [video thumbnail with `ffmpeg`](https://www.reddit.com/r/NixOS/comments/74wftw/video_previews_wranger/), [docx2txt](http://docx2txt.sourceforge.net/)
 - `zsh` with terminator and [Powerlevel10k](https://dev.to/web3coach/best-terminal-setup-terminator-zsh-powerlevel10k-7pl)
 - Missing keyboard volume control: [Arch wiki](https://wiki.archlinux.org/title/Keyboard_input) and [pulseaudio-ctl](https://github.com/graysky2/pulseaudio-ctl) get the key code with `showkey`, then setup keyboard shortcut to a `pulseaudio-ctl` command
