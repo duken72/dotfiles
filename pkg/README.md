@@ -108,4 +108,3 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 ### Old customization
 
 - Terminus fonts as console font: put `vconsole.conf` in `/etc`
-- email client in terminal: [Alpine](https://alpineapp.email/) [bcacciaaudio.com](https://bcacciaaudio.com/2018/10/09/alpine-mail-setup-with-gmail/), [salixos.org](https://docs.salixos.org/wiki/How_to_set_up_Alpine_with_a_Gmail_account), [linuxshelltips.com](https://www.linuxshelltips.com/alpine-gmail-imap-in-linux/), [wesleyac.com](https://blog.wesleyac.com/posts/setting-up-alpine-gmail-with-arch-linux)
