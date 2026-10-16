@@ -33,16 +33,15 @@ Some worth-mentioned names:
 - Shell: `zsh` with `zsh-autosuggestions`, `zsh-completions`, `powerlevel10k`
 - Panel: `waybar`
 - App launcher: `rofi`
-- Desktop system monitoring: `conky`
 - Browser: `brave`
 - `eza`, as replacement for `ls`, also `ranger`
-- Media player: `moc`, `mpd`, `mpv`
+- Media player: `mpd`, `mpv`
 - `fd`, `fzf` replace `find`
 - `bat`, replace `less` and `cat`
 - `sd`, replace `sed`
 - `ripgrep`, replace `grep`
 - `hyprsunset`
-- Others: `cli-visualizer` for audio visualizer, `tty-clock-git`, `neofetch`, `lightdm-webkit-theme-osmos`, etc.
+- Others: `tty-clock-git`, etc.
 
 ### Install packages and dependencies
 

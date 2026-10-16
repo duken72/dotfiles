@@ -39,8 +39,11 @@ The repo has two active long-lived branches, plus one frozen legacy branch:
   an older nvim), fixes for terminals used on Ubuntu (Terminator, Windows
   Terminal), and aliases that differ on Ubuntu.
 - `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup, taken
-  at the last commit before the switch to Wayland/Hyprland (`2db86c2`). Don't
-  sync changes to or from it, and don't push to it unless asked.
+  at the last commit before the switch to Wayland/Hyprland (`2db86c2`), with
+  `config/emptty` removed afterwards. Don't sync changes to or from it, and
+  don't push to it unless asked. It is the only branch that keeps
+  `config/conky`, `config/htop`, `config/moc`, `config/neofetch`, `config/vis`,
+  `config/vscode` and `config/logitech.md`.
 
 Keep `main` and `ubuntu-support` in sync:
 
@@ -53,6 +56,10 @@ Keep `main` and `ubuntu-support` in sync:
   `pkg/pkg_apt.md` (in `pkg/Ubuntu/` on `main` before they were deleted).
   When merging `main` into `ubuntu-support`, don't let those deletions
   through.
+- Some folders are `main`-only: `config/cava`, `config/emptty` and
+  `config/hypr` were deleted from `ubuntu-support`. When merging `main` into
+  `ubuntu-support`, keep them deleted, and resolve modify/delete conflicts on
+  them by deleting.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
@@ -99,13 +106,13 @@ to add a managed app, create `config/<name>/run.sh`.
   `rm -rf ~/.config/<name>` followed by
   `ln -svf $ABSOLUTE_PARENT_PATH -t ~/.config`.
 - Some scripts gate installation on other conditions. `config/hypr/run.sh`
-  only links itself when `hyprland` is the detected package, and
-  `config/nvim/run.sh` branches on Wayland vs. X11 for the clipboard tool
+  (on `main` only) links itself only when `hyprland` is the detected package,
+  and `config/nvim/run.sh` branches on Wayland vs. X11 for the clipboard tool
   (`wl-clipboard` vs. `xclip`).
-- Some directories under `config/` have no `run.sh` (`conky`, `eduroam`,
-  `fstab`, `grub`, `htop`, `vscode`, `waybar`). They are reference-only or
-  installed as a side effect of another app's `run.sh` (for example, `waybar`
-  via `config/hypr/run.sh`), so they are intentionally not auto-installed.
+- Some directories under `config/` have no `run.sh` (`eduroam`, `fstab`,
+  `grub`, `waybar`). They are reference-only or installed as a side effect of
+  another app's `run.sh` (for example, `waybar` via `config/hypr/run.sh`), so
+  they are intentionally not auto-installed.
 
 ### `pkg/`
 
