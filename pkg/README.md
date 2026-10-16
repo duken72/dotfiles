@@ -98,7 +98,6 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 - Window manager theme: [True Minimalist](https://www.xfce-look.org/p/1016640/) and [guide to install](https://wiki.xfce.org/howto/install_new_themes)
 - Fonts: [JetBrainsNL Mono Nerd](https://archlinux.org/packages/community/any/ttf-jetbrains-mono-nerd/), size 11-12
 - Mouse cursor: [Night Diamond theme](https://www.gnome-look.org/p/1295073/) and [Wiki guide](https://wiki.archlinux.org/title/Cursor_themes#XFCE)
-- [Move between monitors](https://github.com/calandoa/movescreen)
 - [Redshift](https://wiki.archlinux.org/title/redshift) and [Backlight](https://wiki.archlinux.org/title/backlight)
 - Unibus-vn: [enable macro](https://github.com/vn-input/ibus-unikey/issues/11)
 - [`polybar`](https://github.com/polybar/polybar): check wiki, also nice reference from [AbdelrhmanNile](https://github.com/AbdelrhmanNile/mydots_bspwm)
