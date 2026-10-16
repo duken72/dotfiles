@@ -35,7 +35,7 @@ Packages that I currently use at [pkg_pacman.txt](pkg_pacman.txt) and [pkg_aura.
 Some worth-mentioned names:
 
 - Shell: `zsh` with `zsh-autosuggestions`, `zsh-completions`, `powerlevel10k`
-- Panel: `polybar`
+- Panel: `waybar`
 - App launcher: `rofi`
 - Desktop system monitoring: `conky`
 - Browser: `brave`
@@ -45,7 +45,7 @@ Some worth-mentioned names:
 - `bat`, replace `less` and `cat`
 - `sd`, replace `sed`
 - `ripgrep`, replace `grep`
-- `redshift`
+- `hyprsunset`
 - Others: `cli-visualizer` for audio visualizer, `tty-clock-git`, `neofetch`, `lightdm-webkit-theme-osmos`, etc.
 
 ### Install packages and dependencies
