@@ -7,11 +7,12 @@ Guidance for AI coding agents working in this repository.
 <!-- vim-markdown-toc GFM -->
 
 * [Overview](#overview)
+* [Branches](#branches)
 * [Repository layout](#repository-layout)
 * [Install model](#install-model)
-    * [`dfs.sh`](#dfssh)
-    * [`cfg.sh`](#cfgsh)
-    * [`pkg/`](#pkg)
+  * [`dfs.sh`](#dfssh)
+  * [`cfg.sh`](#cfgsh)
+  * [`pkg/`](#pkg)
 * [Submodules](#submodules)
 * [Editing conventions](#editing-conventions)
 * [Gotchas](#gotchas)
@@ -21,11 +22,37 @@ Guidance for AI coding agents working in this repository.
 ## Overview
 
 Personal dotfiles and configs for an Arch Linux (Hyprland/HyDE-based) desktop,
-with legacy notes and scripts for Ubuntu and a prior Xorg/Xfce+polybar setup.
+with legacy notes and scripts for Ubuntu. The prior Xorg/Xfce+polybar configs
+live only on the `legacy-xorg` branch (see [Branches](#branches)).
 
 There is no build, lint, or test suite. "Correctness" means the shell scripts
 run cleanly and symlinks land where the corresponding `run.sh`, `dfs.sh`, or
 `cfg.sh` says they should.
+
+## Branches
+
+The repo has two active long-lived branches, plus one frozen legacy branch:
+
+- `main`: the Arch Linux setup.
+- `ubuntu-support`: `main` plus Ubuntu-specific changes only. Examples are
+  workarounds for older package versions (such as pinning `nvim-treesitter` for
+  an older nvim), fixes for terminals used on Ubuntu (Terminator, Windows
+  Terminal), and aliases that differ on Ubuntu.
+- `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup, taken
+  at the last commit before the switch to Wayland/Hyprland (`2db86c2`). Don't
+  sync changes to or from it, and don't push to it unless asked.
+
+Keep `main` and `ubuntu-support` in sync:
+
+- When you make a change on one branch that isn't Ubuntu-specific, bring the
+  same change to the other branch (cherry-pick it, or merge `main` into
+  `ubuntu-support`).
+- Ubuntu-specific changes stay on `ubuntu-support` only.
+- Some Ubuntu-only files, such as `os/ubuntu.md`, were deleted from `main` but
+  must stay on `ubuntu-support`. When merging `main` into `ubuntu-support`,
+  don't let those deletions through.
+- When you push one branch, push the other one too, so that both remotes stay
+  current.
 
 ## Repository layout
 
@@ -34,7 +61,8 @@ run cleanly and symlinks land where the corresponding `run.sh`, `dfs.sh`, or
 - `dfs/`: Dotfiles for Linux packages.
 - `pkg/`: Package lists and OS-specific install helpers. Nothing here is
   symlinked.
-- `os/`: Narrative install docs (`archlinux.md`, `ubuntu.md`) and `run.sh`, a
+- `os/`: Narrative install docs (`archlinux.md`, plus `ubuntu.md` on
+  `ubuntu-support` only) and `run.sh`, a
   numbered-step Arch bootstrap (`pre_partition`, `format_and_mount_partitions`,
   `installation`, `configure`, `create_user`, `post_installation`), invoked as
   `./run.sh <1-6>`.
