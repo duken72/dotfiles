@@ -22,10 +22,6 @@ My personal `dotfiles` and `configs`.
 
 For backgrounds, check [Wallpapers](Wallpapers).
 
-![screenshot](Screenshot/Screenshot_2022-01-06_21-28-44.png)
-
-![screenshot](Screenshot/Screenshot_2022-01-06_21-30-06.png)
-
 ---
 
 ## Packages
