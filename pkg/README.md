@@ -109,6 +109,3 @@ Follow this [guide](https://jaggu-iitm.medium.com/setting-up-deep-learning-with-
 
 - Terminus fonts as console font: put `vconsole.conf` in `/etc`
 - email client in terminal: [Alpine](https://alpineapp.email/) [bcacciaaudio.com](https://bcacciaaudio.com/2018/10/09/alpine-mail-setup-with-gmail/), [salixos.org](https://docs.salixos.org/wiki/How_to_set_up_Alpine_with_a_Gmail_account), [linuxshelltips.com](https://www.linuxshelltips.com/alpine-gmail-imap-in-linux/), [wesleyac.com](https://blog.wesleyac.com/posts/setting-up-alpine-gmail-with-arch-linux)
-- Desktop system monitoring: [`conky`](https://github.com/brndnmtthws/conky), a fork from [`xypnox`](https://github.com/xypnox/dotfiles)
-- Download manager: [`xdman`](https://xtremedownloadmanager.com/), [youtube-dl](https://youtube-dl.org/)
-- A bit troublesome with the [`Osmos` theme](https://github.com/Warinyourself/lightdm-webkit-theme-osmos)
