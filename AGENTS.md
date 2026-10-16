@@ -40,10 +40,11 @@ The repo has two active long-lived branches, plus one frozen legacy branch:
   Terminal), and aliases that differ on Ubuntu.
 - `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup, taken
   at the last commit before the switch to Wayland/Hyprland (`2db86c2`), with
-  `config/emptty` removed afterwards. Don't sync changes to or from it, and
-  don't push to it unless asked. It is the only branch that keeps
-  `config/conky`, `config/htop`, `config/moc`, `config/neofetch`, `config/vis`,
-  `config/vscode` and `config/logitech.md`.
+  `config/emptty` and `config/kitty` removed afterwards. Don't sync changes to
+  or from it, and don't push to it unless asked. It is the only branch that
+  keeps `config/conky`, `config/htop`, `config/moc`, `config/neofetch`,
+  `config/vis`, `config/vscode`, `config/logitech.md`, `config/NetworkManager`,
+  `config/openvpn` and `config/pulseaudio-ctl`.
 
 Keep `main` and `ubuntu-support` in sync:
 
@@ -56,10 +57,10 @@ Keep `main` and `ubuntu-support` in sync:
   `pkg/pkg_apt.md` (in `pkg/Ubuntu/` on `main` before they were deleted).
   When merging `main` into `ubuntu-support`, don't let those deletions
   through.
-- Some folders are `main`-only: `config/cava`, `config/emptty` and
-  `config/hypr` were deleted from `ubuntu-support`. When merging `main` into
-  `ubuntu-support`, keep them deleted, and resolve modify/delete conflicts on
-  them by deleting.
+- Some folders were deleted from `ubuntu-support` and exist on `main` only:
+  `config/cava`, `config/emptty`, `config/grub`, `config/hypr`, `config/waybar`
+  and `config/wofi`. When merging `main` into `ubuntu-support`, keep them
+  deleted, and resolve modify/delete conflicts on them by deleting.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
