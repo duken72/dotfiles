@@ -48,9 +48,11 @@ Keep `main` and `ubuntu-support` in sync:
   same change to the other branch (cherry-pick it, or merge `main` into
   `ubuntu-support`).
 - Ubuntu-specific changes stay on `ubuntu-support` only.
-- Some Ubuntu-only files, such as `os/ubuntu.md`, were deleted from `main` but
-  must stay on `ubuntu-support`. When merging `main` into `ubuntu-support`,
-  don't let those deletions through.
+- Some Ubuntu-only files were deleted from `main` but must stay on
+  `ubuntu-support`: `os/ubuntu.md`, and `pkg/apt_install.sh` and
+  `pkg/pkg_apt.md` (in `pkg/Ubuntu/` on `main` before they were deleted).
+  When merging `main` into `ubuntu-support`, don't let those deletions
+  through.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
@@ -115,7 +117,9 @@ to add a managed app, create `config/<name>/run.sh`.
 - `delta.sh` diffs the `.bak` snapshot of a package list against the current
   one, to show what changed after an update. The snapshot comes from
   `bin/pkg_backup.sh` or the `pacman`/`pkg-backup` hooks in `dfs/hook/`.
-- `Ubuntu/` and `Windows/` hold notes and scripts for those platforms.
+- `Windows/` holds notes and scripts for Windows. The Ubuntu ones
+  (`apt_install.sh`, `pkg_apt.md`) sit directly in `pkg/` on `ubuntu-support`
+  only.
 - `ws.sh` clones the author's other personal repos into `~/WS`.
 
 ## Submodules

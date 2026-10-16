@@ -10,7 +10,7 @@ if command -v pacman >/dev/null; then
         sudo pacman -S --needed xclip
     fi
 elif command -v apt >/dev/null; then
-    # neovim itself: see pkg/Ubuntu/apt_install.sh (apt's version is too old on 22.04)
+    # neovim itself: see pkg/apt_install.sh on ubuntu-support (apt's version is too old on 22.04)
     # luarocks + lua headers: mason's luacheck; python3-venv: mason's pip packages
     sudo apt install -y npm luarocks liblua5.3-dev python3-venv build-essential \
         curl unzip ripgrep shfmt xclip
