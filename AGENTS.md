@@ -44,7 +44,10 @@ The repo has two active long-lived branches, plus one frozen legacy branch:
   or from it, and don't push to it unless asked. It is the only branch that
   keeps `config/conky`, `config/htop`, `config/moc`, `config/neofetch`,
   `config/vis`, `config/vscode`, `config/logitech.md`, `config/NetworkManager`,
-  `config/openvpn` and `config/pulseaudio-ctl`.
+  `config/openvpn` and `config/pulseaudio-ctl`, and the scripts
+  `bin/imgcompress.sh`, `bin/imgcompressDir.sh`, `bin/pdfcompress.sh`,
+  `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh` and
+  `bin/renameSong.sh`.
 
 Keep `main` and `ubuntu-support` in sync:
 
@@ -57,10 +60,16 @@ Keep `main` and `ubuntu-support` in sync:
   `pkg/pkg_apt.md` (in `pkg/Ubuntu/` on `main` before they were deleted).
   When merging `main` into `ubuntu-support`, don't let those deletions
   through.
-- Some folders were deleted from `ubuntu-support` and exist on `main` only:
-  `config/cava`, `config/emptty`, `config/grub`, `config/hypr`, `config/waybar`
-  and `config/wofi`. When merging `main` into `ubuntu-support`, keep them
-  deleted, and resolve modify/delete conflicts on them by deleting.
+- Some Arch-only files and folders were deleted from `ubuntu-support` and exist
+  on `main` only. When merging `main` into `ubuntu-support`, keep them
+  deleted, and resolve modify/delete conflicts on them by deleting:
+  - `config/cava`, `config/emptty`, `config/grub`, `config/hypr`,
+    `config/waybar` and `config/wofi`.
+  - `bin/pkg_backup.sh`, `bin/pkg_backup_pre.sh`, `bin/revert-updates.sh` and
+    `dfs/hook/` (pacman hooks).
+  - `os/archlinux.md` and `os/run.sh`.
+  - `pkg/delta.sh`, `pkg/pacman_install.sh` and the pacman/AUR package lists
+    `pkg/pkg_*.txt`.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
@@ -71,11 +80,10 @@ Keep `main` and `ubuntu-support` in sync:
 - `dfs/`: Dotfiles for Linux packages.
 - `pkg/`: Package lists and OS-specific install helpers. Nothing here is
   symlinked.
-- `os/`: Narrative install docs (`archlinux.md`, plus `ubuntu.md` on
-  `ubuntu-support` only) and `run.sh`, a
-  numbered-step Arch bootstrap (`pre_partition`, `format_and_mount_partitions`,
+- `os/`: Narrative install docs. On `main`, these are `archlinux.md` and
+  `run.sh`, a numbered-step Arch bootstrap (`pre_partition`, `format_and_mount_partitions`,
   `installation`, `configure`, `create_user`, `post_installation`), invoked as
-  `./run.sh <1-6>`.
+  `./run.sh <1-6>`. On `ubuntu-support`, it is `ubuntu.md` only.
 
 ## Install model
 
@@ -116,6 +124,9 @@ to add a managed app, create `config/<name>/run.sh`.
   they are intentionally not auto-installed.
 
 ### `pkg/`
+
+The pacman/AUR lists, `pacman_install.sh` and `delta.sh` aren't on
+`ubuntu-support`.
 
 - `pkg_pacman.txt`, `pkg_aura.txt` (AUR), `pkg_pacman_python.txt`,
   `pkg_latex.txt`, `pkg_wayland.txt`, and `pkg_xorg.txt` are plain
