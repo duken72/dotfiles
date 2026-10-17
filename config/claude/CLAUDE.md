@@ -83,9 +83,8 @@ it belongs in. Don't edit the documentation unless I ask for it.
 - Whenever you explain something, always cite the reference, and put each
   reference right after the claim, bullet or paragraph it supports, not
   collected at the end of the answer. For example:
-  - `- The timeout defaults to 30 s. [Ref: config.yaml (line 12)]`
-  - `- The parser skips empty lines. [Ref: parser.py (line 40-52), README.md
-    (line 7-9)]`
+  - `- The timeout defaults to 30 s. [Ref: config.yaml (line 2)]`
+  - `- The parser skips empty lines. [Ref: parser.py (line 7), R.md (line 7)]`
 - Cite only sources that existed before you touched them: other documentation,
   existing code or files, git history. Don't cite files or code you wrote or
   changed in this session to back up a claim about them; that is citing
