@@ -62,6 +62,10 @@ Keep `main` and `ubuntu-support` in sync:
   - `os/archlinux.md` and `os/run.sh`.
   - `pkg/delta.sh`, `pkg/pacman_install.sh` and the pacman/AUR package lists
     `pkg/pkg_*.txt`.
+- The `config/*/run.sh` scripts install packages with `pacman` on `main` and
+  with `apt` on `ubuntu-support`. When merging `main` into `ubuntu-support`
+  causes a conflict on that install line, keep the `apt` line, and port any
+  package change to its Ubuntu name.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 

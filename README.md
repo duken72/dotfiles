@@ -116,7 +116,8 @@ to add a managed app, create `config/<name>/run.sh`.
 
 - `./cfg.sh -i` / `-u`: install / uninstall configs. Uninstall is generic: it
   removes any symlink directly under `~/.config`.
-- A `run.sh` installs the app's package via `pacman`, resolves its own path
+- A `run.sh` installs the app's package (via `pacman` on `main`, via `apt` on
+  `ubuntu-support`), resolves its own path
   with `ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))`, then runs
   `rm -rf ~/.config/<name>` followed by
   `ln -svf $ABSOLUTE_PARENT_PATH -t ~/.config`.
