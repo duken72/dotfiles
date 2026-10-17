@@ -1,4 +1,0 @@
-python-pip
-python-pipx
-python-rich
-jupyter-notebook
