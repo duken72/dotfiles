@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -S --needed --noconfirm terminator
+sudo apt install -y terminator
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 rm -rf ~/.config/terminator
 ln -svf $ABSOLUTE_PARENT_PATH -t ~/.config

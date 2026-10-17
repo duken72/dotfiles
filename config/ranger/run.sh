@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo pacman -Sy --needed --noconfirm ranger docx2txt ueberzugpp \
-    ffmpegthumbnailer ffmpeg atool python-pipx
+# ueberzugpp (image previews) has no apt package: install it from its GitHub releases
+sudo apt install -y ranger docx2txt ffmpegthumbnailer ffmpeg atool pipx
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 rm -rf ~/.config/ranger
 ln -svf $ABSOLUTE_PARENT_PATH -t ~/.config
