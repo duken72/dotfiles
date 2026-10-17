@@ -153,7 +153,7 @@ The pacman/AUR lists, `pacman_install.sh` and `delta.sh` aren't on
 
 `.gitmodules` tracks vendored plugin and theme repos: `zsh-autosuggestions`,
 `zsh-completions`, `powerlevel10k`, and `fzf-tab` under `dfs/`, and
-`ranger_devicons` under `.config/ranger/plugins/`.
+`ranger_devicons` under `config/ranger/plugins/`.
 
 - Run `git submodule update --init` after cloning or pulling.
 - The update strategy is `--remote --merge`, so
