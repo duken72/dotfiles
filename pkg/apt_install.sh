@@ -12,6 +12,24 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] http
 sudo apt update
 sudo apt install -y brave-browser
 
+# Install fastfetch: upstream PPA, since apt has it only from Ubuntu 25.04
+sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+sudo apt update
+sudo apt install -y fastfetch
+
+# Install ueberzugpp (ranger image previews) from the upstream openSUSE build
+# service repo. It has builds for Ubuntu 24.04 or newer only, not for 22.04.
+UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_ID")
+UEBERZUGPP_REPO="https://download.opensuse.org/repositories/home:/justkidding/xUbuntu_${UBUNTU_VERSION}"
+if curl -fsIo /dev/null "$UEBERZUGPP_REPO/Release.key"; then
+	curl -fsSL "$UEBERZUGPP_REPO/Release.key" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_justkidding.gpg >/dev/null
+	echo "deb $UEBERZUGPP_REPO/ /" | sudo tee /etc/apt/sources.list.d/home:justkidding.list
+	sudo apt update
+	sudo apt install -y ueberzugpp
+else
+	echo "No ueberzugpp repo for Ubuntu $UBUNTU_VERSION, skipping"
+fi
+
 # Install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 cd ~/.fzf && ./install

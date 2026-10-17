@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ueberzugpp (image previews) has no apt package: install it from its GitHub releases
+# ueberzugpp (image previews) has no package in the Ubuntu repos: pkg/apt_install.sh installs it
 sudo apt install -y ranger docx2txt ffmpegthumbnailer ffmpeg atool pipx
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 rm -rf ~/.config/ranger
