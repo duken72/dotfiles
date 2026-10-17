@@ -1,14 +1,24 @@
 {
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "enabledPlugins": {
+    "ponytail@ponytail": true,
+    "agent-skills@addy-agent-skills": true
+  },
   "extraKnownMarketplaces": {
     "ponytail": {
       "source": {
         "source": "github",
         "repo": "DietrichGebert/ponytail"
       }
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
+      }
     }
   },
-  "theme": "dark",
-  "enabledPlugins": {
-    "ponytail@ponytail": true
-  }
+  "theme": "dark"
 }
