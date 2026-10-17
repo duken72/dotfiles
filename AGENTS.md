@@ -39,7 +39,7 @@ one frozen legacy branch, `legacy-xorg`:
   `config/openvpn` and `config/pulseaudio-ctl`, and the scripts
   `bin/imgcompress.sh`, `bin/imgcompressDir.sh`, `bin/pdfcompress.sh`,
   `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh` and
-  `bin/renameSong.sh`.
+  `bin/renameSong.sh`, and the dotfiles `dfs/.pinerc` and `dfs/ipython/`.
 
 Keep `main` and `ubuntu-support` in sync:
 
