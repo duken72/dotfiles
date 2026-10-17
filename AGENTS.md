@@ -1,29 +1,21 @@
 # AGENTS.md
 
-Guidance for AI coding agents working in this repository.
+Guidance for AI coding agents working in this repository. For the overview,
+repository layout, install scripts and submodules, read
+[README.md](README.md) first.
 
 ## Table of contents
 
 <!-- vim-markdown-toc GFM -->
 
-* [Overview](#overview)
+* [Verifying changes](#verifying-changes)
 * [Branches](#branches)
-* [Repository layout](#repository-layout)
-* [Install model](#install-model)
-  * [`dfs.sh`](#dfssh)
-  * [`cfg.sh`](#cfgsh)
-  * [`pkg/`](#pkg)
-* [Submodules](#submodules)
 * [Editing conventions](#editing-conventions)
 * [Gotchas](#gotchas)
 
 <!-- vim-markdown-toc -->
 
-## Overview
-
-Personal dotfiles and configs for an Arch Linux (Hyprland/HyDE-based) desktop,
-with legacy notes and scripts for Ubuntu. The prior Xorg/Xfce+polybar configs
-live only on the `legacy-xorg` branch (see [Branches](#branches)).
+## Verifying changes
 
 There is no build, lint, or test suite. "Correctness" means the shell scripts
 run cleanly and symlinks land where the corresponding `run.sh`, `dfs.sh`, or
@@ -31,9 +23,9 @@ run cleanly and symlinks land where the corresponding `run.sh`, `dfs.sh`, or
 
 ## Branches
 
-The repo has two active long-lived branches, plus one frozen legacy branch:
+The repo has two active long-lived branches, `main` and `ubuntu-support`, plus
+one frozen legacy branch, `legacy-xorg`:
 
-- `main`: the Arch Linux setup.
 - `ubuntu-support`: `main` plus Ubuntu-specific changes only. Examples are
   workarounds for older package versions (such as pinning `nvim-treesitter` for
   an older nvim), fixes for terminals used on Ubuntu (Terminator, Windows
@@ -72,85 +64,6 @@ Keep `main` and `ubuntu-support` in sync:
     `pkg/pkg_*.txt`.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
-
-## Repository layout
-
-- `bin/`: Bash scripts for customized usage.
-- `config/`: Configs for Linux packages.
-- `dfs/`: Dotfiles for Linux packages.
-- `pkg/`: Package lists and OS-specific install helpers. Nothing here is
-  symlinked.
-- `os/`: Narrative install docs. On `main`, these are `archlinux.md` and
-  `run.sh`, a numbered-step Arch bootstrap (`pre_partition`, `format_and_mount_partitions`,
-  `installation`, `configure`, `create_user`, `post_installation`), invoked as
-  `./run.sh <1-6>`. On `ubuntu-support`, it is `ubuntu.md` only.
-
-## Install model
-
-There are three independent install mechanisms, each with its own script and
-its own set of managed paths.
-
-### `dfs.sh`
-
-Symlinks top-level home dotfiles (`.zshrc`, `.bashrc`, `.gitconfig`, `.vimrc`,
-`.p10k.zsh`, `.zsh`, `.powerlevel10k`, `.clang-format`, etc.) from `dfs/` into
-`~`. Also symlinks `bin/*` into `/usr/local/bin` (requires sudo).
-
-- `./dfs.sh -i` / `-u`: install / uninstall dotfiles.
-- `./dfs.sh -ib` / `-ub`: install / uninstall binaries.
-- The managed dotfiles are a hardcoded `DOTFILES=(...)` array at the top of
-  `dfs.sh`. Add new top-level dotfiles there, not just in `dfs/`.
-
-### `cfg.sh`
-
-Installs app configs from `config/<name>/` into `~/.config`. It discovers every
-`config/**/run.sh` and runs each in its own directory
-(`cd "$(dirname "$script")" && ./run.sh`). There is no central list to edit:
-to add a managed app, create `config/<name>/run.sh`.
-
-- Uninstall (`cfg.sh -u`) is generic: it removes any symlink directly under
-  `~/.config`.
-- A `run.sh` installs the app's package via `pacman`, resolves its own path
-  with `ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))`, then runs
-  `rm -rf ~/.config/<name>` followed by
-  `ln -svf $ABSOLUTE_PARENT_PATH -t ~/.config`.
-- Some scripts gate installation on other conditions. `config/hypr/run.sh`
-  (on `main` only) links itself only when `hyprland` is the detected package,
-  and `config/nvim/run.sh` branches on Wayland vs. X11 for the clipboard tool
-  (`wl-clipboard` vs. `xclip`).
-- Some directories under `config/` have no `run.sh` (`eduroam`, `fstab`,
-  `grub`, `waybar`). They are reference-only or installed as a side effect of
-  another app's `run.sh` (for example, `waybar` via `config/hypr/run.sh`), so
-  they are intentionally not auto-installed.
-
-### `pkg/`
-
-The pacman/AUR lists, `pacman_install.sh` and `delta.sh` aren't on
-`ubuntu-support`.
-
-- `pkg_pacman.txt`, `pkg_aura.txt` (AUR), `pkg_pacman_python.txt`,
-  `pkg_latex.txt`, `pkg_wayland.txt`, and `pkg_xorg.txt` are plain
-  package-name lists. They are consumed via stdin, not file arguments:
-  `pacman -S --needed - < pkg/pkg_pacman.txt` or
-  `aura -A - < pkg/pkg_aura.txt`.
-- `delta.sh` diffs the `.bak` snapshot of a package list against the current
-  one, to show what changed after an update. The snapshot comes from
-  `bin/pkg_backup.sh` or the `pacman`/`pkg-backup` hooks in `dfs/hook/`.
-- `Windows/` holds notes and scripts for Windows. The Ubuntu ones
-  (`apt_install.sh`, `pkg_apt.md`) sit directly in `pkg/` on `ubuntu-support`
-  only.
-- `ws.sh` clones the author's other personal repos into `~/WS`.
-
-## Submodules
-
-`.gitmodules` tracks vendored plugin and theme repos: `zsh-autosuggestions`,
-`zsh-completions`, `powerlevel10k`, and `fzf-tab` under `dfs/`, and
-`ranger_devicons` under `.config/ranger/plugins/`.
-
-- Run `git submodule update --init` after cloning or pulling.
-- The update strategy is `--remote --merge`, so
-  `git submodule update --remote --merge` pulls upstream changes instead of
-  pinning to the recorded commit.
 
 ## Editing conventions
 
