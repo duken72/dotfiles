@@ -98,6 +98,28 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
+		init = function()
+			-- nvim 0.12 ignores `all = false`, so the handlers of nvim-treesitter master get a list of
+			-- nodes per capture instead of a node. Hand them the last node, as `all = false` did.
+			-- Remove when migrating to the nvim-treesitter `main` branch.
+			local query = vim.treesitter.query
+			for _, name in ipairs({ "add_directive", "add_predicate" }) do
+				local add = query[name]
+				query[name] = function(handler_name, handler, opts)
+					if type(opts) == "table" and opts.all == false then
+						local single_node_handler = handler
+						handler = function(match, ...)
+							local single = {}
+							for id, nodes in pairs(match) do
+								single[id] = nodes[#nodes]
+							end
+							return single_node_handler(single, ...)
+						end
+					end
+					return add(handler_name, handler, opts)
+				end
+			end
+		end,
 		config = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
