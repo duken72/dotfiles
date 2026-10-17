@@ -61,6 +61,8 @@
 	colorMoved = default
 [push]
 	autoSetupRemote = true
+[submodule]
+	recurse = true
 [http]
 	postBuffer = 157286400
 [init]

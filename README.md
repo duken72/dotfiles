@@ -155,10 +155,14 @@ The pacman/AUR lists, `pacman_install.sh` and `delta.sh` aren't on
 `zsh-completions`, `powerlevel10k`, and `fzf-tab` under `dfs/`, and
 `ranger_devicons` under `config/ranger/plugins/`.
 
-- Run `git submodule update --init` after cloning or pulling.
-- The update strategy is `--remote --merge`, so
-  `git submodule update --remote --merge` pulls upstream changes instead of
-  pinning to the recorded commit.
+- Run `git submodule update --init` after cloning, and after a pull that adds
+  a new submodule.
+- `dfs/.gitconfig` sets `submodule.recurse = true`, so `git pull`,
+  `git checkout` and `git switch` keep the submodules at their recorded
+  commits.
+- Submodules don't follow upstream on their own. To bump them, run
+  `git submodule update --remote --merge`, test, then commit the new pointers
+  on both `main` and `ubuntu-support`.
 
 ---
 
