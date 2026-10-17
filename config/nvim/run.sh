@@ -16,4 +16,5 @@ elif command -v apt >/dev/null; then
         curl unzip ripgrep shfmt xclip
 fi
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
+rm -rf ~/.config/nvim
 ln -svf $ABSOLUTE_PARENT_PATH -t ~/.config
