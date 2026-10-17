@@ -38,8 +38,9 @@ one frozen legacy branch, `legacy-xorg`:
   `config/vis`, `config/vscode`, `config/logitech.md`, `config/NetworkManager`,
   `config/openvpn` and `config/pulseaudio-ctl`, and the scripts
   `bin/imgcompress.sh`, `bin/imgcompressDir.sh`, `bin/pdfcompress.sh`,
-  `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh` and
-  `bin/renameSong.sh`, and the dotfiles `dfs/.pinerc` and `dfs/ipython/`.
+  `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh`,
+  `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc` and
+  `dfs/ipython/`.
 
 Keep `main` and `ubuntu-support` in sync:
 
