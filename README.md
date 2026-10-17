@@ -33,8 +33,7 @@ For backgrounds, check [Wallpapers](Wallpapers).
 ## Branches
 
 - `main`: the Arch Linux setup.
-- `ubuntu-support`: `main` plus Ubuntu-specific changes, without the Arch-only
-  files.
+- `ubuntu-support`: `main` plus Ubuntu-based changes, without the Arch files.
 - `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup.
 
 ---
@@ -44,13 +43,11 @@ For backgrounds, check [Wallpapers](Wallpapers).
 - `bin/`: Bash scripts for customized usage.
 - `config/`: Configs for Linux packages.
 - `dfs/`: Dotfiles for Linux packages.
-- `pkg/`: Package lists and OS-specific install helpers. Nothing here is
-  symlinked.
+- `pkg/`: Package lists and OS-specific install helpers. Nothing here is symlinked.
 - `os/`: Install docs. On `main`, these are `archlinux.md` and `run.sh`, a
-  numbered-step Arch bootstrap (`pre_partition`,
-  `format_and_mount_partitions`, `installation`, `configure`, `create_user`,
-  `post_installation`), invoked as `./run.sh <1-6>`. On `ubuntu-support`, it
-  is `ubuntu.md` only.
+  numbered-step Arch bootstrap (`pre_partition`, `format_and_mount_partitions`,
+  `installation`, `configure`, `create_user`, `post_installation`), invoked as
+  `./run.sh <1-6>`. On `ubuntu-support`, it is `ubuntu.md` only.
 
 ---
 
@@ -76,12 +73,6 @@ Some worth-mentioned names:
 
 ### Install packages and dependencies
 
-Ubuntu (on `ubuntu-support`):
-
-```bash
-./pkg/apt_install.sh
-```
-
 Arch Linux (on `main`):
 
 ```bash
@@ -89,11 +80,18 @@ pacman -S --needed - < pkg/pkg_pacman.txt
 aura -A - < pkg/pkg_aura.txt
 ```
 
+Ubuntu (on `ubuntu-support`):
+
+```bash
+./pkg/apt_install.sh
+```
+
 ---
 
 ## Install `dotfiles` and `configs`
 
-I'm, actually .. kind of .. proud of my `.aliases`. Though not much, but I have gone quite a long way, from ground zero.
+I'm, actually .. kind of .. proud of my `.aliases`.
+Though not much, but I have gone quite a long way, from ground zero.
 
 There are three independent install mechanisms, each with its own script and
 its own set of managed paths.
