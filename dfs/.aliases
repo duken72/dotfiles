@@ -304,7 +304,6 @@ alias nvidia-smi='clear; nvidia-smi'
 # Others
 alias weather='clear && curl wttr.in'
 alias speedtest='pipx run speedtest-cli --bytes'
-alias myip='dig +short txt ch whoami.cloudflare @1.0.0.1'
 function diet {
     gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' ~/Documents/workout/diet2.md 
 }
