@@ -46,7 +46,7 @@ one frozen legacy branch, `legacy-xorg`:
   `boris` and SVN aliases next to it, the TU Berlin workspace aliases `phd`,
   `par` and `aicon`, the OSD `vc` alias with the
   `export OS=...` line it needs, `FCI_IP`, the `steamid` function, and the
-  `mocp`, `polybar` and `neofetch` aliases.
+  `mocp`, `usound`, `dsound`, `polybar` and `neofetch` aliases.
 
 Where each kind of change goes:
 
@@ -90,9 +90,9 @@ Keep `main` and `ubuntu-support` in sync:
   aliases on `ubuntu-support` and the `pacman`/`aura` aliases on `main`. When
   merging `main` into `ubuntu-support` causes a conflict there, keep the `apt`
   block and delete the `pacman` block.
-- `dfs/.aliases` on `ubuntu-support` has no IBUS Unikey and Alsa mixer block
-  (`ibus-daemon-start`, `ibus-set-keyboard`, `vnk`, `dek`, `enk`, `ik`,
-  `usound`, `dsound`); it stays on `main`. When merging `main` into
+- `dfs/.aliases` on `ubuntu-support` has no IBUS Unikey block
+  (`ibus-daemon-start`, `ibus-set-keyboard`, `vnk`, `dek`, `enk`, `ik`); it
+  stays on `main`. When merging `main` into
   `ubuntu-support` causes a conflict there, keep the block deleted.
 - `dfs/.aliases` aliases `cat` to `bat` on `main` and `legacy-xorg`, and to
   `batcat` on `ubuntu-support` (Ubuntu's name for `bat`). When merging `main`
