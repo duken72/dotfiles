@@ -306,15 +306,11 @@ alias not='c ~/WS/learningNotes'
 alias nov='c ~/WS/learningNotes && v'
 alias nol='c ~/WS/notesLatex'
 alias kno='c ~/WS/knowledge-obsidian'
-alias  nn='c ~/WS/neural-network-test && v'
 alias ccom='c ~/WS/coding-competitions&& v'
 alias aoc='c ~/WS/Advent-of-Code/AoC-2025'
-alias grl='c ~/WS/test/goalRL-test'
 alias blg='c ~/WS/duken72.github.io/_posts'
 alias deu='c ~/WS/notes-deu'
 # Others
-alias rob='c ~/WS/rob'
-alias  td='c ~/WS/TODO'
 alias rwth='doc && c LEARN/master-robotics'
 # ROS
 for shell in zsh bash fish; do
@@ -327,9 +323,6 @@ function cd_ros_ws {
     cd "$1" && ract && cd src
 }
 alias r2ws='cd_ros_ws ~/WS/ros2_ws'
-alias  rws='cd_ros_ws ~/WS/ros_ws'
-alias  cws='cd_ros_ws ~/WS/catkin_ws'
-alias  dws='cd_ros_ws ~/WS/duc_ws'
 
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
