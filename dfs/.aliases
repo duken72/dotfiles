@@ -232,20 +232,6 @@ function lmk {
 
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
-# IBUS Unikey
-alias ibus-daemon-start='tmux_start_detach_session ibus-daemon ibus-daemon'
-function ibus-set-keyboard {
-    tmux has-session -t "ibus-daemon" 2>/dev/null || ibus-daemon-start
-    sleep 0.14s && ibus engine $1
-}
-alias vnk='ibus-set-keyboard Unikey'
-alias dek='ibus-set-keyboard xkb:de:nodeadkeys:deu'
-alias enk='ibus-set-keyboard xkb:us::eng'
-alias ik='enk && tmux has-session -t "ibus-daemon" 2>/dev/null && tmk ibus-daemon'
-# Alsa mixer
-alias usound='amixer -q -D pulse sset Master 14%+'
-alias dsound='amixer -q -D pulse sset Master 14%-'
-
 # Git
 alias    g='git'
 alias   gi='git init'
