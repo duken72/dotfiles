@@ -2,7 +2,6 @@
 # commands: Claude Code sets CLAUDECODE and AI_AGENT in its shell.
 [ -n "$CLAUDECODE$AI_AGENT" ] && return
 
-export OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
@@ -53,7 +52,6 @@ fi
 alias rm='rm -vr'
 alias mv='mv -v' # interactive
 alias cat='cat -n' # with line numbers
-# [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
 [ -x /usr/bin/bat ] && alias cat='bat'
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
@@ -139,48 +137,32 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 # -------------------------------------------------------- #
 # OS SPECIFIC
 
-# OSD
-[[ $OS = 'osd' ]] && alias vc='osd-vpn-connect'
-
-# Ubuntu
-if [ $OS = 'ubuntu' ]; then
-    # apt - Advance Package Tool
-    alias     ai='sudo apt -y install'
-    alias  aptud='sudo apt update'
-    alias  aptug='sudo apt dist-upgrade'
-    alias aptudg='aptud && time aptug'
-    # dist-upgrade will install & remove packages as necessary to resolve dependencies
-    alias     fd='fdfind'
-fi
-
 # Arch Linux
-if [ $OS = 'arch' ]; then
-    # pacman - Package Manager
-    alias  pacs='sudo pacman -S --needed'
-    alias pacss='pacman -Ss'
-    alias  pacr='sudo pacman -R'
-    if [ -x /usr/bin/fzf ]; then
-        alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-        alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-        alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-    fi
-    alias    pacsy='sudo pacman -Sy'
-    alias   pacsyu='sudo pacman -Syu'
-    alias     pacq='pacman -Q'
-    alias     pacg='pacman -Sg'
-
-    # AURA - AUR Helper
-    alias    auraa='aura -Aax'
-    alias    aurar='aura -R'
-    alias   auraas='aura -As'
-    alias   auraau='aura -Auax'
-
-    # System cleaning
-    alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
-    alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
-    alias  cache_show='find ~/.cache/ -type f -atime +72'
-    alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
+# pacman - Package Manager
+alias  pacs='sudo pacman -S --needed'
+alias pacss='pacman -Ss'
+alias  pacr='sudo pacman -R'
+if [ -x /usr/bin/fzf ]; then
+    alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+    alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+    alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 fi
+alias    pacsy='sudo pacman -Sy'
+alias   pacsyu='sudo pacman -Syu'
+alias     pacq='pacman -Q'
+alias     pacg='pacman -Sg'
+
+# AURA - AUR Helper
+alias    auraa='aura -Aax'
+alias    aurar='aura -R'
+alias   auraas='aura -As'
+alias   auraau='aura -Auax'
+
+# System cleaning
+alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
+alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
+alias  cache_show='find ~/.cache/ -type f -atime +72'
+alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
 
 # DUAL BOOT with WINDOWS
 if [ -d /home/${USER}/.Windows ]; then
@@ -408,64 +390,6 @@ alias  rws='cd_ros_ws ~/WS/ros_ws'
 alias  cws='cd_ros_ws ~/WS/catkin_ws'
 alias  dws='cd_ros_ws ~/WS/duc_ws'
 
-# TUB
-# Connect to TU VPN
-function tuvpn {
-    STR=$(networkctl status)
-    IP_LAB="130.149.238"
-    if [[ "$STR" == *"$IP_LAB"* ]]; then
-        echo "Already in the lab network"
-    else
-        echo "NOT in the lab network, connect via VPN ..."
-        # tmux_start_detach_session tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel-2FA vpn.tu-berlin.de"
-        tmux_start_detach_session tub-vpn "gtk-launch com.cisco.secureclient.gui"
-    fi
-}
-# Un-mount and remove directory
-function tum {
-    for DIR in ~/WS/afs ~/WS/nas; do
-        if mountpoint -q $DIR; then
-            sudo umount $DIR
-        fi
-        if [ -d $DIR ]; then
-            rmdir $DIR
-        fi
-    done
-}
-# Mount NAS directory
-function mnas {
-    if [ ! -d ~/WS/nas ]; then
-        mkdir -p ~/WS/nas
-    fi
-    if mountpoint -q ~/WS/nas; then
-        echo "Already mounted"
-    else
-        tuvpn
-        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas
-    fi
-    cd ~/WS/nas
-}
-# Mount AFS directory
-function mafs {
-    if [ ! -d ~/WS/afs ]; then
-        mkdir -p ~/WS/afs
-    fi
-    if mountpoint -q ~/WS/afs; then
-        echo "Already mounted"
-    else
-        echo "Mounting directory ..."
-        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs
-    fi
-    cd ~/WS/afs
-}
-alias  nas='mnas ""'
-alias nasd='mnas duc'
-alias nasp='mnas parrobots'
-alias  afs='mafs RBO'
-alias afsd='mafs Staff/Duc'
-alias afsa='mafs RBO/Studentische\ Hilfskräfte/Ohler,\ Anton\ -\ Duc/'
-alias afst='mafs RBO/Teaching/Courses/robotics'
-
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
 alias     gitg='cat $(fd gitFD.bash ~)'
@@ -482,6 +406,3 @@ alias    rosgg='rg $(fd rosFD.bash ~) -e'
 alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
 alias     pygg='rg $(fd pyFD.py ~) -e'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
-
-# Panda IP
-export FCI_IP=172.16.0.2
