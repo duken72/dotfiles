@@ -43,9 +43,9 @@ one frozen legacy branch, `legacy-xorg`:
   `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc` and
   `dfs/ipython/`. In `dfs/.aliases`, it is also the only branch that keeps
   the TU Berlin block (`tuvpn`, `tum`, `mnas`, `mafs`, `nas*`, `afs*`), the
-  SVN aliases next to it, the OSD `vc` alias with the `export OS=...` line it
-  needs, `FCI_IP`, the `steamid` function, and the `polybar` and `neofetch`
-  aliases.
+  `boris` and SVN aliases next to it, the OSD `vc` alias with the
+  `export OS=...` line it needs, `FCI_IP`, the `steamid` function, and the
+  `mocp`, `polybar` and `neofetch` aliases.
 
 Where each kind of change goes:
 
