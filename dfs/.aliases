@@ -331,7 +331,6 @@ alias  ad='c ~/WS/adasvf && gst'
 alias ada='c ~/WS/adasvf2 && gst'
 alias adb='c ~/WS/adasvf3 && gst'
 alias  vf='c ~/WS/adle-vf && gst'
-alias kno='c ~/WS/knowledge-obsidian'
 # ROS 2
 for shell in zsh bash fish; do
     if [[ "$SHELL" == "/usr/bin/$shell" ]]; then
@@ -342,7 +341,6 @@ done
 function cd_ros_ws {
     cd "$1" && ract && cd src
 }
-alias r2ws='cd_ros_ws ~/WS/ros2_ws'
 
 
 # -------------------------------------------------------- #
@@ -365,6 +363,8 @@ if [ "${HOST:-$HOSTNAME}" = 'Tux-IBP16-Arch' ]; then
     alias  cv='c ~/WS/Curriculum-Vitae-Latex'
     alias not='c ~/WS/learningNotes'
     alias nov='c ~/WS/learningNotes && v'
+    alias kno='c ~/WS/knowledge-obsidian'
+    alias r2ws='cd_ros_ws ~/WS/ros2_ws'
     alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
     # Guide For Dummies
