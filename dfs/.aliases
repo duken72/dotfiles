@@ -70,8 +70,6 @@ alias diff='diff --color=auto' # with colors
 alias  zip='zip -r'  # recursive
 alias zipe='zip -er' # recursive, with password (weak PKZip encryption)
 alias curl='curl --compressed'
-# alias fd='fd --color always'
-alias find='fd'
 
 # -------------------------------------------------------- #
 # CD GENERIC
