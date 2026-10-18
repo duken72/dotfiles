@@ -2,7 +2,11 @@
 # commands: Claude Code sets CLAUDECODE and AI_AGENT in its shell.
 [ -n "$CLAUDECODE$AI_AGENT" ] && return
 
-export OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
+# This file is identical on all branches. Put OS- or machine-specific aliases
+# behind the checks in the OS SPECIFIC and MACHINE SPECIFIC sections, not on
+# one branch only. legacy-xorg adds its own aliases in .aliases_legacy.
+_os_id=$(. /etc/os-release 2>/dev/null && echo "$ID")
+
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
@@ -47,8 +51,11 @@ fi
 
 alias rm='rm -v'
 alias mv='mv -v' # interactive
-# [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
-[ -x /usr/bin/bat ] && alias cat='bat'
+if [ -x /usr/bin/bat ]; then
+    alias cat='bat'
+elif [ -x /usr/bin/batcat ]; then # Ubuntu's name for bat
+    alias cat='batcat'
+fi
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
 alias cp='cp -r' # recursive
@@ -97,7 +104,7 @@ alias var='c /var'
 # -------------------------------------------------------- #
 # System
 # Memory
-alias df='df -h'
+alias df='df -h' # try duf
 alias duh='du -ahd 1 --time'
 alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
@@ -115,7 +122,6 @@ alias tbashrc='. ~/.bashrc'
 alias  tzshrc='. ~/.zshrc'
 alias      cf='c ~/.dotfiles/config'
 alias     cfg='c ~/.config'
-alias polybar='tmux_start_detach_session polybar "polybar --reload duck-mainbar"'
 # syncing with git
 alias dst='dfs && gst'
 alias dpl='dfs && git pull origin'
@@ -135,36 +141,74 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 # -------------------------------------------------------- #
 # OS SPECIFIC
 
-# OSD
-[[ $OS = 'osd' ]] && alias vc='osd-vpn-connect'
+if [ "$_os_id" = 'arch' ]; then
+    # pacman - Package Manager
+    alias pacss='pacman -Ss'
+    if [ -x /usr/bin/fzf ]; then
+        alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+        alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+        alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+    else
+        alias pacs='sudo pacman -S --needed'
+        alias pacr='sudo pacman -R'
+    fi
+    alias    pacsy='sudo pacman -Sy'
+    alias   pacsyu='sudo pacman -Syu'
+    alias     pacq='pacman -Q'
+    alias     pacg='pacman -Sg'
 
-# Arch Linux
-# pacman - Package Manager
-alias pacss='pacman -Ss'
-if [ -x /usr/bin/fzf ]; then
-    alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-    alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-    alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-else
-    alias pacs='sudo pacman -S --needed'
-    alias pacr='sudo pacman -R'
+    # AURA - AUR Helper
+    alias    auraa='aura -Aax'
+    alias    aurar='aura -R'
+    alias   auraas='aura -As'
+    alias   auraau='aura -Auax'
+
+    # System cleaning
+    alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
+    alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
+    alias  cache_show='find ~/.cache/ -type f -atime +72'
+    alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
+
+    # IBUS Unikey
+    # The desktop session starts the ibus daemon, so the tmux-managed daemon is off.
+    # alias ibus-daemon-start='tmux_start_detach_session ibus-daemon ibus-daemon'
+    # function ibus-set-keyboard {
+    #     tmux has-session -t "ibus-daemon" 2>/dev/null || ibus-daemon-start
+    #     sleep 0.14s && ibus engine $1
+    # }
+    # alias ik='enk && tmux has-session -t "ibus-daemon" 2>/dev/null && tmk ibus-daemon'
+    alias vnk='ibus engine Unikey'
+    alias dek='ibus engine xkb:de:nodeadkeys:deu'
+    alias enk='ibus engine xkb:us::eng'
+
+    # ROS in Docker
+    alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 fi
-alias    pacsy='sudo pacman -Sy'
-alias   pacsyu='sudo pacman -Syu'
-alias     pacq='pacman -Q'
-alias     pacg='pacman -Sg'
 
-# AURA - AUR Helper
-alias    auraa='aura -Aax'
-alias    aurar='aura -R'
-alias   auraas='aura -As'
-alias   auraau='aura -Auax'
+if [ "$_os_id" = 'ubuntu' ]; then
+    # apt - Advance Package Tool
+    alias     ai='sudo apt -y install'
+    alias  aptud='sudo apt update'
+    alias  aptug='sudo apt dist-upgrade'
+    alias aptudg='aptud && time aptug'
+    # dist-upgrade will install & remove packages as necessary to resolve dependencies
+    alias     fd='fdfind'
+fi
+unset _os_id
 
-# System cleaning
-alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
-alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
-alias  cache_show='find ~/.cache/ -type f -atime +72'
-alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
+
+# -------------------------------------------------------- #
+# MACHINE SPECIFIC
+# Check the hostname: $HOST in zsh, $HOSTNAME in bash.
+
+# DUAL BOOT with WINDOWS
+if [ -d /home/${USER}/.Windows ]; then
+    alias unmountw='sudo umount /home/$USER/.Windows'
+    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
+fi
+
+# WSLg: run Terminator on X11, ueberzug image previews need an X11 window
+[ -n "$WSL_DISTRO_NAME" ] && alias terminator='GDK_BACKEND=x11 terminator'
 
 
 # -------------------------------------------------------- #
@@ -178,7 +222,6 @@ function o {
 alias of='o .'
 alias run='./run.sh'
 alias bt='bashtop'
-alias neofetch='neofetch --colors 2 1 1 1 7 2'
 
 # Ranger
 function ra {
@@ -245,21 +288,6 @@ function lmk {
 
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
-# IBUS Unikey
-# The desktop session starts the ibus daemon, so the tmux-managed daemon is off.
-# alias ibus-daemon-start='tmux_start_detach_session ibus-daemon ibus-daemon'
-# function ibus-set-keyboard {
-#     tmux has-session -t "ibus-daemon" 2>/dev/null || ibus-daemon-start
-#     sleep 0.14s && ibus engine $1
-# }
-# alias ik='enk && tmux has-session -t "ibus-daemon" 2>/dev/null && tmk ibus-daemon'
-alias vnk='ibus engine Unikey'
-alias dek='ibus engine xkb:de:nodeadkeys:deu'
-alias enk='ibus engine xkb:us::eng'
-# Alsa mixer
-alias usound='amixer -q -D pulse sset Master 14%+'
-alias dsound='amixer -q -D pulse sset Master 14%-'
-
 # Git
 alias    g='git'
 alias   gi='git init'
@@ -297,19 +325,9 @@ alias drmi='docker rmi'
 alias dcon='docker ps'
 alias  dca='docker ps -a'
 alias  drm='docker rm'
-alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
-
-# Steam
-function steamid {
-    /usr/bin/find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
-    echo "prime-run steam steam://rungameid/[steamid]"
-}
 
 # Nvidia
 alias nvidia-smi='clear; nvidia-smi'
-
-# MOC - Music On Console
-alias mocp='mocp -O shuffle=yes -O repeat=yes'
 
 # Others
 alias weather='clear && curl wttr.in'
@@ -324,10 +342,21 @@ alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 alias icat='kitten icat'
 alias diff='kitten diff'
 
+# Claude Code
+alias cla='claude'
+# Opt-in: drive a separate Brave window via the Chrome DevTools MCP server
+alias clab='claude --mcp-config ~/.claude/brave-mcp.json'
+# Opt-in: see and drive your running Brave; turn on brave://inspect/#remote-debugging first
+alias clabl='claude --mcp-config ~/.claude/brave-live-mcp.json'
+
 # -------------------------------------------------------- #
 # Workspaces
 alias    ws='c ~/WS'
 # on GitHub
+alias  ad='c ~/WS/adasvf && gst'
+alias ada='c ~/WS/adasvf2 && gst'
+alias adb='c ~/WS/adasvf3 && gst'
+alias  vf='c ~/WS/adle-vf && gst'
 alias cfd='c ~/WS/codingForDummies && gst'
 alias  cv='c ~/WS/Curriculum-Vitae-Latex'
 alias not='c ~/WS/learningNotes'
@@ -352,83 +381,6 @@ function cd_ros_ws {
 }
 alias r2ws='cd_ros_ws ~/WS/ros2_ws'
 
-# Workspaces (TUB)
-alias phd='c ~/WS/phd-rbo'
-alias par='c ~/WS/parroplots && act'
-alias aicon='c ~/WS/aicon && act'
-
-# BORIS (TUB)
-alias boris='tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"'
-
-# TUB
-# Connect to TU VPN
-function tuvpn {
-    STR=$(networkctl status)
-    IP_LAB="130.149.238"
-    if [[ "$STR" == *"$IP_LAB"* ]]; then
-        echo "Already in the lab network"
-    else
-        echo "NOT in the lab network, connect via VPN ..."
-        # tmux_start_detach_session tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel-2FA vpn.tu-berlin.de"
-        tmux_start_detach_session tub-vpn "gtk-launch com.cisco.secureclient.gui"
-    fi
-}
-# Un-mount and remove directory
-function tum {
-    for DIR in ~/WS/afs ~/WS/nas; do
-        if mountpoint -q $DIR; then
-            sudo umount $DIR
-        fi
-        if [ -d $DIR ]; then
-            rmdir $DIR
-        fi
-    done
-}
-# Mount NAS directory
-function mnas {
-    if [ ! -d ~/WS/nas ]; then
-        mkdir -p ~/WS/nas
-    fi
-    if mountpoint -q ~/WS/nas; then
-        echo "Already mounted"
-    else
-        tuvpn
-        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas
-    fi
-    cd ~/WS/nas
-}
-# Mount AFS directory
-function mafs {
-    if [ ! -d ~/WS/afs ]; then
-        mkdir -p ~/WS/afs
-    fi
-    if mountpoint -q ~/WS/afs; then
-        echo "Already mounted"
-    else
-        echo "Mounting directory ..."
-        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs
-    fi
-    cd ~/WS/afs
-}
-alias  nas='mnas ""'
-alias nasd='mnas duc'
-alias nasp='mnas parrobots'
-alias  afs='mafs RBO'
-alias afsd='mafs Staff/Duc'
-alias afsa='mafs RBO/Studentische\ Hilfskräfte/Ohler,\ Anton\ -\ Duc/'
-alias afst='mafs RBO/Teaching/Courses/robotics'
-
-# SVN (TUB)
-alias  sco='svn checkout'
-alias supd='svn update'
-alias  sst='svn status'
-alias   sa='svn add'
-alias sdel='svn delete'
-alias   sm='svn move'
-alias   sr='svn revert'
-alias  sdf='svn diff -x -w "$@" | delta'
-alias  sci='svn commit -m'
-
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
 alias     gitg='cat $(fd gitFD.bash ~)'
@@ -446,5 +398,5 @@ alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
 alias     pygg='rg $(fd pyFD.py ~) -e'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
 
-# Panda IP
-export FCI_IP=172.16.0.2
+# Aliases kept on the legacy-xorg branch only; the file exists only there.
+[ -f ~/.dotfiles/dfs/.aliases_legacy ] && . ~/.dotfiles/dfs/.aliases_legacy

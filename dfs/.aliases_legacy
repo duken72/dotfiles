@@ -1,0 +1,107 @@
+# Aliases kept on the legacy-xorg branch only: the Xorg/Xfce desktop and the
+# TU Berlin setup. Sourced at the end of .aliases, which is identical on all
+# branches, so this file can use its aliases and functions (c, act,
+# tmux_start_detach_session).
+
+export OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
+
+# OSD
+[[ $OS = 'osd' ]] && alias vc='osd-vpn-connect'
+
+# [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
+
+alias polybar='tmux_start_detach_session polybar "polybar --reload duck-mainbar"'
+alias neofetch='neofetch --colors 2 1 1 1 7 2'
+
+# Alsa mixer
+alias usound='amixer -q -D pulse sset Master 14%+'
+alias dsound='amixer -q -D pulse sset Master 14%-'
+
+# Steam
+function steamid {
+    /usr/bin/find ~/.local/share/Steam/steamapps/ -maxdepth 1 -type f -name '*.acf' -exec awk -F '"' '/"appid|name/{ printf $4 "|" } END { print "" }' {} \; | column -t -s '|' | sort -k 2 | grep -i "$1"
+    echo "prime-run steam steam://rungameid/[steamid]"
+}
+
+# MOC - Music On Console
+alias mocp='mocp -O shuffle=yes -O repeat=yes'
+
+# Workspaces (TUB)
+alias phd='c ~/WS/phd-rbo'
+alias par='c ~/WS/parroplots && act'
+alias aicon='c ~/WS/aicon && act'
+
+# BORIS (TUB)
+alias boris='tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"'
+
+# TUB
+# Connect to TU VPN
+function tuvpn {
+    STR=$(networkctl status)
+    IP_LAB="130.149.238"
+    if [[ "$STR" == *"$IP_LAB"* ]]; then
+        echo "Already in the lab network"
+    else
+        echo "NOT in the lab network, connect via VPN ..."
+        # tmux_start_detach_session tub-vpn "sudo openconnect -v -u duken72 --authgroup 2-TU-Full-Tunnel-2FA vpn.tu-berlin.de"
+        tmux_start_detach_session tub-vpn "gtk-launch com.cisco.secureclient.gui"
+    fi
+}
+# Un-mount and remove directory
+function tum {
+    for DIR in ~/WS/afs ~/WS/nas; do
+        if mountpoint -q $DIR; then
+            sudo umount $DIR
+        fi
+        if [ -d $DIR ]; then
+            rmdir $DIR
+        fi
+    done
+}
+# Mount NAS directory
+function mnas {
+    if [ ! -d ~/WS/nas ]; then
+        mkdir -p ~/WS/nas
+    fi
+    if mountpoint -q ~/WS/nas; then
+        echo "Already mounted"
+    else
+        tuvpn
+        sudo mount -t nfs -o rw,noatime,nodiratime,async storage.robotics.tu-berlin.de:/volume1/data/"$1" ~/WS/nas
+    fi
+    cd ~/WS/nas
+}
+# Mount AFS directory
+function mafs {
+    if [ ! -d ~/WS/afs ]; then
+        mkdir -p ~/WS/afs
+    fi
+    if mountpoint -q ~/WS/afs; then
+        echo "Already mounted"
+    else
+        echo "Mounting directory ..."
+        sshfs duken72@sshgate.tu-berlin.de:/afs/tu-berlin.de/units/Fak_IV/robotics/"$1" ~/WS/afs
+    fi
+    cd ~/WS/afs
+}
+alias  nas='mnas ""'
+alias nasd='mnas duc'
+alias nasp='mnas parrobots'
+alias  afs='mafs RBO'
+alias afsd='mafs Staff/Duc'
+alias afsa='mafs RBO/Studentische\ Hilfskräfte/Ohler,\ Anton\ -\ Duc/'
+alias afst='mafs RBO/Teaching/Courses/robotics'
+
+# SVN (TUB)
+alias  sco='svn checkout'
+alias supd='svn update'
+alias  sst='svn status'
+alias   sa='svn add'
+alias sdel='svn delete'
+alias   sm='svn move'
+alias   sr='svn revert'
+alias  sdf='svn diff -x -w "$@" | delta'
+alias  sci='svn commit -m'
+
+# Panda IP
+export FCI_IP=172.16.0.2
