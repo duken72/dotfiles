@@ -47,6 +47,9 @@ one frozen legacy branch, `legacy-xorg`:
   `par` and `aicon`, the OSD `vc` alias with the
   `export OS=...` line it needs, `FCI_IP`, the `steamid` function, and the
   `mocp`, `usound`, `dsound`, `polybar` and `neofetch` aliases.
+  It doesn't have the adasvf/adle-vf workspace aliases (`ad`, `ada`, `adb`,
+  `vf`) or the Windows dual-boot mount, which stay on `main` and
+  `ubuntu-support` only.
 
 Where each kind of change goes:
 
