@@ -313,7 +313,6 @@ alias nvidia-smi='clear; nvidia-smi'
 # Others
 alias weather='clear && curl wttr.in'
 alias speedtest='pipx run speedtest-cli --bytes'
-alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
 alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
 # Kitty
@@ -387,6 +386,7 @@ if [ "${HOST:-$HOSTNAME}" = 'Tux-IBP16-Arch' ]; then
     function diet {
         gawk -v dow=$(date +%A) '$2 == dow {$1=$7=""; print}' ~/Documents/workout/diet2.md
     }
+    alias gtd='o ~/WS/learningNotes/notes/images/workflow-diagram-gtd.png'
 fi
 
 # DUAL BOOT with WINDOWS
