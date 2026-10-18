@@ -50,7 +50,7 @@ else
 fi
 
 alias rm='rm -v'
-alias mv='mv -v' # interactive
+alias mv='mv -v' # verbose
 if [ -x /usr/bin/bat ]; then
     alias cat='bat'
 elif [ -x /usr/bin/batcat ]; then # Ubuntu's name for bat
