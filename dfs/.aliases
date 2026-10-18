@@ -14,9 +14,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    alias cal='cal --color=always -m -3 -w'
 fi
 alias grepr='grep -R'
+alias cal='cal --color=always -m -3 -w'
 
 # Replace ls with exa
 if [ -x /usr/bin/eza ]; then
