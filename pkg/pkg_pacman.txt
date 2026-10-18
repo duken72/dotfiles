@@ -31,7 +31,7 @@ ueberzugpp
 ffmpegthumbnailer
 ffmpeg
 atool
-bashtop
+btop
 inetutils
 fastfetch
 ncdu
