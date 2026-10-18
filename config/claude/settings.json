@@ -5,7 +5,6 @@
   "enabledPlugins": {
     "ponytail@ponytail": true,
     "agent-skills@addy-agent-skills": true,
-    "andrej-karpathy-skills@karpathy-skills": true,
     "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
@@ -19,12 +18,6 @@
       "source": {
         "source": "github",
         "repo": "addyosmani/agent-skills"
-      }
-    },
-    "karpathy-skills": {
-      "source": {
-        "source": "github",
-        "repo": "forrestchang/andrej-karpathy-skills"
       }
     }
   },
