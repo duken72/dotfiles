@@ -335,10 +335,10 @@ alias ada='c ~/WS/adasvf2 && gst'
 alias adb='c ~/WS/adasvf3 && gst'
 alias  vf='c ~/WS/adle-vf && gst'
 alias kno='c ~/WS/knowledge-obsidian'
-# ROS
+# ROS 2
 for shell in zsh bash fish; do
     if [[ "$SHELL" == "/usr/bin/$shell" ]]; then
-        alias ract='source devel/setup.$shell'
+        alias ract='source install/setup.$shell'
         break
     fi
 done
