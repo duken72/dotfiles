@@ -76,6 +76,10 @@ Keep `main` and `ubuntu-support` in sync:
   with `apt` on `ubuntu-support`. When merging `main` into `ubuntu-support`
   causes a conflict on that install line, keep the `apt` line, and port any
   package change to its Ubuntu name.
+- `dfs/.aliases` has an OS-specific block that differs by branch: the `apt`
+  aliases on `ubuntu-support` and the `pacman`/`aura` aliases on `main`. When
+  merging `main` into `ubuntu-support` causes a conflict there, keep the `apt`
+  block and delete the `pacman` block.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
@@ -87,6 +91,11 @@ Keep `main` and `ubuntu-support` in sync:
   and an invalid option calls `error()`, then `help()`, then `exit 1`. Match
   this when adding options.
 - **Symlinks:** always use `ln -svf` (verbose, force), never plain `ln -sf`.
+- **`dfs/.aliases`:** for the user's interactive shell only. A guard at its top
+  returns early when `CLAUDECODE` or `AI_AGENT` is set, so AI agents get the
+  default commands. Keep that guard at the top, and put new aliases below it.
+  Any other shell file that overrides a standard command (such as `cat`, `ls`
+  or `find`) needs the same guard.
 - **`config/**/run.sh`:** Scripts run with their own directory as CWD, so do
   not assume the caller's CWD. They `rm -rf` the existing target before
   relinking, so they are safe to re-run.
