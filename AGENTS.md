@@ -29,7 +29,7 @@ one frozen legacy branch, `legacy-xorg`:
 - `ubuntu-support`: `main` plus Ubuntu-specific changes only. Examples are
   workarounds for older package versions (such as pinning `nvim-treesitter` for
   an older nvim), fixes for terminals used on Ubuntu (Terminator, Windows
-  Terminal), and aliases that differ on Ubuntu.
+  Terminal).
 - `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup, taken
   at the last commit before the switch to Wayland/Hyprland (`2db86c2`), with
   `config/emptty` and `config/kitty` removed afterwards. Don't sync new
@@ -40,16 +40,8 @@ one frozen legacy branch, `legacy-xorg`:
   `config/openvpn` and `config/pulseaudio-ctl`, and the scripts
   `bin/imgcompress.sh`, `bin/imgcompressDir.sh`, `bin/pdfcompress.sh`,
   `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh`,
-  `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc` and
-  `dfs/ipython/`. In `dfs/.aliases`, it is also the only branch that keeps
-  the TU Berlin block (`tuvpn`, `tum`, `mnas`, `mafs`, `nas*`, `afs*`), the
-  `boris` and SVN aliases next to it, the TU Berlin workspace aliases `phd`,
-  `par` and `aicon`, the OSD `vc` alias with the
-  `export OS=...` line it needs, `FCI_IP`, the `steamid` function, and the
-  `mocp`, `usound`, `dsound`, `polybar` and `neofetch` aliases.
-  It doesn't have the adasvf/adle-vf workspace aliases (`ad`, `ada`, `adb`,
-  `vf`) or the Windows dual-boot mount, which stay on `main` and
-  `ubuntu-support` only.
+  `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc`,
+  `dfs/ipython/` and `dfs/.aliases_legacy` (see "Aliases" below).
 
 Where each kind of change goes:
 
@@ -89,19 +81,20 @@ Keep `main` and `ubuntu-support` in sync:
   with `apt` on `ubuntu-support`. When merging `main` into `ubuntu-support`
   causes a conflict on that install line, keep the `apt` line, and port any
   package change to its Ubuntu name.
-- `dfs/.aliases` has an OS-specific block that differs by branch: the `apt`
-  aliases on `ubuntu-support` and the `pacman`/`aura` aliases on `main`. When
-  merging `main` into `ubuntu-support` causes a conflict there, keep the `apt`
-  block and delete the `pacman` block.
-- `dfs/.aliases` on `ubuntu-support` has no IBUS Unikey block
-  (`ibus-daemon-start`, `ibus-set-keyboard`, `vnk`, `dek`, `enk`, `ik`) and no
-  `dros` alias (ROS in Docker); both stay on `main`. When merging `main` into
-  `ubuntu-support` causes a conflict there, keep them deleted.
-- `dfs/.aliases` aliases `cat` to `bat` on `main` and `legacy-xorg`, and to
-  `batcat` on `ubuntu-support` (Ubuntu's name for `bat`). When merging `main`
-  into `ubuntu-support` causes a conflict on that line, keep `batcat`.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
+
+Aliases:
+
+- `dfs/.aliases` is identical on all three branches, and every change to it
+  goes to all three, `legacy-xorg` included. Don't make it differ by branch.
+  Instead, put OS-specific aliases behind the `$_os_id` checks in its
+  "OS SPECIFIC" section (`arch` covers `main` and `legacy-xorg`, `ubuntu`
+  covers `ubuntu-support`), and machine-specific aliases behind a hostname or
+  path check in its "MACHINE SPECIFIC" section.
+- `dfs/.aliases_legacy` exists on `legacy-xorg` only. It holds the aliases of
+  the old Xorg desktop and the TU Berlin setup. The last line of `dfs/.aliases`
+  sources it when it exists. Never add it to `main` or `ubuntu-support`.
 
 ## Editing conventions
 

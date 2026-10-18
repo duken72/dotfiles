@@ -2,6 +2,11 @@
 # commands: Claude Code sets CLAUDECODE and AI_AGENT in its shell.
 [ -n "$CLAUDECODE$AI_AGENT" ] && return
 
+# This file is identical on all branches. Put OS- or machine-specific aliases
+# behind the checks in the OS SPECIFIC and MACHINE SPECIFIC sections, not on
+# one branch only. legacy-xorg adds its own aliases in .aliases_legacy.
+_os_id=$(. /etc/os-release 2>/dev/null && echo "$ID")
+
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
@@ -46,7 +51,11 @@ fi
 
 alias rm='rm -v'
 alias mv='mv -v' # interactive
-[ -x /usr/bin/bat ] && alias cat='bat'
+if [ -x /usr/bin/bat ]; then
+    alias cat='bat'
+elif [ -x /usr/bin/batcat ]; then # Ubuntu's name for bat
+    alias cat='batcat'
+fi
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
 alias cp='cp -r' # recursive
@@ -132,39 +141,74 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 # -------------------------------------------------------- #
 # OS SPECIFIC
 
-# Arch Linux
-# pacman - Package Manager
-alias pacss='pacman -Ss'
-if [ -x /usr/bin/fzf ]; then
-    alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-    alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-    alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-else
-    alias pacs='sudo pacman -S --needed'
-    alias pacr='sudo pacman -R'
+if [ "$_os_id" = 'arch' ]; then
+    # pacman - Package Manager
+    alias pacss='pacman -Ss'
+    if [ -x /usr/bin/fzf ]; then
+        alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+        alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+        alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+    else
+        alias pacs='sudo pacman -S --needed'
+        alias pacr='sudo pacman -R'
+    fi
+    alias    pacsy='sudo pacman -Sy'
+    alias   pacsyu='sudo pacman -Syu'
+    alias     pacq='pacman -Q'
+    alias     pacg='pacman -Sg'
+
+    # AURA - AUR Helper
+    alias    auraa='aura -Aax'
+    alias    aurar='aura -R'
+    alias   auraas='aura -As'
+    alias   auraau='aura -Auax'
+
+    # System cleaning
+    alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
+    alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
+    alias  cache_show='find ~/.cache/ -type f -atime +72'
+    alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
+
+    # IBUS Unikey
+    # The desktop session starts the ibus daemon, so the tmux-managed daemon is off.
+    # alias ibus-daemon-start='tmux_start_detach_session ibus-daemon ibus-daemon'
+    # function ibus-set-keyboard {
+    #     tmux has-session -t "ibus-daemon" 2>/dev/null || ibus-daemon-start
+    #     sleep 0.14s && ibus engine $1
+    # }
+    # alias ik='enk && tmux has-session -t "ibus-daemon" 2>/dev/null && tmk ibus-daemon'
+    alias vnk='ibus engine Unikey'
+    alias dek='ibus engine xkb:de:nodeadkeys:deu'
+    alias enk='ibus engine xkb:us::eng'
+
+    # ROS in Docker
+    alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 fi
-alias    pacsy='sudo pacman -Sy'
-alias   pacsyu='sudo pacman -Syu'
-alias     pacq='pacman -Q'
-alias     pacg='pacman -Sg'
 
-# AURA - AUR Helper
-alias    auraa='aura -Aax'
-alias    aurar='aura -R'
-alias   auraas='aura -As'
-alias   auraau='aura -Auax'
+if [ "$_os_id" = 'ubuntu' ]; then
+    # apt - Advance Package Tool
+    alias     ai='sudo apt -y install'
+    alias  aptud='sudo apt update'
+    alias  aptug='sudo apt dist-upgrade'
+    alias aptudg='aptud && time aptug'
+    # dist-upgrade will install & remove packages as necessary to resolve dependencies
+    alias     fd='fdfind'
+fi
+unset _os_id
 
-# System cleaning
-alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
-alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
-alias  cache_show='find ~/.cache/ -type f -atime +72'
-alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
+
+# -------------------------------------------------------- #
+# MACHINE SPECIFIC
+# Check the hostname: $HOST in zsh, $HOSTNAME in bash.
 
 # DUAL BOOT with WINDOWS
 if [ -d /home/${USER}/.Windows ]; then
     alias unmountw='sudo umount /home/$USER/.Windows'
     alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
 fi
+
+# WSLg: run Terminator on X11, ueberzug image previews need an X11 window
+[ -n "$WSL_DISTRO_NAME" ] && alias terminator='GDK_BACKEND=x11 terminator'
 
 
 # -------------------------------------------------------- #
@@ -244,18 +288,6 @@ function lmk {
 
 alias clock='tty-clock -sc -C 1 -f %A,%d-%b-%Y'
 
-# IBUS Unikey
-# The desktop session starts the ibus daemon, so the tmux-managed daemon is off.
-# alias ibus-daemon-start='tmux_start_detach_session ibus-daemon ibus-daemon'
-# function ibus-set-keyboard {
-#     tmux has-session -t "ibus-daemon" 2>/dev/null || ibus-daemon-start
-#     sleep 0.14s && ibus engine $1
-# }
-# alias ik='enk && tmux has-session -t "ibus-daemon" 2>/dev/null && tmk ibus-daemon'
-alias vnk='ibus engine Unikey'
-alias dek='ibus engine xkb:de:nodeadkeys:deu'
-alias enk='ibus engine xkb:us::eng'
-
 # Git
 alias    g='git'
 alias   gi='git init'
@@ -293,7 +325,6 @@ alias drmi='docker rmi'
 alias dcon='docker ps'
 alias  dca='docker ps -a'
 alias  drm='docker rm'
-alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 
 # Nvidia
 alias nvidia-smi='clear; nvidia-smi'
@@ -366,3 +397,6 @@ alias    rosgg='rg $(fd rosFD.bash ~) -e'
 alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
 alias     pygg='rg $(fd pyFD.py ~) -e'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
+
+# Aliases kept on the legacy-xorg branch only; the file exists only there.
+[ -f ~/.dotfiles/dfs/.aliases_legacy ] && . ~/.dotfiles/dfs/.aliases_legacy
