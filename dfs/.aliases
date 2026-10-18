@@ -50,7 +50,7 @@ else
     }
 fi
 
-alias rm='rm -vr'
+alias rm='rm -v'
 alias mv='mv -v' # interactive
 # [ -x /usr/bin/pygmentize ] && alias cat='pygmentize -g'
 [ -x /usr/bin/bat ] && alias cat='bat'
