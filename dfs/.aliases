@@ -139,13 +139,14 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
 # Arch Linux
 # pacman - Package Manager
-alias  pacs='sudo pacman -S --needed'
 alias pacss='pacman -Ss'
-alias  pacr='sudo pacman -R'
 if [ -x /usr/bin/fzf ]; then
     alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
     alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
     alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+else
+    alias pacs='sudo pacman -S --needed'
+    alias pacr='sudo pacman -R'
 fi
 alias    pacsy='sudo pacman -Sy'
 alias   pacsyu='sudo pacman -Syu'
