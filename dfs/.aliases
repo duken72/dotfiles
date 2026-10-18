@@ -51,8 +51,7 @@ fi
 
 alias rm='rm -vr'
 alias mv='mv -v' # interactive
-alias cat='cat -n' # with line numbers
-[ -x /usr/bin/bat ] && alias cat='bat'
+[ -x /usr/bin/batcat ] && alias cat='batcat'
 alias mkdir='mkdir -p'
 alias dirs='dirs -v'
 alias cp='cp -r' # recursive
