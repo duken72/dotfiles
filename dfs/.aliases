@@ -340,8 +340,6 @@ alias not='c ~/WS/learningNotes'
 alias nov='c ~/WS/learningNotes && v'
 alias nol='c ~/WS/notesLatex'
 alias kno='c ~/WS/knowledge-obsidian'
-# Others
-alias rwth='doc && c LEARN/master-robotics'
 # ROS
 for shell in zsh bash fish; do
     if [[ "$SHELL" == "/usr/bin/$shell" ]]; then
@@ -387,6 +385,7 @@ if [ "${HOST:-$HOSTNAME}" = 'Tux-IBP16-Arch' ]; then
     alias aoc='c ~/WS/Advent-of-Code/AoC-2025'
     alias blg='c ~/WS/duken72.github.io/_posts'
     alias deu='c ~/WS/notes-deu'
+    alias rwth='doc && c LEARN/master-robotics'
 fi
 
 # DUAL BOOT with WINDOWS
