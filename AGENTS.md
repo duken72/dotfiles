@@ -44,7 +44,8 @@ one frozen legacy branch, `legacy-xorg`:
   `dfs/ipython/`. In `dfs/.aliases`, it is also the only branch that keeps
   the TU Berlin block (`tuvpn`, `tum`, `mnas`, `mafs`, `nas*`, `afs*`), the
   SVN aliases next to it, the OSD `vc` alias with the `export OS=...` line it
-  needs, `FCI_IP`, and the `polybar` and `neofetch` aliases.
+  needs, `FCI_IP`, the `steamid` function, and the `polybar` and `neofetch`
+  aliases.
 
 Where each kind of change goes:
 
