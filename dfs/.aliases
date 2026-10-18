@@ -317,7 +317,7 @@ alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
 # Kitty
 alias icat='kitten icat'
-alias diff='kitten diff'
+[ -x /usr/bin/kitten ] && alias diff='kitten diff' # else the color alias above
 
 # Claude Code
 alias cla='claude'
