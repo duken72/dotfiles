@@ -7,4 +7,4 @@
 # to share the same plugins across machines.
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 mkdir -p ~/.claude
-ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,settings.json,brave-mcp.json,brave-live-mcp.json} -t ~/.claude
+ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,settings.json,brave-mcp.json,brave-live-mcp.json,statusline.sh} -t ~/.claude
