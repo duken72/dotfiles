@@ -300,6 +300,7 @@ alias drmi='docker rmi'
 alias dcon='docker ps'
 alias  dca='docker ps -a'
 alias  drm='docker rm'
+alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:humble-desktop'
 
 # Steam
 function steamid {
