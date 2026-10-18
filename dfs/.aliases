@@ -332,12 +332,12 @@ alias ada='c ~/WS/adasvf2 && gst'
 alias adb='c ~/WS/adasvf3 && gst'
 alias  vf='c ~/WS/adle-vf && gst'
 # ROS 2
-for shell in zsh bash fish; do
-    if [[ "$SHELL" == "/usr/bin/$shell" ]]; then
-        alias ract='source install/setup.$shell'
-        break
-    fi
-done
+# Pick the setup file of the shell this file is sourced in, not the login shell
+if [ -n "$ZSH_VERSION" ]; then
+    alias ract='source install/setup.zsh'
+else
+    alias ract='source install/setup.bash'
+fi
 function cd_ros_ws {
     cd "$1" && ract && cd src
 }
