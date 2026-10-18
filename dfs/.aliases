@@ -63,7 +63,8 @@ alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r'
 alias ip='ip -color=auto' # with colors
 alias dmesg='sudo dmesg -H --color=always' # with colors
 alias diff='diff --color=auto' # with colors
-alias zip='zip -er9' # encryption and recursive
+alias  zip='zip -r'  # recursive
+alias zipe='zip -er' # recursive, with password (weak PKZip encryption)
 alias curl='curl --compressed'
 # alias fd='fd --color always'
 alias find='fd'
