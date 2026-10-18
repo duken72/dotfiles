@@ -92,8 +92,7 @@ Keep `main` and `ubuntu-support` in sync:
   block and delete the `pacman` block.
 - `dfs/.aliases` on `ubuntu-support` has no IBUS Unikey block
   (`ibus-daemon-start`, `ibus-set-keyboard`, `vnk`, `dek`, `enk`, `ik`) and no
-  `dros` alias (ROS in Docker); both stay on `main` (`dros` on `main` only, not
-  on `legacy-xorg`). When merging `main` into
+  `dros` alias (ROS in Docker); both stay on `main`. When merging `main` into
   `ubuntu-support` causes a conflict there, keep them deleted.
 - `dfs/.aliases` aliases `cat` to `bat` on `main` and `legacy-xorg`, and to
   `batcat` on `ubuntu-support` (Ubuntu's name for `bat`). When merging `main`
