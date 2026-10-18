@@ -94,6 +94,9 @@ Keep `main` and `ubuntu-support` in sync:
   (`ibus-daemon-start`, `ibus-set-keyboard`, `vnk`, `dek`, `enk`, `ik`,
   `usound`, `dsound`); it stays on `main`. When merging `main` into
   `ubuntu-support` causes a conflict there, keep the block deleted.
+- `dfs/.aliases` aliases `cat` to `bat` on `main` and `legacy-xorg`, and to
+  `batcat` on `ubuntu-support` (Ubuntu's name for `bat`). When merging `main`
+  into `ubuntu-support` causes a conflict on that line, keep `batcat`.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
