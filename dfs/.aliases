@@ -274,12 +274,6 @@ alias dros='docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --vol
 # Nvidia
 alias nvidia-smi='clear; nvidia-smi'
 
-# MOC - Music On Console
-alias mocp='mocp -O shuffle=yes -O repeat=yes'
-
-# BORIS
-alias boris='tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"'
-
 # Others
 alias weather='clear && curl wttr.in'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --bytes'
