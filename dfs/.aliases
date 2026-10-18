@@ -292,17 +292,6 @@ function gaps {
     gaa; gcis "$1"; gps
 }
 
-# SVN
-alias  sco='svn checkout'
-alias supd='svn update'
-alias  sst='svn status'
-alias   sa='svn add'
-alias sdel='svn delete'
-alias   sm='svn move'
-alias   sr='svn revert'
-alias  sdf='svn diff -x -w "$@" | delta'
-alias  sci='svn commit -m'
-
 # Docker
 alias   dp='docker pull'
 alias   dt='docker tag'
@@ -437,6 +426,17 @@ alias  afs='mafs RBO'
 alias afsd='mafs Staff/Duc'
 alias afsa='mafs RBO/Studentische\ Hilfskräfte/Ohler,\ Anton\ -\ Duc/'
 alias afst='mafs RBO/Teaching/Courses/robotics'
+
+# SVN (TUB)
+alias  sco='svn checkout'
+alias supd='svn update'
+alias  sst='svn status'
+alias   sa='svn add'
+alias sdel='svn delete'
+alias   sm='svn move'
+alias   sr='svn revert'
+alias  sdf='svn diff -x -w "$@" | delta'
+alias  sci='svn commit -m'
 
 # Guide For Dummies
 alias    bashg='cat $(fd bashFD.bash ~)'
