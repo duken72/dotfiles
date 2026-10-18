@@ -32,8 +32,9 @@ one frozen legacy branch, `legacy-xorg`:
   Terminal), and aliases that differ on Ubuntu.
 - `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup, taken
   at the last commit before the switch to Wayland/Hyprland (`2db86c2`), with
-  `config/emptty` and `config/kitty` removed afterwards. Don't sync changes to
-  or from it, and don't push to it unless asked. It is the only branch that
+  `config/emptty` and `config/kitty` removed afterwards. Don't sync new
+  features or other changes to or from it; only bug fixes go to it (see
+  below). Don't push to it unless asked. It is the only branch that
   keeps `config/conky`, `config/htop`, `config/moc`, `config/neofetch`,
   `config/vis`, `config/vscode`, `config/logitech.md`, `config/NetworkManager`,
   `config/openvpn` and `config/pulseaudio-ctl`, and the scripts
@@ -41,6 +42,14 @@ one frozen legacy branch, `legacy-xorg`:
   `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh`,
   `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc` and
   `dfs/ipython/`.
+
+Where each kind of change goes:
+
+- **Bug fixes:** fix the bug on all three branches (`main`, `ubuntu-support`
+  and `legacy-xorg`) wherever the buggy code exists, for example by
+  cherry-picking the fix. Don't leave a known bug on any branch.
+- **New features and other changes:** keep them on `main` and
+  `ubuntu-support` only, as described below. Never add them to `legacy-xorg`.
 
 Keep `main` and `ubuntu-support` in sync:
 
