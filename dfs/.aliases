@@ -357,6 +357,10 @@ alias diff='kitten diff'
 
 # Claude Code
 alias cla='claude'
+# Opt-in: drive a separate Brave window via the Chrome DevTools MCP server
+alias clab='claude --mcp-config ~/.claude/brave-mcp.json'
+# Opt-in: see and drive your running Brave; turn on brave://inspect/#remote-debugging first
+alias clabl='claude --mcp-config ~/.claude/brave-live-mcp.json'
 
 # -------------------------------------------------------- #
 # Workspaces
