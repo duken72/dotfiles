@@ -207,7 +207,7 @@ alias bt='bashtop'
 
 # Ranger
 function ra {
-    ranger $@
+    ranger "$@"
     clear && ls
 }
 
