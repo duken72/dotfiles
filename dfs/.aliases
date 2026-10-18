@@ -103,7 +103,7 @@ alias var='c /var'
 # System
 # Memory
 alias df='df -h'
-alias duh='du -ahd 1'
+alias duh='du -ahd 1 --time'
 alias mem='ncdu --show-graph --show-percent --group-directories-first --show-itemcount'
 alias hist='history'
 alias cl='clear' # for terminator, just Ctrl+L
@@ -284,6 +284,7 @@ alias  gbr='git branch -a'
 alias  gbd='git branch -D'
 alias  gco='git checkout'
 alias  gdf='git diff'
+unalias gap 2>/dev/null
 function gap {
     gaa; gci "$1"; gps
 }
