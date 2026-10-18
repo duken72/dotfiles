@@ -11,6 +11,7 @@
 * [Documentation and answers](#documentation-and-answers)
   * [Writing comments and documentation](#writing-comments-and-documentation)
   * [Suggesting documentation updates](#suggesting-documentation-updates)
+  * [Learning from mistakes](#learning-from-mistakes)
   * [Long suggestion lists](#long-suggestion-lists)
   * [Citing references](#citing-references)
 * [Git and pull requests](#git-and-pull-requests)
@@ -64,6 +65,21 @@ AI agents (an undocumented build step, a hidden dependency, a misleading name,
 docs that no longer match the code), suggest a docs update at the end of your
 work: what you found and which file it belongs in. Don't edit the docs unless
 I ask.
+
+### Learning from mistakes
+
+Whenever you make a mistake (I correct you, or you find you got something
+wrong), update the agent instructions so it doesn't happen again. This is a
+standing request, an exception to the preceding rule.
+
+- Repo-specific (a file, convention or quirk of one repo): the repo's
+  `AGENTS.md` or `CLAUDE.md`, or its notes file from
+  [Local project notes](#local-project-notes).
+- General (how you work anywhere): this file,
+  `~/.dotfiles/config/claude/CLAUDE.md` (`~/.claude/CLAUDE.md` links to it).
+- Write the rule, not the incident, in the section it belongs to. Sharpen an
+  existing rule instead of adding a near-duplicate.
+- Tell me in one line which file you changed and why.
 
 ### Long suggestion lists
 
