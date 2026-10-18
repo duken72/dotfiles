@@ -198,20 +198,6 @@ unset _os_id
 
 
 # -------------------------------------------------------- #
-# MACHINE SPECIFIC
-# Check the hostname: $HOST in zsh, $HOSTNAME in bash.
-
-# DUAL BOOT with WINDOWS
-if [ -d /home/${USER}/.Windows ]; then
-    alias unmountw='sudo umount /home/$USER/.Windows'
-    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
-fi
-
-# WSLg: run Terminator on X11, ueberzug image previews need an X11 window
-[ -n "$WSL_DISTRO_NAME" ] && alias terminator='GDK_BACKEND=x11 terminator'
-
-
-# -------------------------------------------------------- #
 # Applications specific
 
 # Generic
@@ -397,6 +383,20 @@ alias    rosgg='rg $(fd rosFD.bash ~) -e'
 alias   ros2gg='rg $(fd ros2FD.bash ~) -e'
 alias     pygg='rg $(fd pyFD.py ~) -e'
 alias dockergg='rg $(fd dockerFD.bash ~) -e'
+
+
+# -------------------------------------------------------- #
+# MACHINE SPECIFIC
+# Check the hostname: $HOST in zsh, $HOSTNAME in bash.
+
+# DUAL BOOT with WINDOWS
+if [ -d /home/${USER}/.Windows ]; then
+    alias unmountw='sudo umount /home/$USER/.Windows'
+    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
+fi
+
+# WSLg: run Terminator on X11, ueberzug image previews need an X11 window
+[ -n "$WSL_DISTRO_NAME" ] && alias terminator='GDK_BACKEND=x11 terminator'
 
 # Aliases kept on the legacy-xorg branch only; the file exists only there.
 [ -f ~/.dotfiles/dfs/.aliases_legacy ] && . ~/.dotfiles/dfs/.aliases_legacy
