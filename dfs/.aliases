@@ -1,3 +1,7 @@
+# Aliases are for interactive use by the user only. AI agents get the default
+# commands: Claude Code sets CLAUDECODE and AI_AGENT in its shell.
+[ -n "$CLAUDECODE$AI_AGENT" ] && return
+
 export OS=$(echo $(grep -v _ID /etc/os-release | grep ID=) | cut -d'=' -f 2)
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep
