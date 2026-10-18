@@ -314,9 +314,6 @@ alias nvidia-smi='clear; nvidia-smi'
 # MOC - Music On Console
 alias mocp='mocp -O shuffle=yes -O repeat=yes'
 
-# BORIS
-alias boris='tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"'
-
 # Others
 alias weather='clear && curl wttr.in'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --bytes'
@@ -368,6 +365,9 @@ alias r2ws='cd_ros_ws ~/WS/ros2_ws'
 alias  rws='cd_ros_ws ~/WS/ros_ws'
 alias  cws='cd_ros_ws ~/WS/catkin_ws'
 alias  dws='cd_ros_ws ~/WS/duc_ws'
+
+# BORIS (TUB)
+alias boris='tmux_start_detach_session boris "cd ~/WS/BORIS && act && python start_boris.py"'
 
 # TUB
 # Connect to TU VPN
