@@ -143,51 +143,32 @@ alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 # OSD
 [[ $OS = 'osd' ]] && alias vc='osd-vpn-connect'
 
-# Ubuntu
-if [ $OS = 'ubuntu' ]; then
-    # apt - Advance Package Tool
-    alias     ai='sudo apt -y install'
-    alias  aptud='sudo apt update'
-    alias  aptug='sudo apt dist-upgrade'
-    alias aptudg='aptud && time aptug'
-    # dist-upgrade will install & remove packages as necessary to resolve dependencies
-    alias     fd='fdfind'
-fi
-
 # Arch Linux
-if [ $OS = 'arch' ]; then
-    # pacman - Package Manager
-    alias  pacs='sudo pacman -S --needed'
-    alias pacss='pacman -Ss'
-    alias  pacr='sudo pacman -R'
-    if [ -x /usr/bin/fzf ]; then
-        alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-        alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-        alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-    fi
-    alias    pacsy='sudo pacman -Sy'
-    alias   pacsyu='sudo pacman -Syu'
-    alias     pacq='pacman -Q'
-    alias     pacg='pacman -Sg'
-
-    # AURA - AUR Helper
-    alias    auraa='aura -Aax'
-    alias    aurar='aura -R'
-    alias   auraas='aura -As'
-    alias   auraau='aura -Auax'
-
-    # System cleaning
-    alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
-    alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
-    alias  cache_show='find ~/.cache/ -type f -atime +72'
-    alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
+# pacman - Package Manager
+alias  pacs='sudo pacman -S --needed'
+alias pacss='pacman -Ss'
+alias  pacr='sudo pacman -R'
+if [ -x /usr/bin/fzf ]; then
+    alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+    alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+    alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 fi
+alias    pacsy='sudo pacman -Sy'
+alias   pacsyu='sudo pacman -Syu'
+alias     pacq='pacman -Q'
+alias     pacg='pacman -Sg'
 
-# DUAL BOOT with WINDOWS
-if [ -d /home/${USER}/.Windows ]; then
-    alias unmountw='sudo umount /home/$USER/.Windows'
-    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
-fi
+# AURA - AUR Helper
+alias    auraa='aura -Aax'
+alias    aurar='aura -R'
+alias   auraas='aura -As'
+alias   auraau='aura -Auax'
+
+# System cleaning
+alias  orphans='pacman -Qtdq | sudo pacman -Rns -'
+alias orphans2='pacman -Qqd | sudo pacman -Rsu -'
+alias  cache_show='find ~/.cache/ -type f -atime +72'
+alias cache_clean='find ~/.cache/ -type f -atime +72 -delete'
 
 
 # -------------------------------------------------------- #
