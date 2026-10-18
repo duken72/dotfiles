@@ -142,13 +142,12 @@ if [ "$_os_id" = 'arch' ]; then
     alias pacss='pacman -Ss'
     if [ -x /usr/bin/fzf ]; then
         alias pacs="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
-        alias pacu="sudo pacman -Sy && pacman -Qqu | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+        alias pacu='sudo pacman -Syu' # upgrading only some packages is an unsupported partial upgrade
         alias pacr="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
     else
         alias pacs='sudo pacman -S --needed'
         alias pacr='sudo pacman -R'
     fi
-    alias    pacsy='sudo pacman -Sy'
     alias   pacsyu='sudo pacman -Syu'
     alias     pacq='pacman -Q'
     alias     pacg='pacman -Sg'
