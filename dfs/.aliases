@@ -383,12 +383,12 @@ if [ "${HOST:-$HOSTNAME}" = 'Tux-IBP16-Arch' ]; then
     alias   ros2gg='rg ~/WS/codingForDummies/ros2FD/ros2FD.bash -e'
     alias     pygg='rg ~/WS/codingForDummies/pyFD/pyFD.py -e'
     alias dockergg='rg ~/WS/codingForDummies/dockerFD/dockerFD.bash -e'
-fi
 
-# DUAL BOOT with WINDOWS
-if [ -d /home/${USER}/.Windows ]; then
-    alias unmountw='sudo umount /home/$USER/.Windows'
-    alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
+    # DUAL BOOT with WINDOWS
+    if [ -d /home/${USER}/.Windows ]; then
+        alias unmountw='sudo umount /home/$USER/.Windows'
+        alias mountw='unmountw; sudo mount.ntfs-3g /dev/nvme0n1p3 /home/$USER/.Windows'
+    fi
 fi
 
 # WSLg: run Terminator on X11, ueberzug image previews need an X11 window
