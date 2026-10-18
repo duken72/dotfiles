@@ -131,7 +131,7 @@ function dps {    # dotfiles push
 # alias rwifi='nmcli radio wifi off && nmcli radio wifi on'
 
 # Mount
-alias usbg='echo "usbmount /dev/drive_name, drive_name from lsblk"'
+# Usage: usbmount /dev/drive_name, drive_name from lsblk
 alias usbmount='udisksctl mount -b' # /dev/drive_name, drive_name from lsblk
 alias usbunmount='udisksctl unmount -b' # /dev/drive_name, drive_name from lsblk
 
