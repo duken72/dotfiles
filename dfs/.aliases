@@ -251,11 +251,11 @@ function jl {
 # The first existing editor will be chosen by priority:
 # Neovim, Vim, Vi, VSCode
 for editor in nvim vim vi code; do
-  if type $editor &> /dev/null; then
-    alias v="$editor"
-    alias sv="sudo -E $editor"
-    break
-  fi
+    if type $editor &> /dev/null; then
+        alias v="$editor"
+        alias sv="sudo -E $editor"
+        break
+    fi
 done
 
 # LaTeX
