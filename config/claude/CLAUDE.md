@@ -8,6 +8,7 @@
 * [Default coding style](#default-coding-style)
 * [Writing comments and documentation](#writing-comments-and-documentation)
 * [Suggesting documentation updates](#suggesting-documentation-updates)
+* [Long suggestion lists](#long-suggestion-lists)
 * [Citing references](#citing-references)
 * [Renaming and restructuring](#renaming-and-restructuring)
 * [Commits and pushes](#commits-and-pushes)
@@ -77,6 +78,18 @@ code.
 
 Make the suggestion at the end of your work: say what you found and which file
 it belongs in. Don't edit the documentation unless I ask for it.
+
+## Long suggestion lists
+
+When a list of suggestions, open questions or to-do items is too long to read
+comfortably in the chat:
+
+- Write it to `TODO.md` (or `PLAN.md` for a plan) in the repo root, with a
+  checkbox per item.
+- Reply with one short line only, e.g. "Check TODO.md (answer is too long)".
+  Don't summarize or repeat the file's content in the chat; I read the file.
+- Keep the file current: whenever an item is addressed, by you or by me, tick
+  its checkbox and note the outcome next to it.
 
 ## Citing references
 
