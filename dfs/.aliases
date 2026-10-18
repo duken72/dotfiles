@@ -311,7 +311,6 @@ alias nvidia-smi='clear; nvidia-smi'
 # Others
 alias weather='clear && curl wttr.in'
 alias speedtest='pipx run speedtest-cli --bytes'
-alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
 # Kitty
 alias icat='kitten icat'
@@ -366,6 +365,7 @@ if [ "${HOST:-$HOSTNAME}" = 'Tux-IBP16-Arch' ]; then
     alias  cv='c ~/WS/Curriculum-Vitae-Latex'
     alias not='c ~/WS/learningNotes'
     alias nov='c ~/WS/learningNotes && v'
+    alias ssh-ubuntu='ssh -p 2222 duken72@localhost'
 
     # Guide For Dummies
     alias    bashg='cat ~/WS/codingForDummies/bashFD/bashFD.bash'
