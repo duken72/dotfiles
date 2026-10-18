@@ -1,8 +1,8 @@
 # AGENTS.md
 
-Guidance for AI coding agents working in this repository. For the overview,
-repository layout, install scripts and submodules, read
-[README.md](README.md) first.
+Guidance for AI coding agents working in this repository. Read
+[README.md](README.md) first for the overview, repository layout, install
+scripts and submodules.
 
 ## Table of contents
 
@@ -17,105 +17,94 @@ repository layout, install scripts and submodules, read
 
 ## Verifying changes
 
-There is no build, lint, or test suite. "Correctness" means the shell scripts
-run cleanly and symlinks land where the corresponding `run.sh`, `dfs.sh`, or
+There is no build, lint, or test suite. A change is correct when the shell
+scripts run cleanly and symlinks land where the relevant `run.sh`, `dfs.sh` or
 `cfg.sh` says they should.
 
 ## Branches
 
-The repo has two active long-lived branches, `main` and `ubuntu-support`, plus
-one frozen legacy branch, `legacy-xorg`:
+- `main`: the primary branch.
+- `ubuntu-support`: `main` plus Ubuntu-specific changes only:
+  - **Packages:** see "Merging" below. Also, `pkg/README.md` drops the Arch
+    LaTeX notes.
+  - **nvim:** `nvim-treesitter` and its `-textobjects` are pinned to `master`,
+    and the `all = false` shim is skipped before nvim 0.12
+    (`config/nvim/lua/plugin_list.lua`). The outline symbol icons are
+    replaced, since no installed font has the defaults
+    (`config/nvim/lua/plugins/outline.lua`).
+  - **ranger previews:** `sixel` in Windows Terminal
+    (`config/ranger/plugins/sixel_preview.py`), `ueberzug` in Terminator
+    (`config/ranger/rc.conf`) through the `bin/ueberzug` wrapper for Ubuntu's
+    ueberzug 18.3.1, and SVG via GdkPixbuf, not `rsvg-convert`
+    (`config/ranger/scope.sh`).
+  - **Terminator:** the `PaneGeometry` plugin for `bin/ueberzug`
+    (`config/terminator/plugins/`, `__pycache__` in `.gitignore`), enabled in
+    `config/terminator/config`, which also sets font size 22.
+- `legacy-xorg`: frozen snapshot of the old Xorg/Xfce+polybar setup at
+  `2db86c2` (last commit before Wayland/Hyprland), minus `config/emptty` and
+  `config/kitty`. Don't push to it unless asked. Only it keeps:
+  - `config/`: `conky`, `htop`, `moc`, `neofetch`, `vis`, `vscode`,
+    `logitech.md`, `NetworkManager`, `openvpn`, `pulseaudio-ctl`.
+  - `bin/`: `imgcompress.sh`, `imgcompressDir.sh`, `pdfcompress.sh`,
+    `pdfcompressDir.sh`, `vidcompress.sh`, `vidcompressDir.sh`,
+    `renameSong.sh`; plus `os/test.sh`.
+  - `dfs/`: `.pinerc`, `ipython/`, `.aliases_legacy`.
 
-- `ubuntu-support`: `main` plus Ubuntu-specific changes only. Examples are
-  workarounds for older package versions (such as pinning `nvim-treesitter` for
-  an older nvim), fixes for terminals used on Ubuntu (Terminator, Windows
-  Terminal).
-- `legacy-xorg`: frozen snapshot of the earlier Xorg/Xfce+polybar setup, taken
-  at the last commit before the switch to Wayland/Hyprland (`2db86c2`), with
-  `config/emptty` and `config/kitty` removed afterwards. Don't sync new
-  features or other changes to or from it; only bug fixes go to it (see
-  below). Don't push to it unless asked. It is the only branch that
-  keeps `config/conky`, `config/htop`, `config/moc`, `config/neofetch`,
-  `config/vis`, `config/vscode`, `config/logitech.md`, `config/NetworkManager`,
-  `config/openvpn` and `config/pulseaudio-ctl`, and the scripts
-  `bin/imgcompress.sh`, `bin/imgcompressDir.sh`, `bin/pdfcompress.sh`,
-  `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh`,
-  `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc`,
-  `dfs/ipython/` and `dfs/.aliases_legacy` (see "Aliases" below).
+**Where changes go:**
 
-Where each kind of change goes:
+- **Bug fixes:** all three branches, wherever the buggy code exists (e.g.
+  cherry-pick). Leave no known bug on any branch.
+- **Everything else:** both `main` and `ubuntu-support` (cherry-pick, or merge
+  `main` into `ubuntu-support`), unless Ubuntu-specific, which stays on
+  `ubuntu-support`. Nothing else goes to or from `legacy-xorg`.
+- **Branch-specific changes** (kept, moved or deleted on only some branches):
+  record them here in the same piece of work. Keep this file identical on all
+  three branches.
+- **Pushing:** push `main` and `ubuntu-support` together.
 
-- **Bug fixes:** fix the bug on all three branches (`main`, `ubuntu-support`
-  and `legacy-xorg`) wherever the buggy code exists, for example by
-  cherry-picking the fix. Don't leave a known bug on any branch.
-- **New features and other changes:** keep them on `main` and
-  `ubuntu-support` only, as described below. Never add them to `legacy-xorg`.
-- **Branch-specific changes:** whenever a request leads to a change that
-  applies to only some branches (something kept, moved or deleted on one
-  branch only), update this file in the same piece of work to record it, so
-  that the lists of what lives where stay complete. Keep this file identical
-  on all three branches.
+**Merging `main` into `ubuntu-support`:**
 
-Keep `main` and `ubuntu-support` in sync:
+- Keep the Ubuntu-only files that `main` deleted: `os/ubuntu.md`,
+  `pkg/apt_install.sh`, `pkg/pkg_apt.md` (formerly `pkg/Ubuntu/` on `main`).
+- Keep the Arch-only paths deleted; resolve modify/delete conflicts by
+  deleting:
+  - `config/`: `cava`, `emptty`, `grub`, `hypr`, `waybar`, `wofi`.
+  - `bin/`: `pkg_backup.sh`, `pkg_backup_pre.sh`, `revert-updates.sh`.
+  - `dfs/hook/` (pacman hooks), `os/archlinux.md`, `os/run.sh`.
+  - `pkg/`: `delta.sh`, `pacman_install.sh`, `pkg_*.txt` (pacman/AUR lists).
+- `config/*/run.sh` installs with `pacman` on `main` and `apt` on
+  `ubuntu-support`. On a conflict there, keep `apt` and port any package
+  change to its Ubuntu name.
 
-- When you make a change on one branch that isn't Ubuntu-specific, bring the
-  same change to the other branch (cherry-pick it, or merge `main` into
-  `ubuntu-support`).
-- Ubuntu-specific changes stay on `ubuntu-support` only.
-- Some Ubuntu-only files were deleted from `main` but must stay on
-  `ubuntu-support`: `os/ubuntu.md`, and `pkg/apt_install.sh` and
-  `pkg/pkg_apt.md` (in `pkg/Ubuntu/` on `main` before they were deleted).
-  When merging `main` into `ubuntu-support`, don't let those deletions
-  through.
-- Some Arch-only files and folders were deleted from `ubuntu-support` and exist
-  on `main` only. When merging `main` into `ubuntu-support`, keep them
-  deleted, and resolve modify/delete conflicts on them by deleting:
-  - `config/cava`, `config/emptty`, `config/grub`, `config/hypr`,
-    `config/waybar` and `config/wofi`.
-  - `bin/pkg_backup.sh`, `bin/pkg_backup_pre.sh`, `bin/revert-updates.sh` and
-    `dfs/hook/` (pacman hooks).
-  - `os/archlinux.md` and `os/run.sh`.
-  - `pkg/delta.sh`, `pkg/pacman_install.sh` and the pacman/AUR package lists
-    `pkg/pkg_*.txt`.
-- The `config/*/run.sh` scripts install packages with `pacman` on `main` and
-  with `apt` on `ubuntu-support`. When merging `main` into `ubuntu-support`
-  causes a conflict on that install line, keep the `apt` line, and port any
-  package change to its Ubuntu name.
-- When you push one branch, push the other one too, so that both remotes stay
-  current.
-
-Aliases:
+**Aliases:**
 
 - `dfs/.aliases` is identical on all three branches, and every change to it
-  goes to all three, `legacy-xorg` included. Don't make it differ by branch.
-  Instead, put OS-specific aliases behind the `$_os_id` checks in its
-  "OS SPECIFIC" section (`arch` covers `main` and `legacy-xorg`, `ubuntu`
-  covers `ubuntu-support`), and machine-specific aliases behind a hostname or
-  path check in its "MACHINE SPECIFIC" section.
-- `dfs/.aliases_legacy` exists on `legacy-xorg` only. It holds the aliases of
-  the old Xorg desktop and the TU Berlin setup. The last line of `dfs/.aliases`
-  sources it when it exists. Never add it to `main` or `ubuntu-support`.
+  goes to all three. Put OS-specific aliases behind the `$_os_id` checks in
+  "OS SPECIFIC" (`arch`: `main`, `legacy-xorg`; `ubuntu`: `ubuntu-support`)
+  and machine-specific ones behind a hostname or path check in "MACHINE
+  SPECIFIC".
+- `dfs/.aliases_legacy` (`legacy-xorg` only, never elsewhere) holds the old
+  Xorg desktop and TU Berlin aliases. `dfs/.aliases` sources it on its last
+  line when it exists.
 
 ## Editing conventions
 
-- **Color preamble:** all top-level `.sh` scripts (`dfs.sh`, `cfg.sh`) define
+- **Color preamble:** the top-level scripts (`dfs.sh`, `cfg.sh`) define
   `RED`/`GRN`/`YLW`/`BLU`/`RST` via `\033[...]` escapes. Preserve this.
-- **CLI pattern:** use a `case` statement where `-h|--help` calls `help()`
-  and an invalid option calls `error()`, then `help()`, then `exit 1`. Match
-  this when adding options.
-- **Symlinks:** always use `ln -svf` (verbose, force), never plain `ln -sf`.
-- **`dfs/.aliases`:** for the user's interactive shell only. A guard at its top
-  returns early when `CLAUDECODE` or `AI_AGENT` is set, so AI agents get the
-  default commands. Keep that guard at the top, and put new aliases below it.
-  Any other shell file that overrides a standard command (such as `cat`, `ls`
-  or `find`) needs the same guard.
-- **`config/**/run.sh`:** Scripts run with their own directory as CWD, so do
-  not assume the caller's CWD. They `rm -rf` the existing target before
-  relinking, so they are safe to re-run.
+- **CLI pattern:** a `case` statement where `-h|--help` calls `help()` and an
+  invalid option calls `error()`, `help()`, then `exit 1`. Match it when
+  adding options.
+- **Symlinks:** always `ln -svf`, never plain `ln -sf`.
+- **`dfs/.aliases`:** interactive shell only. Its top guard returns early when
+  `CLAUDECODE` or `AI_AGENT` is set, so agents get default commands. Keep the
+  guard first. Other shell files that override a standard command (`cat`,
+  `ls`, `find`, ...) need it too.
+- **`config/**/run.sh`:** runs with its own directory as CWD; don't assume the
+  caller's. It `rm -rf`s the target before relinking, so it's safe to re-run.
 
 ## Gotchas
 
-- `os/run.sh` is an interactive runbook, not an idempotent script. Steps
-  contain `local ... = "TODO"` placeholders (partition devices, timezone,
-  hostname) that must be hand-edited before running that step.
-- `config/waybar/` has no `run.sh`; it is installed by `config/hypr/run.sh`.
+- `os/run.sh` is an interactive runbook, not idempotent. Hand-edit each step's
+  `local ... = "TODO"` placeholders (partition devices, timezone, hostname)
+  before running it.
+- `config/waybar/` has no `run.sh`; `config/hypr/run.sh` installs it.
