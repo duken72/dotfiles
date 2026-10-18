@@ -260,9 +260,6 @@ for editor in nvim vim vi code; do
   fi
 done
 
-# convert a file to pdf, at least work with pptx
-alias pdfConvert='soffice --headless --convert-to pdf'
-
 # LaTeX
 # alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 function lmk {
