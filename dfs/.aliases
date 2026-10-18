@@ -314,7 +314,7 @@ alias speedtest='pipx run speedtest-cli --bytes'
 
 # Kitty
 alias icat='kitten icat'
-[ -x /usr/bin/kitten ] && alias diff='kitten diff' # else the color alias above
+[ -n "$KITTY_WINDOW_ID" ] && alias diff='kitten diff' # in kitty only; else the color alias above
 
 # Claude Code
 alias cla='claude'
