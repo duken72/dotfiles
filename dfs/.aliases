@@ -59,7 +59,7 @@ alias mkdir='mkdir -p'
 alias dirs='dirs -v'
 alias cp='cp -r' # recursive
 if [ -x /usr/bin/rsync ]; then
-    alias rsync='rsync -rahp --info=progress2'
+    alias rsync='rsync -ah --info=progress2'
     #alias cp='rsync'
 fi
 alias less='less -N -R --use-color -DC+y -Du+b -DP+g -DN+y -DE+r'
