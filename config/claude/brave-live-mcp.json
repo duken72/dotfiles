@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "brave-live": {
+      "command": "bash",
+      "args": [
+        "-c",
+        "{ read -r port; read -r path || [ -n \"$path\" ]; } <~/.config/BraveSoftware/Brave-Browser/DevToolsActivePort || { echo 'Turn on remote debugging at brave://inspect/#remote-debugging first' >&2; exit 1; }; exec npx -y chrome-devtools-mcp@latest --wsEndpoint \"ws://127.0.0.1:$port$path\""
+      ]
+    }
+  }
+}
