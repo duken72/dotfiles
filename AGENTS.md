@@ -41,7 +41,10 @@ one frozen legacy branch, `legacy-xorg`:
   `bin/imgcompress.sh`, `bin/imgcompressDir.sh`, `bin/pdfcompress.sh`,
   `bin/pdfcompressDir.sh`, `bin/vidcompress.sh`, `bin/vidcompressDir.sh`,
   `bin/renameSong.sh` and `os/test.sh`, and the dotfiles `dfs/.pinerc` and
-  `dfs/ipython/`.
+  `dfs/ipython/`. In `dfs/.aliases`, it is also the only branch that keeps
+  the TU Berlin block (`tuvpn`, `tum`, `mnas`, `mafs`, `nas*`, `afs*`), the
+  SVN aliases next to it, the OSD `vc` alias with the `export OS=...` line it
+  needs, `FCI_IP`, and the `polybar` and `neofetch` aliases.
 
 Where each kind of change goes:
 
@@ -50,6 +53,11 @@ Where each kind of change goes:
   cherry-picking the fix. Don't leave a known bug on any branch.
 - **New features and other changes:** keep them on `main` and
   `ubuntu-support` only, as described below. Never add them to `legacy-xorg`.
+- **Branch-specific changes:** whenever a request leads to a change that
+  applies to only some branches (something kept, moved or deleted on one
+  branch only), update this file in the same piece of work to record it, so
+  that the lists of what lives where stay complete. Keep this file identical
+  on all three branches.
 
 Keep `main` and `ubuntu-support` in sync:
 
@@ -80,6 +88,10 @@ Keep `main` and `ubuntu-support` in sync:
   aliases on `ubuntu-support` and the `pacman`/`aura` aliases on `main`. When
   merging `main` into `ubuntu-support` causes a conflict there, keep the `apt`
   block and delete the `pacman` block.
+- `dfs/.aliases` on `ubuntu-support` has no IBUS Unikey and Alsa mixer block
+  (`ibus-daemon-start`, `ibus-set-keyboard`, `vnk`, `dek`, `enk`, `ik`,
+  `usound`, `dsound`); it stays on `main`. When merging `main` into
+  `ubuntu-support` causes a conflict there, keep the block deleted.
 - When you push one branch, push the other one too, so that both remotes stay
   current.
 
