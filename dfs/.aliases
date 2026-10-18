@@ -88,7 +88,6 @@ alias dfs='c ~/.dotfiles'
 alias dot='c ~/.dotfiles'
 alias pkg='c ~/.dotfiles/pkg'
 alias doc='c ~/Documents'
-alias bok='c ~/Documents/books'
 alias dow='c ~/Downloads'
 alias mus='c ~/Music'
 alias pic='c ~/Pictures'
@@ -389,6 +388,7 @@ alias dockergg='rg $(fd dockerFD.bash ~) -e'
 # Check the hostname: $HOST in zsh, $HOSTNAME in bash.
 
 if [ "${HOST:-$HOSTNAME}" = 'Tux-IBP16-Arch' ]; then
+    alias bok='c ~/Documents/books'
     alias pds='c ~/Documents/personal-docs'
 fi
 
