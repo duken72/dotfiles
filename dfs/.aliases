@@ -29,7 +29,7 @@ if [ -x /usr/bin/eza ]; then
     alias  lt2='eza -l --tree --level=2'
     alias   cL='cl; eza'
     function cd {
-        builtin cd "$@" && eza --git --git-ignore --icons
+        builtin cd "$@" && eza --git --git-ignore --icons </dev/null
     }
 else
     alias    l='ls -C'
