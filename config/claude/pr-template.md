@@ -53,8 +53,6 @@ Expected: <what the reviewer should see>
 **After merging**
 
 - [ ] Verify the pipeline on the target branch is green
-- [ ] Close / update the story
-- [ ] Delete the source branch
 - [ ] Notify people affected by the change (dependent branches, config / interface users)
 
 ## Future extensions / TODO
