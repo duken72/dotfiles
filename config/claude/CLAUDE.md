@@ -159,10 +159,12 @@ At the start of every conversation in a git repo, before any other work:
 
 A temporary change only supports development on a branch and must not be
 merged with it: e.g. files or commits copied from an unmerged branch,
-generated output such as `graphify-out/`, debug code, local config overrides.
-Changes pulled from another branch usually are; when I ask you to pull some,
-ask whether to list them in `TEMPORARY_CHANGES.md` (as `⏳ TEMPORARY:`
-followed by the files or commits).
+generated output such as `graphify-out/`, debug code, local config overrides,
+the draft `PR_DESCRIPTION.md` (see
+[Drafting PR descriptions](#drafting-pr-descriptions)). Changes pulled from
+another branch usually are, so when I ask you to pull some, ask whether to
+list them in `TEMPORARY_CHANGES.md` (as `⏳ TEMPORARY:` followed by the files
+or commits).
 
 List them in `TEMPORARY_CHANGES.md` in the repo root:
 
@@ -200,8 +202,24 @@ Review the changes first, so the description matches the final code:
 - If I ask for a PR description and no review has run yet, remind me
   (`🔔 REMINDER:`) to run `/ponytail-review` or a review skill (e.g.
   `/code-review`). Only remind; don't run it unless I ask.
-- Once such a review has run and its fixes are applied, suggest (`❓ ASK:`)
-  (re)drafting the description. Only suggest; don't draft unless I ask.
+- At the end of any review skill (`ponytail-review`, `code-review`, `review`
+  or similar), ask (`❓ ASK:`) whether to create `PR_DESCRIPTION.md`, or, if
+  it exists, whether to check it against the final code. Ask even if nothing
+  needed fixing; if there were fixes, ask after they're applied. Don't write
+  it unless I say yes.
+
+Keep the draft in `PR_DESCRIPTION.md` in the repo root:
+
+- It's a temporary change: tracked and pushed, listed in
+  `TEMPORARY_CHANGES.md` (removal: before the pull request), in its own
+  commits.
+- While it exists, re-check it after every commit or push in the session
+  (changed files, test results, testing steps, character count) and update
+  it without asking. Commit it separately if I asked for the commit or push;
+  otherwise leave it uncommitted and tell me (`📄 PR DESC:` followed by what
+  changed).
+- If I share the description that's already posted, tell me where it differs
+  from the file. Don't overwrite either without asking.
 
 When the draft is in a file, reply with one line that links to it, e.g.
 "PR description drafted: `PR_DESCRIPTION.md`". Don't paste, summarize or
