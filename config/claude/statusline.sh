@@ -2,8 +2,9 @@
 
 # Claude Code status line. Claude Code pipes session JSON to stdin, fields:
 # https://code.claude.com/docs/en/statusline#available-data
-# Line 1: model - effort dir git branch | context bar
+# Line 1: dir and git branch, on their own line since both can be long
 # Line 2: git changes (files, staged, unstaged, lines added and deleted)
+# Line 3: model - effort | context bar
 # The model, effort and branch icons are Nerd Font glyphs.
 
 eval "$(jq -r '@sh "cwd=\(.workspace.current_dir // "")
@@ -33,12 +34,8 @@ kilo() {
     ((n % 1000)) && echo "$((n / 1000)).$((n % 1000 / 100))k" || echo "$((n / 1000))k"
 }
 
-line="${CYAN}${ROBOT} ${model}${RST}"
-[[ -n $effort ]] && line+="${CYAN} - ${YELLOW}${BRAIN} ${effort}${RST}"
-line+=" ${BLUE}📂 ${cwd/#$HOME/\~}${RST}"
-branch=$(git -C "$cwd" branch --show-current 2>/dev/null)
-[[ -n $branch ]] && line+=" ${MAGENTA}${BRANCH} ${branch}${RST}"
-
+model_line="${CYAN}${ROBOT} ${model}${RST}"
+[[ -n $effort ]] && model_line+="${CYAN} - ${YELLOW}${BRAIN} ${effort}${RST}"
 if ((ctx_size > 0)); then
     # Twenty segments, each 5 % of the context window; green below 50 %,
     # yellow below 80 %, red above.
@@ -48,9 +45,14 @@ if ((ctx_size > 0)); then
     ((pct < 50)) && c=$GREEN || { ((pct < 80)) && c=$YELLOW || c=$RED; }
     bar=""
     for ((i = 0; i < 20; i++)); do ((i < n)) && bar+="▰" || bar+="▱"; done
-    line+="${SEP}$(kilo "$ctx_used")/$(kilo "$ctx_size") ${c}${bar}${RST}"
+    model_line+="${SEP}$(kilo "$ctx_used")/$(kilo "$ctx_size") ${c}${bar}${RST}"
 fi
+# Printed last, also when the git section below exits early.
+trap 'printf "%s\n" "$model_line"' EXIT
 
+line="${BLUE}📂 ${cwd/#$HOME/\~}${RST}"
+branch=$(git -C "$cwd" branch --show-current 2>/dev/null)
+[[ -n $branch ]] && line+=" ${MAGENTA}${BRANCH} ${branch}${RST}"
 printf '%s\n' "$line"
 
 # Line 2, in a git repo only: changed files, then lines added and deleted
