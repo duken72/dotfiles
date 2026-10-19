@@ -58,6 +58,11 @@ repo references them and whether the change breaks the repo's conventions
 When writing or editing comments or docs, consider rephrasing so both humans
 and AI agents understand them more easily.
 
+The same applies to answers in chat. Explain a risk or a mechanism as plain
+cause and effect: what happens, when, and what the user sees. Don't squeeze it
+into one dense clause full of jargon. Before claiming "X already does this",
+check that X really goes through the same code path.
+
 ### Suggesting documentation updates
 
 When you find something undocumented that would help later work by humans or
