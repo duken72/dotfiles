@@ -72,7 +72,7 @@ work: flag each one in your reply as `📝 DOC UPDATE:` followed by what you
 found and which file it belongs in. Don't edit the docs unless I ask.
 
 When two docs sections contradict each other, or a doc contradicts the code,
-flag it in your reply as `🔴 ERROR:` followed by both sides of the conflict
+flag it in your reply as `🔴 ERROR:` followed by both sides of the conflict.
 
 ### Learning from mistakes
 
