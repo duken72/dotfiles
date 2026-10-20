@@ -29,9 +29,9 @@
 
 ### Default coding style
 
-Only when the repo has no docs or config for coding guidelines, style,
-formatting or linting (those always win), default to my Neovim setup. Read
-these files for the current setup instead of assuming it:
+If the repo has docs or config for coding guidelines, style,
+formatting or linting, use that. If the repo doesn't have that,
+use my Neovim setup. Read these files for the current setup instead of assuming it:
 
 - `~/.config/nvim` (symlink to `~/.dotfiles/config/nvim`):
   `lua/plugins/conform.lua` (formatter and arguments per filetype),
@@ -71,6 +71,9 @@ docs that no longer match the code), suggest a docs update at the end of your
 work: what you found and which file it belongs in. Don't edit the docs unless
 I ask.
 
+When two docs sections contradict each other, or a doc contradicts the code,
+flag it in your reply as `🔴 ERROR:` followed by both sides of the conflict
+
 ### Learning from mistakes
 
 Whenever you make a mistake (I correct you, or you find you got something
@@ -93,16 +96,17 @@ comfortably in chat:
 
 - Write it to `TODO.md` (or `PLAN.md` for a plan) in the repo root, one
   checkbox per item.
-- Reply with one short line only, e.g. "Check TODO.md (answer is too long)".
+- Reply with one short line only, e.g. "Check: TODO.md (answer is too long)".
   Don't summarize or repeat the file in chat; I read it.
 - Whenever an item is addressed, by you or me, tick it and note the outcome.
 
 ### Citing references
 
 - Whenever you explain something, cite the reference right after the claim,
-  bullet or paragraph it supports, not at the end. For example:
-  - `- The timeout defaults to 30 s. [Ref: config.yaml (line 2)]`
-  - `- The parser skips empty lines. [Ref: parser.py (line 7), R.md (line 7)]`
+  bullet or paragraph it supports, not at the end. Wrap each citation in
+  backticks so it shows in a different color. For example:
+  - The timeout defaults to 30 s `[Ref: config.yaml (line 2)].`
+  - The parser skips empty lines `[Ref: parser.py (line 7), R.md (line 7)].`
 - Cite only sources that existed before you touched them (other docs, existing
   code or files, git history). Citing what you wrote or changed this session
   is citing yourself; if your own work is the only source, say so (e.g. "this
@@ -137,9 +141,10 @@ At the start of every conversation in a git repo, before any other work:
 A temporary change only supports development on a branch and must not be
 merged with it: e.g. files or commits copied from an unmerged branch,
 generated output such as `graphify-out/`, debug code, local config overrides,
-the draft `PR_DESCRIPTION.md` (see [Drafting PR
-descriptions](#drafting-pr-descriptions)). Changes pulled from another branch usually are; when I ask you to pull some,
-ask whether to list them in `TEMPORARY_CHANGES.md`.
+the draft `PR_DESCRIPTION.md` (see
+[Drafting PR descriptions](#drafting-pr-descriptions)). Changes pulled from
+another branch usually are, so when I ask you to pull some, ask whether to
+list them in `TEMPORARY_CHANGES.md`.
 
 List them in `TEMPORARY_CHANGES.md` in the repo root:
 
@@ -157,6 +162,19 @@ branch for a PR, read the file and suggest removing its entries, the file
 included. Only suggest; don't remove anything unless I ask.
 
 ### Drafting PR descriptions
+
+Pick the template first:
+
+- The repo's own template always wins. Look for
+  `.azuredevops/pull_request_template.{md,txt}`,
+  `.github/pull_request_template.md`, `docs/pull_request_template.md`, or a
+  `pull_request_template/` folder in `.azuredevops/` or `.github/`.
+- Only if the repo has none, use `~/.claude/pr-template.md`.
+- Fill in the template's sections and remove its instruction text (e.g.
+  `[DELETE]`, `[CHANGE]` markers).
+- Keep it at 4000 characters or fewer (the Azure DevOps limit); check with
+  `wc -m` before you finish.
+- No work item link or title line; the PR already links the work item.
 
 Review the changes first, so the description matches the final code:
 
@@ -180,13 +198,6 @@ Keep the draft in `PR_DESCRIPTION.md` in the repo root:
   otherwise leave it uncommitted and tell me.
 - If I share the description that's already posted, tell me where it differs
   from the file. Don't overwrite either without asking.
-
-Use the repo's PR template if it has one (e.g.
-`.github/pull_request_template.md`); otherwise read and follow
-`~/.claude/pr-template.md` (fixed sections). Follow the template's own
-`[DELETE]` instructions, then remove them. Either way, keep the description at
-4000 characters or fewer and check with `wc -m` before you finish. Don't add a
-work item link or title line to the description; the PR links the work item.
 
 When the draft is in a file, reply with one line that links to it, e.g.
 "PR description drafted: `PR_DESCRIPTION.md`". Don't paste, summarize or
