@@ -5,7 +5,9 @@ linked.
 
 - `CLAUDE.md`: global instructions, loaded in every Claude Code session.
 - `pr-template.md`: default pull request template.
-- `settings.json`: settings and plugins, shared across machines.
+- `settings.json`: shared settings and plugins. `run.sh` copies it into
+  `~/.claude` once instead of linking it, so machine-specific settings stay
+  local.
 - `statusline.sh`: the status line script that `settings.json` runs.
 - `brave-mcp.json`, `brave-live-mcp.json`: opt-in browser access, see below.
 
