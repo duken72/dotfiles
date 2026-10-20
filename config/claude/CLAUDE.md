@@ -70,6 +70,12 @@ triggers, schedules, branch filters). Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
 check it with one command first.
 
+When you move content out of an agent instructions file (`AGENTS.md`,
+`CLAUDE.md`) into a doc, keep there what agents need on most tasks: the rules
+they would otherwise miss and the commands they run often (build, test,
+format), even if the doc repeats them. Move explanations, background and rarely
+used details to the doc, and leave a pointer.
+
 Use only older emoji (Unicode 6, e.g. 🔴 📝 ⚠️ 👉); newer ones such as
 U+1F900 and up (🧹, 🧠) show as empty boxes in my terminal font.
 
