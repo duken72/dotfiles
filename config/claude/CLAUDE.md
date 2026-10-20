@@ -44,7 +44,7 @@ use my Neovim setup. Read these files for the current setup instead of assuming 
 
 Touch only what the request needs: don't reformat, reword or refactor adjacent
 code. Mention unrelated dead code instead of deleting it: flag it in your
-reply as `🧹 DEAD CODE:` followed by where it is.
+reply as `💀 DEAD CODE:` followed by where it is.
 
 ### Renaming and restructuring
 
@@ -89,7 +89,7 @@ standing request, an exception to the preceding rule.
   `~/.dotfiles/config/claude/CLAUDE.md` (`~/.claude/CLAUDE.md` links to it).
 - Write the rule, not the incident, in the section it belongs to. Sharpen an
   existing rule instead of adding a near-duplicate.
-- Tell me in one line, as `🧠 RULE UPDATE:`, which file you changed and why.
+- Tell me in one line, as `📌 RULE UPDATE:`, which file you changed and why.
 
 ### Long suggestion lists
 
