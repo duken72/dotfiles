@@ -65,6 +65,9 @@ cause and effect: what happens, when, and what the user sees. Don't squeeze it
 into one dense clause full of jargon. Before claiming "X already does this",
 check that X really goes through the same code path.
 
+Use only older emoji (Unicode 6, e.g. 🔴 📝 ⚠️ 👉); newer ones such as
+U+1F900 and up (🧹, 🧠) show as empty boxes in my terminal font.
+
 ### Suggesting documentation updates
 
 When you find something undocumented that would help later work by humans or
