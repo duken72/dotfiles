@@ -183,7 +183,15 @@ Keep the draft in `PR_DESCRIPTION.md` in the repo root:
 
 Use the repo's PR template if it has one (e.g.
 `.github/pull_request_template.md`); otherwise read and follow
-`~/.claude/pr-template.md` (fixed sections, max 4000 characters).
+`~/.claude/pr-template.md` (fixed sections). Follow the template's own
+`[DELETE]` instructions, then remove them. Either way, keep the description at
+4000 characters or fewer and check with `wc -m` before you finish. Don't add a
+work item link or title line to the description; the PR links the work item.
+
+When the draft is in a file, reply with one line that links to it, e.g.
+"PR description drafted: `PR_DESCRIPTION.md`". Don't paste, summarize or
+explain its content in chat; I read the file. The same goes for any file you
+draft for me to read.
 
 ## Context
 
