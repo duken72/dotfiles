@@ -2,12 +2,15 @@
 
 # ~/.claude also holds credentials and session state, so link single files
 # into it instead of linking this directory into ~/.config.
-# Claude Code writes through the settings.json symlink (tested on 2.1.302), so
-# plugin and setting changes made in Claude Code land in this repo: commit them
-# to share the same plugins across machines.
+# settings.json is copied, not linked: Claude Code writes machine-specific
+# settings into it (e.g. autoMode with work details), which must stay out of
+# this repo. The copy is only made when ~/.claude has none (or only the old
+# symlink); copy shared changes back into this repo by hand.
 
 # jq: statusline.sh parses the session JSON with it
 sudo apt install -y jq
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 mkdir -p ~/.claude
-ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,settings.json,brave-mcp.json,brave-live-mcp.json,statusline.sh} -t ~/.claude
+ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,brave-mcp.json,brave-live-mcp.json,statusline.sh} -t ~/.claude
+[ -L ~/.claude/settings.json ] && rm ~/.claude/settings.json
+cp -nv $ABSOLUTE_PARENT_PATH/settings.json ~/.claude/settings.json
