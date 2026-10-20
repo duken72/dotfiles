@@ -68,8 +68,8 @@ check that X really goes through the same code path.
 When you find something undocumented that would help later work by humans or
 AI agents (an undocumented build step, a hidden dependency, a misleading name,
 docs that no longer match the code), suggest a docs update at the end of your
-work: what you found and which file it belongs in. Don't edit the docs unless
-I ask.
+work: flag each one in your reply as `📝 DOC UPDATE:` followed by what you
+found and which file it belongs in. Don't edit the docs unless I ask.
 
 When two docs sections contradict each other, or a doc contradicts the code,
 flag it in your reply as `🔴 ERROR:` followed by both sides of the conflict
