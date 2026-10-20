@@ -122,6 +122,9 @@ comfortably in chat:
   code or files, git history). Citing what you wrote or changed this session
   is citing yourself; if your own work is the only source, say so (e.g. "this
   is how I wrote it") instead of a `[Ref: ...]`.
+- Take line numbers only from a read of that one file (Read, `grep -n`,
+  `sed -n`). Output that joins several files, such as `cat *.yml`, numbers
+  its lines across all of them, so its line numbers don't match any one file.
 
 ## Git and pull requests
 
