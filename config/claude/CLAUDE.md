@@ -43,13 +43,15 @@ use my Neovim setup. Read these files for the current setup instead of assuming 
 ### Scope of changes
 
 Touch only what the request needs: don't reformat, reword or refactor adjacent
-code. Mention unrelated dead code instead of deleting it.
+code. Mention unrelated dead code instead of deleting it: flag it in your
+reply as `🧹 DEAD CODE:` followed by where it is.
 
 ### Renaming and restructuring
 
 Before renaming, moving or restructuring files or folders, check what in the
 repo references them and whether the change breaks the repo's conventions
-(written rules first, then what sibling folders do). If it does, warn first.
+(written rules first, then what sibling folders do). If it does, warn first:
+`⚠️ WARNING:` followed by what would break.
 
 ## Documentation and answers
 
@@ -87,7 +89,7 @@ standing request, an exception to the preceding rule.
   `~/.dotfiles/config/claude/CLAUDE.md` (`~/.claude/CLAUDE.md` links to it).
 - Write the rule, not the incident, in the section it belongs to. Sharpen an
   existing rule instead of adding a near-duplicate.
-- Tell me in one line which file you changed and why.
+- Tell me in one line, as `🧠 RULE UPDATE:`, which file you changed and why.
 
 ### Long suggestion lists
 
@@ -96,7 +98,7 @@ comfortably in chat:
 
 - Write it to `TODO.md` (or `PLAN.md` for a plan) in the repo root, one
   checkbox per item.
-- Reply with one short line only, e.g. "Check: TODO.md (answer is too long)".
+- Reply with one short line only, e.g. `👉 CHECK:` TODO.md (answer is too long).
   Don't summarize or repeat the file in chat; I read it.
 - Whenever an item is addressed, by you or me, tick it and note the outcome.
 
@@ -133,8 +135,8 @@ At the start of every conversation in a git repo, before any other work:
    no uncommitted changes.
 3. Leave diverged branches, and checked-out branches with uncommitted changes,
    alone. Don't delete, rebase or push anything in this step.
-4. Tell me in one or two lines what changed, and which branches you skipped
-   and why.
+4. Tell me in one or two lines, as `🔄 SYNC:`, what changed, and which
+   branches you skipped and why.
 
 ### Tracking temporary changes
 
@@ -144,7 +146,8 @@ generated output such as `graphify-out/`, debug code, local config overrides,
 the draft `PR_DESCRIPTION.md` (see
 [Drafting PR descriptions](#drafting-pr-descriptions)). Changes pulled from
 another branch usually are, so when I ask you to pull some, ask whether to
-list them in `TEMPORARY_CHANGES.md`.
+list them in `TEMPORARY_CHANGES.md` (as `⏳ TEMPORARY:` followed by the files
+or commits).
 
 List them in `TEMPORARY_CHANGES.md` in the repo root:
 
@@ -159,7 +162,8 @@ List them in `TEMPORARY_CHANGES.md` in the repo root:
 
 When I ask you to draft a PR description, review a PR or branch, or clean up a
 branch for a PR, read the file and suggest removing its entries, the file
-included. Only suggest; don't remove anything unless I ask.
+included, as `⏳ TEMPORARY:` followed by the entries. Only suggest; don't
+remove anything unless I ask.
 
 ### Drafting PR descriptions
 
@@ -178,14 +182,14 @@ Pick the template first:
 
 Review the changes first, so the description matches the final code:
 
-- If I ask for a PR description and no review has run yet, remind me to run
-  `/ponytail-review` or a review skill (e.g. `/code-review`). Only remind;
-  don't run it unless I ask.
+- If I ask for a PR description and no review has run yet, remind me
+  (`🔔 REMINDER:`) to run `/ponytail-review` or a review skill (e.g.
+  `/code-review`). Only remind; don't run it unless I ask.
 - At the end of any review skill (`ponytail-review`, `code-review`, `review`
-  or similar), ask whether to create `PR_DESCRIPTION.md`, or, if it exists,
-  whether to check it against the final code. Ask even if nothing needed
-  fixing; if there were fixes, ask after they're applied. Don't write it
-  unless I say yes.
+  or similar), ask (`❓ ASK:`) whether to create `PR_DESCRIPTION.md`, or, if
+  it exists, whether to check it against the final code. Ask even if nothing
+  needed fixing; if there were fixes, ask after they're applied. Don't write
+  it unless I say yes.
 
 Keep the draft in `PR_DESCRIPTION.md` in the repo root:
 
@@ -195,7 +199,8 @@ Keep the draft in `PR_DESCRIPTION.md` in the repo root:
 - While it exists, re-check it after every commit or push in the session
   (changed files, test results, testing steps, character count) and update
   it without asking. Commit it separately if I asked for the commit or push;
-  otherwise leave it uncommitted and tell me.
+  otherwise leave it uncommitted and tell me (`📄 PR DESC:` followed by what
+  changed).
 - If I share the description that's already posted, tell me where it differs
   from the file. Don't overwrite either without asking.
 
