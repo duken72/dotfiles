@@ -65,6 +65,12 @@ cause and effect: what happens, when, and what the user sees. Don't squeeze it
 into one dense clause full of jargon. Before claiming "X already does this",
 check that X really goes through the same code path.
 
+When you move content out of an agent instructions file (`AGENTS.md`,
+`CLAUDE.md`) into a doc, keep there what agents need on most tasks: the rules
+they would otherwise miss and the commands they run often (build, test,
+format), even if the doc repeats them. Move explanations, background and rarely
+used details to the doc, and leave a pointer.
+
 Use only older emoji (Unicode 6, e.g. 🔴 📝 ⚠️ 👉); newer ones such as
 U+1F900 and up (🧹, 🧠) show as empty boxes in my terminal font.
 
