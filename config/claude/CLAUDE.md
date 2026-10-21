@@ -141,6 +141,10 @@ comfortably in chat:
   review.
 - When asked, make small commits of related changes with suitable messages;
   to push, commit first, then push.
+- In the same command as the commit, check that the worktree is on the target
+  branch (`test "$(git branch --show-current)" = <branch>`), and push that
+  branch by name. I switch branches between turns, so a branch you saw
+  earlier may no longer be checked out.
 
 ### Syncing branches
 
@@ -154,8 +158,8 @@ At the start of every conversation in a git repo, before any other work:
    no uncommitted changes.
 3. Leave diverged branches, and checked-out branches with uncommitted changes,
    alone. Don't delete, rebase or push anything in this step.
-4. Tell me in one or two lines, as `🔄 SYNC:`, what changed, and which
-   branches you skipped and why.
+4. Tell me in one line, as `🔄 SYNC:`, what changed, and which branches you
+   skipped and why. If nothing changed, just `🔄 SYNC: up to date.`
 
 ### Tracking temporary changes
 
@@ -255,8 +259,13 @@ commands" is not a reason to stay in the main conversation.
   told to wait until the blocker is done.
 - Forks follow the same rules as the main session: commit or push only when
   my request asked for it.
-- When a fork reports, verify the key claim with one short command, then
-  relay the result in a short summary; don't repeat its full report.
+- After spawning a fork, write nothing; the tool call already shows it started.
+- When a fork reports, relay only the result, in one or two short lines (e.g.
+  `Pushed 5709358 to main.`). Add more only when I need it: an answer, a
+  failure, a decision for me. Don't narrate what the fork did.
+- Verify a fork's claim with a command only when it's doubtful or matters
+  beyond the task (a test pass, a fix); skip it for routine work such as a
+  commit or push the fork reports with a hash.
 
 ### graphify
 
