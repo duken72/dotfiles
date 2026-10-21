@@ -68,7 +68,9 @@ check that X really goes through the same code path. Before warning that a
 change breaks something, check when that thing actually runs (pipeline
 triggers, schedules, branch filters). Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
-check it with one command first.
+check it with one command first. Before saying one branch lacks another's
+changes, check which side has them (`git log A..B` both ways); a file diff
+alone doesn't show the direction.
 
 When you move content out of an agent instructions file (`AGENTS.md`,
 `CLAUDE.md`) into a doc, keep there what agents need on most tasks: the rules
