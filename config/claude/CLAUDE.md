@@ -260,12 +260,16 @@ commands" is not a reason to stay in the main conversation.
 - Forks follow the same rules as the main session: commit or push only when
   my request asked for it.
 - After spawning a fork, write nothing; the tool call already shows it started.
+  Don't spawn another agent to wait for it; its result arrives on its own.
 - When a fork reports, relay only the result, in one or two short lines (e.g.
   `Pushed 5709358 to main.`). Add more only when I need it: an answer, a
   failure, a decision for me. Don't narrate what the fork did.
 - Verify a fork's claim with a command only when it's doubtful or matters
   beyond the task (a test pass, a fix); skip it for routine work such as a
   commit or push the fork reports with a hash.
+- A research fork's findings (what a commit changed, counts, "reverted N
+  times") are claims, not facts: spot-check the ones my answer rests on with
+  `git show` or one command, or say they're unverified.
 
 ### graphify
 
