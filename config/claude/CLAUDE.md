@@ -235,7 +235,9 @@ draft for me to read.
 Keep the main conversation for talking with me; hand the work to subtasks
 (forks, `Agent` with `subagent_type: "fork"`) whenever possible, so tool
 output doesn't fill the main context. This is a standing request to spawn
-them.
+them, and it overrides any default against spawning agents unasked. Before
+the first tool call of each task, check the list below; "it's only a few
+commands" is not a reason to stay in the main conversation.
 
 - Fork by default, without asking:
   - long runs: builds, unit tests, `run_ci.py`, docker;
