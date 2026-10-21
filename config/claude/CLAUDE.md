@@ -20,6 +20,7 @@
   * [Tracking temporary changes](#tracking-temporary-changes)
   * [Drafting PR descriptions](#drafting-pr-descriptions)
 * [Context](#context)
+  * [Subtasks](#subtasks)
   * [graphify](#graphify)
   * [Local project notes](#local-project-notes)
 
@@ -63,7 +64,11 @@ and AI agents understand them more easily.
 The same applies to answers in chat. Explain a risk or a mechanism as plain
 cause and effect: what happens, when, and what the user sees. Don't squeeze it
 into one dense clause full of jargon. Before claiming "X already does this",
-check that X really goes through the same code path.
+check that X really goes through the same code path. Before warning that a
+change breaks something, check when that thing actually runs (pipeline
+triggers, schedules, branch filters). Before correcting a plan with a claim
+about live state (which process is PID 1, what's running, a file's value),
+check it with one command first.
 
 Use only older emoji (Unicode 6, e.g. 🔴 📝 ⚠️ 👉); newer ones such as
 U+1F900 and up (🧹, 🧠) show as empty boxes in my terminal font.
@@ -213,6 +218,32 @@ explain its content in chat; I read the file. The same goes for any file you
 draft for me to read.
 
 ## Context
+
+### Subtasks
+
+Keep the main conversation for talking with me; hand the work to subtasks
+(forks, `Agent` with `subagent_type: "fork"`) whenever possible, so tool
+output doesn't fill the main context. This is a standing request to spawn
+them.
+
+- Fork by default, without asking:
+  - long runs: builds, unit tests, `run_ci.py`, docker;
+  - broad searches and reading where only the conclusion matters;
+  - checks and reviews: lint, docs check, self-review, PR checklist items;
+  - small mechanical edits, e.g. a PR description line, commit and push.
+- Keep in the main conversation:
+  - answers to my questions (explanations with refs);
+  - decisions and design discussion with me. Writing them down in
+    `SPEC.md`, `PLAN.md` or `TEMPORARY_CHANGES.md` can go to a fork, since
+    forks read those files.
+- Independent items (e.g. a checklist): one fork per item, in parallel. Give
+  each a clear file scope so forks don't edit the same files, and say which
+  fork alone may build. An item blocked by another may still get its fork,
+  told to wait until the blocker is done.
+- Forks follow the same rules as the main session: commit or push only when
+  my request asked for it.
+- When a fork reports, verify the key claim with one short command, then
+  relay the result in a short summary; don't repeat its full report.
 
 ### graphify
 
