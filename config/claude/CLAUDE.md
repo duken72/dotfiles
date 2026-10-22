@@ -17,6 +17,7 @@
 * [Git and pull requests](#git-and-pull-requests)
   * [Commits and pushes](#commits-and-pushes)
   * [Syncing branches](#syncing-branches)
+  * [Planning work on a branch](#planning-work-on-a-branch)
   * [Tracking temporary changes](#tracking-temporary-changes)
   * [Drafting PR descriptions](#drafting-pr-descriptions)
 * [Context](#context)
@@ -70,7 +71,10 @@ triggers, schedules, branch filters). Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
 check it with one command first. Before saying one branch lacks another's
 changes, check which side has them (`git log A..B` both ways); a file diff
-alone doesn't show the direction.
+alone doesn't show the direction. Before claiming a variable is "always" or
+"never" something (non-negative, set, in range), check every write to it and
+the edge cases between them (a target changing mid-ramp, a lagging
+accumulator), not only how it's meant to be used.
 
 When you move content out of an agent instructions file (`AGENTS.md`,
 `CLAUDE.md`) into a doc, keep there what agents need on most tasks: the rules
@@ -160,6 +164,17 @@ At the start of every conversation in a git repo, before any other work:
    alone. Don't delete, rebase or push anything in this step.
 4. Tell me in one line, as `🔄 SYNC:`, what changed, and which branches you
    skipped and why. If nothing changed, just `🔄 SYNC: up to date.`
+
+### Planning work on a branch
+
+When I start work on a branch (other than the main branch), check the repo
+root for `SPEC.md` and `PLAN.md`:
+
+- If either is missing, suggest (`💡 SUGGEST:`) that I switch to plan mode
+  with effort medium and run `/agent-skills:spec` (if `SPEC.md` is missing),
+  then `/agent-skills:plan`. Don't run them yourself.
+- If both exist, suggest that I switch to auto mode with effort high, then
+  work from them.
 
 ### Tracking temporary changes
 
