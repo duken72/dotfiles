@@ -313,4 +313,8 @@ When a repo has `graphify-out/graph.json`:
 
 Kept out of the dotfiles repo; the file may not exist on every machine.
 
+Read the notes at the start of every conversation, before the first other
+step (sync included), not only when a task seems to need them. Also read every
+file a notes file says to read "before any work", such as a branch list.
+
 @~/.claude/local.md
