@@ -10,6 +10,7 @@
 * [Suggesting documentation updates](#suggesting-documentation-updates)
 * [Long suggestion lists](#long-suggestion-lists)
 * [Citing references](#citing-references)
+* [Writing bug reports](#writing-bug-reports)
 * [Renaming and restructuring](#renaming-and-restructuring)
 * [Commits and pushes](#commits-and-pushes)
 * [Tracking temporary changes](#tracking-temporary-changes)
@@ -102,6 +103,33 @@ comfortably in the chat:
   changed in this session to back up a claim about them; that is citing
   yourself. If the only source is your own work, say so (e.g. "this is how I
   wrote it") instead of a `[Ref: ...]`.
+
+## Writing bug reports
+
+When I ask for a bug report, use this template. Fill in System Info from
+commands (e.g. `cat /etc/os-release`, `<tool> --version`,
+`git rev-parse --short HEAD`), not from memory; leave out a line you can't
+check.
+
+```markdown
+## Repro Steps
+
+Short description
+
+1. <first step: command, input or action>
+2. <next step, until the bug shows>
+
+**Expected behavior:**
+
+**Actual:**
+
+## System Info
+
+- Component:
+- Branch/commit:
+- OS, platform: <name and version>
+- Others metadata:
+```
 
 ## Renaming and restructuring
 
