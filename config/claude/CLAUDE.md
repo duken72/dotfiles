@@ -14,6 +14,7 @@
   * [Learning from mistakes](#learning-from-mistakes)
   * [Long suggestion lists](#long-suggestion-lists)
   * [Citing references](#citing-references)
+  * [Writing bug reports](#writing-bug-reports)
 * [Git and pull requests](#git-and-pull-requests)
   * [Commits and pushes](#commits-and-pushes)
   * [Syncing branches](#syncing-branches)
@@ -136,6 +137,33 @@ comfortably in chat:
 - Take line numbers only from a read of that one file (Read, `grep -n`,
   `sed -n`). Output that joins several files, such as `cat *.yml`, numbers
   its lines across all of them, so its line numbers don't match any one file.
+
+### Writing bug reports
+
+When I ask for a bug report, use this template. Fill in System Info from
+commands (e.g. `cat /etc/os-release`, `<tool> --version`,
+`git rev-parse --short HEAD`), not from memory; leave out a line you can't
+check.
+
+```markdown
+## Repro Steps
+
+Short description
+
+1. <first step: command, input or action>
+2. <next step, until the bug shows>
+
+**Expected behavior:**
+
+**Actual:**
+
+## System Info
+
+- Component:
+- Branch/commit:
+- OS, platform: <name and version>
+- Others metadata:
+```
 
 ## Git and pull requests
 
