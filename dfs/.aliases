@@ -7,6 +7,18 @@
 # one branch only. legacy-xorg adds its own aliases in .aliases_legacy.
 _os_id=$(. /etc/os-release 2>/dev/null && echo "$ID")
 
+# Pull (fast-forward only) when cd enters these repos from outside them
+function _cd_pull {
+    local top
+    top=$(git rev-parse --show-toplevel 2>/dev/null) || return 0
+    case "$top" in
+        "$HOME/.dotfiles"|"$HOME"/WS/adasvf*) ;;
+        *) return 0 ;;
+    esac
+    case "$OLDPWD/" in "$top"/*) return 0 ;; esac
+    git -C "$top" pull --ff-only
+}
+
 # Overwrite existing commands for better defaults
 # enable color support for ls and grep
 if [ -x /usr/bin/dircolors ]; then
@@ -32,7 +44,7 @@ if [ -x /usr/bin/eza ]; then
     alias  lt2='eza -l --tree --level=2'
     alias   cL='cl; eza'
     function cd {
-        builtin cd "$@" && eza --git --git-ignore --icons=auto .
+        builtin cd "$@" && { _cd_pull; eza --git --git-ignore --icons=auto .; }
     }
 else
     alias    l='ls -C'
@@ -45,7 +57,7 @@ else
     alias  lt2='tree -L 2'
     alias   cL='cl; ls'
     function cd {
-        builtin cd "$@" && ls -CA
+        builtin cd "$@" && { _cd_pull; ls -CA; }
     }
 fi
 

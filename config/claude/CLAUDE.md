@@ -17,7 +17,6 @@
   * [Writing bug reports](#writing-bug-reports)
 * [Git and pull requests](#git-and-pull-requests)
   * [Commits and pushes](#commits-and-pushes)
-  * [Syncing branches](#syncing-branches)
   * [Planning work on a branch](#planning-work-on-a-branch)
   * [Tracking temporary changes](#tracking-temporary-changes)
   * [Drafting PR descriptions](#drafting-pr-descriptions)
@@ -178,21 +177,6 @@ Short description
   branch by name. I switch branches between turns, so a branch you saw
   earlier may no longer be checked out.
 
-### Syncing branches
-
-At the start of every conversation in a git repo, before any other work:
-
-1. Run `git fetch --all --prune` (updates remote-tracking refs, removes ones
-   whose remote branch is gone).
-2. Fast-forward each local branch that is behind its upstream and hasn't
-   diverged: `git fetch <remote> <branch>:<branch>` if it isn't checked out in
-   any worktree, else `git -C <worktree> merge --ff-only` if that worktree has
-   no uncommitted changes.
-3. Leave diverged branches, and checked-out branches with uncommitted changes,
-   alone. Don't delete, rebase or push anything in this step.
-4. Tell me in one line, as `🔄 SYNC:`, what changed, and which branches you
-   skipped and why. If nothing changed, just `🔄 SYNC: up to date.`
-
 ### Planning work on a branch
 
 When I start work on a branch (other than the main branch), check the repo
@@ -342,7 +326,7 @@ When a repo has `graphify-out/graph.json`:
 Kept out of the dotfiles repo; the file may not exist on every machine.
 
 Read the notes at the start of every conversation, before the first other
-step (sync included), not only when a task seems to need them. Also read every
+step, not only when a task seems to need them. Also read every
 file a notes file says to read "before any work", such as a branch list.
 
 @~/.claude/local.md
