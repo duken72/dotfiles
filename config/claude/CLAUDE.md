@@ -12,7 +12,6 @@
 * [Citing references](#citing-references)
 * [Renaming and restructuring](#renaming-and-restructuring)
 * [Commits and pushes](#commits-and-pushes)
-* [Syncing branches](#syncing-branches)
 * [Tracking temporary changes](#tracking-temporary-changes)
 * [Drafting PR descriptions](#drafting-pr-descriptions)
 * [Local project notes](#local-project-notes)
@@ -118,26 +117,6 @@ does, warn before making the change.
 - When asked to commit or push, make small, reasonable commits of related
   changes, each with a suitable commit message. If asked to push changes, make
   the commits first, then push.
-
-## Syncing branches
-
-At the start of every conversation in a git repo, update the local and remote
-branches before any other work:
-
-1. Run `git fetch --all --prune`. This updates the remote-tracking refs and
-   removes the ones whose remote branch is gone.
-2. Fast-forward each local branch that is behind its upstream and hasn't
-   diverged from it:
-   - For a branch that isn't checked out in any worktree, run
-     `git fetch <remote> <branch>:<branch>`.
-   - For a branch that is checked out in a worktree, run
-     `git -C <worktree> merge --ff-only`, but only if that worktree has no
-     uncommitted changes.
-3. Leave alone any branch that has diverged from its upstream, and any
-   checked-out branch whose worktree has uncommitted changes. Don't delete,
-   rebase, or push anything as part of this step.
-4. In one or two lines, tell me what changed, and list the branches you skipped
-   and why.
 
 ## Tracking temporary changes
 
