@@ -166,7 +166,7 @@ bar_spacing = 0
 # on noncurses output.
 # Note: many fonts have weird or missing glyphs for characters used in orientations
 # other than 'bottom', which can make output not look right.
-; orientation = bottom
+orientation = horizontal
 
 # Visual channels. Can be 'stereo' or 'mono'.
 # 'stereo' mirrors both channels with low frequencies in center.
@@ -216,8 +216,24 @@ bar_spacing = 0
 # Shaders for sdl_glsl, located in $HOME/.config/cava/shaders
 ; vertex_shader = pass_through.vert
 ; fragment_shader = bar_spectrum.frag
+# other styles shaders
+; fragment_shader = bar_spectrum.frag
+; fragment_shader = eye_of_phi.frag
+; fragment_shader = northern_lights.frag
+; fragment_shader = spectrogram.frag
+; fragment_shader = winamp_line_style_spectrum.frag
+# Orion shaders (use with: method = sdl_glsl)
+# Static Orion
+; fragment_shader = orion_circle.frag
+# Rotating Orion
+; fragment_shader = orion_circle_rotate.frag
+# Orion saturn subring
+; fragment_shader = orion_saturn_subring.frag
+# Orion saturn core
+; fragment_shader = orion_saturn_core.frag
 
-; for glsl output mode, keep rendering even if no audio
+# For glsl output mode, keep rendering even if no audio. 1 = on, 0 = off. Default: 0
+# Enable for animated shaders (e.g. orion_circle_rotate) so time-based effects keep updating.
 ; continuous_rendering = 0
 
 # disable console blank (screen saver) in tty
