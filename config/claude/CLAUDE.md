@@ -236,8 +236,7 @@ Pick the template first:
 - Only if the repo has none, use `~/.claude/pr-template.md`.
 - Fill in the template's sections and remove its instruction text (e.g.
   `[DELETE]`, `[CHANGE]` markers).
-- Keep it at 4000 characters or fewer (the Azure DevOps limit); check with
-  `wc -m` before you finish.
+- Keep it at 4000 characters or fewer; check with `wc -m` before you finish.
 - No work item link or title line; the PR already links the work item.
 
 Review the changes first, so the description matches the final code:
