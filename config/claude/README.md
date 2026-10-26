@@ -11,6 +11,8 @@ linked.
   file into `~/.claude` once. Either way machine-specific settings stay out
   of this repo.
 - `statusline.sh`: the status line script that `settings.json` runs.
+- `commands/`: custom slash commands, linked as a folder: `/st` runs a task in
+  one fork subtask, `/sts` splits it across parallel forks.
 - `brave-mcp.json`, `brave-live-mcp.json`: opt-in browser access, see below.
 
 ## Table of contents

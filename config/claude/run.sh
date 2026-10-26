@@ -14,6 +14,7 @@ sudo apt install -y jq
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
 mkdir -p ~/.claude
 ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,brave-mcp.json,brave-live-mcp.json,statusline.sh} -t ~/.claude
+ln -svfn $ABSOLUTE_PARENT_PATH/commands ~/.claude/commands
 if [ -f $PRIVATE_SETTINGS ]; then
     ln -svf $PRIVATE_SETTINGS ~/.claude/settings.json
 else
