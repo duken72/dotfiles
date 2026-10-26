@@ -64,8 +64,14 @@ and AI agents understand them more easily.
 
 The same applies to answers in chat. Explain a risk or a mechanism as plain
 cause and effect: what happens, when, and what the user sees. Don't squeeze it
-into one dense clause full of jargon. Before claiming "X already does this",
-check that X really goes through the same code path. Before warning that a
+into one dense clause full of jargon. When stating a sign or direction
+(positive, negative, left, right, "opposite sign"), say which quantity it
+belongs to, what it's compared with, and under which condition (e.g. "for a
+left turn in R"); when two signs interact, add a small worked example with
+numbers. Before claiming "X already does this",
+check that X really goes through the same code path. Before explaining a
+behavior change by a config flag, check that the code reads the flag (grep
+its uses, not only where it's parsed). Before warning that a
 change breaks something, check when that thing actually runs (pipeline
 triggers, schedules, branch filters). Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
@@ -74,7 +80,9 @@ changes, check which side has them (`git log A..B` both ways); a file diff
 alone doesn't show the direction. Before claiming a variable is "always" or
 "never" something (non-negative, set, in range), check every write to it and
 the edge cases between them (a target changing mid-ramp, a lagging
-accumulator), not only how it's meant to be used.
+accumulator), not only how it's meant to be used. This holds when you
+repeat a claim from your own earlier answers or notes: re-check it, or keep
+its caveat ("meant to be X; briefly Y when Z").
 
 When you move content out of an agent instructions file (`AGENTS.md`,
 `CLAUDE.md`) into a doc, keep there what agents need on most tasks: the rules
@@ -194,10 +202,12 @@ A temporary change only supports development on a branch and must not be
 merged with it: e.g. files or commits copied from an unmerged branch,
 generated output such as `graphify-out/`, debug code, local config overrides,
 the draft `PR_DESCRIPTION.md` (see
-[Drafting PR descriptions](#drafting-pr-descriptions)). Changes pulled from
-another branch usually are, so when I ask you to pull some, ask whether to
-list them in `TEMPORARY_CHANGES.md` (as `⏳ TEMPORARY:` followed by the files
-or commits).
+[Drafting PR descriptions](#drafting-pr-descriptions)). `SPEC.md`, `PLAN.md`
+and `TODO.md` from the spec and plan skills (`/agent-skills:spec`,
+`/agent-skills:plan`) are always temporary: list them without asking.
+Changes pulled from another branch usually are, so when I ask you to pull
+some, ask whether to list them in `TEMPORARY_CHANGES.md` (as `⏳ TEMPORARY:`
+followed by the files or commits).
 
 List them in `TEMPORARY_CHANGES.md` in the repo root:
 
