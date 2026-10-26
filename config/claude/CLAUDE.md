@@ -69,9 +69,13 @@ into one dense clause full of jargon. When stating a sign or direction
 belongs to, what it's compared with, and under which condition (e.g. "for a
 left turn in R"); when two signs interact, add a small worked example with
 numbers. Before claiming "X already does this",
-check that X really goes through the same code path. Before explaining a
-behavior change by a config flag, check that the code reads the flag (grep
-its uses, not only where it's parsed). Before warning that a
+check that X really goes through the same code path. Before saying what a
+check or metric counts (a validation target, a counter, a timer), read where
+it accumulates and under which condition. Before saying code "rejects" or
+"fails on" an input, read what the caller does with that result (an error, a
+fallback, a skip). Before explaining what a config flag or value does (a
+behavior change, which frame a pose is in), check where the code uses it
+(grep its uses, not only where it's parsed). Before warning that a
 change breaks something, check when that thing actually runs (pipeline
 triggers, schedules, branch filters). Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
