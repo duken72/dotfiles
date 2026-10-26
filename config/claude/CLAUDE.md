@@ -198,6 +198,11 @@ root for `SPEC.md` and `PLAN.md`:
 - If both exist, suggest that I switch to auto mode with effort high, then
   work from them.
 
+While working from them, keep `PLAN.md` and `TODO.md` current as each step
+lands, not only at the end: tick the items, note the outcome (run, values
+chosen), and update risks or decisions the work proved wrong. Put this in
+every fork prompt that works on a planned task.
+
 ### Tracking temporary changes
 
 A temporary change only supports development on a branch and must not be
@@ -215,8 +220,9 @@ List them in `TEMPORARY_CHANGES.md` in the repo root:
 
 - Create it with the first temporary change. It's tracked and pushed with the
   branch (I use several machines), and is itself temporary, so list it too.
-- Per entry: the files or commits, why they're temporary, and when they can go
-  (default, if I don't say: before the pull request).
+- Per entry: the files or commits and why they're temporary. Every temporary
+  change goes before the pull request, so don't write a removal time per
+  entry.
 - Update it whenever you add or remove one, or I tell you something is
   temporary.
 - Keep temporary changes in their own commits, apart from the real work, so
@@ -255,8 +261,7 @@ Review the changes first, so the description matches the final code:
 Keep the draft in `PR_DESCRIPTION.md` in the repo root:
 
 - It's a temporary change: tracked and pushed, listed in
-  `TEMPORARY_CHANGES.md` (removal: before the pull request), in its own
-  commits.
+  `TEMPORARY_CHANGES.md`, in its own commits.
 - While it exists, re-check it after every commit or push in the session
   (changed files, test results, testing steps, character count) and update
   it without asking. Commit it separately if I asked for the commit or push;
