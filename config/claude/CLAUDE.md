@@ -68,7 +68,9 @@ into one dense clause full of jargon. When stating a sign or direction
 (positive, negative, left, right, "opposite sign"), say which quantity it
 belongs to, what it's compared with, and under which condition (e.g. "for a
 left turn in R"); when two signs interact, add a small worked example with
-numbers. Before claiming "X already does this",
+numbers. When predicting a test result, say plainly "passes" or "fails"
+and the margin against its tolerance, with the numbers. Before claiming "X
+already does this",
 check that X really goes through the same code path. Before saying what a
 check or metric counts (a validation target, a counter, a timer), read where
 it accumulates and under which condition. Before saying code "rejects" or
@@ -307,6 +309,11 @@ commands" is not a reason to stay in the main conversation.
   my request asked for it.
 - After spawning a fork, write nothing; the tool call already shows it started.
   Don't spawn another agent to wait for it; its result arrives on its own.
+- When a fork must wait for another run to end, have it wait on that task's
+  completion or on a pattern that can't match the wait loop itself
+  (`pgrep -f run_ci.py` inside a shell loop finds the loop's own command
+  line and waits forever). Before relaying "running" or "started" from a
+  fork's interim note, check it with one command (`docker ps`, `pgrep`).
 - When a fork reports, relay only the result, in one or two short lines (e.g.
   `Pushed 5709358 to main.`). Add more only when I need it: an answer, a
   failure, a decision for me. Don't narrate what the fork did.
