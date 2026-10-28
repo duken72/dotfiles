@@ -5,9 +5,11 @@ linked.
 
 - `CLAUDE.md`: global instructions, loaded in every Claude Code session.
 - `pr-template.md`: default pull request template.
-- `settings.json`: shared settings and plugins. `run.sh` copies it into
-  `~/.claude` once instead of linking it, so machine-specific settings stay
-  local.
+- `settings.json`: shared settings and plugins. `run.sh` links
+  `~/.claude/settings.json` to a private copy outside this repo
+  (`PRIVATE_SETTINGS` in `run.sh`) when one exists; otherwise it copies this
+  file into `~/.claude` once. Either way machine-specific settings stay out
+  of this repo.
 - `statusline.sh`: the status line script that `settings.json` runs.
 - `brave-mcp.json`, `brave-live-mcp.json`: opt-in browser access, see below.
 
