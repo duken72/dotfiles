@@ -83,10 +83,14 @@ triggers, schedules, branch filters). Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
 check it with one command first. Before saying one branch lacks another's
 changes, check which side has them (`git log A..B` both ways); a file diff
-alone doesn't show the direction. Before claiming a variable is "always" or
+alone doesn't show the direction. Before saying two files differ or are
+copies, compare them without their comments (`cmp` flags a comment-only
+difference). Before claiming a variable is "always" or
 "never" something (non-negative, set, in range), check every write to it and
 the edge cases between them (a target changing mid-ramp, a lagging
-accumulator), not only how it's meant to be used. This holds when you
+accumulator), not only how it's meant to be used. Before
+saying a design alternative wouldn't work or would cost more (e.g. making a
+type atomic), read that type's definition. This holds when you
 repeat a claim from your own earlier answers or notes: re-check it, or keep
 its caveat ("meant to be X; briefly Y when Z").
 
@@ -249,7 +253,8 @@ Pick the template first:
 - Fill in the template's sections and remove its instruction text (e.g.
   `[DELETE]`, `[CHANGE]` markers).
 - Keep it at 4000 characters or fewer; check with `wc -m` before you finish.
-- No work item link or title line; the PR already links the work item.
+- No work item link or title line; the PR already links the work item. No
+  "Generated with Claude Code" attribution line either.
 - Don't hard-wrap at a line length: put each sentence on its own line, and
   each list item (template checklist items included) on one line.
 - Explain the change from high level to low level, as plain cause and
@@ -299,7 +304,9 @@ the first tool call of each task, check the list below; "it's only a few
 commands" is not a reason to stay in the main conversation.
 
 - Fork by default, without asking:
-  - long runs: builds, unit tests, `run_ci.py`, docker;
+  - long runs: builds, unit tests, `run_ci.py`, docker. A background Bash
+    command in the main conversation is not a fork: its polls, kills and
+    log tails still land in the main context;
   - broad searches and reading where only the conclusion matters;
   - checks and reviews: lint, docs check, self-review, PR checklist items;
   - small mechanical edits, e.g. a PR description line, commit and push;
