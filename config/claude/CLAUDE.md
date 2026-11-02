@@ -250,6 +250,14 @@ Pick the template first:
   `[DELETE]`, `[CHANGE]` markers).
 - Keep it at 4000 characters or fewer; check with `wc -m` before you finish.
 - No work item link or title line; the PR already links the work item.
+- Don't hard-wrap at a line length: put each sentence on its own line, and
+  each list item (template checklist items included) on one line.
+- Explain the change from high level to low level, as plain cause and
+  effect: the problem and what the user saw, then the fix in a few
+  sentences, then a small data-flow sketch if pieces connect across
+  components, then the file list. Give a worked example with numbers for
+  any timing or arithmetic. Don't open with dense jargon or file-level
+  detail.
 
 Review the changes first, so the description matches the final code:
 
@@ -294,7 +302,10 @@ commands" is not a reason to stay in the main conversation.
   - long runs: builds, unit tests, `run_ci.py`, docker;
   - broad searches and reading where only the conclusion matters;
   - checks and reviews: lint, docs check, self-review, PR checklist items;
-  - small mechanical edits, e.g. a PR description line, commit and push.
+  - small mechanical edits, e.g. a PR description line, commit and push;
+  - drafting or rewriting a file I read myself (`PR_DESCRIPTION.md`,
+    notes), including edit-and-recount loops to fit a length limit. Decide
+    the content in the main conversation, then let the fork write it.
 - Keep in the main conversation:
   - answers to my questions (explanations with refs);
   - decisions and design discussion with me. Writing them down in
