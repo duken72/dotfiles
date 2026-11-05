@@ -363,8 +363,11 @@ commands" is not a reason to stay in the main conversation.
 - Facts you put in a fork prompt (counts, pass rates, "fails at every
   speed") follow the same checking rules as an answer to me: copy them from
   the source you read, don't paraphrase them stronger.
-- After spawning a fork, write nothing; the tool call already shows it started.
-  Don't spawn another agent to wait for it; its result arrives on its own.
+- After spawning a fork, write nothing, not even "it's running in the
+  background, I'll report when it's done"; the tool call already shows it
+  started. Any text the turn needs (an answer, a `📌 RULE UPDATE:` line)
+  goes before the spawn. Don't spawn another agent to wait for it; its
+  result arrives on its own.
 - When a fork must wait for another run to end, have it wait on that task's
   completion or on a pattern that can't match the wait loop itself
   (`pgrep -f run_ci.py` inside a shell loop finds the loop's own command
