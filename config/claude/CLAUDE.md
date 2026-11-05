@@ -123,9 +123,8 @@ also write the same text, citations included, to `<YYYY-MM-DD>-<topic>.md` in
 the repo root (the working directory outside a repo), so I can copy-paste it.
 In that file, don't hard-wrap: put each sentence and list item on one line.
 Write it through a fork (see [Subtasks](#subtasks)) and give its full path
-before the spawn. Put the full text in the fork prompt: a fork doesn't see
-text written in the turn that spawns it. Leave the file untracked: don't
-stage, commit or exclude it. Skip one-line replies and status updates.
+before the spawn. Leave the file untracked: don't stage, commit or exclude it.
+Skip one-line replies and status updates.
 
 ### Suggesting documentation updates
 
