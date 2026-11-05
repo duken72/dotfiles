@@ -94,7 +94,9 @@ changes, check which side has them (`git log A..B` both ways); a file diff
 alone doesn't show the direction. Before explaining or proposing a
 fix for behavior on a feature branch, fetch its base branch and check
 whether the base already changed it (`git log HEAD..origin/<base> --
-<file>`). Before claiming a variable is "always" or
+<file>`). Before saying two files differ or are copies, compare them
+without their comments (`cmp` flags a comment-only difference). Before
+claiming a variable is "always" or
 "never" something (non-negative, set, in range), check every write to it and
 the edge cases between them (a target changing mid-ramp, a lagging
 accumulator), not only how it's meant to be used. To find the writes and
@@ -103,7 +105,9 @@ reads, search case-insensitively across all file types: generated accessors
 `.fidl` don't contain the field name as written. Before saying something
 "isn't defined" or "isn't in the repo", search with `grep -a` and without
 `2>/dev/null`: grep can skip a source file with a stray non-ASCII byte as
-binary, silently. This holds when you
+binary, silently. Before saying a design alternative wouldn't work or would
+cost more (e.g. making a type atomic), read that type's definition. This
+holds when you
 repeat a claim from your own earlier answers or notes: re-check it, or keep
 its caveat ("meant to be X; briefly Y when Z").
 
@@ -278,7 +282,8 @@ Pick the template first:
 - Fill in the template's sections and remove its instruction text (e.g.
   `[DELETE]`, `[CHANGE]` markers).
 - Keep it at 4000 characters or fewer; check with `wc -m` before you finish.
-- No work item link or title line; the PR already links the work item.
+- No work item link or title line; the PR already links the work item. No
+  "Generated with Claude Code" attribution line either.
 - Don't hard-wrap at a line length: put each sentence on its own line, and
   each list item (template checklist items included) on one line.
 - Explain the change from high level to low level, as plain cause and
@@ -331,7 +336,9 @@ the first tool call of each task, check the list below; "it's only a few
 commands" is not a reason to stay in the main conversation.
 
 - Fork by default, without asking:
-  - long runs: builds, unit tests, `run_ci.py`, docker;
+  - long runs: builds, unit tests, `run_ci.py`, docker. A background Bash
+    command in the main conversation is not a fork: its polls, kills and
+    log tails still land in the main context;
   - broad searches and reading where only the conclusion matters;
   - checks and reviews: lint, docs check, self-review, PR checklist items;
   - every file edit, however small (a one-line fix, a comment, a lint or
