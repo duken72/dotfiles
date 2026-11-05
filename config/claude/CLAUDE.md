@@ -42,6 +42,10 @@ use my Neovim setup. Read these files for the current setup instead of assuming 
 - `~/.dotfiles/config/vale/.vale.ini`: prose styles (Google, proselint,
   write-good) for `vale`, the Markdown linter.
 
+Before proposing a shorter form (e.g. a "shrink" finding), check that it
+still fits the column limit after formatting. A line the formatter wraps
+saves nothing.
+
 ### Scope of changes
 
 Touch only what the request needs: don't reformat, reword or refactor adjacent
@@ -79,14 +83,27 @@ fallback, a skip). Before explaining what a config flag or value does (a
 behavior change, which frame a pose is in), check where the code uses it
 (grep its uses, not only where it's parsed). Before warning that a
 change breaks something, check when that thing actually runs (pipeline
-triggers, schedules, branch filters). Before correcting a plan with a claim
+triggers, schedules, branch filters). Before saying two runs can go in
+parallel (two containers, two checkouts), check every resource they share,
+not only the build folder: host mounts such as `/tmp` and the sockets in
+them, host-network ports, lock files; if one is left unchecked, say "not
+verified" instead of yes. Before correcting a plan with a claim
 about live state (which process is PID 1, what's running, a file's value),
 check it with one command first. Before saying one branch lacks another's
 changes, check which side has them (`git log A..B` both ways); a file diff
-alone doesn't show the direction. Before claiming a variable is "always" or
+alone doesn't show the direction. Before explaining or proposing a
+fix for behavior on a feature branch, fetch its base branch and check
+whether the base already changed it (`git log HEAD..origin/<base> --
+<file>`). Before claiming a variable is "always" or
 "never" something (non-negative, set, in range), check every write to it and
 the edge cases between them (a target changing mid-ramp, a lagging
-accumulator), not only how it's meant to be used. This holds when you
+accumulator), not only how it's meant to be used. To find the writes and
+reads, search case-insensitively across all file types: generated accessors
+(`getParking_state()`), positional initializers and interface files such as
+`.fidl` don't contain the field name as written. Before saying something
+"isn't defined" or "isn't in the repo", search with `grep -a` and without
+`2>/dev/null`: grep can skip a source file with a stray non-ASCII byte as
+binary, silently. This holds when you
 repeat a claim from your own earlier answers or notes: re-check it, or keep
 its caveat ("meant to be X; briefly Y when Z").
 
@@ -237,6 +254,18 @@ branch for a PR, read the file and suggest removing its entries, the file
 included, as `⏳ TEMPORARY:` followed by the entries. Only suggest; don't
 remove anything unless I ask.
 
+### Addressing review feedback
+
+Reviewer comments are suggestions, not orders. For each one, decide
+accept, partly accept or push back. Before you accept, find out why the
+code is the way it is: the commit messages, the PR description, earlier
+notes, or ask me. List the verdicts per comment and wait for my go before
+you edit code. If a comment undoes an earlier deliberate choice, draft a
+reply that gives the reason instead of a change. Check every reason in a
+push-back against the code (does the alternative really change behavior or
+touch those files?); drop a reason that doesn't hold rather than stretch it
+to fit the verdict, and change the verdict if no reason is left.
+
 ### Drafting PR descriptions
 
 Pick the template first:
@@ -258,6 +287,9 @@ Pick the template first:
   components, then the file list. Give a worked example with numbers for
   any timing or arithmetic. Don't open with dense jargon or file-level
   detail.
+- When new test results come in, replace every value in the Testing
+  section that came from an older run or base, not only the one that
+  changed; keep an old value only if it says which run it's from.
 
 Review the changes first, so the description matches the final code:
 
@@ -302,7 +334,11 @@ commands" is not a reason to stay in the main conversation.
   - long runs: builds, unit tests, `run_ci.py`, docker;
   - broad searches and reading where only the conclusion matters;
   - checks and reviews: lint, docs check, self-review, PR checklist items;
-  - small mechanical edits, e.g. a PR description line, commit and push;
+  - every file edit, however small (a one-line fix, a comment, a lint or
+    line-length rewrap, a PR description line), and commit and push: Edit,
+    Write and `sed -i` in the main conversation print their diffs to me.
+    Decide the change here and give the fork the exact text; I read the
+    result with `git diff` when I want it;
   - drafting or rewriting a file I read myself (`PR_DESCRIPTION.md`,
     notes), including edit-and-recount loops to fit a length limit. Decide
     the content in the main conversation, then let the fork write it.
@@ -317,6 +353,9 @@ commands" is not a reason to stay in the main conversation.
   told to wait until the blocker is done.
 - Forks follow the same rules as the main session: commit or push only when
   my request asked for it.
+- Facts you put in a fork prompt (counts, pass rates, "fails at every
+  speed") follow the same checking rules as an answer to me: copy them from
+  the source you read, don't paraphrase them stronger.
 - After spawning a fork, write nothing; the tool call already shows it started.
   Don't spawn another agent to wait for it; its result arrives on its own.
 - When a fork must wait for another run to end, have it wait on that task's
