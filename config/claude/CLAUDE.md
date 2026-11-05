@@ -366,8 +366,13 @@ commands" is not a reason to stay in the main conversation.
 - After spawning a fork, write nothing, not even "it's running in the
   background, I'll report when it's done"; the tool call already shows it
   started. Any text the turn needs (an answer, a `📌 RULE UPDATE:` line)
-  goes before the spawn. Don't spawn another agent to wait for it; its
-  result arrives on its own.
+  goes before the spawn. Right before every spawn, after that text, write
+  one line `⏳ Agent <description>`, where `<description>` is the exact
+  `description` the fork is spawned with (e.g. `⏳ Agent Commit and push
+  lint fix`): it means the fork has started and is in progress. A turn
+  with no text gets bounced back by Claude Code ("no visible output"),
+  which forces a line after it. Don't spawn another agent to wait for it;
+  its result arrives on its own.
 - When a fork must wait for another run to end, have it wait on that task's
   completion or on a pattern that can't match the wait loop itself
   (`pgrep -f run_ci.py` inside a shell loop finds the loop's own command
