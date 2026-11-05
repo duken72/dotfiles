@@ -123,7 +123,8 @@ also write the same text, citations included, to `<YYYY-MM-DD>-<topic>.md` in
 the repo root (the working directory outside a repo), so I can copy-paste it.
 In that file, don't hard-wrap: put each sentence and list item on one line.
 Write it through a fork (see [Subtasks](#subtasks)) and give its full path
-before the spawn. Skip one-line replies and status updates.
+before the spawn. Leave the file untracked: don't stage, commit or exclude it.
+Skip one-line replies and status updates.
 
 ### Suggesting documentation updates
 
@@ -202,6 +203,10 @@ Short description
 - In the commit command, check the branch
   (`test "$(git branch --show-current)" = <branch>`) and push it by name; I
   switch branches between turns.
+- To untrack files, commit the `git rm --cached` without a pathspec (check
+  that nothing else is staged first): `git commit -- <paths>` commits the
+  working-tree version of the paths, so it adds the files back instead of
+  removing them. Check `git show --stat HEAD` before pushing.
 
 ### Planning work on a branch
 
