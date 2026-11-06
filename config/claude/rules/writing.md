@@ -66,7 +66,5 @@ tick it and note the outcome.
   `sed -n`); output joining several files (`cat *.yml`) numbers lines across
   all of them.
 
-## Writing bug reports
-
-When I ask for a bug report, use the `bug-report` skill
-(`skills/bug-report/SKILL.md`).
+For any file you draft for me to read, reply with one line linking to it;
+don't paste, summarize or explain it in chat.
