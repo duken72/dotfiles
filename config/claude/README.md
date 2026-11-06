@@ -16,6 +16,16 @@ linked.
 - `statusline.sh`: the status line script that `settings.json` runs.
 - `commands/`: custom slash commands, linked as a folder: `/st` runs a task in
   one fork subtask, `/sts` splits it across parallel forks.
+- `skills/`: custom skills, each linked into `~/.claude/skills/` (which also
+  holds skills from elsewhere): `/sim-test` and `/replay-test` run
+  `scripts/run_ci.py` in adasvf, `/pr-desc` drafts `PR_DESCRIPTION.md`,
+  `/commit` commits (and pushes with `push`; only the user can start it),
+  `/build-docs` builds the adasvf docs, `/prune-branches` prunes merged
+  adasvf branches and their notes, `/sync` pulls and pushes repos (both only
+  the user can start), `/instruct` picks where a new instruction belongs
+  (CLAUDE.md, notes, a skill, a hook, ...) and applies it after approval (only
+  the user can start it), and `/save-answer` saves the last chat answer to a
+  dated Markdown file in the repo root (only the user can start it).
 - `brave-mcp.json`, `brave-live-mcp.json`: opt-in browser access, see below.
 
 ## Table of contents
