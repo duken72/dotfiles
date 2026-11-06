@@ -3,7 +3,10 @@
 `run.sh` symlinks the files below into `~/.claude/`. This README is not
 linked.
 
-- `CLAUDE.md`: global instructions, loaded in every Claude Code session.
+- `CLAUDE.md`: global instructions, loaded in every Claude Code session:
+  points to `rules/` and imports the local notes.
+- `rules/`: global rules, one file per topic, loaded in every session
+  (linked to `~/.claude/rules`).
 - `pr-template.md`: default pull request template.
 - `settings.json`: shared settings and plugins. `run.sh` links
   `~/.claude/settings.json` to a private copy outside this repo
