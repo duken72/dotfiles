@@ -1,36 +1,23 @@
 # Checking claims
 
-Check a claim before you make it, also one repeated from your own earlier
+Check a claim before you make it, including one repeated from your own earlier
 answers or notes (re-check it, or keep its caveat: "meant to be X; briefly Y
-when Z"). Before saying:
+when Z"). Read the code that decides the claim, not only where a name appears:
 
-- "X already does this": check X goes through the same code path.
-- what a check or metric counts (validation target, counter, timer): read
-  where it accumulates and under which condition.
-- code "rejects" or "fails on" an input: read what the caller does with that
-  result (error, fallback, skip).
-- what a config flag or value does: grep its uses, not only where it's
-  parsed.
-- a change breaks something: check when that thing runs (pipeline triggers,
-  schedules, branch filters).
-- two runs can go in parallel: check every shared resource, not only the
-  build folder (host mounts such as `/tmp` and their sockets, host-network
-  ports, lock files); if one is unchecked, say "not verified".
-- a claim about live state that corrects a plan (PID 1, what's running, a
-  file's value): check it with one command.
-- one branch lacks another's changes: run `git log A..B` both ways; a file
-  diff doesn't show the direction.
-- how to fix behavior on a feature branch: fetch its base and check
-  `git log HEAD..origin/<base> -- <file>`.
-- two files differ or are copies: compare them without comments (`cmp` flags
-  a comment-only difference).
-- a variable is "always" or "never" something (non-negative, set, in range):
-  check every write and the edge cases between them (a target changing
-  mid-ramp, a lagging accumulator). Search case-insensitively across all file
-  types: generated accessors (`getParking_state()`), positional initializers
-  and `.fidl` files don't spell the field name as written.
-- something "isn't defined" or "isn't in the repo": search with `grep -a`
-  and without `2>/dev/null`; grep silently skips a source file with a stray
-  non-ASCII byte as binary.
-- a design alternative won't work or costs more (e.g. making a type atomic):
-  read that type's definition.
+- Code behavior: "X already does this" needs the same code path; a counter,
+  metric or check counts only where and when it accumulates; a "rejected"
+  input depends on what the caller does with the result; a config value does
+  what its uses do, not what its parser says; judge a design alternative only
+  after reading the type's definition.
+- Runtime and state: a change breaks something only if that thing runs then
+  (triggers, schedules, branch filters); parallel runs need every shared
+  resource checked (mounts, sockets, ports, lock files) or "not verified";
+  check live state that corrects a plan with one command.
+- Git and files: run `git log A..B` both ways for which branch lacks what,
+  and `git log HEAD..origin/<base> -- <file>` before fixing a feature branch;
+  compare files without comments, since `cmp` flags comment-only changes.
+- Searching: an "always" or "never" claim needs every write and the edge cases
+  between them; search case-insensitively across all file types (generated
+  accessors like `getParking_state()`, `.fidl` files). For "not defined", use
+  `grep -a` without `2>/dev/null`; grep skips a file with a stray non-ASCII
+  byte as binary.
