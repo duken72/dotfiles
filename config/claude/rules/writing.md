@@ -21,18 +21,6 @@ background and rare details to the doc, and leave a pointer.
 Use only older emoji (Unicode 6, e.g. 🔴 📝 ⚠️ 👉); newer ones such as
 U+1F900 and up (🧹, 🧠) show as empty boxes in my terminal font.
 
-## Saving answers as Markdown
-
-When I ask for an answer, explanation or report, give it in chat as usual and
-also write the same text, citations included, to `<YYYY-MM-DD>-<topic>.md` in
-the repo root (the working directory outside a repo), so I can copy-paste it.
-In that file, don't hard-wrap: put each sentence and list item on one line.
-Write it through a fork (see `subtasks.md`): put the full answer text
-in the fork prompt, since a fork doesn't see reply text from the turn that
-spawns it, and give the file's full path before the spawn. Leave the file
-untracked: don't stage, commit or exclude it. Skip one-line replies and status
-updates.
-
 ## Suggesting documentation updates
 
 When you find something undocumented that would help later work (a build step,
