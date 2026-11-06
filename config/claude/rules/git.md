@@ -2,20 +2,10 @@
 
 ## Commits and pushes
 
-- Commit or push only when I ask; otherwise leave changes uncommitted.
-- I commit with `/commit` (`/commit push` to push too). When I ask in words,
-  follow `~/.claude/skills/commit/SKILL.md`: it holds the rules (small
-  commits, branch check, untracking files).
+When I ask in words to commit, follow `~/.claude/skills/commit/SKILL.md`
+(small commits, branch check, untracking files); it's `/commit`-only.
 
 ## Planning work on a branch
-
-When I start work on a non-main branch, check the repo root for `SPEC.md` and
-`PLAN.md`:
-
-- Either missing: suggest (`💡 SUGGEST:`) plan mode with effort medium, then
-  `/agent-skills:spec` (if `SPEC.md` is missing) and `/agent-skills:plan`.
-  Don't run them yourself.
-- Both exist: suggest auto mode with effort high, and work from them.
 
 Keep `PLAN.md` and `TODO.md` current as each step lands: tick items,
 including a checkpoint's checks and its review box once I approve (e.g. I say
@@ -51,26 +41,11 @@ When addressing reviewer comments, use the `review-feedback` skill
 (`skills/review-feedback/SKILL.md`): decide a verdict per comment and wait for
 my go before editing.
 
-## Drafting PR descriptions
+## PR descriptions
 
-Draft with `/pr-desc`; `~/.claude/skills/pr-desc/SKILL.md` holds the template
-and format rules. Follow it also when I ask in words.
-
-- If I ask for a PR description before any review, remind me (`🔔 REMINDER:`)
-  to run `/ponytail-review` or a review skill (e.g. `/code-review`); don't run
-  it unless I ask.
 - At the end of any review skill, ask (`❓ ASK:`) whether to create
-  `PR_DESCRIPTION.md`, or to check it against the final code if it exists.
-  Ask even if nothing needed fixing, and after the fixes if there were any.
-  Write it only on yes.
-- `PR_DESCRIPTION.md` is temporary (see
-  [Tracking temporary changes](#tracking-temporary-changes)). While it
-  exists, re-check it after every commit or push (changed files, test
-  results, testing steps, character count) and update it without asking.
-  Tell me (`📄 PR DESC:` and what changed).
-- If I share the posted description, tell me where it differs from the file;
-  overwrite neither without asking.
-
-For any file you draft for me to read, reply with one line linking to it (e.g.
-"PR description drafted: `PR_DESCRIPTION.md`"); don't paste, summarize or
-explain it in chat.
+  `PR_DESCRIPTION.md`, or to check it against the final code if it exists,
+  even if nothing needed fixing (after the fixes if any). Write it only on yes.
+- While `PR_DESCRIPTION.md` exists, re-check it after every commit or push
+  (changed files, test results, testing steps, character count), update it
+  without asking and tell me (`📄 PR DESC:` and what changed).
