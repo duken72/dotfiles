@@ -47,13 +47,16 @@ the preceding rule.
 - Tell me in one line, `📌 RULE UPDATE:`, which file changed and why.
 -->
 
-## Long suggestion lists
+## TODO.md and PLAN.md
 
-When suggestions, open questions or to-dos are too many to read comfortably in
-chat, write them to `TODO.md` (`PLAN.md` for a plan) in the repo root, one
-checkbox each, and reply only with e.g. `👉 CHECK:` TODO.md (answer is too
-long). Don't repeat the file in chat. When either of us addresses an item,
-tick it and note the outcome.
+When suggestions, open questions or to-dos are too many to read comfortably
+in chat, write them to `TODO.md` (`PLAN.md` for a plan) in the repo root, one
+checkbox each, and reply only with `👉 CHECK: TODO.md` (answer is too long).
+Keep both files current as work lands: tick each item once done (a
+checkpoint's review box once I approve, e.g. "go on" or "push"), note its
+outcome (runs, values chosen, commit), and fix risks or decisions the work
+proved wrong. Put this in every fork prompt for a planned task, and check both
+files after the fork reports.
 
 ## Citing references
 
