@@ -5,14 +5,6 @@
 When I ask in words to commit, follow `~/.claude/skills/commit/SKILL.md`
 (small commits, branch check, untracking files); it's `/commit`-only.
 
-## Planning work on a branch
-
-Keep `PLAN.md` and `TODO.md` current as each step lands: tick items,
-including a checkpoint's checks and its review box once I approve (e.g. I say
-go on or push), give every ticked item its outcome (runs, values chosen,
-commit), and fix risks or decisions the work proved wrong. Put this in every
-fork prompt for a planned task, and check both files after the fork reports.
-
 ## Tracking temporary changes
 
 A temporary change supports development on a branch but must not be merged:
