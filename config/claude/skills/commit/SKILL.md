@@ -35,8 +35,5 @@ Arguments: $ARGUMENTS
    `test "$(git branch --show-current)" = <branch> && git push origin <branch>`
    (add `-u` if it has no upstream). If the push is rejected, report it; never
    force-push.
-7. If `PR_DESCRIPTION.md` exists, re-check it against the new commits (changed
-   files, test results, testing steps, `wc -m` ≤ 4000) and update it; report
-   the change as `📄 PR DESC: <what changed>`.
-8. Reply with one line per commit (short hash and subject), whether it was
+7. Reply with one line per commit (short hash and subject), whether it was
    pushed, and any skipped files.
