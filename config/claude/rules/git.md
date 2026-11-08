@@ -21,4 +21,8 @@ something temporary.
 
 - Temporary files stay local and untracked; don't add them to an exclude
   file. Ask me before staging, committing or pushing any of them, every time.
+  When I ask you outright to push them (to sync them to my other machines),
+  do it without asking again. Put them in their own `TEMP:` commit, mark them
+  "pushed" in `TEMPORARY_CHANGES.md`, and drop the commit before the PR. One
+  request covers that one push.
 - Keep temporary commits apart from the real work so they drop cleanly.
