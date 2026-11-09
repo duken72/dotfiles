@@ -18,6 +18,8 @@ ln -svfn $ABSOLUTE_PARENT_PATH/commands ~/.claude/commands
 ln -svfn $ABSOLUTE_PARENT_PATH/rules ~/.claude/rules
 mkdir -p ~/.claude/skills
 for s in "$ABSOLUTE_PARENT_PATH"/skills/*/; do ln -svfn "${s%/}" ~/.claude/skills/; done
+# Private project notes (local.md and the files it points to), if present
+ls $(dirname $PRIVATE_SETTINGS)/*.md &>/dev/null && ln -svf $(dirname $PRIVATE_SETTINGS)/*.md -t ~/.claude
 if [ -f $PRIVATE_SETTINGS ]; then
     ln -svf $PRIVATE_SETTINGS ~/.claude/settings.json
 else
