@@ -69,6 +69,7 @@
         "/home/duken72/.local/share/waybar/modules/image#wallpaper.json",
         "/home/duken72/.local/share/waybar/modules/wlr-taskbar.json",
         "/home/duken72/.local/share/waybar/modules/wlr-taskbar#windows.json",
+        "/home/duken72/.local/share/waybar/modules/user.json",
         "/home/duken72/.local/share/waybar/modules/custom-spotify.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-github_hyde.jsonc",
         "/home/duken72/.local/share/waybar/modules/gamemode.jsonc",
@@ -91,6 +92,7 @@
         "/home/duken72/.local/share/waybar/modules/group-eyecare.jsonc",
         "/home/duken72/.local/share/waybar/modules/mpris.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-cpuinfo.jsonc",
+        "/home/duken72/.local/share/waybar/modules/custom-app-launcher.jsonc",
         "/home/duken72/.local/share/waybar/modules/hyprland-workspaces#roman.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-wallchange.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-cliphist.jsonc",
@@ -111,6 +113,7 @@
         "/home/duken72/.local/share/waybar/modules/custom-keybindhint.jsonc",
         "/home/duken72/.local/share/waybar/modules/backlight.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-gpuinfo#intel.jsonc",
+        "/home/duken72/.local/share/waybar/modules/group-user-menu.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-dunst.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-clipboard.jsonc",
         "/home/duken72/.local/share/waybar/modules/hyprland-workspaces.jsonc",
@@ -149,5 +152,12 @@
         "icon-size": 16,
         "icon-size-multiplier": 1.6
     },
-    "position": "top"
+    "position": "top",
+    "user": {
+        "format": "",
+        "interval": 60,
+        "height": 20,
+        "width": 20,
+        "icon": true
+    }
 }
