@@ -3,6 +3,8 @@ name: replay-test
 description: Replay recorded datasets through adasvf vparking_app with scripts/run_ci.py, optionally with --validation interface logs, and report the result. Use when asked to run a replay test or replay a dataset in the adasvf repo.
 argument-hint: "[dataset | all] [--validation] [extra run_ci.py flags]"
 context: fork
+agent: general-purpose
+model: sonnet
 ---
 
 Run replay-mode tests of `vparking_app` with `scripts/run_ci.py` in the adasvf
