@@ -10,6 +10,9 @@ grep -a $DATE /var/log/pacman.log | grep upgraded >/tmp/upd.txt
 gawk '{gsub(/\(/,""); gsub(/\)/,""); print $4"-"$5}' /tmp/upd.txt >/tmp/pkgs.txt
 
 cd /var/cache/pacman/pkg/
+# One transaction, so packages pinned to each other's exact version downgrade together
+files=()
 for pkg in $(cat /tmp/pkgs.txt); do
-	sudo pacman --needed --noconfirm -U "$pkg"*.zst
+	files+=("$pkg"*.zst)
 done
+sudo pacman --needed -U "${files[@]}"
