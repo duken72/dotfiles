@@ -119,6 +119,7 @@
         "/home/duken72/.local/share/waybar/modules/hyprland-workspaces.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-weather.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-display.jsonc",
+        "/home/duken72/.local/share/waybar/modules/custom-caffeine.jsonc",
         "/home/duken72/.local/share/waybar/modules/idle_inhibitor.jsonc",
         "/home/duken72/.local/share/waybar/modules/custom-gpuinfo.jsonc",
         "/home/duken72/.local/share/waybar/modules/group-mediaplayer.jsonc",
