@@ -21,7 +21,7 @@ local d = "[Window Management]"
 
 hl.bind("SUPER + Q", hl.dsp.window.close(), { description = d .. " close focused window " })
 hl.bind("ALT + F4", hl.dsp.window.close(), { description = d .. " close focused window " })
-hl.bind(mainMod .. " + Delete", hl.dsp.exec_cmd("hyde-shell logout"), { description = d .. " kill hyprland session" })
+hl.bind(mainMod .. " + Delete", hl.dsp.exit(), { description = d .. " kill hyprland session" })
 hl.bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" }), { description = d .. " Toggle floating" })
 -- hl.bind(mainMod .. " + G", hl.dsp.group.toggle(), { description = d .. " toggle group" })
 hl.bind("SHIFT + F11", hl.dsp.window.fullscreen(), { description = d .. " toggle fullscreen" })
