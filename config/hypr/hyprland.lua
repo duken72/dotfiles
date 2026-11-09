@@ -26,6 +26,11 @@ if not hyde then
 	dofile(entry)
 end
 
+-- emptty starts Hyprland without ~/.profile, so hyde-shell (in ~/.local/bin) isn't found
+hl.env("PATH", os.getenv("HOME") .. "/.local/bin:" .. (os.getenv("PATH") or ""))
+-- waybar exits with an error at logout, and the leftover failed unit stops HyDE starting the bar at the next login
+os.execute("systemctl --user reset-failed 'hyde-*' 2>/dev/null")
+
 require("monitors") -- Monitor configuration
 require("keybindings") -- Keyboard shortcuts
 require("windowrules") -- Window rules
@@ -43,6 +48,5 @@ require("userprefs") -- Your hyprland configuration // Edit this file to change 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("ibus start --type wayland")
-	hl.exec_cmd("waybar")
-	hl.exec_cmd("hydectl theme set 'Rosé Pine'")
+	-- waybar, wallpaper and theme are started by HyDE (~/.local/share/hypr/lua/start_up.lua)
 end)
