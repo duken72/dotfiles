@@ -3,6 +3,8 @@ name: sim-test
 description: Run adasvf vparking_app simulation smoke tests with scripts/run_ci.py and report pass/fail per sim config with the failing validation checks. Use when asked to run a sim test, smoke test, sim config or scenario in the adasvf repo.
 argument-hint: "[sim config | all] [extra run_ci.py flags]"
 context: fork
+agent: general-purpose
+model: sonnet
 ---
 
 Run simulation-mode tests of `vparking_app` with `scripts/run_ci.py` in the

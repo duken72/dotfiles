@@ -3,6 +3,8 @@ name: build-docs
 description: Build the adasvf Sphinx documentation in the adasvf-ci docker image and report its warnings and errors. Use when asked to build or check the docs in the adasvf repo.
 argument-hint: "[component or doc path to focus on]"
 context: fork
+agent: general-purpose
+model: sonnet
 ---
 
 Build the adasvf docs (`documentation-adasvf` CMake preset, target `Sphinx`)

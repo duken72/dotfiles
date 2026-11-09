@@ -5,8 +5,9 @@ argument-hint: "[push] [message hints]"
 disable-model-invocation: true
 ---
 
-Do the steps below in one fork (`Agent` with `subagent_type: "fork"`, which
-inherits this conversation), then relay its reply unchanged.
+Do the steps below in one subagent (`Agent` with `subagent_type:
+"general-purpose"`, `model: "sonnet"`); put the grouping hints from the
+conversation in its prompt, then relay its reply unchanged.
 
 Commit the working-tree changes of the current repo; push only if the arguments
 contain `push`.
