@@ -1,6 +1,6 @@
 ---
 name: sync
-description: Sync git repos with their remote: pull, resolve conflicts, and with "push" commit and push all or chosen changes. Run only when the user types /sync.
+description: 'Sync git repos with their remote: pull, resolve conflicts, and with "push" commit and push all or chosen changes. Run only when the user types /sync.'
 argument-hint: "[adasvf | dotfiles | adle-vf | <path> ...] [push [all | <paths or description>]]"
 disable-model-invocation: true
 ---
