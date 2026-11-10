@@ -1,14 +1,15 @@
 ---
 name: save-answer
-description: Save the answer just given in chat to <YYYY-MM-DD>-<topic>.md in the repo root through a fork, so the user can copy-paste it. Run only when the user types /save-answer.
+description: Save the answer just given in chat to <topic>_YYYYMMDD.md in the repo root through a fork, so the user can copy-paste it. Run only when the user types /save-answer.
 disable-model-invocation: true
 argument-hint: "[topic]"
 ---
 
 Save the answer you last gave in chat to a Markdown file.
 
-1. Path: `<YYYY-MM-DD>-<topic>.md` (today's date; the topic from the
-   arguments, else a short kebab-case one) in the repo root
+1. Path: `<topic>_YYYYMMDD.md` (the topic from the arguments, else a short
+   kebab-case one; today's date without dashes, e.g.
+   `review-feedback-15459_20261110.md`) in the repo root
    (`git rev-parse --show-toplevel`), or the working directory outside a
    repo. Write the full path in your reply before the spawn.
 2. Spawn one fork (`Agent` with `subagent_type: "fork"`). Its prompt must
