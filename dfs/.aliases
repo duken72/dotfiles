@@ -317,6 +317,7 @@ alias icat='kitten icat'
 
 # Claude Code
 alias cla='claude'
+alias cla2='CLAUDE_CONFIG_DIR="$HOME/.claude-account2" claude'
 # Opt-in: drive a separate Brave window via the Chrome DevTools MCP server
 alias clab='claude --mcp-config ~/.claude/brave-mcp.json'
 # Opt-in: see and drive your running Brave; turn on brave://inspect/#remote-debugging first
