@@ -38,7 +38,10 @@ Arguments: $ARGUMENTS
    asking.
 2. Report: success or failure; every warning and error with file and line (only
    those under the argument's path if one is given, plus a count of the rest);
-   and links to open the built docs, as full `file://` URLs:
+   and links to open the built docs, as full `file://` URLs. On WSL
+   (`$WSL_DISTRO_NAME` set), write each one as
+   `file://wsl.localhost/$WSL_DISTRO_NAME<absolute path>`, so the Windows
+   browser can open it; elsewhere, write it as `file://<absolute path>`:
    - the start page, `file://<repo root>/build/documentation/vinfast_adas/sphinx/index.html`
      (not the first `index.html` that `find` returns, which can be a subpage);
    - one per changed doc page: for each `.rst` or `.md` file under a `doc/`
