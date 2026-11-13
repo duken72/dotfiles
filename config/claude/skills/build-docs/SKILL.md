@@ -18,15 +18,19 @@ Arguments: $ARGUMENTS
    warnings as errors):
    - both `graphify-out/` folders, for their `GRAPH_REPORT.md` files;
      `**/graphify-out/**` doesn't match the top-level folder;
-   - untracked `.md` files at the repo root (`PR_DESCRIPTION.md`, `TODO.md`,
-     `TEMPORARY_CHANGES.md`, saved answers): they start at H1 and sit in no
-     toctree. Only the root ones: a new untracked page in a doc folder must
-     still build.
+   - temporary `.md` files at the repo root: untracked ones, the fixed names
+     (`PR_DESCRIPTION.md`, `TODO.md`, `PLAN.md`, `SPEC.md`,
+     `TEMPORARY_CHANGES.md`), and every `.md`/`.rst` path that
+     `TEMPORARY_CHANGES.md` names. They start at H1 and sit in no toctree,
+     and a pushed `TEMP:` commit can make them tracked. Only these: a new
+     untracked page in a doc folder must still build.
 
    ```bash
    OV=$(python3 -c "import json; print(json.load(open('CMakePresets.json'))['configurePresets'][0]['cacheVariables']['SPHINX_CONFIG_OVERRIDE'])")
    OV="$OV,graphify-out/**,**/graphify-out/**"
-   for f in $(git ls-files --others --exclude-standard -- ':(glob)*.md'); do OV="$OV,$f"; done
+   for f in $(git ls-files --others --exclude-standard -- ':(glob)*.md') \
+       PR_DESCRIPTION.md TODO.md PLAN.md SPEC.md TEMPORARY_CHANGES.md \
+       $(grep -o '`[^`]*\.\(md\|rst\)`' TEMPORARY_CHANGES.md 2>/dev/null | tr -d '`'); do OV="$OV,$f"; done
    docker run --rm --user vscode -v "$PWD":/mount -w /mount adasvf-ci \
        bash -c 'cmake --preset documentation-adasvf "-DSPHINX_CONFIG_OVERRIDE=$1" && cmake --build --preset documentation-adasvf' _ "$OV"
    ```
