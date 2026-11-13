@@ -12,8 +12,8 @@ merged.
 
 Arguments (branches to check; default: every local branch): $ARGUMENTS
 
-1. In one fork (`Agent` with `subagent_type: "fork"`), collect the candidates
-   without changing any branch:
+1. In one fork (`Agent` with `subagent_type: "fork"`), prune without asking
+   the user:
    - Run `git fetch --prune origin`, `git worktree prune`,
      `git worktree list` and `git branch -vv`.
    - For each local branch except the default branch (`origin/HEAD`), take
@@ -23,24 +23,23 @@ Arguments (branches to check; default: every local branch): $ARGUMENTS
      List the branch's commits that aren't in the default branch:
      `git log --oneline origin/HEAD..<branch>`.
    - Verdict: `merged` (merge commit found), `gone` (upstream marked
-     `[gone]`, no merge commit: not proof, the user decides) or `active`.
-   - Return a short table: branch, verdict, merge commit (hash and subject),
-     worktree it's checked out in, commits not in the default branch.
-2. If no branch is `merged` or `gone`, say so in one line and stop. Otherwise
-   show the table and ask with AskUserQuestion (multiSelect) which branches to
-   delete, `merged` ones first, each option's description giving its
-   evidence. Also offer `active` branches only if the user named them in the
-   arguments (a canceled task counts as merged).
-3. In a second fork, for each chosen branch:
-   - If it's checked out in a worktree: when that worktree's
-     `git status --porcelain` is empty, free it with
-     `git -C <worktree> checkout --detach origin/HEAD`; otherwise skip the
-     branch and report why.
-   - Delete it with `git branch -D <branch>` (the user confirmed it; `-d`
-     refuses branches merged only through a merge commit into another
-     branch).
-   - Delete its entry in `adasvf-branches.md` and every mention of it in the
-     other entries.
+     `[gone]`, no merge commit: not proof) or `active`.
+   - Delete every `merged` branch, even one with commits made after its PR
+     (record their subjects for the report):
+     - If it's checked out in a worktree: when that worktree's
+       `git status --porcelain` is empty, free it with
+       `git -C <worktree> checkout --detach origin/HEAD`; otherwise skip the
+       branch and report why.
+     - Delete it with `git branch -D <branch>` (`-d` refuses branches merged
+       only through a merge commit into another branch). Record the old tip
+       hash it prints.
+     - Delete its entry in `adasvf-branches.md` and every mention of it in
+       the other entries.
+   - Don't delete `gone` or `active` branches. Report them instead. Also
+     report an `active` branch whose commits are all in the default branch
+     (likely merged through another branch's PR).
    - Don't delete remote branches or worktree folders, and don't commit
      anything (the adle-vf repo included).
-4. Relay one line: deleted branches, and skipped ones with the reason.
+2. Relay one line: deleted branches with their old tip hashes and any lost
+   commit subjects, skipped ones with the reason, and `gone` or `active`
+   branches worth a look.
