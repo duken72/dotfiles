@@ -35,9 +35,9 @@
             "custom/caffeine",
             "clock",
             "custom/updates",
-            "custom/keybindhint",
-            "custom/gamemode",
-            "custom/weather"
+            "tray"
+            // "custom/keybindhint"
+            // "custom/gamemode",
         ]
     },
     "modules-right": [
@@ -48,15 +48,16 @@
         "modules": [
             "privacy",
             "backlight",
+            "custom/weather",
             "tray",
             "network",
             "custom/bluetooth",
             "pulseaudio",
-            "pulseaudio#microphone",
+            // "pulseaudio#microphone",
             "battery",
             "custom/gpuinfo",
             "custom/cpuinfo",
-            "custom/sensorsinfo",
+            // "custom/sensorsinfo",
             "custom/swaync",
             "custom/hyde-menu"
         ]
