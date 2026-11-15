@@ -108,5 +108,11 @@ scripts run cleanly and symlinks land where the relevant `run.sh`, `dfs.sh` or
   `local ... = "TODO"` placeholders (partition devices, timezone, hostname)
   before running it.
 - `config/waybar/` has no `run.sh`; `config/hypr/run.sh` installs it.
+- HyDE's `~/.local/lib/hyde/waybar.py` copies the selected layout
+  (`WAYBAR_LAYOUT_PATH` in `~/.local/state/hyde/staterc`) over
+  `config/waybar/config.jsonc` on every waybar start, backing up the old file
+  to `config/waybar/layouts/backup/`. Edit the selected layout,
+  `config/waybar/layouts/hyprdots/custom.jsonc`, not `config.jsonc`; select a
+  layout with `waybar.py --set <path>`.
 - `dfs/.git-credentials` is a plain template without a secret:
   `[token_key_here]` is a placeholder. Don't flag it as a leaked credential.
