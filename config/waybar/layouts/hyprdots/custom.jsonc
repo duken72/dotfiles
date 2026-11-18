@@ -30,14 +30,16 @@
     "group/pill#center": {
         "orientation": "inherit",
         "modules": [
-            "keyboard-state",
             "custom/hyprsunset",
+            "backlight",
             "custom/caffeine",
-            "clock",
+            "custom/separator",
             "custom/updates",
-            "tray"
-            // "custom/keybindhint"
+            "custom/separator",
+            "clock",
+            "custom/weather"
             // "custom/gamemode",
+            // "custom/keybindhint"
         ]
     },
     "modules-right": [
@@ -47,18 +49,18 @@
         "orientation": "inherit",
         "modules": [
             "privacy",
-            "backlight",
-            "custom/weather",
             "tray",
-            "network",
-            "custom/bluetooth",
+            // "network",
+            "custom/separator",
             "pulseaudio",
-            // "pulseaudio#microphone",
+            "pulseaudio#microphone",
+            "custom/separator",
             "battery",
             "custom/gpuinfo",
             "custom/cpuinfo",
             // "custom/sensorsinfo",
-            "custom/swaync",
+            "custom/separator",
+            "custom/dunst",
             "custom/hyde-menu"
         ]
     }
