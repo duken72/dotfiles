@@ -48,5 +48,6 @@ require("userprefs") -- Your hyprland configuration // Edit this file to change 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("ibus start --type wayland")
+	hl.exec_cmd("hyde-shell caffeine -t -q -P waybar,21") -- caffeine state resets each login; toggle it on
 	-- waybar, wallpaper and theme are started by HyDE (~/.local/share/hypr/lua/start_up.lua)
 end)
