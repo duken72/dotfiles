@@ -7,3 +7,6 @@ config/ranger/plugins/__pycache__
 *.bak
 # HyDE backs up config.jsonc here on every waybar reload
 config/waybar/layouts/backup/custom_*
+# nwg-displays creates these on every start; Hyprland loads only monitors.lua
+config/hypr/monitors.conf
+config/hypr/workspaces.conf
