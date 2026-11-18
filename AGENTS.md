@@ -111,8 +111,15 @@ scripts run cleanly and symlinks land where the relevant `run.sh`, `dfs.sh` or
 - HyDE's `~/.local/lib/hyde/waybar.py` copies the selected layout
   (`WAYBAR_LAYOUT_PATH` in `~/.local/state/hyde/staterc`) over
   `config/waybar/config.jsonc` on every waybar start, backing up the old file
-  to `config/waybar/layouts/backup/`. Edit the selected layout,
+  to `config/waybar/layouts/backup/` (git-ignored, except the committed
+  `17_*` one). Edit the selected layout,
   `config/waybar/layouts/hyprdots/custom.jsonc`, not `config.jsonc`; select a
   layout with `waybar.py --set <path>`.
+- nwg-displays writes `config/hypr/monitors.lua`, which `hyprland.lua` loads,
+  plus `monitors.conf` and `workspaces.conf`, which nothing loads. It creates
+  those two empty on every start, so both are in `.gitignore`.
+- With the Acer connected, `monitors.lua` disables the laptop panel, and
+  waybar then hides the `backlight` module, which controls only
+  `intel_backlight`. The Acer's brightness needs DDC/CI (`ddcutil`).
 - `dfs/.git-credentials` is a plain template without a secret:
   `[token_key_here]` is a placeholder. Don't flag it as a leaked credential.
