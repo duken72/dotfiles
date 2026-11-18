@@ -34,7 +34,9 @@ hl.bind(
 )
 hl.bind("CONTROL + ALT + Delete", hl.dsp.exec_cmd(scrPath .. "/logoutlaunch.sh"), { description = d .. " logout menu" })
 -- hl.bind("ALT_R + CONTROL_R", hl.dsp.exec_cmd("hyde-shell waybar --hide"), { description = d .. " toggle waybar and reload config" })
-hl.bind("ALT_R + CONTROL_R", hl.dsp.exec_cmd("killall waybar || waybar"), { description = d .. " toggle waybar" }) -- toggle waybar without reloading, this is faster
+-- Right Alt + right Ctrl in either order; modifiers can't be side-specific, so left Ctrl/Alt also match
+hl.bind("CTRL + ALT_R", hl.dsp.exec_cmd("~/.local/lib/hyde/waybar.py --set ~/.config/waybar/layouts/hyprdots/custom.jsonc"), { description = d .. " reload waybar config" })
+hl.bind("ALT + CONTROL_R", hl.dsp.exec_cmd("~/.local/lib/hyde/waybar.py --set ~/.config/waybar/layouts/hyprdots/custom.jsonc"), { description = d .. " reload waybar config" })
 
 -- ----- Group Navigation -----
 local dGroupNav = d .. "[Group Navigation]"
