@@ -5,3 +5,5 @@ config/ranger/plugins/__pycache__
 .pkg*
 .nvimlog
 *.bak
+# HyDE backs up config.jsonc here on every waybar reload
+config/waybar/layouts/backup/custom_*
