@@ -32,6 +32,7 @@
         "/home/duken72/.config/waybar/modules/custom-cliphist.jsonc",
         "/home/duken72/.config/waybar/modules/custom-gamemode.jsonc",
         "/home/duken72/.config/waybar/modules/custom-wbar.jsonc",
+        "/home/duken72/.config/waybar/modules/custom-separator.jsonc",
         "/home/duken72/.config/waybar/modules/wlr-taskbar#windows.jsonc",
         "/home/duken72/.config/waybar/modules/custom-gpuinfo#nvidia.jsonc",
         "/home/duken72/.config/waybar/modules/image#profile.jsonc",
