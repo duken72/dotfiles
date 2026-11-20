@@ -2,6 +2,12 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Load aliases before the interactive check below, so non-interactive shells
+# (Claude Code's) get them too. ~/.aliases removes the ones that change plain
+# commands for AI agents.
+shopt -s expand_aliases
+[ -f ~/.aliases ] && source ~/.aliases
+
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;
@@ -32,8 +38,6 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
-# Expand alias within a script
-shopt -s expand_aliases
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -89,7 +93,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # ALIAS DEFINITIONS
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
-[ -f ~/.aliases ] && source ~/.aliases
 # [ -f ~/bcr2_setup/bldr.bashrc ] && source ~/bcr2_setup/bldr.bashrc
 
 # Auto-completions / suggestions

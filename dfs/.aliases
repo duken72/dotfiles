@@ -1,7 +1,3 @@
-# Aliases are for interactive use by the user only. AI agents get the default
-# commands: Claude Code sets CLAUDECODE and AI_AGENT in its shell.
-[ -n "$CLAUDECODE$AI_AGENT" ] && return
-
 # This file is identical on all branches. Put OS- or machine-specific aliases
 # behind the checks in the OS SPECIFIC and MACHINE SPECIFIC sections, not on
 # one branch only. legacy-xorg adds its own aliases in .aliases_legacy.
@@ -396,3 +392,10 @@ fi
 
 # Aliases kept on the legacy-xorg branch only; the file exists only there.
 [ -f ~/.dotfiles/dfs/.aliases_legacy ] && . ~/.dotfiles/dfs/.aliases_legacy
+
+# AI agents get the plain commands for the aliases that change them; all other
+# aliases stay available. Claude Code sets CLAUDECODE and AI_AGENT in its shell.
+if [ -n "$CLAUDECODE$AI_AGENT" ]; then
+    unalias ls cp rm mv dmesg rsync dot pic 2>/dev/null
+    unset -f cd
+fi
