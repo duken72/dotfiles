@@ -12,17 +12,20 @@ PRIVATE_SETTINGS=~/WS/adle-vf/claude/settings.json
 # jq: statusline.sh parses the session JSON with it
 sudo apt install -y jq
 ABSOLUTE_PARENT_PATH=$(realpath $(dirname $BASH_SOURCE))
-mkdir -p ~/.claude
-ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,brave-mcp.json,brave-live-mcp.json,statusline.sh} -t ~/.claude
-ln -svfn $ABSOLUTE_PARENT_PATH/commands ~/.claude/commands
-ln -svfn $ABSOLUTE_PARENT_PATH/rules ~/.claude/rules
-mkdir -p ~/.claude/skills
-for s in "$ABSOLUTE_PARENT_PATH"/skills/*/; do ln -svfn "${s%/}" ~/.claude/skills/; done
-# Private project notes (local.md and the files it points to), if present
-ls $(dirname $PRIVATE_SETTINGS)/*.md &>/dev/null && ln -svf $(dirname $PRIVATE_SETTINGS)/*.md -t ~/.claude
-if [ -f $PRIVATE_SETTINGS ]; then
-    ln -svf $PRIVATE_SETTINGS ~/.claude/settings.json
-else
-    [ -L ~/.claude/settings.json ] && rm ~/.claude/settings.json
-    cp -nv $ABSOLUTE_PARENT_PATH/settings.json ~/.claude/settings.json
-fi
+for D in ~/.claude ~/.claude-account2; do
+    [ "$D" = ~/.claude ] || [ -d "$D" ] || continue
+    mkdir -p "$D"
+    ln -svf $ABSOLUTE_PARENT_PATH/{CLAUDE.md,pr-template.md,brave-mcp.json,brave-live-mcp.json,statusline.sh} -t "$D"
+    ln -svfn $ABSOLUTE_PARENT_PATH/commands "$D"/commands
+    ln -svfn $ABSOLUTE_PARENT_PATH/rules "$D"/rules
+    mkdir -p "$D"/skills
+    for s in "$ABSOLUTE_PARENT_PATH"/skills/*/; do ln -svfn "${s%/}" "$D"/skills/; done
+    # Private project notes (local.md and the files it points to), if present
+    ls $(dirname $PRIVATE_SETTINGS)/*.md &>/dev/null && ln -svf $(dirname $PRIVATE_SETTINGS)/*.md -t "$D"
+    if [ -f $PRIVATE_SETTINGS ]; then
+        ln -svf $PRIVATE_SETTINGS "$D"/settings.json
+    else
+        [ -L "$D"/settings.json ] && rm "$D"/settings.json
+        cp -nv $ABSOLUTE_PARENT_PATH/settings.json "$D"/settings.json
+    fi
+done
