@@ -31,9 +31,15 @@ Arguments: $ARGUMENTS
    for f in $(git ls-files --others --exclude-standard -- ':(glob)*.md') \
        PR_DESCRIPTION.md TODO.md PLAN.md SPEC.md TEMPORARY_CHANGES.md \
        $(grep -o '`[^`]*\.\(md\|rst\)`' TEMPORARY_CHANGES.md 2>/dev/null | tr -d '`'); do OV="$OV,$f"; done
-   docker run --rm --user vscode -v "$PWD":/mount -w /mount adasvf-ci \
+   GC=$(git rev-parse --path-format=absolute --git-common-dir)
+   case "$GC" in "$PWD"/*) GM=;; *) GM="-v $GC:$GC:ro";; esac
+   docker run --rm --user vscode -v "$PWD":/mount $GM -w /mount adasvf-ci \
        bash -c 'cmake --preset documentation-adasvf "-DSPHINX_CONFIG_OVERRIDE=$1" && cmake --build --preset documentation-adasvf' _ "$OV"
    ```
+
+   `$GM` mounts the main checkout's git data when the repo is a worktree:
+   there `.git` points outside `/mount`, and Sphinx's codelinks extension
+   warns "git root is not found in the parent of /mount", which fails the build.
 
    It can take several minutes: run it with Bash `run_in_background: true`,
    writing its output to a log file, and wait for the completion notification.
