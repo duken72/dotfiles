@@ -14,6 +14,10 @@ my Neovim setup; read it rather than assume it:
 Before proposing a shorter form (e.g. a "shrink" finding), check it still fits
 the column limit after formatting; a line the formatter wraps saves nothing.
 
+Name variables, constants and functions for what they hold or do in their
+current use, within the repo's naming convention. Rename code reused from a
+prototype when its role changed.
+
 ## Reuse what the repo has
 
 Before adding a type, helper or idiom, search the repo (shared type folders
